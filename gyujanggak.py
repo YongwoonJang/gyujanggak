@@ -1,6 +1,5 @@
 #-*-coding:utf8-*-
 import sys
-sys.path.append('/usr/Alexandria/')
 
 from os import path 
 
