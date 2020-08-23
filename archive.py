@@ -215,8 +215,5 @@ class School:
 
 if __name__ == '__main__':
     school = School()    
-    #school.update_tokenizer()
-    #school.create_model()
-    #school.learn()
     school.predict("손경준의 이름은 뭐야")
     print("Hello world")
