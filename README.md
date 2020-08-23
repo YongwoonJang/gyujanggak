@@ -9,7 +9,7 @@ This project is for providing functions for predicting in human conversation to 
 5. A function for predicting a opinion of a premise.
 
 ## Usage
-1. Install python3.x
+1. Use dockerfile
 2. import gyujanggak
 
 ## Maintainer
