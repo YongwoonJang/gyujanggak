@@ -1,6 +1,5 @@
 #-*-coding:utf8-*-
 import sys
-sys.path.append('/usr/Alexandria/')
 
 from os import path 
 
@@ -27,7 +26,7 @@ from tensorflow.keras.models import load_model
 
 from sklearn.model_selection import train_test_split
 
-class School:
+class Gyujanggak:
     def __init__(self):
         self.tokenizer_path = "./tokenizer/tokenizer.json"
         self.checkpoint_path = "./model/cp.ckpt"
@@ -214,6 +213,5 @@ class School:
         return answer
 
 if __name__ == '__main__':
-    school = School()    
-    school.predict("손경준의 이름은 뭐야")
-    print("Hello world")
+    gyujanggak = Gyujanggak()
+    gyujanggak.predict("규장각은 무슨 뜻이야")
