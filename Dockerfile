@@ -1,13 +1,6 @@
-FROM python:3.7-alpine
-
+FROM python:3
 WORKDIR /code
-
-RUN apk add --no-cache gcc musl-dev linux-headers libxml2 libxslt libxml2-dev libxslt-dev alpine-sdk
-
-COPY requirements.txt requirements.txt
-
-RUN pip install -r requirements.txt
-
+ENV JAVA_HOME /usr/lib/jvm/java-1.7-openjdk/jre
+RUN apt-get update && apt-get install -y g++ default-jdk
+RUN pip install konlpy
 COPY . .
-
-CMD [ "python", "./archive.py"]
