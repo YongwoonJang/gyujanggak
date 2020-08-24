@@ -9,8 +9,9 @@ This project is for providing functions for answering questions from humans.
 5. A function for predicting a opinion of a premise.
 
 ## Usage
-1. Use dockerfile
-2. import gyujanggak
+1. Use dockerfile and make image 
+2. In the Container use "bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh)" command 
+3. import gyujanggak
 
 ## Maintainer
 1. Yongwoon Jang (royalfamily89@gmail.com)
