@@ -1,5 +1,5 @@
 # gyujanggak
-This project is for providing functions for predicting in human conversation to anticipate a text from a text 
+This project is for providing functions for answering questions from humans.
 
 ## Functions
 1. A function for korean morpheme analize.
