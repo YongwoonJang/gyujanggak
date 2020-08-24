@@ -10,7 +10,8 @@ This project is for providing functions for answering questions from humans.
 
 ## Usage
 1. Use dockerfile and make image 
-2. In the Container use "bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh)" command 
+2. In the Container use below command
+> bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh) 
 3. import gyujanggak
 
 ## Maintainer
