@@ -9,11 +9,6 @@ import numpy as np
 from konlpy.tag import Mecab
 mecab = Mecab()
 
-from database import db_session
-from models import Question
-from sqlalchemy import text
-from sqlalchemy import or_
-
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.text import tokenizer_from_json
 from tensorflow.keras.preprocessing import sequence
@@ -34,21 +29,21 @@ class Gyujanggak:
         self.max_features = 1000
         self.maxlen = 100 # 학습할때 참조할 문장단 문자 갯수를 정의한다. 
 
-        stmt = text("select question, answer, answer_category from question")
-        stmt = stmt.columns(Question.question, Question.answer, Question.answer_category)
-        self.question = db_session.query(Question.question, Question.answer, Question.answer_category).from_statement(stmt).all()
+#        stmt = text("select question, answer, answer_category from question")
+#        stmt = stmt.columns(Question.question, Question.answer, Question.answer_category)
+#        self.question = db_session.query(Question.question, Question.answer, Question.answer_category).from_statement(stmt).all()
 
-        if(path.exists(self.tokenizer_path)):
-            with open(self.tokenizer_path) as handle:
-                self.tokenizer = tokenizer_from_json(json.load(handle))
-        else:
-            self.tokenizer = update_tokenizer(init=True)
+#        if(path.exists(self.tokenizer_path)):
+#            with open(self.tokenizer_path) as handle:
+#                self.tokenizer = tokenizer_from_json(json.load(handle))
+#        else:
+#            self.tokenizer = update_tokenizer(init=True)
 
-        if(path.exists(self.model_path)):
-            self.model = load_model(self.model_path)
-        else:
-            self.model = self.create_model()
-            self.learn()
+#        if(path.exists(self.model_path)):
+#            self.model = load_model(self.model_path)
+#        else:
+#            self.model = self.create_model()
+#            self.learn()
 
     def update_tokenizer(self, init=False, **kwargs):
         if(init == True):
@@ -158,6 +153,7 @@ class Gyujanggak:
 
         else:
             question.append(mecab.morphs(text))
+            print(question)
             text_sequence = self.tokenizer.texts_to_sequences(question)
             
                 
