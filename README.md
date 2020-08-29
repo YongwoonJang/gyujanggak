@@ -2,7 +2,7 @@
 This project is for providing functions for answering questions from humans.
 
 ## Functions
-1. A function for korean morpheme analize. (relate functions : convert_from_a_question_to_numbers())
+1. A function for converting from a quesion to numbers and saving the result of "words - numbers" pairs as tokenizer. (relate functions : convert_from_a_question_to_numbers())
 2. A function for crawling data to be premise.
 3. A function for crawling data to be opinion.
 4. A function for learning relation between premises and opinions
@@ -14,8 +14,8 @@ This project is for providing functions for answering questions from humans.
 > bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh) 
 3. import gyujanggak
 
-## Cautions 
-1. if you update token, you should execute learning function. because if you update token then all the numbers which are matched with words are changed, even though they are tokenized in order compliant with previous one.
+## Notions
+1. if a tokenizer needs to enlarge words to perceive, ffirst, delete the current tokenizer. second, keep previous fit_on_texts data's keywords and order and just add a word which was not in previous.
 
 ## Maintainer
 1. Yongwoon Jang (royalfamily89@gmail.com)
