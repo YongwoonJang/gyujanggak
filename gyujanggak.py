@@ -109,21 +109,21 @@ class Gyujanggak:
         
         # Update the tokenizer
         # Save the tokenizer
-        if ( (len(questions[0]) - len(text_sequence[0])) > 2 ) :
-            logging.debug( len(questions[0]) - len(text_sequence[0]) )
-            logging.debug( questions ) 
-            
-            # Collect current words
-            for word in words :
-                temp_words.append(word) 
-
+        if ( (len(questions[0]) - len(text_sequence[0])) >= 2 ) :
             # Load new words and Collect with current words
             if ( path.exists(self.words_path) ) :
                 data = np.load(self.words_path)
                 for word in data.tolist() :
                     temp_words.append(word)
+            
+            # Collect current words which are not in previous
+            for word in words :
+                if ( word not in temp_words) :
+                    temp_words.append(word) 
+            
             np.save(self.words_path,np.array(temp_words)) 
-
+            logging.debug(temp_words)
+           
             # Create new tokenizer
             self.tokenizer = Tokenizer(num_words = self.max_words)
             self.tokenizer.fit_on_texts(temp_words)
@@ -131,7 +131,8 @@ class Gyujanggak:
             # Save the tokenizer
             with open(self.tokenizer_path, mode="w", encoding="utf-8") as handle:
                 json.dump(self.tokenizer.to_json(),handle)
-            
+        logging.debug(questions)
+        logging.debug(self.tokenizer.texts_to_sequences(questions))    
         # Convert text to number
         return self.tokenizer.texts_to_sequences(questions)
 
