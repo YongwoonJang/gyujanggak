@@ -3,11 +3,12 @@ import sys
 
 from os import path 
 
+import logging 
+
 import json
 import numpy as np
 
 from konlpy.tag import Mecab
-mecab = Mecab()
 
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.text import tokenizer_from_json
@@ -23,55 +24,22 @@ from sklearn.model_selection import train_test_split
 
 class Gyujanggak:
     def __init__(self):
+        logging.basicConfig(level=logging.DEBUG)
+        self.mecab = Mecab()
         self.tokenizer_path = "./tokenizer/tokenizer.json"
         self.checkpoint_path = "./model/cp.ckpt"
         self.model_path = "./model/model.h5"
-        self.max_features = 1000
-        self.maxlen = 100 # 학습할때 참조할 문장단 문자 갯수를 정의한다. 
+        self.words_path = "./words/words.npy" 
+        # Set for tokenizer
+        self.max_words = 1000
+        # Set for AI
+        self.maxlen = 100  
 
-#        stmt = text("select question, answer, answer_category from question")
-#        stmt = stmt.columns(Question.question, Question.answer, Question.answer_category)
-#        self.question = db_session.query(Question.question, Question.answer, Question.answer_category).from_statement(stmt).all()
-
-#        if(path.exists(self.tokenizer_path)):
-#            with open(self.tokenizer_path) as handle:
-#                self.tokenizer = tokenizer_from_json(json.load(handle))
-#        else:
-#            self.tokenizer = update_tokenizer(init=True)
-
-#        if(path.exists(self.model_path)):
-#            self.model = load_model(self.model_path)
-#        else:
-#            self.model = self.create_model()
-#            self.learn()
-
-    def update_tokenizer(self, init=False, **kwargs):
-        if(init == True):
-            tokenizer = Tokenizer(num_words = self.max_features)        
-        elif(init == False):
+        if (path.exists(self.tokenizer_path)) :
             with open(self.tokenizer_path) as handle:
-                tokenizer = tokenizer_from_json(json.load(handle))
-
-        questions = []
-        answers = []
-        answer_categories = []
-        for element in self.question:
-            questions.append(mecab.morphs(element.question))
-            if(element.answer != None):
-                answers.append(mecab.morphs(element.answer))
-                answer_categories.append(mecab.morphs(element.answer_category))
-            else:
-                answers.append("없음")
-                answer_categories.append("없음")
+                self.tokenizer = tokenizer_from_json(json.load(handle))
         
-        tokenizer.fit_on_texts(questions)
-        tokenizer.fit_on_texts(answers)
-        tokenizer.fit_on_texts(answer_categories)
 
-        with open(self.tokenizer_path, "w", encoding="utf-8") as handle:
-            json.dump(tokenizer.to_json(),handle)
-        
-        return tokenizer
 
     def create_model(self):
         model = Sequential()
@@ -126,88 +94,47 @@ class Gyujanggak:
        
         self.model.save(self.model_path)
 
-    def predict(self, text):
-        question = []
+    def convert_from_a_question_to_numbers(self, text):
+        questions = []
+        text_sequence = [[]]
+        words = self.mecab.morphs(text)
+        temp_words = []
+        questions.append(words) 
         
-        # Special keyword.
-        if ( text == "수정" ) : 
-            answer = "<table>"
-            
-            answer = answer + "<thead><tr>"
-            for element in Question.__table__.columns.keys() :
-                print(element)
-                answer = answer + "<th>" + element + "</th>"
-            answer = answer + "</tr></thead>"
+        # Set a tokenizer 
+        if ( path.exists(self.tokenizer_path) ) :
+            text_sequence = self.tokenizer.texts_to_sequences(questions)
+        else :
+            self.tokenizer = Tokenizer(num_words = self.max_words)        
         
-            answer = answer + "<tbody>"
-            for element in db_session.query(Question).all():
-                answer = answer + "<tr><td>" + str(element.id) + "</td>"
-                answer = answer + "<td>" + str(element.date) + "</td>"
-                answer = answer + "<td>" + str(element.question) + "</td>"
-                answer = answer + "<td>" + str(element.answer_category) + "</td>"
-                answer = answer + "<td>" + str(element.answer) + "</td>"
-                answer = answer + "<td>" + str(element.answer_detail) + "</td></tr>"
-            answer = answer + "</tbody>"
+        # Update the tokenizer
+        # Save the tokenizer
+        if ( (len(questions[0]) - len(text_sequence[0])) > 2 ) :
+            logging.debug( len(questions[0]) - len(text_sequence[0]) )
+            logging.debug( questions ) 
             
-            answer = answer + "</table>"
+            # Collect current words
+            for word in words :
+                temp_words.append(word) 
 
-        else:
-            question.append(mecab.morphs(text))
-            print(question)
-            text_sequence = self.tokenizer.texts_to_sequences(question)
-            
-                
-            # Answer list is list of Answer 
-            answer_list = db_session.query(Question.id, Question.answer_category, Question.answer, Question.answer_detail)
-            
-            # Selected items
-            response_list = []
+            # Load new words and Collect with current words
+            if ( path.exists(self.words_path) ) :
+                data = np.load(self.words_path)
+                for word in data.tolist() :
+                    temp_words.append(word)
+            np.save(self.words_path,np.array(temp_words)) 
 
-            # Convert Answer list to Answer string 
-            for element in answer_list.all():
-                temp_string = ""
-                for i in range(1,4):
-                    if ( element[i] == None ) : 
-                        text = " "
-                    else :
-                        text = element[i]
-                    temp_string = temp_string +" " + text
-                
-                # Covert temp_string to List of corpus
-                temp_corpus_elements = []
-                temp_corpus_elements = mecab.morphs(temp_string)
-                
-                # Count hit record.
-                count = 0 
-                for question_word in question[0]:
-                    for answer_word in temp_corpus_elements:
-                        if (question_word == answer_word) : 
-                            count = count + 1
-
-                # Save count result. 
-                if (len(response_list) != 0):
-                    if (response_list[4] <= count) : 
-                        response_list[0] = int(element[0])
-                        for i in range(1, 4):
-                            response_list[i] = str(element[i])
-                        response_list[4] = count
-                else:
-                    response_list.append(int(element[0]))
-                    for i in range(1, 4):
-                        response_list.append(str(element[i]))
-                    response_list.append(count)
-                
-                    
-            if len(response_list) > 0 :
+            # Create new tokenizer
+            self.tokenizer = Tokenizer(num_words = self.max_words)
+            self.tokenizer.fit_on_texts(temp_words)
             
-                answer = "범주는 "+ response_list[1] + "입니다. "+"현재 말할 수 있는 답은 " + response_list[2] + "이고 " + response_list[3]
-                    
-            else:
-                answer = "응답이 준비되지 않았습니다."
-        
-        print(answer)
-        return answer
+            # Save the tokenizer
+            with open(self.tokenizer_path, mode="w", encoding="utf-8") as handle:
+                json.dump(self.tokenizer.to_json(),handle)
+            
+        # Convert text to number
+        return self.tokenizer.texts_to_sequences(questions)
 
 if __name__ == '__main__':
     gyujanggak = Gyujanggak()
-    gyujanggak.predict("규장각은 무슨 뜻이야")
+    gyujanggak.convert_from_a_question_to_numbers("test materials")
