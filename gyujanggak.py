@@ -94,7 +94,7 @@ class Gyujanggak:
        
         self.model.save(self.model_path)
 
-    def convert_from_a_question_to_numbers(self, text):
+    def numberizer(self, text):
         questions = []
         text_sequence = [[]]
         words = self.mecab.morphs(text)
@@ -138,4 +138,4 @@ class Gyujanggak:
 
 if __name__ == '__main__':
     gyujanggak = Gyujanggak()
-    gyujanggak.convert_from_a_question_to_numbers("test materials")
+    gyujanggak.numberizer("test materials")
