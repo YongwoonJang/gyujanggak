@@ -24,7 +24,8 @@ from sklearn.model_selection import train_test_split
 
 class Gyujanggak:
     def __init__(self):
-        logging.basicConfig(level=logging.DEBUG)
+        FORMAT = '%(lineno)sline - DebugMsg: %(message)s - Location: %(pathname)s/%(filename)s'
+        logging.basicConfig(level=logging.DEBUG, format=FORMAT)
         self.mecab = Mecab()
         self.tokenizer_path = "./tokenizer/tokenizer.json"
         self.checkpoint_path = "./model/cp.ckpt"
