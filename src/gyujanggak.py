@@ -1,6 +1,5 @@
 #-*-coding:utf8-*-
 import sys
-
 from os import path 
 
 import logging 
@@ -9,7 +8,6 @@ import json
 import numpy as np
 
 from konlpy.tag import Mecab
-
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.text import tokenizer_from_json
 from tensorflow.keras.preprocessing import sequence
@@ -19,7 +17,6 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.layers import LSTM
 from tensorflow.keras.layers import Conv1D, MaxPooling1D
 from tensorflow.keras.models import load_model
-
 from sklearn.model_selection import train_test_split
 
 class Gyujanggak:
@@ -40,8 +37,6 @@ class Gyujanggak:
             with open(self.tokenizer_path) as handle:
                 self.tokenizer = tokenizer_from_json(json.load(handle))
         
-
-
     def create_model(self):
         model = Sequential()
         model.add(Embedding(input_dim=self.max_features, output_dim=64, input_length=self.maxlen))
