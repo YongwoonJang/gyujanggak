@@ -11,6 +11,7 @@
 
 ## 사용방법 2 (Library를 사용하는 경우) 
 * 본 Project의 requirements.txt 에 수록된 Package를 설치합니다.  
+* 원하는 파이썬 코드에 import gyujanggak 을 넣습니다.
 
 ## Functions
 * 글자를 숫자로 바꾸어 줍니다. 
