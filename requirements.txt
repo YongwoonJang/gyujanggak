@@ -1,2 +1,6 @@
-numpy
+flask
+redis
 konlpy
+numpy
+tensorflow
+sklearn
