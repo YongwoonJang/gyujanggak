@@ -15,7 +15,7 @@
 * 그외 환경설정 내용은 Dockerfile을 참고하세요.
 
 ## Functions
-* 글자를 숫자로 바꾸어 줍니다. 
+* 입력문을 JSON 형식의 데이터로 바꾸어줍니다.
 
 ## Maintainer
 * 장용운 Yongwoon Jang (royalfamily89@gmail.com)
