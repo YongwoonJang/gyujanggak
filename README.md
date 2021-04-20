@@ -8,6 +8,10 @@
 
 ## 사용방법 (Microservice로 활용. API 서버로 사용됨.)
 * Dockerfile이 존재하는 파일 위치로 이동 후 docker compose up을 사용합니다. .
+```
+1. cd .
+2. docker compose up
+```
 
 ## 사용방법 2 (Library로 사용하는 경우) 
 * 본 Project의 requirements.txt 에 수록된 Package를 설치합니다.  
