@@ -1,3 +1,4 @@
+general-spider
 *.swp
 __pycache__
 **/tokenizer/**

@@ -1,5 +1,9 @@
 #/bin/bash
 
+DIR="/code/frontera/examples/general-spider" 
+
+cd $DIR
+
 clean_up() {
   
 	# Perform program exit 
@@ -19,7 +23,7 @@ trap clean_up SIGHUP SIGINT SIGTERM EXIT
 
 while true; do
 echo "Check whether processes need to be start"
-	if [ $(ps -f | grep "frontera" | awk '{print NF}' | wc -l) -eq 0 ] 
+	if [[ ($(ps -f | grep "frontera" | awk '{print NF}' | wc -l) -eq 0 && $(ps -f | grep "crawl" | awk '{print NF}' | wc -l) -eq 0) ]] 
 	then 
 		echo "It is needed, Processes are starting ..."
 
@@ -40,6 +44,13 @@ echo "Check whether processes need to be start"
 
 		echo "Processes are started ..."
 	fi
-echo "End of period"
-sleep 3
+
+echo "End of check"
+if [[ (-f ${DIR}/log/crawl.log && -f ${DIR}/general/url.json) ]]; then
+	echo "Last line of /log/crawl.log"
+	echo $(tail -1 ${DIR}/log/crawl.log)
+	echo "Last line of /general/url.json"
+	echo $(tail -1 ${DIR}/general/url.json)
+fi
+
 done
