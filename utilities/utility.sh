@@ -14,7 +14,8 @@ clean_up() {
 	rm -rf ./*.sqlite
 	rm -rf queue.*
 	rm -rf nohup.out
-	rm -rf ./general/url.json
+	rm -rf ./url.json
+	rm -rf ./utility.log
 	exit
 
 }
@@ -23,8 +24,7 @@ trap clean_up SIGHUP SIGINT SIGTERM EXIT
 
 while true; do
 echo "Check whether processes need to be start"
-	if [[ ($(ps -f | grep "frontera" | awk '{print NF}' | wc -l) -eq 0 && $(ps -f | grep "crawl" | awk '{print NF}' | wc -l) -eq 0) ]] 
-	then 
+	if [[ ($(ps -f | grep "frontera" | awk '{print NF}' | wc -l) -eq 1 && $(ps -f | grep "crawl" | awk '{print NF}' | wc -l) -eq 1) ]]; then 
 		echo "It is needed, Processes are starting ..."
 
 		nohup python3 -m frontera.contrib.messagebus.zeromq.broker 0>/code/frontera/examples/general-spider/log/zeromq.log 1>&0 2>&0 &
@@ -46,11 +46,15 @@ echo "Check whether processes need to be start"
 	fi
 
 echo "End of check"
-if [[ (-f ${DIR}/log/crawl.log && -f ${DIR}/general/url.json) ]]; then
-	echo "Last line of /log/crawl.log"
-	echo $(tail -1 ${DIR}/log/crawl.log)
-	echo "Last line of /general/url.json"
-	echo $(tail -1 ${DIR}/general/url.json)
-fi
+	if [[ (-f ${DIR}/log/crawl.log && -f ${DIR}/url.json) ]]; then
+		echo "Start line of /log/crawl.log"
+		echo "Last line of /log/crawl.log"
+		echo $(tail -1 ${DIR}/log/crawl.log)
+		echo "======================"
+		echo "Last line of /url.json"
+		echo $(tail -1 ${DIR}/url.json)
+	fi
+
+sleep 2
 
 done
