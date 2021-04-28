@@ -19,12 +19,13 @@ for content in contents:
     if ("function" not in content) & ("-" != content) & (">" != content) & ("jsMain" not in content) & ("Copyright" not in content):
         filtered_contents.append(content)
 
-
-del filtered_contents[147:290]
-del filtered_contents[0:93] 
+if len(contents) > 289:
+    del filtered_contents[147:290]
+    del filtered_contents[0:93] 
 
 contents_key_value["주요내용"] = ",".join(filtered_contents)
 
+# 목적
 if "https://www.assembly.go.kr/assm/assemact/council/council0101/assmSchCal/assemScanCalDetail.do" in url :
     
     contents_key_value["목적"] = soup.find_all("tr","general")[0].contents[1].contents[1].contents[0]
@@ -33,6 +34,7 @@ if "https://www.assembly.go.kr/assm/assemact/council/council0101/assmSchCal/asse
         contents_key_value[subject_html[0].find_all("th")[i].text.strip()] = subject_html[0].find_all("td")[i].text.strip()
     contents_key_value[subject_html[1].a.text] = subject_html[1].a['href']
 
+print(contents_key_value)
 
-es = Elasticsearch("127.0.0.1:9200")
+es = Elasticsearch("es01:9200")
 res = es.index(index='national-index', body=contents_key_value)

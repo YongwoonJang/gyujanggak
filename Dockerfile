@@ -16,7 +16,5 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
 COPY requirements.txt requirements.txt
 RUN pip3 install --upgrade pip3 & pip3 install -r requirements.txt
 CMD ["bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh)"]
-CMD ["git clone https://github.com/scrapinghub/frontera.git"]
 EXPOSE 5000
 COPY . .
-CMD ["flask", "run"]
