@@ -4,3 +4,5 @@ __pycache__
 **/tokenizer/**
 **/words/**
 frontera
+/app/**
+/node-project/**
