@@ -46,13 +46,10 @@ echo "Check whether processes need to be start"
 	fi
 
 echo "End of check"
-	if [[ (-f ${DIR}/log/crawl.log && -f ${DIR}/url.json) ]]; then
+	if [[ (-f ${DIR}/log/crawl.log  ]]; then
 		echo "Start line of /log/crawl.log"
 		echo "Last line of /log/crawl.log"
 		echo $(tail -1 ${DIR}/log/crawl.log)
-		echo "======================"
-		echo "Last line of /url.json"
-		echo $(tail -1 ${DIR}/url.json)
 	fi
 
 sleep 2
