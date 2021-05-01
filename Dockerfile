@@ -12,6 +12,8 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
   openjdk-8-jdk \
   curl \ 
   vim \
+  nodejs \
+  npm \
   && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt requirements.txt
 RUN pip3 install --upgrade pip3 & pip3 install -r requirements.txt
