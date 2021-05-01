@@ -1,4 +1,4 @@
-compose.log
+*.log
 *.swp
 __pycache__
 **/tokenizer/**
