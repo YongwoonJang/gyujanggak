@@ -10,7 +10,7 @@
 * JavaScript
 
 ## High level Design
-![gyujanggak HLD /architecure/gyujanggakHLA.svg 참고](https://github.com/YongwoonJang/gyujanggak/architecture/gyujanggakHLA.svg)
+![gyujanggak HLD /architecure/gyujanggakHLA.svg 참고](https://github.com/YongwoonJang/gyujanggak/blob/master/architecture/gyujanggakHLA.svg)
 
 ## 사용방법 
 * Dockerfile이 존재하는 파일 위치로 이동 후 docker compose up을 사용합니다. .
