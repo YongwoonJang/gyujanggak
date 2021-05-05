@@ -1,0 +1,1 @@
+This is a starter template for gyujanggak_web_project

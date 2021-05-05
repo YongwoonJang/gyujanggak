@@ -4,6 +4,6 @@ __pycache__
 **/tokenizer/**
 **/words/**
 frontera
-/app/**
+**/app/.next
 /node_modules/**
 package-lock.json
