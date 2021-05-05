@@ -39,6 +39,7 @@ export default function Home({ allPostsData }) {
               <Link href={url}>
                 <a>Go to original site</a>
               </Link>
+              <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />
               </small> 
