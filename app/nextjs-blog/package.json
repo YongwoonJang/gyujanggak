@@ -10,6 +10,7 @@
   "dependencies": {
     "date-fns": "^2.21.1",
     "fs": "0.0.1-security",
+    "fsevents": "^2.3.2",
     "gray-matter": "^4.0.3",
     "next": "^10.0.0",
     "react": "17.0.1",
