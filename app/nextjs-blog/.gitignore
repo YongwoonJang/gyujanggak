@@ -26,5 +26,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # except this files
-!/node_modules/remark/** 
-!/node_modules/remark-html/**
+!/node_modules/remark/**
