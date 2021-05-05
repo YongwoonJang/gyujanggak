@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# except this files
+!/node_modules/remark/** 
+!/node_modules/remark-html/**
+
 # dependencies
 /node_modules
 /.pnp
