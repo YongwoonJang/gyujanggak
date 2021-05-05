@@ -25,7 +25,8 @@ export default function Home({ allPostsData }) {
       <section className={utilStyles.headingMd}>
         <p>Gyujanggak project</p>
         <p>
-          국회정보시스템을 통합적으로 검색할 수 있도록 합니다. (6개로 분산된 시스템을 하나로 통합하여 검색할 수 있도록 합니다.)
+          국회정보시스템을 통합적으로 검색할 수 있도록 합니다. <br/>
+          6개 시스템 통합 검색
         </p>
       </section>
       <section className={`${utilStyles.headingmd} ${utilStyles.padding1px}`}>
