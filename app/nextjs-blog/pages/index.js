@@ -23,14 +23,13 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
+        <p>Gyujanggak project</p>
         <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          국회정보시스템을 통합적으로 검색할 수 있도록 합니다. (6개로 분산된 시스템을 하나로 통합하여 검색할 수 있도록 합니다.)
         </p>
       </section>
       <section className={`${utilStyles.headingmd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>국회정보시스템 통합 검색 서비스</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({id, date, title}) => (
             <li className={utilStyles.listItem} key={id}>
