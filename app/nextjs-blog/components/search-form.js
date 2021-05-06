@@ -2,7 +2,7 @@ export default function Form() {
     const sendRequestData = async event => {
         event.preventDefault() // don't redirect page.
 
-        const res = await fetch('/api/search/q?'+encodeURIComponent(event.target.data.value))
+        const res = await fetch('/api/search/?q='+encodeURIComponent(event.target.data.value))
         const result = await res.json()
         console.log(result)
     }
