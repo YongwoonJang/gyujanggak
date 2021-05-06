@@ -31,6 +31,7 @@ export default function Home({ allPostsData }) {
       <section>
         <Form />
       </section>
+      <br />
       <section className={`${utilStyles.headingmd} ${utilStyles.padding1px}`}>
         <ul className={utilStyles.list}>
           {allPostsData.map(({id, date, title,url}) => (
