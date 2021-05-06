@@ -24,16 +24,7 @@ function Form() {
     const send-request-data = async event => {
         event.preventDefault() // don't redirect page.
 
-        const rest = await fetch('/api/search', {
-            body: JSON.stringify({
-                text: event.target.data.value
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'GET'
-        })
-
+        const rest = await fetch('/api/search?q='+encodeURIComponent(event.target.data.value))
         const result = await res.json()
         console.log(result)
     }
