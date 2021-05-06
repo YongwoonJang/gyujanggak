@@ -9,7 +9,6 @@ export default function Form() {
 
     return (
         <form onSubmit={sendRequestData}>
-            <label htmlFor="data">또롱</label>
             <input id="data" name="data" type="text" autoComplete="data" required />
             <button type="submit">검색</button>
         </form>
