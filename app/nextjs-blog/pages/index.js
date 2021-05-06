@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../libs/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import Form from '../components/search-form'
 
     
 
@@ -23,12 +24,14 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>
-          국회정보시스템 통합 검색 서비스<br/>
-        </p>
+        <h2 className={utilStyles.headingLg}>
+          국회정보시스템 통합 검색 서비스
+        </h2>
+      </section>
+      <section>
+        <Form />
       </section>
       <section className={`${utilStyles.headingmd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>국회정보시스템 통합 검색 서비스</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({id, date, title,url}) => (
             <li className={utilStyles.listItem} key={id}>
