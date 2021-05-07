@@ -1,5 +1,5 @@
 ---
-title: 예결산정보시스템'
+title: 예결산정보시스템
 date: '2021-05-06'
 url: 'http://likms.assembly.go.kr/bill/nafs/nafsList.do'
 ---
