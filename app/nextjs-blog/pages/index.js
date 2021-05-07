@@ -41,12 +41,9 @@ export default function Home({ allPostsData }) {
               </Link>
               <br />
               <Link href={url}>
-                <a>Go to original site</a>
+                <a>원본 페이지</a>
               </Link>
               <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small> 
             </li>
           ))}
         </ul>
