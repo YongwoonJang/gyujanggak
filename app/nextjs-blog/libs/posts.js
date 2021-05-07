@@ -24,30 +24,13 @@ export function getSortedPostsData() {
     })
 
     return allPostsData.sort((a,b) => {
-        if (a.date < b. date) {
-            return 1
-        } else {
-            return -1
-        }
+       return a.title.localeCompare(b.title)
     })
 }
 
 export function getAllPostIds() {
     const fileNames = fs.readdirSync(postDirectory)
 
-    // Returns an array that looks like this:
-    // [
-    //   {
-    //     params: {
-    //       id: 'ssg-ssr'
-    //     }
-    //   },
-    //   {
-    //     params: {
-    //       id: 'pre-rendering'
-    //     }
-    //   }
-    // ]
     return fileNames.map(fileName => {
         return {
             params: {
