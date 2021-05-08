@@ -6,14 +6,10 @@
 }
 
 .header {
-  display:grid;
   grid-column: 1/ span 6;
 }
 
 .headerBody {
-  align-items: center;
-  justify-self: center;
-  text-align: left;
   grid-column: 1 / span 6;
   background-color: brown;
 }
