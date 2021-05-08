@@ -11,7 +11,7 @@ export default function Form() {
 
     return (
         <form onSubmit={sendRequestData}>
-            <input id="data" name="data" type="text" autoComplete="data" classname="formStyles.searchInput" required />
+            <input id="data" name="data" type="text" autoComplete="data" className={formStyles.searchInput} required />
             <button style={{display:'none'}} type="submit">검색</button>
         </form>
     )
