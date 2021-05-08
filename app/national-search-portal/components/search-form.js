@@ -1,3 +1,5 @@
+import formStyles from '../styles/form.module.css'
+
 export default function Form() {
     const sendRequestData = async event => {
         event.preventDefault() // don't redirect page.
@@ -9,8 +11,8 @@ export default function Form() {
 
     return (
         <form onSubmit={sendRequestData}>
-            <input id="data" name="data" type="text" autoComplete="data" required />
-            <button type="submit">검색</button>
+            <input id="data" name="data" type="text" autoComplete="data" classname="formStyles.searchInput" required />
+            <button style={{display:'none'}} type="submit">검색</button>
         </form>
     )
 }

@@ -3,7 +3,7 @@
   line-height: 1.2;
   font-weight: 800;
   letter-spacing: -0.05rem;
-  margin: 1rem 0;
+  margin: auto;
 }
 
 .headingXl {
@@ -14,7 +14,7 @@
   margin: 1rem 0;
 }
 
-.headingLg {
+.heading2Xlg {
   font-size: 1.5rem;
   line-height: 1.4;
   margin: 1rem 0;
@@ -22,6 +22,11 @@
 
 .headingMd {
   font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.headingSmall {
+  font-size: 0.8rem;
   line-height: 1.5;
 }
 
@@ -39,12 +44,12 @@
 
 .list {
   list-style: none;
-  padding: 0;
+  padding: 0.5rem;
   margin: 0;
 }
 
 .listItem {
-  margin: 0 0 1.25rem;
+  margin: 0.5rem;
 }
 
 .lightText {

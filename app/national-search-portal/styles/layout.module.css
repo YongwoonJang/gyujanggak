@@ -1,30 +1,39 @@
 .container {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
-  max-width: 36rem;
-  padding: 0 1rem;
-  margin: 3rem auto 6rem;
+  text-align: center;
+  background-color: black;
 }
 
 .header {
-  grid-column: 1/6;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: center;
+  grid-column: 3/span 2;
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  background-color: chartreuse;
 }
 
 .headerleft {
-  align-items: left;
+  display:flex;
+  align-items: center;
+  justify-self: right;
+  text-align: right;
+  grid-column: 1 / span 2;
+  background-color: aqua;
 }
 
 .headercenter {
+  display:flex;
   align-items: center;
+  justify-content: center;
+  grid-column: 3 / span 2;
+  background-color: blueviolet;
 }
 
 .headerright {
-  align-items: right;
-}
-
-.backToHome {
-  margin: 3rem 0 0;
+  display:flex;
+  align-items: center;
+  justify-self: left;
+  text-align: left;
+  grid-column: 5 / span 2;
+  background-color: brown;
 }

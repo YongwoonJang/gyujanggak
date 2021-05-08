@@ -3,7 +3,7 @@ import styles from '../styles/layout.module.css'
 
 export const siteTitle = 'Gyujanggak project'
 
-export default function Layout() {
+export default function Layout({home, children}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -21,6 +21,9 @@ export default function Layout() {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-    </div>
+      <header className={styles.header}>
+      {children}
+      </header>
+    </div >
   )
 }
