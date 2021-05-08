@@ -1,3 +1,10 @@
+.borderCircle {
+  border-radius: 9999px;
+}
+
+.colorInherit {
+  color: inherit;
+}
 .heading2Xl {
   font-size: 2.5rem;
   line-height: 1.2;
@@ -29,17 +36,12 @@
   font-size: 0.8rem;
   line-height: 1.5;
 }
-
-.borderCircle {
-  border-radius: 9999px;
-}
-
-.colorInherit {
-  color: inherit;
-}
-
 .padding1px {
   padding-top: 1px;
+}
+
+.titleImage {
+  border-radius: 9999px;
 }
 
 .list {
@@ -49,6 +51,7 @@
 }
 
 .listItem {
+  display: inline-flex;
   margin: 0.5rem;
 }
 

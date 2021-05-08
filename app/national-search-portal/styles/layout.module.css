@@ -6,34 +6,21 @@
 }
 
 .header {
-  grid-column: 3/span 2;
-  display: inline-grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  background-color: chartreuse;
+  display:grid;
+  grid-column: 1/ span 6;
 }
 
-.headerleft {
-  display:flex;
+.headerBody {
   align-items: center;
-  justify-self: right;
-  text-align: right;
-  grid-column: 1 / span 2;
-  background-color: aqua;
+  justify-self: center;
+  text-align: left;
+  grid-column: 1 / span 6;
+  background-color: brown;
 }
 
-.headercenter {
-  display:flex;
+.headerTitle {
   align-items: center;
   justify-content: center;
-  grid-column: 3 / span 2;
-  background-color: blueviolet;
-}
-
-.headerright {
-  display:flex;
-  align-items: center;
-  justify-self: left;
-  text-align: left;
-  grid-column: 5 / span 2;
-  background-color: brown;
+  grid-column: 1 / span 6;
+  background-color: purple;
 }
