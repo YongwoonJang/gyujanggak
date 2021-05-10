@@ -11,12 +11,10 @@
 
 .headerBody {
   grid-column: 1 / span 6;
-  background-color: brown;
 }
 
 .headerTitle {
   align-items: center;
   justify-content: center;
   grid-column: 1 / span 6;
-  background-color: purple;
 }
