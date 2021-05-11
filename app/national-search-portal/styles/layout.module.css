@@ -19,14 +19,14 @@
 
 @media screen and (max-width: 1920px) {
 .headerTitle {
-  width: 300px;
+  width: 280px;
   grid-column: 2 / span 4;
 }
 }
 
 @media screen and (max-width: 1366px) {
 .headerTitle {
-  width: 300px;
+  width: 280px;
   grid-column: 2 / span 4;
 }
 }
@@ -34,7 +34,7 @@
 @media screen and (max-width: 1080px) {
 .headerTitle {
   grid-column: 2 / span 4;
-  width: 300px;
+  width: 280px;
 }
 }
 
