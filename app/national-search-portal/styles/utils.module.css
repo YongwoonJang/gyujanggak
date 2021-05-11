@@ -59,7 +59,7 @@
 @media screen and (max-width: 1366px) {
  .listItem {
   margin: 0.5rem;
-  width: 18%;
+  width: 15%;
   justify-content: center;
 } 
 }
@@ -68,7 +68,7 @@
 @media screen and (max-width: 1024px) {
  .listItem {
   margin: 0.5rem;
-  width: 18%;
+  width: 15%;
   justify-content: center;
 } 
 }
@@ -76,7 +76,7 @@
 @media screen and (max-width: 1080px) {
  .listItem {
   margin: 0.5rem;
-  width: 18%;
+  width: 15%;
   justify-content: center;
 } 
 }
