@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import styles from '../styles/layout.module.css'
 import utilStyles from '../styles/utils.module.css'
@@ -23,17 +22,12 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }) {
   return (
     <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <br />
       <div className={styles.headerTitle}>
         <Image
           priority
           src="/images/profile.jpg"
-          className={utilStyles.borderCircle}
-          height={144}
-          width={144}
+          height={300}
+          width={300}
           alt={name}
         />
       </div>
@@ -49,8 +43,8 @@ export default function Home({ allPostsData }) {
                     <Image
                       priority
                       src={'/images/' + id+ '.jpg'}
-                      height={400}
-                      width={400}
+                      height={300}
+                      width={300}
                       alt={title}
                     />
                   </a>
