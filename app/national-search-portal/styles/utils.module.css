@@ -63,7 +63,7 @@
 @media screen and (max-width: 800px) {
  .listItem {
   margin: 0.5rem;
-  width: 30%;
+  width: 25%;
   justify-content: center;
 } 
 }

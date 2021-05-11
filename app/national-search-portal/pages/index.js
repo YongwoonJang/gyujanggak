@@ -40,7 +40,6 @@ export default function Home({ allPostsData }) {
       <div className={formStyles.form}>
         <Form />
       </div>
-      <br />
       <div className={`${styles.headerBody} ${utilStyles.headingSmall} ${utilStyles.padding1px}`}>
           <ul className={utilStyles.list}>
             {allPostsData.map(({ id, title, url }) => (
@@ -50,8 +49,8 @@ export default function Home({ allPostsData }) {
                     <Image
                       priority
                       src={'/images/' + id+ '.jpg'}
-                      height={300}
-                      width={300}
+                      height={400}
+                      width={400}
                       alt={title}
                     />
                   </a>
