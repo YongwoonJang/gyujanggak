@@ -50,8 +50,9 @@ export default function Home({ allPostsData }) {
                     <Image
                       priority
                       src={'/images/' + id+ '.jpg'}
-                      height={144}
-                      width={144}
+                      height={300}
+                      width={300}
+                      layout="responsive"
                       alt={title}
                     />
                   </a>

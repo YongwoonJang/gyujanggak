@@ -45,15 +45,29 @@
 }
 
 .list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width:"100%";
   list-style: none;
   padding: 0.5rem;
   margin: 0;
 }
 
 .listItem {
-  display: inline-flex;
   margin: 0.5rem;
+  width: 20%;
+  justify-content: center;
 }
+
+@media screen and (max-width: 800px) {
+ .listItem {
+  margin: 0.5rem;
+  width: 30%;
+  justify-content: center;
+} 
+}
+
 
 .lightText {
   color: #666;
