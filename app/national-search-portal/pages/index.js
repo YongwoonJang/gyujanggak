@@ -52,7 +52,6 @@ export default function Home({ allPostsData }) {
                       src={'/images/' + id+ '.jpg'}
                       height={300}
                       width={300}
-                      layout="responsive"
                       alt={title}
                     />
                   </a>
