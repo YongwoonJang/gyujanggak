@@ -2,12 +2,11 @@ import Layout, { siteTitle } from '../components/layout'
 import styles from '../styles/layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import urlStyles from '../styles/url.module.css'
-import formStyles from '../styles/form.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { getSortedPostsData } from '../libs/posts'
-import Form from '../components/search-form'
+import RequestFormAndResult from '../components/search-form'
 
 const name = '국회정보통합검색시스템'
 
@@ -20,6 +19,7 @@ export async function getStaticProps() {
   }
 }
 export default function Home({ allPostsData }) {
+  
   return (
     <Layout home>
       <div className={styles.headerTitle}>
@@ -31,9 +31,7 @@ export default function Home({ allPostsData }) {
           alt={name}
         />
       </div>
-      <div className={formStyles.form}>
-        <Form />
-      </div>
+      <RequestFormAndResult/>
       <div className={`${styles.headerBody} ${utilStyles.headingSmall} ${utilStyles.padding1px}`}>
           <ul className={utilStyles.list}>
             {allPostsData.map(({ id, title, url }) => (
