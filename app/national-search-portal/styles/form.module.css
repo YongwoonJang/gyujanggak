@@ -1,20 +1,23 @@
 .form {
     grid-column: 1/span 6;
-    text-align: center;
 }
 
 .searchInput {
-    align-items: center;
-    width: 40%;
+    width: 25%;
     line-height: 2.0rem;
     font-size: 1.0rem;
 }
 
 @media screen and (max-width: 800px) {
     .searchInput {
-        align-items: center;
         width: 60%;
         line-height: 1.3rem;
         font-size: 1.3rem;
     }
+}
+
+.result {
+    grid-column: 3/span 2;
+    text-align: center;
+
 }
