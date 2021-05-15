@@ -1,0 +1,7 @@
+http://likms.assembly.go.kr/bill/main.do
+http://likms.assembly.go.kr/bill/nafs/nafsList.do
+https://likms.assembly.go.kr/inspections/main.do
+http://likms.assembly.go.kr/law/lawsNormInqyMain1010.do?mappingId=%2FlawsNormInqyMain1010.do&genActiontypeCd=2ACT1010
+http://likms.assembly.go.kr/record/index.jsp
+http://watch.peoplepower21.org/home
+http://naph.assembly.go.kr/index.jsp
