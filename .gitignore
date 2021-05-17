@@ -1,6 +1,8 @@
 *.log
 *.swp
+*.sqlite
 __pycache__
 **/tokenizer/**
 **/words/**
 frontera
+enterprise-search.ini
