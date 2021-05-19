@@ -16,7 +16,7 @@
 
 ## High level Design
 
-![gyujanggak HLD /architecure/gyujanggakHLA.svg 참고](https://github.com/YongwoonJang/gyujanggak/blob/master/architecture/gyujanggakHLA.svg)
+![gyujanggak HLD /architecure/gyujanggakHLA.svg 참고](https://raw.githubusercontent.com/YongwoonJang/gyujanggak/master/architecture/gyujanggakHLA.svg)
 
 ## 사용방법
 
