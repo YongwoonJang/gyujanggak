@@ -2,11 +2,15 @@
 
 ## Index
 
-* REST API로 요청하면 검색한 문자에 해당하는 응답내용을 JSON으로 반환 합니다. [소스|<https://likms.assembly.go.kr>]
+* REST API로 요청하면 검색한 문자에 해당하는 응답내용을 JSON으로 반환 합니다.([소스](https://likms.assembly.go.kr))
 
-* (현재 개발 중...)검색된 국정 자료를 브라우저를 통해 검색할 수 있도록 합니다. (Vercel framework를 통해서 제공)
+* 검색된 국정 자료를 브라우저를 통해 검색할 수 있도록 합니다. (Vercel framework를 통해서 제공)
 
 * 최종 목표는 "XXX안건에 대하여 말한 의원은 누구야?" 질문했을 때 "000가 말했고 xxx라 했습니다."로 응답되게 하는 것입니다. (api는 elastic search를 통해서 제공)
+
+## 상용 환경
+
+* [Search Home page](https://gyujanggak.vercel.app)
 
 ## 언어 
 
