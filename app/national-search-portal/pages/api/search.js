@@ -1,8 +1,7 @@
 export default async function handler(req, res){
 
     const result = await fetch(
-        'https://gyujanggak-deployment.ent.us-east-1.aws.found.io \
-        /api/as/v1/engines/gyujanggak-search-engine/search?query='
+        'https://gyujanggak-deployment.ent.us-east-1.aws.found.io/api/as/v1/engines/gyujanggak-search-engine/search?query='
         + encodeURIComponent(req.query.q),
         {
             headers: {
