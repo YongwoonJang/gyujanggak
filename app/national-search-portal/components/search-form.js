@@ -5,11 +5,12 @@ export default function RequestFormAndResult() {
 
     const [result, setResult] = useState("")
     const [currentTime, setTime] = useState(new Date().toLocaleTimeString())
-
     const sendRequestData = async event => {
         event.preventDefault() // don't redirect page.
-        const res = await fetch('/api/search/?q='+encodeURIComponent(event.target.data.value))
+        
+        const res = await fetch('/api/search?q=' + encodeURIComponent(event.target.data.value))
         const tempRes = await res.json()
+        
         setResult(tempRes.data)
         setTime(new Date().toLocaleTimeString())
 

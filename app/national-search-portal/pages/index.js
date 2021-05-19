@@ -4,7 +4,6 @@ import utilStyles from '../styles/utils.module.css'
 import urlStyles from '../styles/url.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
-
 import { getSortedPostsData } from '../libs/posts'
 import RequestFormAndResult from '../components/search-form'
 
@@ -18,8 +17,9 @@ export async function getStaticProps() {
     }
   }
 }
+
 export default function Home({ allPostsData }) {
-  
+
   return (
     <Layout home>
       <div className={styles.headerTitle}>
