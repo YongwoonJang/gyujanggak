@@ -27,22 +27,23 @@ If I want to put response data to screen then
 - Transfer response data to screen
 
 ```javascript
-    //Import state
-    import React, { useState } from 'react'
+    //fetch data and insert data to "id" result
+    const res = await fetch('/api/search?q=' + encodeURIComponent(event.target.data.value))
+        const tempRes = await res.json()
 
-    //Use state
-    const [result, setResult] = useState("")
-    
-    
-    //Set Result
-    setResult(tempRes.data)
-    setTime(new Date().toLocaleTimeString())
+        var resultHtml = ""
+        for(var i=0; i<tempRes.data.length; i++){
+            resultHtml = resultHtml + "<a href='" + tempRes.data[i].url + "'><div>"+tempRes.data[i].title+"</a><br/>"
+            resultHtml = resultHtml + "내용 :"+tempRes.data[i].contents[0]+"</br>"
+            resultHtml = resultHtml + "<br/></div>"
+        }
+        
+        document.getElementById('result').innerHTML = resultHtml
     
     //Express Result
-    <div className={formStyles.result}>
-        "검색 결과"<br /> "검색 시간":{currentTime} <br/> {result}
+    <div id="result" >
+        검색어를 입력하세요.
     </div>
-
 ```
 
 ## Reference
