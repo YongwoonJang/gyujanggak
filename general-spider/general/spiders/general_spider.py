@@ -43,7 +43,7 @@ class GeneralSpider(Spider):
             contents=[content for content in soup.stripped_strings]
             filtered_contents = []
             for content in contents:
-                if ("function" not in content) & ("-" != content) & (">" != content) & ("jsMain" not in content) & ("Copyright" not in content):
+                if ("회원가입" not in content) & (";" not in content) & ("function" not in content) & ("-" != content) & (">" != content) & ("jsMain" not in content) & ("Copyright" not in content):
                     filtered_contents.append(content)
 
             if len(contents) > 289:

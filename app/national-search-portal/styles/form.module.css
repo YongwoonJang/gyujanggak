@@ -8,6 +8,12 @@
     font-size: 1.0rem;
 }
 
+.searchResult{
+    width: 60%;
+    margin: auto;
+    text-align: left;
+}
+
 @media screen and (max-width: 800px) {
     .searchInput {
         width: 60%;
@@ -15,9 +21,7 @@
         font-size: 1.3rem;
     }
 }
-
 .result {
-    grid-column: 3/span 2;
+    grid-column: 1/span 6;
     text-align: center;
-
 }
