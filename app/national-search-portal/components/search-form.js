@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 
 export default function RequestFormAndResult() {
 
-    const [result, setResult] = useState("")
-    const [currentTime, setTime] = useState(new Date().toLocaleTimeString())
     const sendRequestData = async event => {
         event.preventDefault() // don't redirect page.
         
@@ -12,17 +10,28 @@ export default function RequestFormAndResult() {
         const tempRes = await res.json()
 
         var resultHtml = ""
-        for(var i=0; i<tempRes.data.length; i++){
-            resultHtml = resultHtml + "<a href='" + tempRes.data[i].url + "'><div>"+tempRes.data[i].title+"</a><br/>"
-            resultHtml = resultHtml + "내용 :"+tempRes.data[i].contents[0]+"</br>"
-            resultHtml = resultHtml + "<br/></div>"
-        }
         
+        if (tempRes.data.length == 0) {
+            resultHtml = "검색 결과가 없습니다."
+            document.getElementById('result').style.textAlign = "center";
+        
+        }else{
+                for(var i=0; i<tempRes.data.length; i++){
+                    if (tempRes.data[i].contents.length != 0) {
+                        resultHtml = resultHtml + "<div><a href='" + tempRes.data[i].url + "'>"+tempRes.data[i].title+"</a><br/>"
+                        resultHtml = resultHtml + "내용 :"+tempRes.data[i].contents[0]+"</br>"
+                        resultHtml = resultHtml + "<br/></div>"
+
+                    } else {
+                        resultHtml = resultHtml + "<div><a href='" + tempRes.data[i].url + "'>" + tempRes.data[i].title + "</a><br/></div>"
+
+                    }
+                }
+            
+        
+        }
+
         document.getElementById('result').innerHTML = resultHtml
-
-        //setResult(tempRes.data)
-        setTime(new Date().toLocaleTimeString())
-
     }
 
     return (
@@ -32,10 +41,9 @@ export default function RequestFormAndResult() {
                 <button style={{display:'none'}} type="submit">검색</button>
             </form>
             <div className={formStyles.result} >
-                "검색 결과"<br /> "검색 시간":{currentTime} <br/> <br/>
                 <div className={formStyles.searchResult}>
                     <div id="result" >
-                        검색어를 입력하세요.
+                        <br/>
                     </div>
                 </div>
             </div>

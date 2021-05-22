@@ -31,6 +31,7 @@ export default async function handler(req, res){
                         contents.push(temp_contents[j])
                     }
                 }
+                
                 results.push({"title":title,"url":url,"contents":contents})
             }
         }
