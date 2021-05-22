@@ -1,14 +1,10 @@
 .container {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
-  text-align: center;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-
+  align-items: center;
+  margin-top:5%
 }
+
 
 .header {
   display: grid;
@@ -21,6 +17,7 @@
   width: 250px;
   grid-column: 1 / span 6;
   justify-self: center;
+  margin-bottom: 2%;
 }
 
 @media screen and (max-width: 1024px) {

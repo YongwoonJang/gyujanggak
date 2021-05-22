@@ -1,11 +1,13 @@
 .form {
     grid-column: 1/span 6;
+    text-align: center;
 }
 
 .searchInput {
     width: 25%;
     line-height: 2.0rem;
     font-size: 1.0rem;
+    margin-bottom: 2%;
 }
 
 .searchResult{
