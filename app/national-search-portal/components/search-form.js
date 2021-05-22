@@ -1,8 +1,14 @@
 import formStyles from '../styles/form.module.css'
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function RequestFormAndResult() {
 
+    const handleKeydown = (event) => {
+        if (event.code == "Backspace") {
+            document.getElementById('result').innerHTML = ""
+        }
+    }
+    
     const sendRequestData = async event => {
         event.preventDefault() // don't redirect page.
         
@@ -37,7 +43,7 @@ export default function RequestFormAndResult() {
     return (
         <>
             <form onSubmit={sendRequestData} className={formStyles.form}>
-                <input id="data" name="data" type="text" autoComplete="data" className={formStyles.searchInput} required />
+                <input id="data" name="data" type="text" autoComplete="data" className={formStyles.searchInput} onKeyDown={handleKeydown} required />
                 <button style={{display:'none'}} type="submit">검색</button>
             </form>
             <div className={formStyles.result} >
