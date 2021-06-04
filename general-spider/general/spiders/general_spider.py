@@ -60,20 +60,10 @@ class GeneralSpider(Spider):
                 for i in range(0, len(subject_html[0].find_all("th"))):
                     contents_key_value[subject_html[0].find_all("th")[i].text.strip()] = subject_html[0].find_all("td")[i].text.strip()
                 contents_key_value[subject_html[1].a.text] = subject_html[1].a['href']
-
-            
-            # INSERT DATA TO Elastic search
-            config = configparser.ConfigParser()
-            config.read('/code/general-spider/general/spiders/example.ini')
-            app_search = AppSearch(
-                config['ELASTIC']['elastic_search'],
-                http_auth=config['ELASTIC']['private_key']
-            )
-
-            res = app_search.index_documents(
-                engine_name=config['ELASTIC']['engine_name'],
-                documents=[contents_key_value]
-            )
+                
+            # Insert data to File.
+            with open('../../../archive','w+') as f:
+                json.dump(contents_key_value,f)
 
             print(res)
 
