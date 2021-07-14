@@ -2,7 +2,7 @@
 
 ## Index
 
-* REST API로 요청하면 검색한 문자에 해당하는 응답내용을 JSON으로 반환 합니다.([소스](https://likms.assembly.go.kr))
+* 간단한 검색 플랫폼입니다.
 
 * 검색된 국정 자료를 브라우저를 통해 검색할 수 있도록 합니다. (Vercel framework를 통해서 제공)
 
