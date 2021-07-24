@@ -8,6 +8,12 @@
 
 * 최종 목표는 "XXX안건에 대하여 말한 의원은 누구야?" 질문했을 때 "000가 말했고 xxx라 했습니다."로 응답되게 하는 것입니다. (api는 elastic search를 통해서 제공)
 
+## Index for lazy yongwoon.
+
+* 반드시 "app/national-serach-portal"에서 npm run dev 를 사용하도록 할 것.
+
+* [Next.js 참고 자료](https://nextjs.org/docs/getting-started) 
+
 ## 상용 환경
 
 * [Search Home page](https://gyujanggak.vercel.app)
@@ -22,39 +28,9 @@
 
 ![gyujanggak HLD /architecure/gyujanggakHLA.svg 참고](https://raw.githubusercontent.com/YongwoonJang/gyujanggak/master/architecture/gyujanggakHLA.svg)
 
-## 사용방법
-
-* Dockerfile이 존재하는 파일 위치로 이동 후 docker compose up을 사용합니다. .
-
-1. cd .
-
-2. docker compose up
-
-3. curl로 데이터 검색을 합니다. [Elastic Search Link|<https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html>]
-
-```bash
-    curl -X GET "{원하는 IP로 요청}:9200/_search?pretty" -H 'Content-Type: application/json' -d'
-    {
-    "query": {
-        "regexp": {
-        "user.id": {
-            "value": "k.*y",
-            "flags": "ALL",
-            "case_insensitive": true,
-            "max_determinized_states": 10000,
-            "rewrite": "constant_score"
-        }
-        }
-    }
-    }
-    '
-```
-
 ## Functions
 
-* JSON 형식의 데이터로 바꾸어줍니다.
-
-* Docker compose up으로 Elastic search 웹서비스가 동작합니다.
+* 국회 관련 자료에 대한 검색 기능을 제공합니다.
 
 ## Maintainer
 
