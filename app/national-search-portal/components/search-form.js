@@ -6,9 +6,12 @@ export default function RequestFormAndResult() {
     const searchResults = [
         {"key":"블로그","desc":"이 웹사이트 주인의 블로그는 https://blog.naver.com/jyy3k 입니다."},
         {"key":"이름", "desc":"이 웹사이트 주인의 이름은 장용운입니다."},
+        {"key": "이름은", "desc": "이 웹사이트 주인의 이름은 장용운입니다." },
         {"key":"관심사","desc":"이 웹사이트 주인의 관심사는 책읽기와 좋은 일을 하는 것입니다."},
+        {"key": "관심사는", "desc": "이 웹사이트 주인의 관심사는 책읽기와 좋은 일을 하는 것입니다." },
         {"key":"정치","desc":"정치는 잘 모르고 알고 싶어합니다."},
-        {"key": "사랑", "desc": "이 웹사이트 주인이 제일 사랑하는 사람은 러브러브입니다." }
+        {"key": "사랑", "desc": "이 웹사이트 주인이 제일 사랑하는 사람은 러브러브입니다." },
+        {"key": "사랑하는", "desc": "이 웹사이트 주인이 제일 사랑하는 사람은 러브러브입니다." }    
     ]
 
     const handleKeydown = (event) => {
