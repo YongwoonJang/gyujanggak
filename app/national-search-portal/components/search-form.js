@@ -4,14 +4,17 @@ import React from 'react'
 export default function RequestFormAndResult() {
 
     const searchResults = [
-        {"key":"블로그","desc":"이 웹사이트 주인의 블로그는 https://blog.naver.com/jyy3k 입니다."},
+        {"key":"블로그","desc":"이 웹사이트 주인의 블로그는 <a href='https://blog.naver.com/jyy3k'>네이버 블로그</a> 입니다."},
+        {"key": "블로그주소", "desc": "이 웹사이트 주인의 블로그는 <a href='https://blog.naver.com/jyy3k'>네이버 블로그</a> 입니다." },
         {"key":"이름", "desc":"이 웹사이트 주인의 이름은 장용운입니다."},
-        {"key": "이름은", "desc": "이 웹사이트 주인의 이름은 장용운입니다." },
         {"key":"관심사","desc":"이 웹사이트 주인의 관심사는 책읽기와 좋은 일을 하는 것입니다."},
-        {"key": "관심사는", "desc": "이 웹사이트 주인의 관심사는 책읽기와 좋은 일을 하는 것입니다." },
         {"key":"정치","desc":"정치는 잘 모르고 알고 싶어합니다."},
-        {"key": "사랑", "desc": "이 웹사이트 주인이 제일 사랑하는 사람은 러브러브입니다." },
-        {"key": "사랑하는", "desc": "이 웹사이트 주인이 제일 사랑하는 사람은 러브러브입니다." }    
+        {"key": "사랑", "desc": "이 웹사이트 주인이 제일 사랑하는 사람은 러브러브입니다."},
+        {"key": "주인", "desc": "이 웹사이트의 주인은 장용운입니다. 1989년 생입니다. 주인의 블로그는 <a href='https://blog.naver.com/jyy3k'>네이버 블로그</a> 입니다."}
+    ]
+
+    const postposition = [
+        "","은","는","이","가","써","에게", "하는"
     ]
 
     const handleKeydown = (event) => {
@@ -27,17 +30,18 @@ export default function RequestFormAndResult() {
         var index = 0;
         // for loop로 key를 찾고, 해당 검색 결과를 resulthTML로 전송합니다.
         var searchInputs = document.getElementById('data').value.split(" ")
-        
-        console.log("Hello")
-        console.log(searchInputs.length)
-        console.log(searchResults.length)
 
         for(var i=0;i<searchInputs.length;i++){
             index = 0
             for(var j=0;j<searchResults.length;j++){
-                if(searchInputs[i] == searchResults[j].key){
-                    resultHtml = searchResults[j].desc
-                    index = 1
+                console.log("hello")
+                for(var k=0;k<postposition.length;k++){
+                    console.log("서치 인풋 : " + searchInputs[i])
+                    console.log("서치 결과 : " + searchResults[j].key + postposition[k])
+                    if(searchInputs[i] == (searchResults[j].key+postposition[k])){
+                        resultHtml = searchResults[j].desc
+                        index = 1
+                    }
                 }
             }
             if (index != 0){
