@@ -23,13 +23,15 @@ export default function Home() {
   return (
     <Layout home>
       <div className={styles.headerTitle}>
-        <Image
-          priority
-          src="/images/profile.jpg"
-          height={300}
-          width={300}
-          alt={name}
-        />
+        <a href="https://gyujanggak.vercel.app">
+          <Image
+            priority
+            src="/images/profile.jpg"
+            height={300}
+            width={300}
+            alt={name}
+          />
+        </a>
       </div>
       <RequestFormAndResult/>
       <div className={`${styles.headerBody} ${utilStyles.headingSmall} ${utilStyles.padding1px}`}>
