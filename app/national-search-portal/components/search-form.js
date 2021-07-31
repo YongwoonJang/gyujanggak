@@ -35,14 +35,7 @@ export default function RequestFormAndResult() {
         for(var i=0;i<searchInputs.length;i++){
             index = 0
             for(var j=0;j<searchResults.length;j++){
-                console.log("search : " + searchInputs[i])
-                console.log("result : " + searchResults[j].key)
-                console.log("search : " + searchInputs[i].length)
-                console.log("result : " + searchResults[j].key.length)
-                console.log("search : " + typeof(searchInputs[i]))
-                console.log("result : " + typeof(searchResults[j].key))
                 if(searchInputs[i] == searchResults[j].key){
-                    
                     resultHtml = searchResults[j].desc
                     index = 1
                 }
@@ -51,7 +44,6 @@ export default function RequestFormAndResult() {
                 break
             }
         }
-
         document.getElementById('result').innerHTML = resultHtml
     }
 
