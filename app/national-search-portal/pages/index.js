@@ -8,7 +8,8 @@ import RequestFormAndResult from '../components/search-form'
 
 const name = '국회정보통합검색시스템'
 
-export async function getStaticProps() {
+export default function Home() {
+  
   const allPostsData = [
     { "id": "InspectOfStateAdministration", "title": "국정감사정보", "url": "https://likms.assembly.go.kr/inspections/main.do" },
     { "id": "NationalAssemblyLawInformation", "title": "국회법률정보", "url": "http://likms.assembly.go.kr/law/lawsNormInqyMain1010.do?mappingId=%2FlawsNormInqyMain1010.do&genActiontypeCd=2ACT1010" },
@@ -18,13 +19,7 @@ export async function getStaticProps() {
     { "id": "BudgetSettlementInfo", "title": "예결산정보시스템", "url": "http://likms.assembly.go.kr/bill/nafs/nafsList.do" },
     { "id": "BillInfo", "title": "의안정보", "url": "http://likms.assembly.go.kr/bill/main.do" }
   ]
-  return {
-    props:{
-      allPostsData
-    }
-  }
-}
-export default function Home({ allPostsData }) {
+
   return (
     <Layout home>
       <div className={styles.headerTitle}>
