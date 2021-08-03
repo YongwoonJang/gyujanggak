@@ -1,7 +1,13 @@
 import formStyles from '../styles/form.module.css'
-import React from 'react'
+import React, { useCallback } from 'react'
 
 export default function RequestFormAndResult() {
+    
+    const callBackRef = useCallback(textInput => {
+        if (textInput) {
+            textInput.focus();
+        }
+    },[])
 
     const searchResults = [
         {"key":"블로그","desc":"이 웹사이트 주인의 블로그는 <a href='https://blog.naver.com/jyy3k'>네이버 블로그</a> 입니다."},
@@ -33,11 +39,11 @@ export default function RequestFormAndResult() {
 
         for(var i=0;i<searchInputs.length;i++){
             index = 0
+            
             for(var j=0;j<searchResults.length;j++){
-                console.log("hello")
+                
                 for(var k=0;k<postposition.length;k++){
-                    console.log("서치 인풋 : " + searchInputs[i])
-                    console.log("서치 결과 : " + searchResults[j].key + postposition[k])
+            
                     if(searchInputs[i] == (searchResults[j].key+postposition[k])){
                         resultHtml = searchResults[j].desc
                         index = 1
@@ -54,7 +60,7 @@ export default function RequestFormAndResult() {
     return (
         <>
             <form onSubmit={sendRequestData} className={formStyles.form}>
-                <input id="data" name="data" type="text" autoComplete="data" className={formStyles.searchInput} onKeyDown={handleKeydown} required />
+                <input id="data" name="data" type="text" autoComplete="data" className={formStyles.searchInput} onKeyDown={handleKeydown} ref={callBackRef} autoFocus required/>
                 <button style={{display:'none'}} type="submit">검색</button>
             </form>
             <div className={formStyles.result} >
@@ -66,4 +72,5 @@ export default function RequestFormAndResult() {
             </div>
         </>
     )
+
 }
