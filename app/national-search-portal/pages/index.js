@@ -11,7 +11,7 @@ const name = '국회정보통합검색시스템'
 export default function Home() {
   
   const allPostsData = [
-    { "id": "profile", "title": "국정감사정보", "url": "/posts/profile" },
+    { "id": "yongwoonJang", "title": "국정감사정보", "url": "/posts/profile" },
     { "id": "InspectOfStateAdministration", "title": "국정감사정보", "url": "https://likms.assembly.go.kr/inspections/main.do" },
     { "id": "NationalAssemblyLawInformation", "title": "국회법률정보", "url": "http://likms.assembly.go.kr/law/lawsNormInqyMain1010.do?mappingId=%2FlawsNormInqyMain1010.do&genActiontypeCd=2ACT1010" },
     { "id": "NationalAssemblyMinutes", "title": "국회회의록", "url": "http://likms.assembly.go.kr/record/index.jsp" },
