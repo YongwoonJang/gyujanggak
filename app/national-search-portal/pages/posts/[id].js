@@ -25,9 +25,9 @@ export function getStaticPaths(){
 }
 
 export async function getStaticProps({ params }){
-    const fileName = params.id.replace(".md","")
-    const fullPath = "public/posts/"+fileName+'.md'
+    const fullPath = "public/posts/"+params.id+".md"
     const fileContent = fs.readFileSync(fullPath)
+    
     const matterResult = matter(fileContent)
     return {
         props: {
