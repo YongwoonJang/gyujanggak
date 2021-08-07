@@ -47,6 +47,7 @@
   width:"100%";
   list-style: none;
   margin: 0;
+  padding: 0;
 }
 
 .listItem {
@@ -59,7 +60,7 @@
 @media screen and (max-width: 1366px) {
  .listItem {
   margin: 0.5rem;
-  width: 15%;
+  width: 40%;
   justify-content: center;
   
 } 
@@ -69,7 +70,7 @@
 @media screen and (max-width: 1024px) {
  .listItem {
   margin: 0.5rem;
-  width: 15%;
+  width: 40%;
   justify-content: center;
   
 } 
@@ -78,7 +79,7 @@
 @media screen and (max-width: 1080px) {
  .listItem {
   margin: 0.5rem;
-  width: 15%;
+  width: 40%;
   justify-content: center;
   
 } 
@@ -87,7 +88,7 @@
 @media screen and (max-width: 800px) {
  .listItem {
   margin: 0.5rem;
-  width: 13%;
+  width: 40%;
   justify-content: center;
 } 
 }
@@ -95,7 +96,7 @@
 @media screen and (max-width: 768px) {
  .listItem {
   margin: 0.5rem;
-  width: 32%;
+  width: 40%;
   justify-content: center;
 } 
 }
@@ -103,7 +104,7 @@
 @media screen and (max-width: 736px) {
  .listItem {
   margin: 0.5rem;
-  width: 10%;
+  width: 40%;
   justify-content: center;
 } 
 }
@@ -111,7 +112,7 @@
 @media screen and (max-width: 414px) {
  .listItem {
   margin: 0.5rem;
-  width: 25%;
+  width: 40%;
   justify-content: center;
 } 
 }
