@@ -43,8 +43,8 @@
 .list {
   display: inline-flex;
   flex-wrap: wrap;
-  justify-content: left;
-  width:"70%";
+  justify-content: center;
+  width:"100%";
   list-style: none;
   padding: 0.5rem;
   margin: 0;
