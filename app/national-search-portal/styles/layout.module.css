@@ -34,6 +34,7 @@
 
 .headerBody {
   grid-column: 1 / span 6;
+  justify-self: center;
 }
 
 
