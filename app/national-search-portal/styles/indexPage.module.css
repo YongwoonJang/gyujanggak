@@ -1,0 +1,136 @@
+
+.indexPage {
+    font-size:170%;
+}
+
+/* iPad Pro(12.9형) 가로 */
+@media screen and (max-width: 1366px) {
+ .indexPage {
+
+    font-size:170%;
+
+ }
+}
+
+/* iPad (10.5형) 가로 */
+@media screen and (max-width: 1112px) {
+ .indexPage {
+
+    font-size:145%;
+
+ } 
+}
+
+/* 1080 x 1920 */
+@media screen and (max-width: 1080px) {
+ .indexPage {
+
+    font-size:250%;
+
+ }  
+}
+
+/* ipad 9.7형 가로 */
+@media screen and (max-width: 1024px) {
+ .indexPage {
+    font-size:150%;
+ }  
+ .indexImage {
+     float:right;
+     margin-right: 1.5em;
+ }
+}
+
+/* 800 x 600 */
+@media screen and (max-width: 800px) {
+  .indexPage {
+
+    font-size:95%;
+
+ }  
+ .indexImage {
+     float:unset;
+ }
+}
+
+/* 768 x 1366 */
+@media screen and (max-width: 768px) {
+  .indexPage {
+    font-size:190%;
+ } 
+  .indexImage {
+     float:unset;
+ }
+}
+
+/* iphone 8 Plus 가로 */
+@media screen and (max-width: 736px) {
+  .indexPage {
+    font-size:95%;
+     
+ } 
+ .indexImage {
+     float:right;
+     width:200px;
+     margin-right:2em;
+ }
+ 
+}
+
+/* iphone 8 가로 */
+@media screen and (max-width: 667px) {
+  .indexPage {
+    font-size:85%;
+     
+ } 
+ .indexImage {
+     float:right;
+     width:170px;
+     margin-right:2em;
+ }
+ 
+}
+
+/* iphone SE 가로 */
+@media screen and (max-width: 568px) {
+  .indexPage {
+    font-size:75%;
+     
+ } 
+ .indexImage {
+     float:right;
+     width:150px;
+     margin-right:2em;
+ }
+ 
+}
+
+/* iPhone 8 Plus 세로 */
+@media screen and (max-width: 414px) {
+  .indexPage {
+
+    font-size:85%;
+ } 
+  .indexImage {
+     float:unset;
+     width:200px;
+ }
+}
+
+/* iPhone 8 세로 */
+@media screen and (max-width: 375px) {
+  .indexPage {
+    float:unset;
+    font-size:90%;
+ } 
+}
+
+/* iPhone se 세로 */
+@media screen and (max-width: 320px) {
+  .indexPage {
+    font-size:70%;
+  } 
+ .indexImage {
+     width:200px;
+ }
+}

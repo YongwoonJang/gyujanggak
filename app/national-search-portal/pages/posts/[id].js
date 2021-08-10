@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from '/styles/layout.module.css'
 import utilStyles from '/styles/utils.module.css'
 import urlStyles from '/styles/url.module.css'
+import indexPageStyles from '/styles/indexPage.module.css'
 import Link from 'next/link'
 
 export default function Post({id, data, contents}){
@@ -21,11 +22,13 @@ export default function Post({id, data, contents}){
     if(id == 'profile'){
         return (
             <>
-                <div style={{ paddingLeft: 20 + 'px' }}>
-                    <h1>{data.title}</h1>
+                <div className={indexPageStyles.indexPage} style={{ paddingLeft: 20 + 'px' }}>
+                    <h1 >{data.title}</h1>
                     <h2>{data.date}</h2>
                     <h3>{data.author.name}</h3>
-                    <Image width={200} height={200} src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
+                    <div className={indexPageStyles.indexImage}>
+                        <Image className={indexPageStyles.Image} width={200} height={200} src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
+                    </div>
                     <div>{content}</div>
                 </div>
             </>
@@ -48,8 +51,7 @@ export default function Post({id, data, contents}){
                                         <Image
                                             priority
                                             src={'/images/' + id + '.jpg'}
-                                            height={200}
-                                            width={200}
+                                            sizes={`500vw`}
                                             alt={title}
                                         />
                                     </a>
