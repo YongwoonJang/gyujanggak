@@ -51,7 +51,8 @@ export default function Post({id, data, contents}){
                                         <Image
                                             priority
                                             src={'/images/' + id + '.jpg'}
-                                            sizes={`500vw`}
+                                            height={200}
+                                            width={200}
                                             alt={title}
                                         />
                                     </a>
