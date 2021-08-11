@@ -2,9 +2,8 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   align-items: center;
-  margin-top:5%
+  margin-top:5%;
 }
-
 
 .header {
   display: grid;
@@ -20,6 +19,12 @@
   margin-bottom: 2%;
 }
 
+.headerBody {
+  grid-column: 1 / span 6;
+  justify-self: center;
+  
+}
+
 @media screen and (max-width: 1024px) {
 .headerTitle {
   width: 200px;
@@ -32,9 +37,5 @@
 }
 }
 
-.headerBody {
-  grid-column: 1 / span 6;
-  justify-self: center;
-}
 
 

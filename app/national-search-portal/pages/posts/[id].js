@@ -33,7 +33,7 @@ export default function Post({id, data, contents}){
                 </div>
             </>
         )
-    }else{
+    }else if(id == 'politics'){
         return (
             <>
                 <div style={{ paddingLeft: 20 + 'px' }}>
@@ -60,6 +60,25 @@ export default function Post({id, data, contents}){
                             </li>
                         ))}
                     </ul>
+                </div>
+            </>
+        )
+    }else{
+        return (
+            <>
+                <div style={{ paddingLeft: 20 + 'px' }}>
+                    <h1>{data.title}</h1>
+                    <h2>{data.date}</h2>
+                    <h3>{data.author.name}</h3>
+                    <div className={utilStyles.danceFrame}>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/fYXFJ9YxUQs?start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
+                        2007년부터 춤을 추었습니다. <br />
+                    </div>
+                    <div className={utilStyles.pianoFrame}>
+                        1997년부터 피아노를 배웠습니다. <br />
+                        오랜기간 쉬고 2018년부터 다시 배우기 시작했습니다.<br />
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Srw3r_QA0RY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
             </>
         )

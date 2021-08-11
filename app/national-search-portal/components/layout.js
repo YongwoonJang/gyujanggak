@@ -3,7 +3,7 @@ import styles from '../styles/layout.module.css'
 
 export const siteTitle = 'Gyujanggak project'
 
-export default function Layout({home, children}) {
+export default function Layout({children}) {
   return (
     <div className={styles.container}>
       <Head>

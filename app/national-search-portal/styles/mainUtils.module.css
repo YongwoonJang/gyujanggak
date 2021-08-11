@@ -40,83 +40,188 @@
   border-radius: 9999px;
 }
 
+.image{
+  width:350px;
+  height:350px;
+}
+
 .list {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  width:"100%";
+  width:100%;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .listItem {
-  margin: 0.5rem;
-  width: 40%;
+  margin: 0.7rem;
+  width: 31%;
   justify-content: center;
   
-}
-
-@media screen and (max-width: 1366px) {
- .listItem {
-  margin: 0.5rem;
-  width: 40%;
-  justify-content: center;
-  
-} 
-}
-
-
-@media screen and (max-width: 1024px) {
- .listItem {
-  margin: 0.5rem;
-  width: 40%;
-  justify-content: center;
-  
-} 
-}
-
-@media screen and (max-width: 1080px) {
- .listItem {
-  margin: 0.5rem;
-  width: 40%;
-  justify-content: center;
-  
-} 
-}
-
-@media screen and (max-width: 800px) {
- .listItem {
-  margin: 0.5rem;
-  width: 40%;
-  justify-content: center;
-} 
-}
-
-@media screen and (max-width: 768px) {
- .listItem {
-  margin: 0.5rem;
-  width: 40%;
-  justify-content: center;
-} 
-}
-
-@media screen and (max-width: 736px) {
- .listItem {
-  margin: 0.5rem;
-  width: 40%;
-  justify-content: center;
-} 
-}
-
-@media screen and (max-width: 414px) {
- .listItem {
-  margin: 0.5rem;
-  width: 40%;
-  justify-content: center;
-} 
 }
 
 .lightText {
   color: #666;
+}
+
+
+/*********/
+
+/* iPad Pro(12.9형) 가로 */
+@media screen and (max-width: 1366px) {
+ .listItem {
+    margin: 0rem 0.8rem 0.5rem 0.8rem;
+    width: 30%;
+    justify-content: center;
+  }
+  .image{
+    width:250px;
+    height:250px;
+  }
+}
+
+/* iPad (10.5형) 가로 */
+@media screen and (max-width: 1112px) {
+   .listItem {
+    margin: 0rem 0.8rem 0.5rem 0.8rem;
+    width: 30%;
+    justify-content: center;
+  }
+  .image{
+    width:250px;
+    height:250px;
+  }
+}
+
+/* 1080 x 1920 */
+@media screen and (max-width: 1080px) {
+ .listItem {
+    margin: 0rem 0.8rem 0.5rem 0.8rem;
+    width: 30%;
+    justify-content: center;
+  }
+  .image{
+    width:300px;
+    height:300px;
+  }
+}
+
+/* ipad 9.7형 가로 */
+@media screen and (max-width: 1024px) {
+ .indexPage {
+    font-size:150%;
+ }  
+ .indexImage {
+     float:right;
+     margin-right: 1.5em;
+ }
+}
+
+/* 800 x 600 */
+@media screen and (max-width: 800px) {
+ .listItem {
+    margin: 0rem 0.3rem 0.5rem 0.3rem;
+    width: 30%;
+    justify-content: center;
+  }
+  .image{
+    width:180px;
+    height:180px;
+  }
+}
+
+/* 768 x 1366 */
+@media screen and (max-width: 768px) {
+  .listItem {
+    margin: 0rem 0.8rem 0.5rem 0.8rem;
+    width: 30%;
+    justify-content: center;
+  }
+  .image{
+    width:250px;
+    height:250px;
+  }
+}
+
+/* iphone 8 Plus 가로 */
+@media screen and (max-width: 736px) {
+ .listItem {
+    margin: 0rem 0.3rem 0.5rem 0.3rem;
+    width: 30%;
+    justify-content: center;
+  }
+  .image{
+    width:140px;
+    height:140px;
+  }
+}
+
+/* iphone 8 가로 */
+@media screen and (max-width: 667px) {
+ .listItem {
+    margin: 0rem 0.3rem 0.5rem 0.3rem;
+    width: 30%;
+    justify-content: center;
+  }
+  .image{
+    width:120px;
+    height:120px;
+  }
+ 
+}
+
+/* iphone SE 가로 */
+@media screen and (max-width: 568px) {
+ .listItem {
+    margin: 0rem 1rem 0.5rem 1rem;
+    width: 33%;
+    justify-content: center;
+  }
+  .image{
+    width:145px;
+    height:145px;
+  }
+ 
+}
+
+/* iPhone 8 Plus 세로 */
+@media screen and (max-width: 414px) {
+ .listItem {
+    margin: 0.4rem;
+    width: 33%;
+    justify-content: center;
+  }
+  .image{
+    width:140px;
+    height:140px;
+  }
+}
+
+/* iPhone 8 세로 */
+@media screen and (max-width: 375px) {
+  .listItem {
+    margin: 0rem 1rem 0.5rem 1rem;
+    width: 33%;
+    justify-content: center;
+  }
+  .image{
+    width:145px;
+    height:145px;
+  }
+}
+
+/* iPhone se 세로 */
+@media screen and (max-width: 320px) {
+  .listItem {
+    margin: 0.8rem;
+    width: 33%;
+    justify-content: center;
+  }
+  .image{
+    width:125px;
+    height:125px;
+  }
+
 }

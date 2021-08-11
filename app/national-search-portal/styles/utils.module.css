@@ -1,6 +1,18 @@
 .colorInherit {
   color: inherit;
 }
+
+.danceFrame{
+   float:left;
+   margin-left:10em;
+}
+
+.pianoFrame{
+  float:right;
+  margin-right:8em;
+  margin-top:10em;
+}
+
 .heading2Xl {
   font-size: 2.5rem;
   line-height: 1.2;
@@ -57,66 +69,123 @@
   
 }
 
-@media screen and (max-width: 1366px) {
- .listItem {
-  margin: 0.5rem;
-  width: 15%;
-  justify-content: center;
-  
-} 
-}
-
-
-@media screen and (max-width: 1024px) {
- .listItem {
-  margin: 0.5rem;
-  width: 15%;
-  justify-content: center;
-  
-} 
-}
-
-@media screen and (max-width: 1080px) {
- .listItem {
-  margin: 0.5rem;
-  width: 15%;
-  justify-content: center;
-  
-} 
-}
-
-@media screen and (max-width: 800px) {
- .listItem {
-  margin: 0.5rem;
-  width: 13%;
-  justify-content: center;
-} 
-}
-
-@media screen and (max-width: 768px) {
- .listItem {
-  margin: 0.5rem;
-  width: 32%;
-  justify-content: center;
-} 
-}
-
-@media screen and (max-width: 736px) {
- .listItem {
-  margin: 0.5rem;
-  width: 10%;
-  justify-content: center;
-} 
-}
-
-@media screen and (max-width: 414px) {
- .listItem {
-  margin: 0.5rem;
-  width: 25%;
-  justify-content: center;
-} 
-}
-
 .lightText {
   color: #666;
+}
+
+/* iPad Pro(12.9형) 가로 */
+@media screen and (max-width: 1366px) {
+/* todo */
+}
+
+/* iPad (10.5형) 가로 */
+@media screen and (max-width: 1112px) {
+/* todo */
+}
+
+/* 1080 x 1920 */
+@media screen and (max-width: 1080px) {
+/* todo */
+}
+
+/* ipad 9.7형 가로 */
+@media screen and (max-width: 1024px) {
+/* todo */
+}
+
+/* 800 x 600 */
+@media screen and (max-width: 800px) {
+/* todo */
+}
+
+/* 768 x 1366 */
+@media screen and (max-width: 768px) {
+/* todo */
+}
+
+/* iphone 8 Plus 가로 */
+@media screen and (max-width: 736px) {
+/* todo */
+}
+
+/* iphone 8 가로 */
+@media screen and (max-width: 667px) {
+/* todo */
+}
+
+/* iphone SE 가로 */
+@media screen and (max-width: 568px) {
+/* todo */
+}
+
+/* iPhone 8 Plus 세로 */
+@media screen and (max-width: 414px) {
+  .danceFrame{
+   float:left;
+   margin-left:0em;
+  }
+
+  .danceFrame iframe{
+   width:100%;
+   height:100%
+  }
+
+  .pianoFrame{
+    float:right;
+    margin-right:0em;
+    margin-top:1em;
+  }
+
+  .pianoFrame iframe{
+    width:100%;
+    height:100%
+  }
+}
+
+/* iPhone 8 세로 */
+@media screen and (max-width: 375px) {
+  .danceFrame{
+   float:left;
+   margin-left:0em;
+  }
+
+  .danceFrame iframe{
+   width:100%;
+   height:100%
+  }
+
+  .pianoFrame{
+    float:right;
+    margin-right:0em;
+    margin-top:1em;
+  }
+
+  .pianoFrame iframe{
+    width:100%;
+    height:100%
+  }
+}
+
+/* iPhone se 세로 */
+@media screen and (max-width: 320px) {
+  .danceFrame{
+   float:left;
+   margin-left:0em;
+  }
+
+  .danceFrame iframe{
+   width:100%;
+   height:100%
+  }
+
+  .pianoFrame{
+    float:right;
+    margin-right:0em;
+    margin-top:1em;
+  }
+
+  .pianoFrame iframe{
+    width:100%;
+    height:100%
+  }
 }
