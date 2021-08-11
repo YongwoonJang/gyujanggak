@@ -87,7 +87,7 @@ export default function Post({id, data, contents}){
 }
 
 export function getStaticPaths(){
-    const postNames = ["profile", "politics"]
+    const postNames = ["profile", "politics","fun"]
   
     const params = postNames.map((postName) => ({
         params: { id: postName  }
