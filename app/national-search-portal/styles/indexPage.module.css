@@ -71,7 +71,7 @@
  } 
  .indexImage {
      float:right;
-     width:200px;
+     width:150px;
      margin-right:2em;
  }
  
@@ -108,12 +108,11 @@
 /* iPhone 8 Plus 세로 */
 @media screen and (max-width: 414px) {
   .indexPage {
-
     font-size:85%;
  } 
   .indexImage {
-     float:unset;
-     width:200px;
+     float:right;
+     width:130px;
  }
 }
 

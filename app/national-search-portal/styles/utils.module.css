@@ -7,10 +7,19 @@
    margin-left:10em;
 }
 
+.danceFrame div{
+    font-size: 1.0rem;
+}
+   
+
 .pianoFrame{
   float:right;
   margin-right:8em;
   margin-top:10em;
+}
+
+.pianoFrame div{
+    font-size: 1.0rem;
 }
 
 .heading2Xl {
@@ -123,6 +132,8 @@
   .danceFrame{
    float:left;
    margin-left:0em;
+   height:10em;
+   width:17em;
   }
 
   .danceFrame iframe{
@@ -131,14 +142,24 @@
   }
 
   .pianoFrame{
+    margin-top:3.0em;
+    margin-right:0em;
+    margin-bottom:0em;
     float:right;
-    margin-right:1em;
-    margin-top:1em;
+    height:10em;
+    width:17em;
   }
 
   .pianoFrame iframe{
-    width:80%;
-    height:80%;
+    width:100%;
+    height:100%;
+  }
+
+  .listItem {
+    margin: 0.5rem;
+    width: 20%;
+    justify-content: center;
+    
   }
 }
 
@@ -171,21 +192,38 @@
   .danceFrame{
    float:left;
    margin-left:0em;
+   width:15em;
+  }
+
+  .danceFrame div{
+   font-size: 0.6rem;
   }
 
   .danceFrame iframe{
-   width:100%;
-   height:100%
+   width:60%;
+   height:60%
   }
 
   .pianoFrame{
     float:right;
     margin-right:0em;
-    margin-top:1em;
+    margin-top:0.0em;
+    width:15em;
+    text-align: right;
+  }
+
+   .pianoFrame div{
+    font-size: 0.6rem;
   }
 
   .pianoFrame iframe{
-    width:100%;
-    height:100%
+    width:60%;
+    height:60%
+  }
+
+  .listItem {
+  margin: 0.5rem;
+  width: 25%;
+  justify-content: center;
   }
 }

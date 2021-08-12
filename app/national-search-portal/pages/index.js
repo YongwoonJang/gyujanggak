@@ -12,7 +12,7 @@ export default function Home() {
   const allPostsData = [
     { "id": "yongwoonJang", "title": "개인설명", "url": "/posts/profile" },
     { "id": "politics", "title":"정치", "url": "/posts/politics"},
-    { "id": "fun", "title":"락", "url": "/posts/fun"}
+    { "id": "hobby", "title":"취미", "url": "/posts/hobby"}
   ]
 
   return (

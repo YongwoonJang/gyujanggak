@@ -23,21 +23,26 @@ export default function Post({id, data, contents}){
         return (
             <>
                 <div className={indexPageStyles.indexPage} style={{ paddingLeft: 20 + 'px' }}>
-                    <h1 >{data.title}</h1>
-                    <h2>{data.date}</h2>
-                    <h3>{data.author.name}</h3>
-                    <div className={indexPageStyles.indexImage}>
-                        <Image className={indexPageStyles.Image} width={200} height={200} src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
+                    <h2 style={{ backgroundColor: "cyan", marginTop: 0.5+"em"}}>{data.date}, { data.author.name }</h2>
+                    <div>
+                        <div className={indexPageStyles.indexImage} style={{ width: 30 + "%" }}>
+                            <Image className={indexPageStyles.Image} width={200} height={200} src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
+                        </div>
+                        <div style={{ display: "inline"}}>
+                            {content}
+                        </div>
+                        
                     </div>
-                    <div>{content}</div>
                 </div>
             </>
         )
     }else if(id == 'politics'){
         return (
             <>
-                <div style={{ paddingLeft: 20 + 'px' }}>
-                    <h1>{data.title}</h1>
+                <div className={indexPageStyles.indexPage}style={{ paddingLeft: 26 + 'px' }}>
+                    <div style={{textAlign:"right"}}>
+                        <h1 style={{ backgroundColor: 'yellow', width:250+"px",display: "inline-block", textAlign: "left", marginRight: "0" + 'em', marginBottom: 0.2 + "em"}}>{data.title}</h1>
+                    </div>
                     <h2>{data.date}</h2>
                     <h3>{data.author.name}</h3>
                     <div>{content}</div>
@@ -67,16 +72,18 @@ export default function Post({id, data, contents}){
         return (
             <>
                 <div style={{ paddingLeft: 20 + 'px' }}>
-                    <h1>{data.title}</h1>
-                    <h2>{data.date}</h2>
-                    <h3>{data.author.name}</h3>
+                    <div style={{ textAlign:'right', marginRight: 100 + 'px'}}>
+                        <h1 style={{ backgroundColor: "cyan"}}>{data.title}</h1>
+                        <h2>{data.date}</h2>
+                        <h3>{data.author.name}</h3>
+                    </div>
                     <div className={utilStyles.danceFrame}>
+                        <div>2007년부터 춤을 추었습니다.</div>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/fYXFJ9YxUQs?start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
-                        2007년부터 춤을 추었습니다. <br />
                     </div>
                     <div className={utilStyles.pianoFrame}>
-                        1997년부터 피아노를 배웠습니다. <br />
-                        오랜기간 쉬고 2018년부터 다시 배우기 시작했습니다.<br />
+                        <div>1997년부터 피아노를 배웠습니다.<br />
+                        오랜기간 쉬고 2018년부터 다시 배우기 시작했습니다.</div>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/Srw3r_QA0RY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
@@ -87,7 +94,7 @@ export default function Post({id, data, contents}){
 }
 
 export function getStaticPaths(){
-    const postNames = ["profile", "politics","fun"]
+    const postNames = ["profile", "politics","hobby"]
   
     const params = postNames.map((postName) => ({
         params: { id: postName  }
