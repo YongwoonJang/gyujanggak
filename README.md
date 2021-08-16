@@ -26,4 +26,4 @@
 
 ## High level Design
 
-![JYU Homepage HLD /architecure/JYUHomepageHLD.svg 참고](https://raw.githubusercontent.com/YongwoonJang/JYUHomepageHLD/master/architecture/JYUHomepageHLD.svg)
+![JYU Homepage HLD /architecure/JYUHomepageHLD.svg 참고](https://raw.githubusercontent.com/YongwoonJang/gyujanggak/master/architecture/JYUHomepageHLD.svg)
