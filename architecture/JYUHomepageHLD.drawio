@@ -1,14 +1,14 @@
 <mxfile host="65bd71144e">
     <diagram id="dPzF4iebmM-cbbbo0TP5" name="Search Engine">
-        <mxGraphModel dx="1238" dy="654" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="928" dy="320" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-0"/>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-1" parent="OzikpktiN2Qh5DX7MhZS-0"/>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-19" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFCC;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
-                    <mxGeometry x="380" y="70" width="280" height="490" as="geometry"/>
+                    <mxGeometry x="380" y="80" width="280" height="450" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
-                    <mxGeometry x="385" y="220" width="135" height="330" as="geometry"/>
+                    <mxGeometry x="385" y="220" width="135" height="300" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="OzikpktiN2Qh5DX7MhZS-1" source="OzikpktiN2Qh5DX7MhZS-2" target="1" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -49,7 +49,7 @@
                         <mxPoint x="450" y="340" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="OzikpktiN2Qh5DX7MhZS-20" value="Project Gyujanggak" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
+                <mxCell id="OzikpktiN2Qh5DX7MhZS-20" value="JYU Homepage" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
                     <mxGeometry x="385" y="90" width="130" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="OzikpktiN2Qh5DX7MhZS-1" source="1" target="OzikpktiN2Qh5DX7MhZS-2" edge="1">
@@ -68,10 +68,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="9" value="&lt;font style=&quot;font-size: 18px&quot;&gt;Versel&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
-                    <mxGeometry x="410" y="510" width="80" height="20" as="geometry"/>
+                    <mxGeometry x="410" y="490" width="80" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" value="File" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
-                    <mxGeometry x="575" y="150" width="40" height="20" as="geometry"/>
+                <mxCell id="19" value="File&lt;br&gt;(README.md)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
+                    <mxGeometry x="570" y="150" width="45" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import RequestFormAndResult from '../components/search-form'
 
-const name = '국회정보통합검색시스템'
+const name = 'Personal Homepage'
 
 export default function Home() {
   

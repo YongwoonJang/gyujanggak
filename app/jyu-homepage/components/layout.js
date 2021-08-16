@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/layout.module.css'
 
-export const siteTitle = 'Gyujanggak project'
+export const siteTitle = 'JYU homepage'
 
 export default function Layout({children}) {
   return (
@@ -9,8 +9,8 @@ export default function Layout({children}) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
-          name="Gyujanggak project"
-          content="국회 자료를 잘 찾을 수 있도록 도와줍니다."
+          name="JYU homepage"
+          content="장용운을 설명합니다."
         />
         <meta
           property="og:image"
