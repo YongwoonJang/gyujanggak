@@ -2,11 +2,9 @@
 
 ## Index
 
-* 장용운을 설명합니다.
-
 * 장용운에 대한 검색과 설명 자료를 수록하고 있습니다.
 
-* 브라우저로 제공합니다. (Vercel framework를 통해서 제공)
+* [Search Home page](https://gyujanggak.vercel.app)로 접속해 주세요.
 
 * 최종 목표는 "장용운은 누구야?" 질문했을 때 "...을 하는 사람입니다."로 응답되게 하는 것입니다. (api는 elastic search를 통해서 제공)
 
