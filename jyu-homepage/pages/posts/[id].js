@@ -1,12 +1,10 @@
 import fs from 'fs'
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
+
 import Image from 'next/image'
-import styles from '/styles/layout.module.css'
-import utilStyles from '/styles/utils.module.css'
-import urlStyles from '/styles/url.module.css'
-import indexPageStyles from '/styles/indexPage.module.css'
 import Link from 'next/link'
+import pageStyles from '/styles/page.module.scss'
 
 export default function Post({id, data, contents}){
     const content = parse(contents)
@@ -22,66 +20,52 @@ export default function Post({id, data, contents}){
     if(id == 'profile'){
         return (
             <>
-                <div className={indexPageStyles.indexPage} style={{ paddingLeft: 20 + 'px' }}>
-                    <h2 style={{ backgroundColor: "cyan", marginTop: 0.5+"em"}}>{data.date}, { data.author.name }</h2>
-                    <div>
-                        <div className={indexPageStyles.indexImage} style={{ width: 30 + "%" }}>
-                            <Image className={indexPageStyles.Image} width={200} height={200} src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
-                        </div>
-                        <div style={{ display: "inline"}}>
-                            {content}
-                        </div>
-                        
+                <div className={pageStyles.page}>
+                    <h2 className={pageStyles.profileTitle}>{data.title}</h2>
+                    <div className={pageStyles.profileImage}>
+                        <Image width="300px" height="300px" src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
                     </div>
+                    {content}
                 </div>
             </>
         )
     }else if(id == 'politics'){
         return (
             <>
-                <div className={indexPageStyles.indexPage}style={{ paddingLeft: 26 + 'px' }}>
-                    <div style={{textAlign:"right"}}>
-                        <h1 style={{ backgroundColor: 'yellow', width:250+"px",display: "inline-block", textAlign: "left", marginRight: "0" + 'em', marginBottom: 0.2 + "em"}}>{data.title}</h1>
-                    </div>
-                    <h2>{data.date}</h2>
-                    <h3>{data.author.name}</h3>
-                    <div>{content}</div>
+                <div className={pageStyles.page}>
+                    <h1 className={pageStyles.politicsTitle}>{data.title}</h1>
+                    {content}
                 </div>
-                <div className={`${styles.headerBody} ${utilStyles.headingSmall} ${utilStyles.padding1px}`}>
-                    <ul className={utilStyles.list}>
-                        {politicsList.map(({ id, title, url }) => (
-                            <li className={utilStyles.listItem} key={id}>
-                                <Link href={url}>
-                                    <a className={urlStyles.originURL}>
-                                        <Image
-                                            priority
-                                            src={'/images/' + id + '.jpg'}
-                                            height={200}
-                                            width={200}
-                                            alt={title}
-                                        />
-                                    </a>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <ul className={pageStyles.politicsImageList}>
+                    {politicsList.map(({ id, title, url }) => (
+                        <li key={id}>
+                            <Link href={url}>
+                                <a>
+                                    <Image
+                                        priority
+                                        src={'/images/' + id + '.jpg'}
+                                        height={200}
+                                        width={200}
+                                        alt={title}
+                                    />
+                                </a>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+                
             </>
         )
     }else{
         return (
             <>
-                <div style={{ paddingLeft: 20 + 'px' }}>
-                    <div style={{ textAlign:'right', marginRight: 100 + 'px'}}>
-                        <h1 style={{ backgroundColor: "cyan"}}>{data.title}</h1>
-                        <h2>{data.date}</h2>
-                        <h3>{data.author.name}</h3>
-                    </div>
-                    <div className={utilStyles.danceFrame}>
+                <div className={pageStyles.page}>
+                    <h1 className={pageStyles.hobbyTitle}>{data.title}</h1>
+                    <div className={pageStyles.hobbyDanceFrame}>
                         <div>2007년부터 춤을 추었습니다.</div>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/fYXFJ9YxUQs?start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
                     </div>
-                    <div className={utilStyles.pianoFrame}>
+                    <div className={pageStyles.hobbyPianoFrame}>
                         <div>1997년부터 피아노를 배웠습니다.<br />
                         오랜기간 쉬고 2018년부터 다시 배우기 시작했습니다.</div>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/Srw3r_QA0RY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

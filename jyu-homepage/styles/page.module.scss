@@ -1,0 +1,61 @@
+
+.page{
+  padding-left: 1em;
+  font-size: 140%;
+}
+
+.profileTitle{
+  background : yellow;
+  margin-left: 5em;
+}
+
+.politicsTitle{
+  background : rgb(130,247,130);
+  text-align: right;
+  margin-right: 5em;
+}
+
+.politicsImageList{
+  list-style: none;
+  display:inline-flex;
+  
+}
+
+.hobbyTitle{
+  background : cyan;
+  text-align: right;
+  margin-right: 5em;
+}
+
+.hobbyDanceFrame{
+  float: left;
+}
+
+.hobbyPianoFrame{
+  float: right;
+}
+
+.profileImage{
+  width : 25%
+}
+
+/* iPhone 8 세로 */
+@media screen and (max-width: 1920px) {
+  .page {
+    font-size:90%;
+ } 
+}
+
+/* iPad Pro(12.9형) 가로 */
+@media screen and (max-width: 1366px) {
+ .page {
+    font-size:170%;
+ }
+}
+
+/* iPhone 8 세로 */
+@media screen and (max-width: 360px) {
+  .page {
+    font-size:90%;
+ } 
+}

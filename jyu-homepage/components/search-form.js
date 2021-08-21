@@ -1,4 +1,4 @@
-import formStyles from '../styles/form.module.css'
+import mainPageSearchFormStyles from '/styles/mainPageSearchForm.module.css'
 import React, { useCallback } from 'react'
 
 export default function RequestFormAndResult() {
@@ -59,12 +59,12 @@ export default function RequestFormAndResult() {
 
     return (
         <>
-            <form onSubmit={sendRequestData} className={formStyles.form}>
-                <input id="data" name="data" type="text" autoComplete="data" className={formStyles.searchInput} onKeyDown={handleKeydown} ref={callBackRef} autoFocus required/>
+            <form onSubmit={sendRequestData} className={mainPageSearchFormStyles.form}>
+                <input id="data" name="data" type="text" autoComplete="data" className={mainPageSearchFormStyles.searchInput} onKeyDown={handleKeydown} ref={callBackRef} autoFocus required/>
                 <button style={{display:'none'}} type="submit">검색</button>
             </form>
-            <div className={formStyles.result} >
-                <div className={formStyles.searchResult}>
+            <div className={mainPageSearchFormStyles.result} >
+                <div className={mainPageSearchFormStyles.searchResult}>
                     <div id="result" >
                         <br/>
                     </div>

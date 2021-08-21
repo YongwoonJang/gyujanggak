@@ -1,11 +1,12 @@
-import Layout from '../components/layout'
-import styles from '../styles/layout.module.css'
-import utilStyles from '../styles/mainUtils.module.css'
+import Layout from '/components/layout'
+import RequestFormAndResult from '/components/search-form'
+
+import mainPageStyles from '/styles/mainPage.module.css'
+
 import Link from 'next/link'
 import Image from 'next/image'
-import RequestFormAndResult from '../components/search-form'
 
-const name = 'Personal Homepage'
+const name = 'Yongwoon Jang Homepage'
 
 export default function Home() {
   
@@ -17,7 +18,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className={styles.headerTitle}>
+      <div className={mainPageStyles.titleImage}>
         <a href="https://gyujanggak.vercel.app">
           <Image
             priority
@@ -29,11 +30,11 @@ export default function Home() {
         </a>
       </div>
       <RequestFormAndResult/>
-      <div className={`${styles.headerBody} ${utilStyles.headingSmall} ${utilStyles.padding1px}`}>
-          <ul className={utilStyles.list}>
+      <div>
+          <ul className={mainPageStyles.list}>
             {allPostsData.map(({ id, title, url }) => (
-              <li className={utilStyles.listItem} key={id}>
-                  <div className={utilStyles.image}>
+              <li className={mainPageStyles.listItem} key={id}>
+                  <div className={mainPageStyles.image}>
                     <Link href={url}>
                       <a>
                         <Image
