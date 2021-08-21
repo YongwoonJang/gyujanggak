@@ -1,5 +1,5 @@
-import mainPageSearchFormStyles from '/styles/mainPageSearchForm.module.css'
 import React, { useCallback } from 'react'
+import mainPageSearchFormStyles from '/styles/mainPageSearchForm.module.css'
 
 export default function RequestFormAndResult() {
     
@@ -32,13 +32,12 @@ export default function RequestFormAndResult() {
     const sendRequestData = async event => {
         event.preventDefault() // don't redirect page.
         
-        var resultHtml = "안녕하세요. 검색해 주셔서 감사합니다."
-        var index = 0;
-        // for loop로 key를 찾고, 해당 검색 결과를 resulthTML로 전송합니다.
+        var resultHtml = "안녕하세요. 검색해 주셔서 감사합니다. 문의주신 내용은 답변을 준비중 입니다."
         var searchInputs = document.getElementById('data').value.split(" ")
 
+        var isHit = 0;
         for(var i=0;i<searchInputs.length;i++){
-            index = 0
+            isHit = 0
             
             for(var j=0;j<searchResults.length;j++){
                 
@@ -46,11 +45,11 @@ export default function RequestFormAndResult() {
             
                     if(searchInputs[i] == (searchResults[j].key+postposition[k])){
                         resultHtml = searchResults[j].desc
-                        index = 1
+                        isHit = 1
                     }
                 }
             }
-            if (index != 0){
+            if (isHit != 0){
                 break
             }
         }
@@ -59,17 +58,11 @@ export default function RequestFormAndResult() {
 
     return (
         <>
-            <form onSubmit={sendRequestData} className={mainPageSearchFormStyles.form}>
-                <input id="data" name="data" type="text" autoComplete="data" className={mainPageSearchFormStyles.searchInput} onKeyDown={handleKeydown} ref={callBackRef} autoFocus required/>
+            <form onSubmit={sendRequestData} className={mainPageSearchFormStyles.searchForm}>
+                <input id="data" name="data" type="text" autoComplete="data" className={mainPageSearchFormStyles.searchFormInput} onKeyDown={handleKeydown} ref={callBackRef} autoFocus required/>
                 <button style={{display:'none'}} type="submit">검색</button>
             </form>
-            <div className={mainPageSearchFormStyles.result} >
-                <div className={mainPageSearchFormStyles.searchResult}>
-                    <div id="result" >
-                        <br/>
-                    </div>
-                </div>
-            </div>
+            <div className={mainPageSearchFormStyles.searchResult} id="result"/>
         </>
     )
 

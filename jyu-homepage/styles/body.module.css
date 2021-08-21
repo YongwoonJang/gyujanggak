@@ -1,5 +1,0 @@
-.bodyHead {
-    display: grid;
-    grid-column: 1/span 6;
-    grid-template-columns: auto auto auto auto auto auto;
-}

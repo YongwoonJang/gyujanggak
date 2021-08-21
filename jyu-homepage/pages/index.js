@@ -1,15 +1,13 @@
-import Layout from '/components/layout'
-import RequestFormAndResult from '/components/search-form'
-
-import mainPageStyles from '/styles/mainPage.module.css'
-
 import Link from 'next/link'
 import Image from 'next/image'
-
-const name = 'Yongwoon Jang Homepage'
+import Layout from '/components/layout'
+import RequestFormAndResult from '/components/searchForm'
+import mainPageStyles from '/styles/mainPage.module.css'
 
 export default function Home() {
   
+  const name = 'Yongwoon Jang Homepage'
+
   const allPostsData = [
     { "id": "yongwoonJang", "title": "개인설명", "url": "/posts/profile" },
     { "id": "politics", "title":"정치", "url": "/posts/politics"},
@@ -30,27 +28,25 @@ export default function Home() {
         </a>
       </div>
       <RequestFormAndResult/>
-      <div>
-          <ul className={mainPageStyles.list}>
-            {allPostsData.map(({ id, title, url }) => (
-              <li className={mainPageStyles.listItem} key={id}>
-                  <div className={mainPageStyles.image}>
-                    <Link href={url}>
-                      <a>
-                        <Image
-                          priority
-                          src={'/images/' + id+ '.jpg'}
-                          height={350}
-                          width={350}
-                          alt={title}
-                        />
-                      </a>
-                    </Link>
-                  </div>
-              </li>
-            ))}
-          </ul>
-      </div>
+      <ul className={mainPageStyles.mainMenuList}>
+        {allPostsData.map(({ id, title, url }) => (
+          <li key={id}>
+            <div className={mainPageStyles.mainMenuListItems}>
+                <Link href={url}>
+                  <a>
+                    <Image
+                      priority
+                      src={'/images/' + id+ '.jpg'}
+                      height={350}
+                      width={350}
+                      alt={title}
+                    />
+                  </a>
+                </Link>
+            </div>
+          </li>
+        ))}
+      </ul>
     </Layout>
   )
 }

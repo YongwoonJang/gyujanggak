@@ -25,3 +25,7 @@
 ## High level Design
 
 ![JYU Homepage HLD /architecure/JYUHomepageHLD.svg 참고](https://raw.githubusercontent.com/YongwoonJang/gyujanggak/master/architecture/JYUHomepageHLD.svg)
+
+## Reference 
+
+* [Flex box Design](https://heropy.blog/2018/11/24/css-flexible-box/)
