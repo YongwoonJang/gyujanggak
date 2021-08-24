@@ -4,27 +4,39 @@
   font-size: 140%;
 }
 
+.profileImage{
+  width : 80%;
+  text-align: right;
+}
+
 .profileTitle{
+  width: 80%;
   background : yellow;
-  margin-left: 5em;
+  text-align: right;
 }
 
 .politicsTitle{
   background : rgb(130,247,130);
+  width: 80%;
   text-align: right;
-  margin-right: 5em;
 }
 
 .politicsImageList{
   list-style: none;
   display:inline-flex;
+  padding-left:0px;
   
 }
 
 .hobbyTitle{
+  width: 80%;
   background : cyan;
   text-align: right;
-  margin-right: 5em;
+}
+
+.hobbyList{
+  list-style: none;
+  width: 80%;
 }
 
 .hobbyDanceFrame{
@@ -35,27 +47,54 @@
   float: right;
 }
 
-.profileImage{
-  width : 25%
+
+/* average mobile */
+@media screen and (max-width: 414px) {  
+  .page{
+    padding-left: 1em;
+    font-size: 100%;
+  }
+  
+  .profileImage{
+    width : 100%;
+  }
+  .politicsImageList{
+    flex-wrap:wrap;
+    justify-content: center;
+  }
+  .politicsImage{
+    width: 30%;
+  }
+  .hobbyList{
+    padding-left: 0;
+    width: 80%;
+
+  }
+  .hobbyDanceFrame{
+    width: 80%;
+  }
+  .hobbyPianoFrame{
+    width: 80%;
+  }
+  .hobbyIframe{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
-/* iPhone 8 세로 */
-@media screen and (max-width: 1920px) {
-  .page {
-    font-size:90%;
- } 
-}
+/* smaill mobile */
+@media screen and (max-width: 320px) {  
+  .page{
+    padding-left: 1em;
+    font-size: 80%;
+  }
+  
+  .profileImage{
+    width : 80%;
+  }
 
-/* iPad Pro(12.9형) 가로 */
-@media screen and (max-width: 1366px) {
- .page {
-    font-size:170%;
- }
-}
-
-/* iPhone 8 세로 */
-@media screen and (max-width: 360px) {
-  .page {
-    font-size:90%;
- } 
 }

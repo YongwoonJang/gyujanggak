@@ -6,14 +6,6 @@
 
 * [Search Home page](https://gyujanggak.vercel.app)로 접속해 주세요.
 
-* 최종 목표는 "장용운은 누구야?" 질문했을 때 "...을 하는 사람입니다."로 응답되게 하는 것입니다. (api는 elastic search를 통해서 제공)
-
-## Index for lazy yongwoon.
-
-* 반드시 "app/jyu-home-page"에서 npm run dev 를 사용
-
-* [Next.js 참고 자료](https://nextjs.org/docs/getting-started) 
-
 ## 상용 환경
 
 * [Search Home page](https://gyujanggak.vercel.app)
@@ -29,3 +21,7 @@
 ## Reference 
 
 * [Flex box Design](https://heropy.blog/2018/11/24/css-flexible-box/)
+
+* [Next.js 참고 자료](https://nextjs.org/docs/getting-started)
+
+* [반응형 디자인](https://www.toptal.com/designers/responsive/responsive-design-best-practices)

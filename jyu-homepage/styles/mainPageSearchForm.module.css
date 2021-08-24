@@ -7,7 +7,6 @@
     width: 25%;
     line-height: 2.0rem;
     font-size: 1.0rem;
-    margin-top: 2%;
     margin-bottom: 2%;
 }
 
@@ -15,4 +14,14 @@
     grid-column: 1/span 6;
     margin: auto;
     margin-bottom: 1em;
+}
+
+/* Average mobile */
+@media screen and (max-width: 414px){
+    .searchFormInput {
+        width: 70%;
+        line-height: 1.5rem;
+        font-size: 1.0rem;
+        margin-bottom: 0.5%;
+    }
 }

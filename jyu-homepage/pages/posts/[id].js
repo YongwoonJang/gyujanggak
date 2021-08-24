@@ -21,9 +21,9 @@ export default function Post({id, data, contents}){
         return (
             <>
                 <div className={pageStyles.page}>
-                    <h2 className={pageStyles.profileTitle}>{data.title}</h2>
+                    <h1 className={pageStyles.profileTitle}>{data.title}</h1>
                     <div className={pageStyles.profileImage}>
-                        <Image width="300px" height="300px" src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
+                        <Image layout="intrinsic" width="300px" height="300px" src={"/images/20210807Yongwoon.jpg"} alt="My profile" />
                     </div>
                     {content}
                 </div>
@@ -38,14 +38,15 @@ export default function Post({id, data, contents}){
                 </div>
                 <ul className={pageStyles.politicsImageList}>
                     {politicsList.map(({ id, title, url }) => (
-                        <li key={id}>
+                        <li key={id} className={pageStyles.politicsImage}>
                             <Link href={url}>
                                 <a>
                                     <Image
                                         priority
+                                        layout="intrinsic"
                                         src={'/images/' + id + '.jpg'}
-                                        height={200}
-                                        width={200}
+                                        height="200px"
+                                        width="200px"
                                         alt={title}
                                     />
                                 </a>
@@ -61,15 +62,16 @@ export default function Post({id, data, contents}){
             <>
                 <div className={pageStyles.page}>
                     <h1 className={pageStyles.hobbyTitle}>{data.title}</h1>
-                    <div className={pageStyles.hobbyDanceFrame}>
-                        <div>2007년부터 춤을 추었습니다.</div>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/fYXFJ9YxUQs?start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
-                    </div>
-                    <div className={pageStyles.hobbyPianoFrame}>
-                        <div>1997년부터 피아노를 배웠습니다.<br />
-                        오랜기간 쉬고 2018년부터 다시 배우기 시작했습니다.</div>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Srw3r_QA0RY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                    <ul className={pageStyles.hobbyList}>
+                        <li key="dance" className={pageStyles.hobbyDanceFrame}>
+                            <iframe className={pageStyles.hobbyIframe} width="560" height="315" src="https://www.youtube.com/embed/fYXFJ9YxUQs?start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
+                            <div>2007년부터 춤을 추었습니다.</div>
+                        </li>
+                        <li key="hobby" className={pageStyles.hobbyPianoFrame}>
+                            <iframe className={pageStyles.hobbyIframe} width="560" height="315" src="https://www.youtube.com/embed/Srw3r_QA0RY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div>1997년부터 피아노를 배웠습니다.</div>
+                        </li>
+                    </ul>
                 </div>
             </>
         )
