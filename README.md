@@ -6,10 +6,6 @@
 
 * 체험을 하시려면 [Home page](https://gyujanggak.vercel.app)로 접속해 주세요.
 
-## 언어
-
-* JavaScript
-
 ## High level Design
 
 ![JYU Homepage HLD /architecure/JYUHomepageHLD.svg 참고](https://raw.githubusercontent.com/YongwoonJang/gyujanggak/master/architecture/JYUHomepageHLD.svg)
