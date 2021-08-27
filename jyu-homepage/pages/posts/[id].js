@@ -57,7 +57,7 @@ export default function Post({id, data, contents}){
                 
             </>
         )
-    }else{
+    }else if(id == 'hobby'){
         return (
             <>
                 <div className={pageStyles.page}>
@@ -71,8 +71,18 @@ export default function Post({id, data, contents}){
                             <iframe className={pageStyles.hobbyIframe} width="560" height="315" src="https://www.youtube.com/embed/Srw3r_QA0RY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <div>1997년부터 피아노를 배웠습니다.</div>
                         </li>
+                        <li key="game" className={pageStyles.hobbyGameFrame}>
+                            <iframe className={pageStyles.hobbyGameIframe} width="1000" height="550" src="https://yongwoonjang.github.io/SweetHome/"></iframe>
+                            <div>또롱이의 집, 게임 개발도 하고 있습니다.</div>
+                        </li>
                     </ul>
                 </div>
+            </>
+        )
+    }else if(id == 'communication'){
+        return(
+            <>
+            {content}
             </>
         )
     }

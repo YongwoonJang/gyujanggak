@@ -11,7 +11,8 @@ export default function Home() {
   const allPostsData = [
     { "id": "yongwoonJang", "title": "개인설명", "url": "/posts/profile" },
     { "id": "politics", "title":"정치", "url": "/posts/politics"},
-    { "id": "hobby", "title":"취미", "url": "/posts/hobby"}
+    { "id": "hobby", "title":"취미", "url": "/posts/hobby"},
+    { "id": "communication", "title":"소통","url":"/posts/communication"}
   ]
 
   return (
@@ -30,8 +31,7 @@ export default function Home() {
       <RequestFormAndResult/>
       <ul className={mainPageStyles.mainMenuList}>
         {allPostsData.map(({ id, title, url }) => (
-          <li key={id}>
-            <div className={mainPageStyles.mainMenuListItems}>
+            <li key={id} className={mainPageStyles.mainMenuListItems}>
                 <Link href={url}>
                   <a>
                     <Image
@@ -43,8 +43,7 @@ export default function Home() {
                     />
                   </a>
                 </Link>
-            </div>
-          </li>
+              </li>
         ))}
       </ul>
     </Layout>
