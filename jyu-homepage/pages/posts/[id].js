@@ -1,10 +1,13 @@
 import fs from 'fs'
+
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
 
 import Image from 'next/image'
 import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
+import SearchFormForBoard from '../../components/searchFormForBoard'
+import RequestFormAndResult from '../../components/searchFormForBoard'
 
 export default function Post({id, data, contents}){
     const content = parse(contents)
@@ -82,9 +85,7 @@ export default function Post({id, data, contents}){
     }else if(id == 'communication'){
         return(
             <>
-                <div>
-                {content}
-                </div>
+                <RequestFormAndResult/>
             </>
         )
     }
