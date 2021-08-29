@@ -82,7 +82,9 @@ export default function Post({id, data, contents}){
     }else if(id == 'communication'){
         return(
             <>
-            {content}
+                <div>
+                {content}
+                </div>
             </>
         )
     }
