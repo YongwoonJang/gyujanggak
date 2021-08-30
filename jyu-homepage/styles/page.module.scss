@@ -51,6 +51,24 @@
   float: left;
 }
 
+.communicationInput{
+  margin-left: 50px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.communicationDialogue{
+  background-color: yellow;
+  max-width: max-content;
+  max-height: max-content;
+
+  border: 2px solid currentcolor;
+  box-shadow: 0.125rem 0.25rem currentcolor;
+
+  margin-right:100px;
+  margin-left: 50px;
+  margin-bottom: 2%;
+}
 
 /* average mobile */
 @media screen and (max-width: 414px) {  

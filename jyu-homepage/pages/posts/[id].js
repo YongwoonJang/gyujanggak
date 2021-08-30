@@ -6,7 +6,6 @@ import parse from 'html-react-parser'
 import Image from 'next/image'
 import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
-import SearchFormForBoard from '../../components/searchFormForBoard'
 import RequestFormAndResult from '../../components/searchFormForBoard'
 
 export default function Post({id, data, contents}){
