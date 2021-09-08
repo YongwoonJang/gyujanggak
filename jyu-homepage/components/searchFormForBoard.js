@@ -1,10 +1,9 @@
 import page from "/styles/page.module.scss";
 import parse from 'html-react-parser'
 import Image from 'next/image'
-import React from 'react'
+import React, {useEffect} from 'react'
 
 export default function RequestFormAndResult(){
-    const myRef = React.createRef(null);
 
     let allPostsData = [
         { "date":"2021-08-30 23:34", "title":"Hello", "contents":"JYU World. this homepage is for JYU. He is interested in Data and Informations", "hit":20, "img":"None"},
@@ -17,20 +16,19 @@ export default function RequestFormAndResult(){
         document.getElementById("result").innerHTML = searchInput;
     }
 
-    const canvas = myRef.current.focus();
-    console.log(canvas);
-    const gl = canvas.getContext("webgl");
-
-    if (gl == null) {
-        alert("Unable to initialize WebGL. Your browser or machine may not support it.");
-    }
-
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    useEffect(()=>{
+        const canvas = document.querySelector('#glCanvas')
+        const gl = canvas.getContext("webgl");
+        if (gl == null) {
+            alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+        }
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+    })
     
     return(
         <>
-            <canvas ref={myRef} width="640" height="480"></canvas>
+            <canvas id="glCanvas" width="640" height="480"></canvas>
             <div className={page.communicationInput}>
                 <form onSubmit={sendRequestData} >
                     <input id="data" name="data"/>
