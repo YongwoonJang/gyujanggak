@@ -1,7 +1,8 @@
-import page from "/styles/page.module.scss";
+import page from '/styles/page.module.scss'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import React, {useEffect} from 'react'
+import webgl from '/components/drawingTheScene'
 
 export default function RequestFormAndResult(){
 
@@ -22,13 +23,25 @@ export default function RequestFormAndResult(){
         if (gl == null) {
             alert("Unable to initialize WebGL. Your browser or machine may not support it.");
         }
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        gl.clear(gl.COLOR_BUFFER_BIT);
+        
+        var vertexShader = webgl.createShader(gl, gl.VERTEX_SHADER, webgl.vsSource);
+        var fragmentShader = webgl.createShader(gl, gl.FRAGMENT_SHADER, webgl.fsSource);
+        var program = webgl.createProgram(gl, vertexShader, fragmentShader);
+        var positionAttributeLocation = gl.getAttributeLocation(program, "a_position");
+        var positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        var positions = [
+            0,0,
+            0,0.5,
+            0.7, 0,
+        ];
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
     })
     
     return(
         <>
-            <canvas id="glCanvas" width="640" height="480"></canvas>
+            <canvas id="glCanvas" width="400" height="300"></canvas>
             <div className={page.communicationInput}>
                 <form onSubmit={sendRequestData} >
                     <input id="data" name="data"/>
