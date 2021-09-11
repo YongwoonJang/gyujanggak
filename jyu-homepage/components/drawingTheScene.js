@@ -18,6 +18,7 @@ export const fsSource = `
 `
 
 export function createShader(gl, type, source){
+    console.log("createShader is executed");
     var shader = gl.createShader(type);
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
@@ -43,3 +44,7 @@ export function createProgram(gl, vertexShader, fragmentShader){
     console.log(gl.getProgramInfoLog(program));
     gl.deleteProgram(program);
 }
+
+
+
+

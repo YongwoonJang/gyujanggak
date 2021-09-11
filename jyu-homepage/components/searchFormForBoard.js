@@ -2,7 +2,8 @@ import page from '/styles/page.module.scss'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import React, {useEffect} from 'react'
-import webgl from '/components/drawingTheScene'
+import {vsSource, fsSource, createShader, createProgram} from '/components/drawingTheScene'
+
 
 export default function RequestFormAndResult(){
 
@@ -19,15 +20,30 @@ export default function RequestFormAndResult(){
 
     useEffect(()=>{
         const canvas = document.querySelector('#glCanvas')
+        const canvasToDisplaySizeMap = new Map([[canvas, [300, 150]]]);
+        const [displayWidth, displayHeight] = canvasToDisplaySizeMap.get(canvas);
+
+        const resizeObserver =  new ResizeObserver(onResize);
+        resizeObserver.observe(canvas, {box: 'content-box'});
+
+        // Adjust Canvas size
+        const needResize = canvas.width !== displayWidth || canvas.height !== displayHeight;
+        if (needResize) {
+            canvas.width = displayWidth;
+            canvas.height = displayHeight;
+        }
+
         const gl = canvas.getContext("webgl");
         if (gl == null) {
             alert("Unable to initialize WebGL. Your browser or machine may not support it.");
         }
-        
-        var vertexShader = webgl.createShader(gl, gl.VERTEX_SHADER, webgl.vsSource);
-        var fragmentShader = webgl.createShader(gl, gl.FRAGMENT_SHADER, webgl.fsSource);
-        var program = webgl.createProgram(gl, vertexShader, fragmentShader);
-        var positionAttributeLocation = gl.getAttributeLocation(program, "a_position");
+        var vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+        var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+        var program = createProgram(gl, vertexShader, fragmentShader);
+
+        //Get a location, color and matrix
+        var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+
         var positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
         var positions = [
@@ -37,8 +53,40 @@ export default function RequestFormAndResult(){
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
+        function onResize(entries) {
+            for (const entry of entries) {
+                let width;
+                let height;
+                let dpr = window.devicePixelRatio;
+                if (entry.devicePixelContentBoxSize) {
+                    width = entry.devicePixelContentBoxSize[0].inlineSize;
+                    height = entry.devicePixelContentBoxSize[0].blockSize;
+
+                } else if (entry.contentBoxSize) {
+                    if (entry.contentBoxSize[0]) {
+                        width = entry.contentBoxSize[0].inlineSize;
+                        height = entry.contentBoxSize[0].blockSize;
+
+                    } else if (entry.contentBoxSize) {
+                        width = entry.contentBoxSize.inlineSize;
+                        height = entry.contentBoxSize.blockSize;
+
+                    }
+                } else {
+                    width = entry.contentRect.width;
+                    height = entry.contentRect.height;
+
+                }
+                const displayWidth = Math.round(width * dpr);
+                const displayHeight = Math.round(height * dpr);
+                canvasToDisplaySizeMap.set(entry.target, [displayWidth, displayHeight]);
+            }
+        }
+
+        
+
     })
-    
+
     return(
         <>
             <canvas id="glCanvas" width="400" height="300"></canvas>
