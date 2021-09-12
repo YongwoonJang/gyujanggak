@@ -17,3 +17,7 @@
 * [Next.js 참고 자료](https://nextjs.org/docs/getting-started)
 
 * [반응형 디자인](https://www.toptal.com/designers/responsive/responsive-design-best-practices)
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Adding_2D_content_to_a_WebGL_context)
+
+* [WebGL Fundamental](https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html)

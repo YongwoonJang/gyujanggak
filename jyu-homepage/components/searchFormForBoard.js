@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import Image from 'next/image'
 import React, {useEffect} from 'react'
 import {vsSource, fsSource, createShader, createProgram} from '/components/drawingTheScene'
+import { drawScene } from './drawingTheScene'
 
 
 export default function RequestFormAndResult(){
@@ -20,9 +21,12 @@ export default function RequestFormAndResult(){
 
     useEffect(()=>{
         const canvas = document.querySelector('#glCanvas')
+        
+        // Init Canvas size
         const canvasToDisplaySizeMap = new Map([[canvas, [300, 150]]]);
         const [displayWidth, displayHeight] = canvasToDisplaySizeMap.get(canvas);
 
+        // React to adjusting canvas size
         const resizeObserver =  new ResizeObserver(onResize);
         resizeObserver.observe(canvas, {box: 'content-box'});
 
@@ -33,6 +37,7 @@ export default function RequestFormAndResult(){
             canvas.height = displayHeight;
         }
 
+        // Create Shader program
         const gl = canvas.getContext("webgl");
         if (gl == null) {
             alert("Unable to initialize WebGL. Your browser or machine may not support it.");
@@ -41,18 +46,36 @@ export default function RequestFormAndResult(){
         var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
         var program = createProgram(gl, vertexShader, fragmentShader);
 
-        //Get a location, color and matrix
-        var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
 
+        //Setting the program 
+        const programInfo = {
+            program: program,
+            attribLocations: {
+                vertexPosition : gl.getAttribLocation(program, 'aVertexPosition'),
+            },
+            uniformLocations: {
+                projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
+                modelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
+            },
+        };
+
+        //Setting the buffer
+        //Get a location, color and matrix
         var positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
         var positions = [
-            0,0,
-            0,0.5,
-            0.7, 0,
+            1.0, 1.0,
+            -1.0, 1.0,
+            1.0, -1.0,
+            -1.0, -1.0,
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
+        //draw scene
+        // draw something.
+        drawScene(gl, programInfo, {position: positionBuffer,});
+
+        // Setting the size
         function onResize(entries) {
             for (const entry of entries) {
                 let width;
@@ -82,14 +105,13 @@ export default function RequestFormAndResult(){
                 canvasToDisplaySizeMap.set(entry.target, [displayWidth, displayHeight]);
             }
         }
-
-        
-
     })
 
     return(
         <>
-            <canvas id="glCanvas" width="400" height="300"></canvas>
+            <div className={page.communicationLab}>
+                <canvas id="glCanvas" width="400" height="300"></canvas>
+            </div>
             <div className={page.communicationInput}>
                 <form onSubmit={sendRequestData} >
                     <input id="data" name="data"/>
