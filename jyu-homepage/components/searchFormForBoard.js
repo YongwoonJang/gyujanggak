@@ -2,7 +2,7 @@ import page from '/styles/page.module.scss'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import React, {useEffect} from 'react'
-import {vsSource, fsSource, createShader, createProgram} from '/components/drawingTheScene'
+import {vsSource, fsSource, createShader, createProgram, initBuffer} from '/components/drawingTheScene'
 import { drawScene } from './drawingTheScene'
 
 
@@ -46,12 +46,12 @@ export default function RequestFormAndResult(){
         var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
         var program = createProgram(gl, vertexShader, fragmentShader);
 
-
         //Setting the program 
         const programInfo = {
             program: program,
             attribLocations: {
                 vertexPosition : gl.getAttribLocation(program, 'aVertexPosition'),
+                vertexColor : gl.getAttribLocation(program, 'aVertexColor'),
             },
             uniformLocations: {
                 projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
@@ -60,20 +60,10 @@ export default function RequestFormAndResult(){
         };
 
         //Setting the buffer
-        //Get a location, color and matrix
-        var positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        var positions = [
-            1.0, 1.0,
-            -1.0, 1.0,
-            1.0, -1.0,
-            -1.0, -1.0,
-        ];
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+        const buffer = initBuffer(gl);
 
         //draw scene
-        // draw something.
-        drawScene(gl, programInfo, {position: positionBuffer,});
+        drawScene(gl, programInfo, buffer);
 
         // Setting the size
         function onResize(entries) {

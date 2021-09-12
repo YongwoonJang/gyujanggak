@@ -3,18 +3,23 @@ import {mat4} from 'gl-matrix'
 export const vsSource = `
     uniform mat4 uProjectionMatrix;
     uniform mat4 uModelViewMatrix;
+    
     attribute vec4 aVertexPosition;
+    attribute vec4 aVertexColor;
+
+    varying lowp vec4 vColor;
 
     void main(){
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+        vColor = aVertexColor;
     }
     `
 
 export const fsSource = `
-    precision mediump float;
+    varying lowp vec4 vColor;
 
-    void main() {
-        gl_FragColor = vec4(1.0, 0, 0, 0.5);
+    void main(void) {
+        gl_FragColor = vColor;
     }
 `
 
@@ -46,6 +51,32 @@ export function createProgram(gl, vertexShader, fragmentShader){
     gl.deleteProgram(program);
 }
 
+export function initBuffer(gl){
+    var position = [
+        -1.0, 1.0,
+        1.0, 1.0,
+        -1.0, -1.0,
+        1.0, -1.0,
+    ]
+    var colors = [
+        1.0, 1.0, 1.0, 1.0,    // white
+        1.0, 0.0, 0.0, 1.0,    // red
+        0.0, 1.0, 0.0, 1.0,    // green
+        0.0, 0.0, 1.0, 1.0,    // blue
+
+    ]
+    var positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(position), gl.STATIC_DRAW);
+
+    var colorBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+
+    return({position:positionBuffer,
+            color:colorBuffer,})
+}
+
 export function drawScene(gl, programInfo, buffers){
     //Initialize
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -72,14 +103,14 @@ export function drawScene(gl, programInfo, buffers){
         modelViewMatrix,
         [-0.0, 0.0, -6.0]);
     
-    // How to get buffer
+    // How to get buffer in position
     {
         const numComponents = 2; 
         const type = gl.FLOAT;
         const normalize = false;
         const stride = 0;
+        const offset = 0;
 
-        const offset = 0; 
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
         gl.vertexAttribPointer(
             programInfo.attribLocations.vertexPosition,
@@ -90,6 +121,26 @@ export function drawScene(gl, programInfo, buffers){
             offset);
         gl.enableVertexAttribArray(
             programInfo.attribLocations.vertexPosition);
+    }
+
+    // How to get buffer in color
+    {
+        const numComponents = 4;
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
+        gl.vertexAttribPointer(
+            programInfo.attribLocations.vertexColor,
+            numComponents,
+            type,
+            normalize,
+            stride,
+            offset);
+        gl.enableVertexAttribArray(
+            programInfo.attribLocations.vertexColor);
     }
 
     gl.useProgram(programInfo.program);
