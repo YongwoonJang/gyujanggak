@@ -26,7 +26,7 @@ export default function RequestFormAndResult(){
         const canvasToDisplaySizeMap = new Map([[canvas, [300, 150]]]);
         const [displayWidth, displayHeight] = canvasToDisplaySizeMap.get(canvas);
 
-        // React to adjusting canvas size
+        // Reaction to adjusting canvas size
         const resizeObserver =  new ResizeObserver(onResize);
         resizeObserver.observe(canvas, {box: 'content-box'});
 

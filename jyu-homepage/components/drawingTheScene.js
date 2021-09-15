@@ -24,7 +24,6 @@ export const fsSource = `
 `
 
 export function createShader(gl, type, source){
-    console.log("createShader is executed");
     var shader = gl.createShader(type);
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
@@ -72,6 +71,12 @@ export function initBuffer(gl){
     var colorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+
+    //Set the texture
+    var frameBuffer = gl.createFramebuffer();
+    var texture = gl.createTexture();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, frameBuffer);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texture,0)
 
     return({position:positionBuffer,
             color:colorBuffer,})
