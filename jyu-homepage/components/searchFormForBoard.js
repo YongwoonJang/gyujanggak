@@ -2,7 +2,7 @@ import page from '/styles/page.module.scss'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import React, {useEffect} from 'react'
-import {vsSource, fsSource, createShader, createProgram, initBuffer} from '/components/drawingTheScene'
+import {vsSource, fsSource, createShader, createProgram, initBuffer, loadTexture} from '/components/drawingTheScene'
 import { drawScene } from './drawingTheScene'
 
 
@@ -20,22 +20,26 @@ export default function RequestFormAndResult(){
     }
 
     useEffect(()=>{
-        const canvas = document.querySelector('#glCanvas')
-        
+        // Init variables
+        const canvas = document.querySelector('#glCanvas');
+        var deltaTime = 0;
+        var squareRotation = 0.0;
+        var then = 0;
+
         // Init Canvas size
         const canvasToDisplaySizeMap = new Map([[canvas, [300, 150]]]);
         const [displayWidth, displayHeight] = canvasToDisplaySizeMap.get(canvas);
 
         // Reaction to adjusting canvas size
-        const resizeObserver =  new ResizeObserver(onResize);
-        resizeObserver.observe(canvas, {box: 'content-box'});
+        //const resizeObserver =  new ResizeObserver(onResize);
+        //resizeObserver.observe(canvas, {box: 'content-box'});
 
         // Adjust Canvas size
-        const needResize = canvas.width !== displayWidth || canvas.height !== displayHeight;
-        if (needResize) {
-            canvas.width = displayWidth;
-            canvas.height = displayHeight;
-        }
+        // const needResize = canvas.width !== displayWidth || canvas.height !== displayHeight;
+        // if (needResize) {
+        //     canvas.width = displayWidth;
+        //     canvas.height = displayHeight;
+        // }
 
         // Create Shader program
         const gl = canvas.getContext("webgl");
@@ -51,50 +55,26 @@ export default function RequestFormAndResult(){
             program: program,
             attribLocations: {
                 vertexPosition : gl.getAttribLocation(program, 'aVertexPosition'),
-                vertexColor : gl.getAttribLocation(program, 'aVertexColor'),
+                textureCoord: gl.getAttribLocation(program, 'aTextureCoord'),
             },
             uniformLocations: {
                 projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
                 modelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
+                uSampler: gl.getUniformLocation(program, 'uSampler'),
             },
         };
 
-        //Setting the buffer
+        // Setting the buffer
         const buffer = initBuffer(gl);
 
-        //draw scene
-        drawScene(gl, programInfo, buffer);
+        // Setting the texture
+        var texture = loadTexture(gl, "/favicon.ico");
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        
+        // draw scene
+        drawScene(gl, programInfo, buffer, squareRotation, then, deltaTime);
 
-        // Setting the size
-        function onResize(entries) {
-            for (const entry of entries) {
-                let width;
-                let height;
-                let dpr = window.devicePixelRatio;
-                if (entry.devicePixelContentBoxSize) {
-                    width = entry.devicePixelContentBoxSize[0].inlineSize;
-                    height = entry.devicePixelContentBoxSize[0].blockSize;
-
-                } else if (entry.contentBoxSize) {
-                    if (entry.contentBoxSize[0]) {
-                        width = entry.contentBoxSize[0].inlineSize;
-                        height = entry.contentBoxSize[0].blockSize;
-
-                    } else if (entry.contentBoxSize) {
-                        width = entry.contentBoxSize.inlineSize;
-                        height = entry.contentBoxSize.blockSize;
-
-                    }
-                } else {
-                    width = entry.contentRect.width;
-                    height = entry.contentRect.height;
-
-                }
-                const displayWidth = Math.round(width * dpr);
-                const displayHeight = Math.round(height * dpr);
-                canvasToDisplaySizeMap.set(entry.target, [displayWidth, displayHeight]);
-            }
-        }
     })
 
     return(
