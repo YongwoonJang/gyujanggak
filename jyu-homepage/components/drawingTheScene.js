@@ -25,6 +25,13 @@ export const fsSource = `
       gl_FragColor = texture2D(uSampler, vTextureCoord);
     }
 `
+//Define global variables for drawing
+let deltaTime = 0;
+let then = 0;
+let squareRotation = 0;
+let localGL = null;
+let localProgramInfo = null;
+let localBuffer = null;
 
 //WebGL Shader functions
 export function createShader(gl, type, source){
@@ -105,8 +112,12 @@ export function initBuffer(gl){
             textureCoord:textureCoordBuffer,})
 }
 
-export function drawScene(gl, programInfo, buffers, squareRotation, then, deltaTime){
+export function drawScene(gl, programInfo, buffers){
     //Initialize
+    localGL = gl;
+    localProgramInfo = programInfo;
+    localBuffer = buffers;
+
     gl.clearColor(0.0, 1.0, 2.0, 1.0);
     gl.clearDepth(1.0);
     gl.enable(gl.DEPTH_TEST);
@@ -119,8 +130,6 @@ export function drawScene(gl, programInfo, buffers, squareRotation, then, deltaT
     const zNear = 0.1;
     const zFar = 100.0;
     const projectionMatrix = mat4.create();
-    var squareRotation = 0.0;
-    var then = 0;
     const modelViewMatrix = mat4.create();
 
     mat4.perspective(projectionMatrix,
@@ -172,8 +181,6 @@ export function drawScene(gl, programInfo, buffers, squareRotation, then, deltaT
     }
 
     gl.useProgram(programInfo.program);
-
-    // Tell the shader we bound the texture to texture unit 0
     gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
     gl.uniformMatrix4fv(
         programInfo.uniformLocations.projectionMatrix,
@@ -190,17 +197,19 @@ export function drawScene(gl, programInfo, buffers, squareRotation, then, deltaT
         gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
     }
 
-    //Render data and make call back
-    function render(now) {
-        now *= 0.001;
-        const deltaTime = now - then;
-        then = now;
-        drawScene(gl, programInfo, buffers, deltaTime);
-        requestAnimationFrame(render);
-        
-    }
     requestAnimationFrame(render);
     squareRotation += deltaTime;
+
+}
+
+//Render data and make call back
+function render(now) {
+
+    now *= 0.001;
+    deltaTime = now - then;
+    then = now; 
+    drawScene(localGL, localProgramInfo, localBuffer);
+    requestAnimationFrame(render);
 
 }
 

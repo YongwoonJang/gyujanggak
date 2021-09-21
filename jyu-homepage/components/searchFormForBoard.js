@@ -22,24 +22,10 @@ export default function RequestFormAndResult(){
     useEffect(()=>{
         // Init variables
         const canvas = document.querySelector('#glCanvas');
-        var deltaTime = 0;
-        var squareRotation = 0.0;
-        var then = 0;
 
         // Init Canvas size
         const canvasToDisplaySizeMap = new Map([[canvas, [300, 150]]]);
         const [displayWidth, displayHeight] = canvasToDisplaySizeMap.get(canvas);
-
-        // Reaction to adjusting canvas size
-        //const resizeObserver =  new ResizeObserver(onResize);
-        //resizeObserver.observe(canvas, {box: 'content-box'});
-
-        // Adjust Canvas size
-        // const needResize = canvas.width !== displayWidth || canvas.height !== displayHeight;
-        // if (needResize) {
-        //     canvas.width = displayWidth;
-        //     canvas.height = displayHeight;
-        // }
 
         // Create Shader program
         const gl = canvas.getContext("webgl");
@@ -73,7 +59,7 @@ export default function RequestFormAndResult(){
         gl.bindTexture(gl.TEXTURE_2D, texture);
         
         // draw scene
-        drawScene(gl, programInfo, buffer, squareRotation, then, deltaTime);
+        drawScene(gl, programInfo, buffer);
 
     })
 
