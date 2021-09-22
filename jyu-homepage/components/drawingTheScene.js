@@ -64,45 +64,21 @@ export function createProgram(gl, vertexShader, fragmentShader){
 
 export function initBuffer(gl){
     var position = [
-        -1.0, 1.0,
-        1.0, 1.0,
         -1.0, -1.0,
-        1.0, -1.0,
+         1.0, -1.0,
+         1.0, 1.0,
+        -1.0, 1.0,
+        -1.0, -1.0,
     ]
     const textureCoordinates = [
         // Front
-        0.0, 0.0,
-        1.0, 0.0,
         1.0, 1.0,
-        0.0, 1.0,
-        // Back
-        0.0, 0.0,
-        1.0, 0.0,
+        -1.0, 1.0,
+         -1.0, -1.0,
+        1.0, -1.0,
         1.0, 1.0,
-        0.0, 1.0,
-        // Top
-        0.0, 0.0,
-        1.0, 0.0,
-        1.0, 1.0,
-        0.0, 1.0,
-        // Bottom
-        0.0, 0.0,
-        1.0, 0.0,
-        1.0, 1.0,
-        0.0, 1.0,
-        // Right
-        0.0, 0.0,
-        1.0, 0.0,
-        1.0, 1.0,
-        0.0, 1.0,
-        // Left
-        0.0, 0.0,
-        1.0, 0.0,
-        1.0, 1.0,
-        0.0, 1.0,
     ];
 
-    
     var positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(position), gl.STATIC_DRAW);
@@ -110,6 +86,7 @@ export function initBuffer(gl){
     var textureCoordBuffer = gl. createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoordinates), gl.STATIC_DRAW);
+    
     return({position:positionBuffer,
             textureCoord:textureCoordBuffer,})
 }
@@ -153,17 +130,15 @@ export function drawScene(gl, programInfo, buffers){
     
     // How to get buffer in position
     {
-        const 
-        numComponents = 2; 
+        const num = 2; 
         const type = gl.FLOAT;
         const normalize = false;
         const stride = 0;
         const offset = 0;
-
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
         gl.vertexAttribPointer(
             programInfo.attribLocations.vertexPosition,
-            numComponents,
+            num,
             type,
             normalize,
             stride,
@@ -190,6 +165,7 @@ export function drawScene(gl, programInfo, buffers){
         programInfo.uniformLocations.projectionMatrix,
         false,
         projectionMatrix);
+
     gl.uniformMatrix4fv(
         programInfo.uniformLocations.modelViewMatrix,
         false,
@@ -197,13 +173,11 @@ export function drawScene(gl, programInfo, buffers){
     
     {
         const offset = 0;
-        const vertexCount = 4;
+        const vertexCount = 5;
         gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
     }
 
     squareRotation += deltaTime;
-
-    console.log("drawsScene!!")
 
 }
 
@@ -224,11 +198,6 @@ export function loadTexture(gl, url) {
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
-    // Because images have to be downloaded over the internet
-    // they might take a moment until they are ready.
-    // Until then put a single pixel in the texture so we can
-    // use it immediately. When the image has finished downloading
-    // we'll update the texture with the contents of the image.
     const level = 0;
     const internalFormat = gl.RGBA;
     const width = 1;
@@ -263,7 +232,6 @@ export function loadTexture(gl, url) {
     };
     image.src = url;
     
-
     return texture;
 }
 
