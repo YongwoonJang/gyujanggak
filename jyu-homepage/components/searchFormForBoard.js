@@ -2,7 +2,7 @@ import page from '/styles/page.module.scss'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import React, {useEffect} from 'react'
-import {vsSource, fsSource, createShader, createProgram, initBuffer, loadTexture} from '/components/drawingTheScene'
+import {vsSource, fsSource, createShader, createProgram, initBuffer, loadTexture, render} from '/components/drawingTheScene'
 import { drawScene } from './drawingTheScene'
 
 
@@ -60,6 +60,7 @@ export default function RequestFormAndResult(){
         
         // draw scene
         drawScene(gl, programInfo, buffer);
+        requestAnimationFrame(render);
 
     })
 

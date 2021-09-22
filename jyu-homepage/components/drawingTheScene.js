@@ -33,7 +33,7 @@ let localGL = null;
 let localProgramInfo = null;
 let localBuffer = null;
 
-//WebGL Shader functions
+// WebGL Shader functions
 export function createShader(gl, type, source){
     var shader = gl.createShader(type);
     gl.shaderSource(shader, source);
@@ -47,6 +47,7 @@ export function createShader(gl, type, source){
     gl.deleteShader(shader);
 }
 
+// WebGL Program function.
 export function createProgram(gl, vertexShader, fragmentShader){
     var program = gl.createProgram();
     gl.attachShader(program, vertexShader);
@@ -105,6 +106,7 @@ export function initBuffer(gl){
     var positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(position), gl.STATIC_DRAW);
+    
     var textureCoordBuffer = gl. createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoordinates), gl.STATIC_DRAW);
@@ -112,8 +114,9 @@ export function initBuffer(gl){
             textureCoord:textureCoordBuffer,})
 }
 
+//init 
 export function drawScene(gl, programInfo, buffers){
-    //Initialize
+    //Initialize and local* variables are transferred to render function
     localGL = gl;
     localProgramInfo = programInfo;
     localBuffer = buffers;
@@ -125,12 +128,11 @@ export function drawScene(gl, programInfo, buffers){
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFERR_BIT);
 
     //Define variables
-    const fieldOfView = 50 * Math.PI / 180;
+    const fieldOfView = 45 * Math.PI / 180;
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     const zNear = 0.1;
     const zFar = 100.0;
     const projectionMatrix = mat4.create();
-    const modelViewMatrix = mat4.create();
 
     mat4.perspective(projectionMatrix,
         fieldOfView,
@@ -138,16 +140,18 @@ export function drawScene(gl, programInfo, buffers){
         zNear,
         zFar);
     
+    const modelViewMatrix = mat4.create();
+
     mat4.translate(modelViewMatrix,
                    modelViewMatrix,
-                   [-0.0, 0.0, -6.0]);
+                   [-0.0, 0.0, -4.0]);
     
     mat4.rotate(modelViewMatrix,
         modelViewMatrix,
         squareRotation,
         [0, 0, 1]);
     
-        // How to get buffer in position
+    // How to get buffer in position
     {
         const 
         numComponents = 2; 
@@ -197,13 +201,14 @@ export function drawScene(gl, programInfo, buffers){
         gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
     }
 
-    requestAnimationFrame(render);
     squareRotation += deltaTime;
+
+    console.log("drawsScene!!")
 
 }
 
 //Render data and make call back
-function render(now) {
+export function render(now) {
 
     now *= 0.001;
     deltaTime = now - then;
