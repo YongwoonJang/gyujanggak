@@ -15,6 +15,115 @@
   text-align: right;
 }
 
+.profileDivTable[role="region"][aria-labelledby][tabindex] {
+  overflow: auto;
+  border: 0.1em solid #d6d6d6;
+}
+
+.profileDivTable[role="region"][aria-labelledby][tabindex]:focus {
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  outline: 0.1em solid rgba(0, 0, 0, 0.1);
+}
+
+/* Standard Tables */
+
+.profileDivTable table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  border: 0.1em solid #d6d6d6;
+}
+
+.profileDivTable caption {
+  text-align: left;
+  font-style: italic;
+  padding: 0.25em 0.5em 0.5em 0.5em;
+}
+
+.profileDivTable table th td {
+  padding: 0.25em 0.5em 0.25em 1em;
+  vertical-align: text-top;
+  text-align: left;
+  text-indent: -0.5em;
+}
+
+.profileDivTable th {
+  vertical-align: bottom;
+  background-color: #666;
+  color: #fff;
+}
+
+.profileDivTable tr:nth-child(even) th[scope="row"] {
+  background-color: #f2f2f2;
+}
+
+.profileDivTable tr:nth-child(odd) th[scope="row"] {
+  background-color: #fff;
+}
+
+.profileDivTable tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.profileDivTable tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.profileDivTable tr td:nth-child(1) {
+  min-width: 10em;
+  max-width: 90vw;
+}
+
+.profileDivTable tr td:nth-child(2) {
+  font-style: italic;
+  min-width: 12em;
+  max-width: 90vw;
+}
+
+.profileDivTable tr *:nth-child(3) {
+  text-align: right;
+}
+
+/* Responsive Tables */
+
+.profileDivTable[role="region"][aria-labelledby][tabindex] {
+  overflow: auto;
+  border: 0.1em solid #d6d6d6;
+}
+
+.profileDivTable[role="region"][aria-labelledby][tabindex]:focus {
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  outline: 0.1em solid rgba(0, 0, 0, 0.1);
+}
+
+.profileDivTable[role="region"][aria-labelledby][tabindex] table {
+  margin: 0;
+  border: none;
+}
+
+/* Scrolling Visual Cue */
+
+.profileDivTable[role="region"][aria-labelledby][tabindex] {
+  background: linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(to right, rgba(255, 255, 255, 0), #fff 70%) 0 100%,
+    radial-gradient(
+      farthest-side at 0% 50%,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(
+        farthest-side at 100% 50%,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-position: 0 0, 100%, 0 0, 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+//
 .politicsTitle{
   background : rgb(130,247,130);
   width: 80%;

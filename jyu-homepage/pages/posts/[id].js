@@ -6,6 +6,7 @@ import parse from 'html-react-parser'
 import Image from 'next/image'
 import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
+
 import RequestFormAndResult from '../../components/searchFormForBoard'
 
 export function getStaticPaths() {
@@ -58,7 +59,9 @@ export default function Post({id, data, contents}){
     }else if(id = 'profile-mgmt'){
         return (
             <>
-                {content}
+                <div className={pageStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">
+                    {content}
+                </div>
             </>
         )
     }else if(id == 'politics'){
