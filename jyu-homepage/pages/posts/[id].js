@@ -8,6 +8,30 @@ import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
 import RequestFormAndResult from '../../components/searchFormForBoard'
 
+export function getStaticPaths() {
+    const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
+
+    const params = postNames.map((postName) => ({
+        params: { id: postName }
+    }))
+
+    return { paths: params, fallback: 'blocking' }
+}
+
+export async function getStaticProps({ params }) {
+    const fullPath = "public/posts/" + params.id + ".md"
+    const fileContent = fs.readFileSync(fullPath)
+
+    const matterResult = matter(fileContent)
+    return {
+        props: {
+            id: params.id,
+            data: matterResult.data,
+            contents: matterResult.content
+        },
+    }
+}
+
 export default function Post({id, data, contents}){
     const content = parse(contents)
     const politicsList = [
@@ -29,6 +53,12 @@ export default function Post({id, data, contents}){
                     </div>
                     {content}
                 </div>
+            </>
+        )
+    }else if(id = 'profile-mgmt'){
+        return (
+            <>
+                {content}
             </>
         )
     }else if(id == 'politics'){
@@ -89,28 +119,4 @@ export default function Post({id, data, contents}){
         )
     }
     
-}
-
-export function getStaticPaths(){
-    const postNames = ["profile", "politics","hobby","communication"]
-  
-    const params = postNames.map((postName) => ({
-        params: { id: postName  }
-    })) 
-
-    return {paths: params, fallback: 'blocking'}
-}
-
-export async function getStaticProps({ params }){
-    const fullPath = "public/posts/"+params.id+".md"
-    const fileContent = fs.readFileSync(fullPath)
-    
-    const matterResult = matter(fileContent)
-    return {
-        props: {
-            id : params.id,
-            data : matterResult.data,
-            contents : matterResult.content
-        },
-    }
 }
