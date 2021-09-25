@@ -18,9 +18,8 @@ export const vsSource = `
 
 export const fsSource = `
     varying highp vec2 vTextureCoord;
-
     uniform sampler2D uSampler;
-
+    
     void main(void) {
       gl_FragColor = texture2D(uSampler, vTextureCoord);
     }
@@ -32,6 +31,7 @@ let squareRotation = 0;
 let localGL = null;
 let localProgramInfo = null;
 let localBuffer = null;
+let localTexture = null;
 
 // WebGL Shader functions
 export function createShader(gl, type, source){
@@ -68,15 +68,12 @@ export function initBuffer(gl){
          1.0, -1.0,
          1.0, 1.0,
         -1.0, 1.0,
-        -1.0, -1.0,
     ]
     const textureCoordinates = [
-        // Front
+        0.0, 0.0,
+        0.0, 1.0,
         1.0, 1.0,
-        -1.0, 1.0,
-         -1.0, -1.0,
-        1.0, -1.0,
-        1.0, 1.0,
+        1.0, 0.0,
     ];
 
     var positionBuffer = gl.createBuffer();
@@ -92,11 +89,12 @@ export function initBuffer(gl){
 }
 
 //init 
-export function drawScene(gl, programInfo, buffers){
+export function drawScene(gl, programInfo, buffers, texture){
     //Initialize and local* variables are transferred to render function
     localGL = gl;
     localProgramInfo = programInfo;
     localBuffer = buffers;
+    localTexture = texture;
 
     gl.clearColor(0.0, 1.0, 2.0, 1.0);
     gl.clearDepth(1.0);
@@ -120,13 +118,13 @@ export function drawScene(gl, programInfo, buffers){
     const modelViewMatrix = mat4.create();
 
     mat4.translate(modelViewMatrix,
-                   modelViewMatrix,
-                   [-0.0, 0.0, -4.0]);
+        modelViewMatrix,
+        [-0.0, 0.0, -5.0]);
     
     mat4.rotate(modelViewMatrix,
         modelViewMatrix,
         squareRotation,
-        [0, 0, 1]);
+        [0, 0, 0]);
     
     // How to get buffer in position
     {
@@ -155,26 +153,34 @@ export function drawScene(gl, programInfo, buffers){
         const stride = 0; // how many bytes to get from one set to the next
         const offset = 0; // how many bytes inside the buffer to start from
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord);
-        gl.vertexAttribPointer(programInfo.attribLocations.textureCoord, num, type, normalize, stride, offset);
+        gl.vertexAttribPointer(
+            programInfo.attribLocations.textureCoord, 
+            num, 
+            type, 
+            normalize, 
+            stride, 
+            offset);
         gl.enableVertexAttribArray(programInfo.attribLocations.textureCoord);
     }
 
     gl.useProgram(programInfo.program);
-    gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
+    gl.uniformMatrix4fv(
+        programInfo.uniformLocations.modelViewMatrix,
+        false,
+        modelViewMatrix);
     gl.uniformMatrix4fv(
         programInfo.uniformLocations.projectionMatrix,
         false,
         projectionMatrix);
 
-    gl.uniformMatrix4fv(
-        programInfo.uniformLocations.modelViewMatrix,
-        false,
-        modelViewMatrix);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, localTexture);
+    gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
     
     {
         const offset = 0;
-        const vertexCount = 5;
-        gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
+        const vertexCount = 4;
+        gl.drawArrays(gl.TRIANGLE_FAN, offset, vertexCount);
     }
 
     squareRotation += deltaTime;
@@ -187,7 +193,7 @@ export function render(now) {
     now *= 0.001;
     deltaTime = now - then;
     then = now; 
-    drawScene(localGL, localProgramInfo, localBuffer);
+    drawScene(localGL, localProgramInfo, localBuffer, localTexture);
     requestAnimationFrame(render);
 
 }
@@ -217,7 +223,7 @@ export function loadTexture(gl, url) {
             srcFormat, srcType, image);
 
         // WebGL1 has different requirements for power of 2 images
-        // vs non power of 2 images so check if the image is a
+        // vs non power of 2 images so facheck if the image is a
         // power of 2 in both dimensions.
         if (isPowerOf2(image.width) && isPowerOf2(image.height)) {
             // Yes, it's a power of 2. Generate mips.
@@ -225,9 +231,11 @@ export function loadTexture(gl, url) {
         } else {
             // No, it's not a power of 2. Turn off mips and set
             // wrapping to clamp to edge
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);//LINEAR
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.NEAREST);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.NEAREST);
+            
         }
     };
     image.src = url;

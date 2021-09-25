@@ -23,10 +23,6 @@ export default function RequestFormAndResult(){
         // Init variables
         const canvas = document.querySelector('#glCanvas');
 
-        // Init Canvas size
-        const canvasToDisplaySizeMap = new Map([[canvas, [300, 150]]]);
-        const [displayWidth, displayHeight] = canvasToDisplaySizeMap.get(canvas);
-
         // Create Shader program
         const gl = canvas.getContext("webgl");
         if (gl == null) {
@@ -52,14 +48,10 @@ export default function RequestFormAndResult(){
 
         // Setting the buffer
         const buffer = initBuffer(gl);
-
-        // Setting the texture
-        var texture = loadTexture(gl, "/favicon.ico");
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, texture);
+        var texture = loadTexture(gl, "/images/favicon.png"); // 해상도 문제.
         
         // draw scene
-        drawScene(gl, programInfo, buffer);
+        drawScene(gl, programInfo, buffer, texture);
         requestAnimationFrame(render);
 
     })
