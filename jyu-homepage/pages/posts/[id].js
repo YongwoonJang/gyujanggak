@@ -56,7 +56,7 @@ export default function Post({id, data, contents}){
                 </div>
             </>
         )
-    }else if(id = 'profile-mgmt'){
+    }else if(id == 'profile-mgmt'){
         return (
             <>
                 <div className={pageStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">

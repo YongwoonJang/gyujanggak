@@ -15,12 +15,12 @@
   text-align: right;
 }
 
-.profileDivTable[role="region"][aria-labelledby][tabindex] {
+.profileDivTable[role="region"][aria-labelledby][tabIndex] {
   overflow: auto;
   border: 0.1em solid #d6d6d6;
 }
 
-.profileDivTable[role="region"][aria-labelledby][tabindex]:focus {
+.profileDivTable[role="region"][aria-labelledby][tabIndex]:focus {
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
   outline: 0.1em solid rgba(0, 0, 0, 0.1);
 }

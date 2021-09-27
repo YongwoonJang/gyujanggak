@@ -101,6 +101,7 @@ export function drawScene(gl, programInfo, buffers, texture){
     gl.enable(gl.DEPTH_TEST);
     gl.depthFunc(gl.LEQUAL);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFERR_BIT);
+    gl.viewport(0,0,gl.canvas.width,gl.canvas.height);
 
     //Define variables
     const fieldOfView = 45 * Math.PI / 180;
@@ -119,12 +120,12 @@ export function drawScene(gl, programInfo, buffers, texture){
 
     mat4.translate(modelViewMatrix,
         modelViewMatrix,
-        [-0.0, 0.0, -5.0]);
+        [0.0, -0.0, -6.0]);
     
     mat4.rotate(modelViewMatrix,
         modelViewMatrix,
         squareRotation,
-        [0, 0, 0]);
+        [0, 1, 0]);
     
     // How to get buffer in position
     {
@@ -172,11 +173,9 @@ export function drawScene(gl, programInfo, buffers, texture){
         programInfo.uniformLocations.projectionMatrix,
         false,
         projectionMatrix);
-
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, localTexture);
     gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
-    
     {
         const offset = 0;
         const vertexCount = 4;
@@ -204,23 +203,19 @@ export function loadTexture(gl, url) {
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
+    const image = new Image();
+    image.src = url;
+
     const level = 0;
     const internalFormat = gl.RGBA;
-    const width = 1;
-    const height = 1;
-    const border = 0;
     const srcFormat = gl.RGBA;
     const srcType = gl.UNSIGNED_BYTE;
-    const pixel = new Uint8Array([0, 0, 255, 255]);  // opaque blue
-    gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,
-        width, height, border, srcFormat, srcType,
-        pixel);
-
-    const image = new Image();
+    gl.texImage2D(gl.TEXTURE_2D, level, internalFormat, srcFormat, srcType, image);
+    
+    //for default setting
     image.onload = function () {
         gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,
-            srcFormat, srcType, image);
+        gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,srcFormat, srcType, image);
 
         // WebGL1 has different requirements for power of 2 images
         // vs non power of 2 images so facheck if the image is a
@@ -231,14 +226,13 @@ export function loadTexture(gl, url) {
         } else {
             // No, it's not a power of 2. Turn off mips and set
             // wrapping to clamp to edge
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);//LINEAR
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.NEAREST);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.NEAREST);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            
             
         }
     };
-    image.src = url;
     
     return texture;
 }

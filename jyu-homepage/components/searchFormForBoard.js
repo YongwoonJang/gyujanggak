@@ -48,7 +48,7 @@ export default function RequestFormAndResult(){
 
         // Setting the buffer
         const buffer = initBuffer(gl);
-        var texture = loadTexture(gl, "/images/favicon.png"); // 해상도 문제.
+        var texture = loadTexture(gl, "/images/favicon.png");
         
         // draw scene
         drawScene(gl, programInfo, buffer, texture);
@@ -59,7 +59,7 @@ export default function RequestFormAndResult(){
     return(
         <>
             <div className={page.communicationLab}>
-                <canvas id="glCanvas" width="400" height="300"></canvas>
+                <canvas id="glCanvas" width="300" height="300"></canvas>
             </div>
             <div className={page.communicationInput}>
                 <form onSubmit={sendRequestData} >
