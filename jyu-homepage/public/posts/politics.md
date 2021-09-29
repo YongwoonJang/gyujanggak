@@ -1,7 +1,7 @@
 ---
 rank: 2
 title: "정치" 
-date: '2021-08-07'
+date: '2021-09-29'
 author:
     name: Yongwoon Jang
     picture: '../../public/images/politics.jpg'
