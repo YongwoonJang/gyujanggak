@@ -32,6 +32,9 @@ let localGL = null;
 let localProgramInfo = null;
 let localBuffer = null;
 let localTexture = null;
+let horizontal = 0.0;
+let vertical = 0.0;
+let controlMatrix = [0, 0,];
 
 // WebGL Shader functions
 export function createShader(gl, type, source){
@@ -109,7 +112,7 @@ export function drawScene(gl, programInfo, buffers, texture){
     const zNear = 0.1;
     const zFar = 100.0;
     const projectionMatrix = mat4.create();
-
+    
     mat4.perspective(projectionMatrix,
         fieldOfView,
         aspect,
@@ -120,7 +123,7 @@ export function drawScene(gl, programInfo, buffers, texture){
 
     mat4.translate(modelViewMatrix,
         modelViewMatrix,
-        [0.0, -0.0, -6.0]);
+        [horizontal, vertical, -6.0]);
     
     mat4.rotate(modelViewMatrix,
         modelViewMatrix,
@@ -134,7 +137,7 @@ export function drawScene(gl, programInfo, buffers, texture){
         const normalize = false;
         const stride = 0;
         const offset = 0;
-        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
+        gl.bindBuffer(gl.ARRAY_BUFFER, localBuffer.position);
         gl.vertexAttribPointer(
             programInfo.attribLocations.vertexPosition,
             num,
@@ -153,7 +156,7 @@ export function drawScene(gl, programInfo, buffers, texture){
         const normalize = false; // don't normalize
         const stride = 0; // how many bytes to get from one set to the next
         const offset = 0; // how many bytes inside the buffer to start from
-        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord);
+        gl.bindBuffer(gl.ARRAY_BUFFER, localBuffer.textureCoord);
         gl.vertexAttribPointer(
             programInfo.attribLocations.textureCoord, 
             num, 
@@ -188,13 +191,47 @@ export function drawScene(gl, programInfo, buffers, texture){
 
 //Render data and make call back
 export function render(now) {
-
+    movingAround();
     now *= 0.001;
     deltaTime = now - then;
     then = now; 
     drawScene(localGL, localProgramInfo, localBuffer, localTexture);
     requestAnimationFrame(render);
 
+}
+
+export function movingAround() {
+    if (vertical < 1.00 && controlMatrix[0] == 0){
+        vertical = vertical + 0.03;
+
+    } else if (vertical > -1 && controlMatrix[0] == 1){
+        vertical = vertical - 0.01;
+
+    } 
+
+    if (horizontal < 1.00 && controlMatrix[1] == 0){
+        horizontal = horizontal + 0.02;
+
+    } else if (horizontal > -1 && controlMatrix[1] == 1){
+        horizontal = horizontal - 0.02;
+    }
+
+    if (vertical >= 1){
+        controlMatrix[0] = 1;
+
+    }else if (vertical <= -1){
+        controlMatrix[0] = 0;
+    
+    }
+
+    if (horizontal >= 1){
+        controlMatrix[1] = 1;
+    
+    }else if (horizontal <= -1){
+        controlMatrix[1] = 0;
+
+    }
+    
 }
 
 export function loadTexture(gl, url) {
@@ -217,19 +254,13 @@ export function loadTexture(gl, url) {
         gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,srcFormat, srcType, image);
 
-        // WebGL1 has different requirements for power of 2 images
-        // vs non power of 2 images so facheck if the image is a
-        // power of 2 in both dimensions.
         if (isPowerOf2(image.width) && isPowerOf2(image.height)) {
-            // Yes, it's a power of 2. Generate mips.
             gl.generateMipmap(gl.TEXTURE_2D);
+
         } else {
-            // No, it's not a power of 2. Turn off mips and set
-            // wrapping to clamp to edge
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-            
             
         }
     };
