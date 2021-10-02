@@ -66,50 +66,50 @@ export default function Post({id, data, contents}){
                     </div>
                     <table>
                         <thead>
-                            {parse(data.header.split("|").map(x => "<th>"+x+"</th>").toString().replaceAll(","," "))}
+                            {parse(data.header.split("|").map(x => "<th>"+x+"</th>").toString().replace(/,/g," "))}
                         </thead>
                         <tbody>
                             <tr>
-                                {parse(data.rows.first.split("|").map(x => "<td>"+x+"</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.first.split("|").map(x => "<td>"+x+"</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.second.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.second.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.third.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.third.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.fourth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.fourth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.fifth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.fifth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.sixth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.sixth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.seventh.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.seventh.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.eighth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.eighth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.nineth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.nineth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.tenth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.tenth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.eleventh.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.eleventh.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.twelfth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.twelfth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.thirteenth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.thirteenth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                             <tr>
-                                {parse(data.rows.fourteenth.split("|").map(x => "<td>" + x + "</td>").toString().replaceAll(",",""))}
+                                {parse(data.rows.fourteenth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
                             </tr>
                         </tbody>
                     </table>
