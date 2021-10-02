@@ -15,9 +15,20 @@
   text-align: right;
 }
 
+.profileDivTableTitle{
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  font-size: 2.5em;
+  text-align: center;
+  font-family: "Dongle";
+}
+
 .profileDivTable[role="region"][aria-labelledby][tabIndex] {
   overflow: auto;
   border: 0.1em solid #d6d6d6;
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .profileDivTable[role="region"][aria-labelledby][tabIndex]:focus {
@@ -31,6 +42,7 @@
   margin: 1em 0;
   border-collapse: collapse;
   border: 0.1em solid #d6d6d6;
+  font-family: "SBAggro L"
 }
 
 .profileDivTable caption {
@@ -48,8 +60,8 @@
 
 .profileDivTable th {
   vertical-align: bottom;
-  background-color: #666;
-  color: #fff;
+  background-color: rgb(255, 251, 0);
+  color: rgb(0, 0, 0);
 }
 
 .profileDivTable tr:nth-child(even) th[scope="row"] {
@@ -61,7 +73,7 @@
 }
 
 .profileDivTable tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(238, 253, 22, 0.05);
 }
 
 .profileDivTable tr:nth-child(odd) {
@@ -103,24 +115,24 @@
 
 /* Responsive Tables */
 
-.profileDivTable[role="region"][aria-labelledby][tabindex] {
+.profileDivTable[role="region"][aria-labelledby][tabIndex] {
   overflow: auto;
   border: 0.1em solid #d6d6d6;
 }
 
-.profileDivTable[role="region"][aria-labelledby][tabindex]:focus {
+.profileDivTable[role="region"][aria-labelledby][tabIndex]:focus {
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
   outline: 0.1em solid rgba(0, 0, 0, 0.1);
 }
 
-.profileDivTable[role="region"][aria-labelledby][tabindex] table {
+.profileDivTable[role="region"][aria-labelledby][tabIndex] table {
   margin: 0;
   border: none;
 }
 
 /* Scrolling Visual Cue */
 
-.profileDivTable[role="region"][aria-labelledby][tabindex] {
+.profileDivTable[role="region"][aria-labelledby][tabIndex] {
   background: linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0)),
     linear-gradient(to right, rgba(255, 255, 255, 0), #fff 70%) 0 100%,
     radial-gradient(
@@ -241,6 +253,15 @@
     right: 0;
     width: 100%;
     height: 100%;
+  }
+
+  .profileDivTable[role="region"][aria-labelledby][tabIndex] {
+    overflow: auto;
+    border: 0.1em solid #d6d6d6;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 0.5em;
   }
   
 }
