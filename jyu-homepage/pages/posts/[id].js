@@ -8,6 +8,7 @@ import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
 
 import RequestFormAndResult from '../../components/searchFormForBoard'
+import { strictEqual } from 'assert'
 
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
@@ -57,6 +58,14 @@ export default function Post({id, data, contents}){
             </>
         )
     }else if(id == 'profile-mgmt'){
+        let rows = "";
+        const countOfRows = 14;
+
+        for(let i = 14; i > 0; i--){
+            rows = rows + "<tr>" + data.rows[i].split("|").map(x => "<td>"+x+"</td>").toString().replace(/,/g,"") + "</tr>";
+        }
+        rows = parse(rows);
+
         return (
             <>
                 
@@ -69,48 +78,7 @@ export default function Post({id, data, contents}){
                             {parse(data.header.split("|").map(x => "<th>"+x+"</th>").toString().replace(/,/g," "))}
                         </thead>
                         <tbody>
-                            <tr>
-                                {parse(data.rows.first.split("|").map(x => "<td>"+x+"</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.second.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.third.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.fourth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.fifth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.sixth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.seventh.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.eighth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.nineth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.tenth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.eleventh.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.twelfth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.thirteenth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
-                            <tr>
-                                {parse(data.rows.fourteenth.split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g,""))}
-                            </tr>
+                            {rows}
                         </tbody>
                     </table>
                 </div>
