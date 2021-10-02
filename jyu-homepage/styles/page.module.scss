@@ -36,19 +36,26 @@
   outline: 0.1em solid rgba(0, 0, 0, 0.1);
 }
 
-/* Standard Tables */
-
 .profileDivTable table {
   margin: 1em 0;
   border-collapse: collapse;
   border: 0.1em solid #d6d6d6;
-  font-family: "SBAggro L"
+  font-family: "SBAggro L";
+  color: rgb(149, 143, 143);
 }
 
 .profileDivTable caption {
   text-align: left;
   font-style: italic;
   padding: 0.25em 0.5em 0.5em 0.5em;
+}
+
+.profileDivTable strong {
+  color: red;
+  font-size: 1.15em;
+  background-color: yellow;
+
+
 }
 
 .profileDivTable table th td {
@@ -112,8 +119,6 @@
   text-align: left;
   min-width: 12em;  
 }
-
-/* Responsive Tables */
 
 .profileDivTable[role="region"][aria-labelledby][tabIndex] {
   overflow: auto;
@@ -264,7 +269,22 @@
     font-size: 0.45em;
   }
 
+  .profileDivTable tr td:nth-child(1) {
+    text-align: left;
+    min-width: 7em;
+    max-width: 70vw;
+    font-size:0.8em;
+  }
+
+  .profileDivTable tr td:nth-child(2) {
+    text-align: left;
+    min-width: 7em;
+    max-width: 70vw;
+    font-size:0.8em;
+  }
+
   .profileDivTable th:nth-child(3){
+    text-align: left;
     display: none;
   }
 
@@ -273,9 +293,15 @@
   }
 
   .profileDivTable tr td:nth-child(4) {
-  text-align: left;
-  min-width: 10em;
-}
+    text-align: left;
+    min-width: 10em;
+    font-size:0.8em;
+  }
 
+  .profileDivTable tr td:nth-child(5) {
+    text-align: center;
+    min-width: 5em;
+    font-size:0.8em;
+  }
 
 }

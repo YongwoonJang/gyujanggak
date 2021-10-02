@@ -45,7 +45,5 @@ img {
 @font-face {
   font-family: "SBAggro L";
   src: url("/fonts/SBAggro/SB 어그로OTF L.otf");
-  font-style: normal;
-  font-weight: 400;
   font-display: swap;
 }
