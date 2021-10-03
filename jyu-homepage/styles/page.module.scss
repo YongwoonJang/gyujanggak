@@ -331,4 +331,20 @@
     font-size:0.8em;
   }
 
+  .profileImage{
+    width:100%;
+    float: center;
+    margin-bottom: 0px;
+    margin-left:0px;
+    margin-right: 0px;
+  }
+
+  .profileImage img{
+    width: 50%;
+    height: 7%;
+  }
+  .profileImage tr:nth-child(2) {
+    text-align:left;
+  }
+  
 }
