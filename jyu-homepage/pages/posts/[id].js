@@ -8,6 +8,7 @@ import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
 
 import RequestFormAndResult from '../../components/searchFormForBoard'
+import CopyRight from '../../components/copyRight'
 
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
@@ -50,7 +51,7 @@ export default function Post({id, data, contents}){
         const countOfRows = 5;
         for(let i = countOfRows; i > 0; i--){
             workHistory = workHistory 
-                        + "<tr style='text-decoration: underline;'><td>"
+                        + "<tr><td>"
                         + (countOfRows+1-i).toString()+". "+"<a href='" + data.workExperience[i]["URL"] + "'>"
                         + data.workExperience[i]["Summary"]
                         + "</a>("
@@ -66,7 +67,7 @@ export default function Post({id, data, contents}){
             <>
                 <div className={pageStyles.page}>
                     <h1 className={pageStyles.profileTitle}>
-                        {data.title}
+                        {parse(data.title)}
                     </h1>
                     <div className={pageStyles.profileImage}>
                         <table>
@@ -81,16 +82,17 @@ export default function Post({id, data, contents}){
                                     <img layout="intrinsic"  width="400px" height="300px" src={"/images/profileImage.jpeg"} alt="My profile" />
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    {content}
-                                </td>
-                            </tr>
                         </table>
                     </div>
-                    <div className={pageStyles.profileWorkHistory}>
-                        {workHistory}
+                    <div className={pageStyles.profileWorkBox}>
+                        <div>
+                            {content}
+                        </div>
+                        <div>
+                            {workHistory}
+                        </div>
                     </div>
+                    <CopyRight />
                 </div>
             </>
         )

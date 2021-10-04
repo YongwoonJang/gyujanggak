@@ -2,18 +2,49 @@
 $profile-motto-color: rgb(49, 110, 21);
 $profile-a-link-color : rgb(49, 110, 21);
 $profile-image-border-color:  rgb(49, 110, 21);
-$profile-workhistory-color:  rgb(69, 159, 28);
+$profile-workBox-color:  rgb(69, 159, 28);
 
+.copyRight{
+  width: 95%;
+  border-top: rgb(205, 205, 205); 
+  border-width: 1px;
+  border-style: solid;
+  border-right-width:0px;
+  border-left-width:0px;
+  border-bottom-width:0px;
+  color: rgb(149, 143, 143);
+  font-size: 0.8em;
+  text-align: center;
+  margin:auto;
+}
 
 .page{
-  padding-left: 1em;
+  padding-left: 2%;
+  padding-right: 5%;
   font-size: 140%;
-  font-family: "DungGeunMo"
+  font-family: "DungGeunMo";
+}
+
+.profileTitle{
+  color: $profile-a-link-color;
+  width: 95%;
+  background: white;
+  border-color:  rgb(205, 205, 205); 
+  border-width: 1px;
+  border-style: solid;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  text-align: left;
+}
+
+.profileTitle span{
+  color: black;
 }
 
 .profileImage{
   width : 30%;
-  float: left;
+  float: center;
   font-size: 0.8em;
   
   background: white;
@@ -22,16 +53,17 @@ $profile-workhistory-color:  rgb(69, 159, 28);
   border-style: solid;
 
   color: rgb(131, 131, 128);
-  margin: 10em;
-  margin-top: 0em;
   margin: auto;
-  margin-right: 3%;
-  
+  margin-bottom: 5%;
+  margin-top: 5%;
+
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 .profileImage table{
   width : 100%; 
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .profileImage tr:nth-child(3) td {
@@ -44,39 +76,51 @@ $profile-workhistory-color:  rgb(69, 159, 28);
 
 .profileImage img{
   margin: auto; 
+  width: 80%;
   max-width: 400px;
-  width: auto;
   height: auto;
 }
 
-.profileImage tr:nth-child(2){
-  text-align: right;
-}
-
-.profileTitle{
-  color: $profile-a-link-color;
-  width: 100%;
-  background: white;
-  border-color:  rgb(76, 173, 31);
-  border-width: 1px;
-  border-style: solid;
-  border-right-width: 0px;
-  text-align: left;
+.profileImage tr:nth-child(3) td{
+  padding-left: 10%;
 }
 
 .profileMotto{
   color: $profile-motto-color; 
   font-weight: bold;
   font-size: 1.05em;
+  text-align: center;
 
 }
 
-.profileWorkHistory{
-  font-size: 0.6em;
+.profileWorkBox{
+  font-size: 0.7em;
+  line-height: 2.0em;
+  float:center;
+  width: 78%;
+  margin:auto;
+  margin-bottom:35%;
+  padding-left: 2.5%;
+  
+}
+
+.profileWorkBox div{
+  vertical-align: top;
+  width: 50%;
 
 }
 
-.profileWorkHistory a:link {
+.profileWorkBox div:nth-child(1){
+  float:left;
+
+}
+
+.profileWorkBox div:nth-child(2){
+  float:right;
+}
+
+
+.profileWorkBox a {
   color:  black;
 }
 
@@ -370,7 +414,7 @@ $profile-workhistory-color:  rgb(69, 159, 28);
   }
 
   .profileMotto{
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
 
   .profileImage{
@@ -388,6 +432,37 @@ $profile-workhistory-color:  rgb(69, 159, 28);
   .profileImage tr:nth-child(3) td {
     text-align:left;
     padding-left:8%;
+  }
+
+  .profileWorkBox{
+    width: 100%;
+  }
+
+  .profileWorkBox div{
+    width:100%;
+    float: center;
+  }
+
+  .profileWorkBox div:nth-child(1){
+    font-size:0.95em;
+    padding-bottom: 2.5%;
+
+  }
+
+  .profileWorkBox div:nth-child(2){
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-top-color: rgb(205, 205, 205); 
+    border-top-width: 1px;
+    border-top-style: solid;
+    font-size: 0.8em;
+    width: 96%;
+    float:left;
+  
+  }
+
+  .copyRight{
+    padding-top:2%;
   }
   
 }
