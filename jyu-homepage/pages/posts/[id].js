@@ -50,8 +50,8 @@ export default function Post({id, data, contents}){
         const countOfRows = 5;
         for(let i = countOfRows; i > 0; i--){
             workHistory = workHistory 
-                        + "<tr style='text-decoration: underline; color: rgb(157,166,25);'><td>"
-                        + "<a href='" + data.workExperience[i]["URL"] + "'>"
+                        + "<tr style='text-decoration: underline;'><td>"
+                        + (countOfRows+1-i).toString()+". "+"<a href='" + data.workExperience[i]["URL"] + "'>"
                         + data.workExperience[i]["Summary"]
                         + "</a>("
                         + data.workExperience[i]["Period"]
@@ -78,7 +78,7 @@ export default function Post({id, data, contents}){
                             </tr>
                             <tr>
                                 <td>
-                                    <img layout="intrinsic"  width="400px" height="300px" src={"/images/profileImage_green.jpg"} alt="My profile" />
+                                    <img layout="intrinsic"  width="400px" height="300px" src={"/images/profileImage.jpeg"} alt="My profile" />
                                 </td>
                             </tr>
                             <tr>

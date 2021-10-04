@@ -2,6 +2,7 @@
 $profile-motto-color: rgb(49, 110, 21);
 $profile-a-link-color : rgb(49, 110, 21);
 $profile-image-border-color:  rgb(49, 110, 21);
+$profile-workhistory-color:  rgb(69, 159, 28);
 
 
 .page{
@@ -12,7 +13,7 @@ $profile-image-border-color:  rgb(49, 110, 21);
 
 .profileImage{
   width : 30%;
-  float: right;
+  float: left;
   font-size: 0.8em;
   
   background: white;
@@ -23,7 +24,8 @@ $profile-image-border-color:  rgb(49, 110, 21);
   color: rgb(131, 131, 128);
   margin: 10em;
   margin-top: 0em;
-  margin-right: 5em;
+  margin: auto;
+  margin-right: 3%;
   
 }
 .profileImage table{
@@ -32,8 +34,12 @@ $profile-image-border-color:  rgb(49, 110, 21);
   margin-bottom: 1em;
 }
 
+.profileImage tr:nth-child(3) td {
+  color: black;
+}
+
 .profileImage tr:nth-child(3) td a {
-  color: $profile-a-link-color;
+  color: black;
 }
 
 .profileImage img{
@@ -60,16 +66,18 @@ $profile-image-border-color:  rgb(49, 110, 21);
 
 .profileMotto{
   color: $profile-motto-color; 
+  font-weight: bold;
+  font-size: 1.05em;
 
 }
 
 .profileWorkHistory{
-  font-size: 0.8em;
+  font-size: 0.6em;
 
 }
 
 .profileWorkHistory a:link {
-  color:  $profile-a-link-color;
+  color:  black;
 }
 
 .profileDivTableTitle{
@@ -361,20 +369,25 @@ $profile-image-border-color:  rgb(49, 110, 21);
     font-size:0.8em;
   }
 
+  .profileMotto{
+    font-size: 1.3em;
+  }
+
   .profileImage{
-    width:100%;
+    width:97%;
     float: center;
-    margin-bottom: 0px;
-    margin-left:0px;
-    margin-right: 0px;
+    margin-bottom: 5%;
   }
 
   .profileImage img{
-    width: 50%;
-    height: 7%;
+    width: 80%;
+    height: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
   }
-  .profileImage tr:nth-child(2) {
+  .profileImage tr:nth-child(3) td {
     text-align:left;
+    padding-left:8%;
   }
   
 }
