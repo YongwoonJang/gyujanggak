@@ -1,16 +1,26 @@
 
+$profile-motto-color: rgb(49, 110, 21);
+$profile-a-link-color : rgb(49, 110, 21);
+$profile-image-border-color:  rgb(49, 110, 21);
+
+
 .page{
   padding-left: 1em;
   font-size: 140%;
+  font-family: "DungGeunMo"
 }
 
 .profileImage{
   width : 30%;
   float: right;
   font-size: 0.8em;
-  background: yellow;
-  color: rgb(131, 128, 128);
-  border-radius: 25px;
+  
+  background: white;
+  border-color: $profile-image-border-color;
+  border-width: 1px;
+  border-style: solid;
+
+  color: rgb(131, 131, 128);
   margin: 10em;
   margin-top: 0em;
   margin-right: 5em;
@@ -22,10 +32,15 @@
   margin-bottom: 1em;
 }
 
+.profileImage tr:nth-child(3) td a {
+  color: $profile-a-link-color;
+}
+
 .profileImage img{
-  border-radius: 25px;
-  margin: auto;
-  
+  margin: auto; 
+  max-width: 400px;
+  width: auto;
+  height: auto;
 }
 
 .profileImage tr:nth-child(2){
@@ -33,13 +48,28 @@
 }
 
 .profileTitle{
+  color: $profile-a-link-color;
   width: 100%;
-  background : yellow;
+  background: white;
+  border-color:  rgb(76, 173, 31);
+  border-width: 1px;
+  border-style: solid;
+  border-right-width: 0px;
   text-align: left;
+}
+
+.profileMotto{
+  color: $profile-motto-color; 
+
 }
 
 .profileWorkHistory{
   font-size: 0.8em;
+
+}
+
+.profileWorkHistory a:link {
+  color:  $profile-a-link-color;
 }
 
 .profileDivTableTitle{
@@ -47,7 +77,7 @@
   margin-bottom: 0.3em;
   font-size: 2.5em;
   text-align: center;
-  font-family: "Dongle";
+  font-family: "DungGeunMo";
 }
 
 .profileDivTable[role="region"][aria-labelledby][tabIndex] {
@@ -67,7 +97,7 @@
   margin: 1em 0;
   border-collapse: collapse;
   border: 0.1em solid #d6d6d6;
-  font-family: "SBAggro L";
+  font-family: "DungGeunMo";
   color: rgb(149, 143, 143);
 }
 

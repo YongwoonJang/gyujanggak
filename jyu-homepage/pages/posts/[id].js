@@ -8,7 +8,6 @@ import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
 
 import RequestFormAndResult from '../../components/searchFormForBoard'
-import { strictEqual } from 'assert'
 
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
@@ -51,7 +50,7 @@ export default function Post({id, data, contents}){
         const countOfRows = 5;
         for(let i = countOfRows; i > 0; i--){
             workHistory = workHistory 
-                        + "<tr style='text-decoration: underline; color: #990000;'><td>"
+                        + "<tr style='text-decoration: underline; color: rgb(157,166,25);'><td>"
                         + "<a href='" + data.workExperience[i]["URL"] + "'>"
                         + data.workExperience[i]["Summary"]
                         + "</a>("
@@ -72,12 +71,20 @@ export default function Post({id, data, contents}){
                     <div className={pageStyles.profileImage}>
                         <table>
                             <tr>
-                                <td>
-                                <img layout="intrinsic" style={{borderRadius:25+"px"}} width="400px" height="300px" src={"/images/profileImage.jpeg"} alt="My profile" />
+                                <td className={pageStyles.profileMotto}>
+                                    &nbsp;&nbsp;사소한 생활의 문제를 해결하는 <br/>
+                                    &nbsp;&nbsp;기획자, Artist, programmer입니다.
                                 </td>
                             </tr>
                             <tr>
-                                {content}
+                                <td>
+                                    <img layout="intrinsic"  width="400px" height="300px" src={"/images/profileImage_green.jpg"} alt="My profile" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {content}
+                                </td>
                             </tr>
                         </table>
                     </div>

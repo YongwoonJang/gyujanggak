@@ -47,3 +47,9 @@ img {
   src: url("/fonts/SBAggro/SB 어그로OTF L.otf");
   font-display: swap;
 }
+
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("/fonts/DungGeunMo/DungGeunMo.ttf");
+  font-display: swap;
+}
