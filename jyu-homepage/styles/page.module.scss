@@ -1,8 +1,12 @@
+$height: 1.5%;
 
 $profile-motto-color: rgb(49, 110, 21);
 $profile-a-link-color : rgb(49, 110, 21);
 $profile-image-border-color:  rgb(49, 110, 21);
 $profile-workBox-color:  rgb(69, 159, 28);
+
+$politics-a-link-color: rgb(3, 162, 202);
+
 
 .copyRight{
   width: 95%;
@@ -13,7 +17,7 @@ $profile-workBox-color:  rgb(69, 159, 28);
   border-left-width:0px;
   border-bottom-width:0px;
   color: rgb(149, 143, 143);
-  font-size: 0.8em;
+  font-size: 0.7em;
   text-align: center;
   margin:auto;
 }
@@ -36,6 +40,7 @@ $profile-workBox-color:  rgb(69, 159, 28);
   border-top-width: 0px;
   border-left-width: 0px;
   text-align: left;
+  margin-top:$height;
 }
 
 .profileTitle span{
@@ -43,7 +48,8 @@ $profile-workBox-color:  rgb(69, 159, 28);
 }
 
 .profileImage{
-  width : 30%;
+  width : 27%;
+  height : auto;
   float: center;
   font-size: 0.8em;
   
@@ -54,11 +60,11 @@ $profile-workBox-color:  rgb(69, 159, 28);
 
   color: rgb(131, 131, 128);
   margin: auto;
-  margin-bottom: 5%;
-  margin-top: 5%;
+  margin-bottom: $height;
+  margin-top: $height;
 
-  padding-top: 2%;
-  padding-bottom: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 .profileImage table{
   width : 100%; 
@@ -76,7 +82,7 @@ $profile-workBox-color:  rgb(69, 159, 28);
 
 .profileImage img{
   margin: auto; 
-  width: 80%;
+  width: 95%;
   max-width: 400px;
   height: auto;
 }
@@ -95,11 +101,11 @@ $profile-workBox-color:  rgb(69, 159, 28);
 
 .profileWorkBox{
   font-size: 0.7em;
-  line-height: 2.0em;
+  line-height: 1.8em;
   float:center;
   width: 78%;
   margin:auto;
-  margin-bottom:35%;
+  margin-bottom: 25%;
   padding-left: 2.5%;
   
 }
@@ -268,17 +274,50 @@ $profile-workBox-color:  rgb(69, 159, 28);
 }
 
 //
+
 .politicsTitle{
-  background : rgb(130,247,130);
-  width: 80%;
-  text-align: right;
+  color: $politics-a-link-color;
+  width: 95%;
+  background: white;
+  border-color:  rgb(205, 205, 205); 
+  border-width: 1px;
+  border-style: solid;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  text-align: left;
+  margin-top:$height;
 }
 
-.politicsImageList{
+.politicsTitle span{
+  color: black;
+}
+
+.politicsMotto {
+  text-align:center;
+  margin-bottom: $height*3;
+}
+
+.politicsTitleBox {
+  margin-left: 20%;
+  margin-bottom: $height*6.5;
+
+}
+
+.politicsTitleList{
   list-style: none;
-  display:inline-flex;
-  padding-left:0px;
-  
+  display:block;
+  font-size: 1.2em;
+  font-family: "DungGeunMo";
+  line-height: 3.0em;
+}
+
+.politicsTitleList a{
+  color: $politics-a-link-color;
+}
+
+.politicsTitleList span{
+  color: rgb(149, 143, 143);
 }
 
 .hobbyTitle{
@@ -331,6 +370,10 @@ $profile-workBox-color:  rgb(69, 159, 28);
 
 /* average mobile */
 @media screen and (max-width: 420px) {  
+  .copyRight{
+    font-size: 0.4em;
+  }
+
   .page{
     padding-left: 1em;
     font-size: 100%;
@@ -414,7 +457,11 @@ $profile-workBox-color:  rgb(69, 159, 28);
   }
 
   .profileMotto{
-    font-size: 1.2em;
+    font-size: 1.1em;
+  }
+
+  .profileTitle{
+    width: 100%;
   }
 
   .profileImage{
@@ -426,12 +473,12 @@ $profile-workBox-color:  rgb(69, 159, 28);
   .profileImage img{
     width: 80%;
     height: auto;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin-top: $height*0.5;
+    margin-bottom: $height*0.5;
   }
   .profileImage tr:nth-child(3) td {
     text-align:left;
-    padding-left:8%;
+    padding-left:6%;
   }
 
   .profileWorkBox{
@@ -445,13 +492,13 @@ $profile-workBox-color:  rgb(69, 159, 28);
 
   .profileWorkBox div:nth-child(1){
     font-size:0.95em;
-    padding-bottom: 2.5%;
+    padding-bottom: $height;
 
   }
 
   .profileWorkBox div:nth-child(2){
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: $height;
+    padding-bottom: $height;
     border-top-color: rgb(205, 205, 205); 
     border-top-width: 1px;
     border-top-style: solid;
@@ -461,8 +508,29 @@ $profile-workBox-color:  rgb(69, 159, 28);
   
   }
 
+  .politicsMotto {
+    text-align:center;
+    margin-top: $height*15;
+    margin-bottom: $height*15;
+    font-size: 0.6em;
+  }
+
+  .politicsTitleBox {
+    margin-left: 0%;
+    margin-bottom: $height*31;
+    padding-left:0%;
+
+  }
+
+  .politicsTitleList{
+    font-size: 0.5em;
+    font-family: "DungGeunMo";
+    line-height: 3.5em;
+    padding-left: 7%;
+  }
+
   .copyRight{
-    padding-top:2%;
+    padding-top:0.5%;
   }
   
 }

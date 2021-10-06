@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import styles from '/styles/layout.module.css'
+import CopyRight from './copyRight'
 
 export const siteTitle = 'JYU homepage'
 
 export default function Layout({children}) {
   return (
+    <>
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
@@ -17,5 +19,7 @@ export default function Layout({children}) {
       </Head>
       {children}
     </div >
+    <CopyRight/>
+    </>
   )
 }

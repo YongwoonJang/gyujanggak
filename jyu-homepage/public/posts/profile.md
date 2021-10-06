@@ -33,7 +33,7 @@ workExperience:
         "URL": "workExperience/5"
 ---
 
-했던일 : <a href="/posts/profile-mgmt"> Project 관리업무, 계약 업무 5년, 플랫폼 개발 3년</a><br />
+했던일 : <a href="/posts/profile-mgmt"> Project 관리, 계약 5년, 플랫폼 기획 3년</a><br />
 코딩 : <a href="https://github.com/YongwoonJang">Yongwoon Jang:GIT Hub</a><br/>
 사상 : <a href="https://blog.naver.com/jyy3k">Artist, Programmer:블로그</a><br/> 
 Media : <a href="https://www.youtube.com/channel/UCCBDNHHeeh5FZX3ZnJ1VDcg">Yongwoon Jang:유튜브</a><br/>

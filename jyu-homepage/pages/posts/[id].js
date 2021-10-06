@@ -10,6 +10,7 @@ import pageStyles from '/styles/page.module.scss'
 import RequestFormAndResult from '../../components/searchFormForBoard'
 import CopyRight from '../../components/copyRight'
 
+
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
 
@@ -37,13 +38,13 @@ export async function getStaticProps({ params }) {
 export default function Post({id, data, contents}){
     const content = parse(contents)
     const politicsList = [
-        { "id": "inspectOfStateAdministration", "title": "국정감사정보", "url": "https://likms.assembly.go.kr/inspections/main.do" },
-        { "id": "nationalAssemblyLawInformation", "title": "국회법률정보", "url": "http://likms.assembly.go.kr/law/lawsNormInqyMain1010.do?mappingId=%2FlawsNormInqyMain1010.do&genActiontypeCd=2ACT1010" },
-        { "id": "nationalAssemblyMinutes", "title": "국회회의록", "url": "http://likms.assembly.go.kr/record/index.jsp" },
-        { "id": "personalizedLegislative", "title": "의안 회의록", "url": "http://naph.assembly.go.kr/index.jsp" },
-        { "id": "openCongress", "title": "열려라 국회", "url": "http://watch.peoplepower21.org/home" },
-        { "id": "budgetSettlementInfo", "title": "예결산정보시스템", "url": "http://likms.assembly.go.kr/bill/nafs/nafsList.do" },
-        { "id": "billInfo", "title": "의안정보", "url": "http://likms.assembly.go.kr/bill/main.do" }
+        { "id": "inspectOfStateAdministration", "title": "국정감사정보", "description": "국회운영윈원회, 방송통신위원회 및 위회원 정보 수록", "url": "https://likms.assembly.go.kr/inspections/main.do" },
+        { "id": "nationalAssemblyLawInformation", "title": "국회법률정보", "description":"국회에 제한된 법률 정보 수록", "url": "http://likms.assembly.go.kr/law/lawsNormInqyMain1010.do?mappingId=%2FlawsNormInqyMain1010.do&genActiontypeCd=2ACT1010" },
+        { "id": "nationalAssemblyMinutes", "title": "국회 회의록", "description": "전체 회의 내용 등재(속기사의 힘)", "url": "http://likms.assembly.go.kr/record/index.jsp" },
+        { "id": "personalizedLegislative", "title": "입법 컨텐츠 검색 포탈", "description": "입법 내역 검색 포탈", "url": "http://naph.assembly.go.kr/index.jsp" },
+        { "id": "openCongress", "title": "열려라 국회", "description": "각 개별 의원의 후원금, 제안 법안 의결 현황 수록.", "url": "http://watch.peoplepower21.org/home" },
+        { "id": "budgetSettlementInfo", "description": "회계년도별 예산안/기금운용계획안/추가경정예산안 수록", "title": "예결산정보시스템", "url": "http://likms.assembly.go.kr/bill/nafs/nafsList.do" },
+        { "id": "billInfo", "title": "의안정보", "description":"검토보고서, 심사보고서 수록", "url": "http://likms.assembly.go.kr/bill/main.do" }
     ]
     
     if(id == 'profile'){
@@ -73,7 +74,7 @@ export default function Post({id, data, contents}){
                         <table>
                             <tr>
                                 <td className={pageStyles.profileMotto}>
-                                    &nbsp;&nbsp;사소한 생활의 문제를 해결하는 <br/>
+                                    &nbsp;&nbsp;사소한 생활의 문제를 해결하고 싶은 <br/>
                                     &nbsp;&nbsp;기획자, Artist, programmer입니다.
                                 </td>
                             </tr>
@@ -92,8 +93,8 @@ export default function Post({id, data, contents}){
                             {workHistory}
                         </div>
                     </div>
-                    <CopyRight />
                 </div>
+                <CopyRight />
             </>
         )
     }else if(id == 'profile-mgmt'){
@@ -109,7 +110,7 @@ export default function Post({id, data, contents}){
                 
                 <div className={pageStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">
                     <div className={pageStyles.profileDivTableTitle}>
-                        업무 히스토리
+                        History
                     </div>
                     <table>
                         <thead>
@@ -120,34 +121,38 @@ export default function Post({id, data, contents}){
                         </tbody>
                     </table>
                 </div>
+                <CopyRight />
             </>
         )
     }else if(id == 'politics'){
         return (
             <>
                 <div className={pageStyles.page}>
-                    <h1 className={pageStyles.politicsTitle}>{data.title}</h1>
-                    {content}
+                    <h1 className={pageStyles.politicsTitle}>
+                        {parse(data.title)}
+                    </h1>
+                    <div className={pageStyles.politicsMotto}>
+                        {content}
+                    </div>
                 </div>
-                <ul className={pageStyles.politicsImageList}>
-                    {politicsList.map(({ id, title, url }) => (
-                        <li key={id} className={pageStyles.politicsImage}>
-                            <Link href={url}>
-                                <a>
-                                    <Image
-                                        priority
-                                        layout="intrinsic"
-                                        src={'/images/' + id + '.jpg'}
-                                        height="200px"
-                                        width="200px"
-                                        alt={title}
-                                    />
-                                </a>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-                
+                <div className={pageStyles.politicsTitleBox}>
+                    <ul className={pageStyles.politicsTitleList}>
+                        {politicsList.map(({ id, title, url, description }) => (
+                            <>
+                                <li key={id}>
+                                    <Link href={url}>
+                                        <a>{title}</a>
+                                    </Link>
+                                    &nbsp;:&nbsp;
+                                    <span>
+                                        {description}
+                                    </span>
+                                </li>
+                            </>
+                        ))}
+                    </ul>
+                </div>
+                <CopyRight />
             </>
         )
     }else if(id == 'hobby'){
@@ -170,6 +175,7 @@ export default function Post({id, data, contents}){
                         </li>
                     </ul>
                 </div>
+                <CopyRight />
             </>
         )
     }else if(id == 'communication'){
