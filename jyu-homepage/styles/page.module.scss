@@ -9,6 +9,8 @@ $politics-a-link-color: rgb(3, 162, 202);
 
 $hobby-a-link-color: rgb(161, 73, 1);
 
+$communication-a-link-color: rgb(166, 26, 26);
+
 
 .copyRight{
   width: 95%;
@@ -28,7 +30,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   padding-left: 2%;
   padding-right: 5%;
   font-size: 140%;
-  font-family: "DungGeunMo";
+  font-family: "SBAggro M";
 }
 
 .profileTitle{
@@ -84,7 +86,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
 
 .profileImage img{
   margin: auto; 
-  width: 95%;
+  width: 80%;
   max-width: 400px;
   height: auto;
 }
@@ -96,7 +98,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
 .profileMotto{
   color: $profile-motto-color; 
   font-weight: bold;
-  font-size: 1.05em;
+  font-size: 0.9em;
   text-align: center;
 
 }
@@ -109,6 +111,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   margin:auto;
   margin-bottom: 25%;
   padding-left: 2.5%;
+  font-family: "SBAggro L";
   
 }
 
@@ -130,6 +133,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
 
 .profileWorkBox a {
   color:  black;
+  
 }
 
 .profileDivTableTitle{
@@ -137,7 +141,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   margin-bottom: 0.3em;
   font-size: 2.5em;
   text-align: center;
-  font-family: "DungGeunMo";
+  font-family: "SBAggro M";
 }
 
 .profileDivTable[role="region"][aria-labelledby][tabIndex] {
@@ -157,7 +161,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   margin: 1em 0;
   border-collapse: collapse;
   border: 0.1em solid #d6d6d6;
-  font-family: "DungGeunMo";
+  font-family: "SBAggro M";
   color: rgb(149, 143, 143);
 }
 
@@ -288,6 +292,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   text-align: left;
   margin-top:$height;
   margin-bottom: $height*3;
+  font-family: "SBAggro M";
 }
 
 .politicsTitle span{
@@ -297,6 +302,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
 .politicsMotto {
   text-align:center;
   margin-bottom: $height*3;
+  font-family: "SBAggro M";
 }
 
 .politicsTitleBox {
@@ -309,7 +315,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   list-style: none;
   display:block;
   font-size: 1.2em;
-  font-family: "DungGeunMo";
+  font-family: "SBAggro L";
   line-height: 3.0em;
 }
 
@@ -349,7 +355,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
 .hobbyList{
   margin: auto;
   width: 30%;
-  font-family: "DungGeunMo";
+  font-family: "SBAggro L";
 }
 
 .hobbyList ul{
@@ -359,6 +365,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
 
 .hobbyList li span{
   font-size: 1.3em;
+  font-family: "SBAggro M";
 }
 
 .hobbyPhoto{
@@ -367,30 +374,30 @@ $hobby-a-link-color: rgb(161, 73, 1);
   width: 30%;
 }
 
-.communicationLab{
-  margin-left: 50px;
-  margin-top: 2%;
-  margin-bottom: 2%;
+.communicationTitle{
+  color: $communication-a-link-color;
+  width: 95%;
+  background: white;
+  border-color:  rgb(205, 205, 205); 
+  border-width: 1px;
+  border-style: solid;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  text-align: left;
+  margin-top:$height;
+  margin-bottom: $height*3;
+  font-family: "SBAggro M";
 }
 
-.communicationInput{
-  margin-left: 50px;
-  margin-top: 2%;
-  margin-bottom: 2%;
+.communicationTitle span{
+  color: black;
 }
 
-.communicationDialogue{
-  background-color: yellow;
-  max-width: max-content;
-  max-height: max-content;
-
-  border: 2px solid currentcolor;
-  box-shadow: 0.125rem 0.25rem currentcolor;
-
-  margin-right:100px;
-  margin-left: 50px;
-  margin-bottom: 2%;
+.communicationList{
+  font-family: "SBAggro L";
 }
+
 
 /* average mobile */
 @media screen and (max-width: 420px) {  
@@ -420,8 +427,8 @@ $hobby-a-link-color: rgb(161, 73, 1);
     overflow: auto;
     border: 0.1em solid #d6d6d6;
     margin-top: 1em;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
     font-size: 0.45em;
   }
 
@@ -461,7 +468,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   }
 
   .profileMotto{
-    font-size: 1.0em;
+    font-size: 0.8em;
   }
 
   .profileTitle{
@@ -469,13 +476,13 @@ $hobby-a-link-color: rgb(161, 73, 1);
   }
 
   .profileImage{
-    width:97%;
+    width:80%;
     float: center;
     margin-bottom: 5%;
   }
 
   .profileImage img{
-    width: 80%;
+    width: 70%;
     height: auto;
     margin-top: $height*0.5;
     margin-bottom: $height*0.5;
@@ -495,7 +502,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   }
 
   .profileWorkBox div:nth-child(1){
-    font-size:0.95em;
+    font-size:0.8em;
     padding-bottom: $height;
 
   }
@@ -528,7 +535,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
 
   .politicsTitleList{
     font-size: 0.5em;
-    font-family: "DungGeunMo";
+    font-family: "SBAggro M";
     line-height: 3.5em;
     padding-left: 7%;
   }
@@ -541,7 +548,7 @@ $hobby-a-link-color: rgb(161, 73, 1);
   .hobbyList{
     margin: auto;
     width: 100%;
-    font-family: "DungGeunMo";
+    font-family: "SBAggro MMo";
     font-size: 0.8em;
   }
 
@@ -558,6 +565,18 @@ $hobby-a-link-color: rgb(161, 73, 1);
     margin: auto;
     text-align: center;
     width: auto;
+  }
+
+  .communicationTitle{
+    font-size: 1.0em;
+  }
+
+  .communicationList{
+    font-size: 0.6em;
+    line-height: 5em;
+    margin-top: 25%;
+    margin-left: 6%;
+
   }
 
   .copyRight{

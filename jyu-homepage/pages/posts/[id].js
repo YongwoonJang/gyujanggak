@@ -242,7 +242,14 @@ export default function Post({id, data, contents}){
     }else if(id == 'communication'){
         return(
             <>
-                <RequestFormAndResult/>
+                <div className={pageStyles.page}>
+                    <h1 className={pageStyles.communicationTitle}>
+                        {parse(data.title)}
+                    </h1>
+                    <div className={pageStyles.communicationList}>
+                        {parse(contents)}
+                    </div>
+                </div>
             </>
         )
     }
