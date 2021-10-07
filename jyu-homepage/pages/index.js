@@ -17,35 +17,26 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className={mainPageStyles.titleImage}>
-        <a href="https://gyujanggak.vercel.app">
-          <Image
-            priority
-            src="/images/profile.jpg"
-            height={300}
-            width={300}
-            alt={name}
-          />
-        </a>
-      </div>
-      <RequestFormAndResult/>
       <ul className={mainPageStyles.mainMenuList}>
         {allPostsData.map(({ id, title, url }) => (
-            <li key={id} className={mainPageStyles.mainMenuListItems}>
-                <Link href={url}>
-                  <a>
-                    <Image
-                      priority
-                      src={'/images/' + id+ '.jpg'}
-                      height={350}
-                      width={350}
-                      alt={title}
-                    />
-                  </a>
-                </Link>
-              </li>
+          <li key={id} className={mainPageStyles.mainMenuListItems}>
+            <Link href={url}>
+              <a>
+                <Image
+                  priority
+                  src={'/images/' + id + '.jpg'}
+                  height={350}
+                  width={350}
+                  alt={title}
+                />
+              </a>
+            </Link>
+          </li>
         ))}
       </ul>
+      <div className={mainPageStyles.mainReqResPart}>
+        <RequestFormAndResult/>
+      </div>
     </Layout>
   )
 }

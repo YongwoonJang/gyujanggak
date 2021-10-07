@@ -3,13 +3,15 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
 
 import RequestFormAndResult from '../../components/searchFormForBoard'
 import CopyRight from '../../components/copyRight'
 
+import React, { useEffect } from 'react'
+import { vsSource, fsSource, createShader, createProgram, initBuffer, loadTexture, render } from '/components/drawingTheScene'
+import { drawScene } from '../../components/drawingTheScene'
 
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
@@ -74,7 +76,7 @@ export default function Post({id, data, contents}){
                         <table>
                             <tr>
                                 <td className={pageStyles.profileMotto}>
-                                    &nbsp;&nbsp;사소한 생활의 문제를 해결하고 싶은 <br/>
+                                    &nbsp;&nbsp;사소한 생활의 문제를 해결해주는 <br/>
                                     &nbsp;&nbsp;기획자, Artist, programmer입니다.
                                 </td>
                             </tr>
@@ -156,23 +158,82 @@ export default function Post({id, data, contents}){
             </>
         )
     }else if(id == 'hobby'){
+        let contents = "";
+        
+        //for canvas
+        useEffect(() => {
+            // Init variables
+            const canvas = document.querySelector('#glCanvas');
+
+            // Create Shader program
+            const gl = canvas.getContext("webgl");
+            if (gl == null) {
+                alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+            }
+            var vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+            var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+            var program = createProgram(gl, vertexShader, fragmentShader);
+
+            //Setting the program 
+            const programInfo = {
+                program: program,
+                attribLocations: {
+                    vertexPosition: gl.getAttribLocation(program, 'aVertexPosition'),
+                    textureCoord: gl.getAttribLocation(program, 'aTextureCoord'),
+                },
+                uniformLocations: {
+                    projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
+                    modelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
+                    //uSampler: gl.getUniformLocation(program, 'uSampler'),
+                },
+            };
+
+            // Setting the buffer
+            const buffer = initBuffer(gl);
+
+            // draw scene
+            drawScene(gl, programInfo, buffer);
+            requestAnimationFrame(render);
+
+        })
+
+        for(let i = 0; i < Object.keys(data.hobbyList).length; i++){
+            
+            let category = Object.keys(data.hobbyList)[i];
+            contents = contents + "<li><span>" + category + "</span><br/>";
+            contents = contents + "Skill : " + data.hobbyList[category]["Skill"] + "<br/>";
+            for(let j = 1; j<Object.keys(data.hobbyList[category]).length; j++){
+                contents = contents 
+                            + "Experience" 
+                            + j.toString()
+                            + " : " 
+                            + "<a href='" + data.hobbyList[category][j]["URL"] + "'>" 
+                            + data.hobbyList[category][j]["Title"] 
+                            + "</a><br/>";
+            }
+            contents = contents + "</li><br/>";
+                        
+        }
+
+        contents = parse(contents);
+        
+
         return (
             <>
                 <div className={pageStyles.page}>
-                    <h1 className={pageStyles.hobbyTitle}>{data.title}</h1>
-                    <ul className={pageStyles.hobbyList}>
-                        <li key="dance" className={pageStyles.hobbyDanceFrame}>
-                            <iframe className={pageStyles.hobbyIframe} width="560" height="315" src="https://www.youtube.com/embed/fYXFJ9YxUQs?start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
-                            <div>2007년부터 춤을 추었습니다.</div>
-                        </li>
-                        <li key="hobby" className={pageStyles.hobbyPianoFrame}>
-                            <iframe className={pageStyles.hobbyIframe} width="560" height="315" src="https://www.youtube.com/embed/Srw3r_QA0RY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div>1997년부터 피아노를 배웠습니다.</div>
-                        </li>
-                        <li key="game" className={pageStyles.hobbyGameFrame}>
-                            <iframe className={pageStyles.hobbyGameIframe} width="1000" height="550" src="https://yongwoonjang.github.io/SweetHome/"></iframe>
-                            <div>또롱이의 집, 게임 개발도 하고 있습니다.</div>
-                        </li>
+                    <h1 className={pageStyles.hobbyTitle}>
+                        {parse(data.title)}
+                    </h1>
+                    <div className={pageStyles.hobbyPhoto}>
+                        <canvas id="glCanvas" width="200" height="200"></canvas>
+                    </div>
+                    <div className={pageStyles.hobbyMotto}>
+                        {content}
+                    </div>
+                </div>
+                <div className={pageStyles.hobbyList}>
+                    <ul>
+                        {contents}
                     </ul>
                 </div>
                 <CopyRight />

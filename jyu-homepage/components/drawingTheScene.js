@@ -72,34 +72,22 @@ export function initBuffer(gl){
          1.0, 1.0,
         -1.0, 1.0,
     ]
-    const textureCoordinates = [
-        0.0, 0.0,
-        0.0, 1.0,
-        1.0, 1.0,
-        1.0, 0.0,
-    ];
 
     var positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(position), gl.STATIC_DRAW);
     
-    var textureCoordBuffer = gl. createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoordinates), gl.STATIC_DRAW);
-    
-    return({position:positionBuffer,
-            textureCoord:textureCoordBuffer,})
+    return({position:positionBuffer})
 }
 
 //init 
-export function drawScene(gl, programInfo, buffers, texture){
+export function drawScene(gl, programInfo, buffers){
     //Initialize and local* variables are transferred to render function
     localGL = gl;
     localProgramInfo = programInfo;
     localBuffer = buffers;
-    localTexture = texture;
 
-    gl.clearColor(0.0, 1.0, 2.0, 1.0);
+    gl.clearColor((161+horizontal*-80.32)/255, (73+horizontal*170.22)/255, (1+vertical*200.22)/255, 1.0);
     gl.clearDepth(1.0);
     gl.enable(gl.DEPTH_TEST);
     gl.depthFunc(gl.LEQUAL);
@@ -176,9 +164,6 @@ export function drawScene(gl, programInfo, buffers, texture){
         programInfo.uniformLocations.projectionMatrix,
         false,
         projectionMatrix);
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, localTexture);
-    gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
     {
         const offset = 0;
         const vertexCount = 4;
@@ -196,24 +181,25 @@ export function render(now) {
     deltaTime = now - then;
     then = now; 
     drawScene(localGL, localProgramInfo, localBuffer, localTexture);
+    
     requestAnimationFrame(render);
 
 }
 
 export function movingAround() {
     if (vertical < 1.00 && controlMatrix[0] == 0){
-        vertical = vertical + 0.03;
+        vertical = vertical + 0.003;
 
     } else if (vertical > -1 && controlMatrix[0] == 1){
-        vertical = vertical - 0.01;
+        vertical = vertical - 0.005;
 
     } 
 
     if (horizontal < 1.00 && controlMatrix[1] == 0){
-        horizontal = horizontal + 0.02;
+        horizontal = horizontal + 0.001;
 
     } else if (horizontal > -1 && controlMatrix[1] == 1){
-        horizontal = horizontal - 0.02;
+        horizontal = horizontal - 0.005;
     }
 
     if (vertical >= 1){
@@ -222,9 +208,7 @@ export function movingAround() {
     }else if (vertical <= -1){
         controlMatrix[0] = 0;
     
-    }
-
-    if (horizontal >= 1){
+    }else if (horizontal >= 1){
         controlMatrix[1] = 1;
     
     }else if (horizontal <= -1){
@@ -232,38 +216,6 @@ export function movingAround() {
 
     }
     
-}
-
-export function loadTexture(gl, url) {
- 
-    const image = new Image();
-    image.src = url;
-    const level = 0;
-    const internalFormat = gl.RGBA;
-    const srcFormat = gl.RGBA;
-    const srcType = gl.UNSIGNED_BYTE;
-
-    const texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.texImage2D(gl.TEXTURE_2D, level, internalFormat, srcFormat, srcType, image);
-    
-    //for default setting
-    image.onload = function () {
-        gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,srcFormat, srcType, image);
-
-        if (isPowerOf2(image.width) && isPowerOf2(image.height)) {
-            gl.generateMipmap(gl.TEXTURE_2D);
-
-        } else {
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-            
-        }
-    };
-    
-    return texture;
 }
 
 function isPowerOf2(value) {

@@ -7,6 +7,8 @@ $profile-workBox-color:  rgb(69, 159, 28);
 
 $politics-a-link-color: rgb(3, 162, 202);
 
+$hobby-a-link-color: rgb(161, 73, 1);
+
 
 .copyRight{
   width: 95%;
@@ -273,8 +275,6 @@ $politics-a-link-color: rgb(3, 162, 202);
   background-attachment: local, local, scroll, scroll;
 }
 
-//
-
 .politicsTitle{
   color: $politics-a-link-color;
   width: 95%;
@@ -287,6 +287,7 @@ $politics-a-link-color: rgb(3, 162, 202);
   border-left-width: 0px;
   text-align: left;
   margin-top:$height;
+  margin-bottom: $height*3;
 }
 
 .politicsTitle span{
@@ -300,7 +301,7 @@ $politics-a-link-color: rgb(3, 162, 202);
 
 .politicsTitleBox {
   margin-left: 20%;
-  margin-bottom: $height*6.5;
+  margin-bottom: $height*3.5;
 
 }
 
@@ -321,26 +322,49 @@ $politics-a-link-color: rgb(3, 162, 202);
 }
 
 .hobbyTitle{
-  width: 80%;
-  background : cyan;
-  text-align: right;
+  color: $hobby-a-link-color;
+  width: 95%;
+  background: white;
+  border-color:  rgb(205, 205, 205); 
+  border-width: 1px;
+  border-style: solid;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  text-align: left;
+  margin-top:$height;
+  margin-bottom: $height*3;
+}
+
+.hobbyTitle span{
+  color: black;
+}
+
+.hobbyMotto{
+  text-align:center;
+  font-size: 1.0em;
+  margin-bottom: $height*2.5;
 }
 
 .hobbyList{
-  list-style: none;
-  width: 90%;
+  margin: auto;
+  width: 30%;
+  font-family: "DungGeunMo";
 }
 
-.hobbyDanceFrame{
-  float: left;
+.hobbyList ul{
+  justify-self: center;
+  margin:auto;
 }
 
-.hobbyPianoFrame{
-  float: right;
+.hobbyList li span{
+  font-size: 1.3em;
 }
 
-.hobbyGameFrame{
-  float: left;
+.hobbyPhoto{
+  margin: auto;
+  text-align: center;
+  width: 30%;
 }
 
 .communicationLab{
@@ -391,26 +415,6 @@ $politics-a-link-color: rgb(3, 162, 202);
   .hobbyList{
     padding-left: 0;
   }
-  .hobbyDanceFrame{
-    width: 80%;
-  }
-  .hobbyPianoFrame{
-    width: 80%;
-  }
-
-  .hobbyGameIframe {
-   width: 100%;
-   height: 220px;
-  }
-
-  .hobbyIframe{
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-  }
 
   .profileDivTable[role="region"][aria-labelledby][tabIndex] {
     overflow: auto;
@@ -457,7 +461,7 @@ $politics-a-link-color: rgb(3, 162, 202);
   }
 
   .profileMotto{
-    font-size: 1.1em;
+    font-size: 1.0em;
   }
 
   .profileTitle{
@@ -517,7 +521,7 @@ $politics-a-link-color: rgb(3, 162, 202);
 
   .politicsTitleBox {
     margin-left: 0%;
-    margin-bottom: $height*31;
+    margin-bottom: $height*30;
     padding-left:0%;
 
   }
@@ -529,9 +533,36 @@ $politics-a-link-color: rgb(3, 162, 202);
     padding-left: 7%;
   }
 
+  .hobbyMotto{
+    font-size: 0.9em;
+    margin-bottom: $height*6;
+  }
+
+  .hobbyList{
+    margin: auto;
+    width: 100%;
+    font-family: "DungGeunMo";
+    font-size: 0.8em;
+  }
+
+  .hobbyList ul{
+    justify-self: center;
+    margin:auto;
+  }
+
+  .hobbyList li span{
+    font-size: 1.1em;
+  }
+
+  .hobbyPhoto{
+    margin: auto;
+    text-align: center;
+    width: auto;
+  }
+
   .copyRight{
     padding-top:0.5%;
-    font-size:0.6em;
+    font-size:0.45em;
   }
   
 }

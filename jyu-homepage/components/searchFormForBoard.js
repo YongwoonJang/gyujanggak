@@ -1,10 +1,6 @@
 import page from '/styles/page.module.scss'
 import parse from 'html-react-parser'
 import Image from 'next/image'
-import React, {useEffect} from 'react'
-import {vsSource, fsSource, createShader, createProgram, initBuffer, loadTexture, render} from '/components/drawingTheScene'
-import { drawScene } from './drawingTheScene'
-
 
 export default function RequestFormAndResult(){
 
@@ -19,48 +15,9 @@ export default function RequestFormAndResult(){
         document.getElementById("result").innerHTML = searchInput;
     }
 
-    useEffect(()=>{
-        // Init variables
-        const canvas = document.querySelector('#glCanvas');
-
-        // Create Shader program
-        const gl = canvas.getContext("webgl");
-        if (gl == null) {
-            alert("Unable to initialize WebGL. Your browser or machine may not support it.");
-        }
-        var vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
-        var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
-        var program = createProgram(gl, vertexShader, fragmentShader);
-
-        //Setting the program 
-        const programInfo = {
-            program: program,
-            attribLocations: {
-                vertexPosition : gl.getAttribLocation(program, 'aVertexPosition'),
-                textureCoord: gl.getAttribLocation(program, 'aTextureCoord'),
-            },
-            uniformLocations: {
-                projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
-                modelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
-                uSampler: gl.getUniformLocation(program, 'uSampler'),
-            },
-        };
-
-        // Setting the buffer
-        const buffer = initBuffer(gl);
-        var texture = loadTexture(gl, "/images/favicon.png");
-        
-        // draw scene
-        drawScene(gl, programInfo, buffer, texture);
-        requestAnimationFrame(render);
-
-    })
-
     return(
         <>
-            <div className={page.communicationLab}>
-                <canvas id="glCanvas" width="300" height="300"></canvas>
-            </div>
+            
             <div className={page.communicationInput}>
                 <form onSubmit={sendRequestData} >
                     <input id="data" name="data"/>
