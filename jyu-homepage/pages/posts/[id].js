@@ -5,13 +5,20 @@ import parse from 'html-react-parser'
 
 import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
+import profileDivTableStyles from '/styles/profileTable.module.scss'
 
-import RequestFormAndResult from '../../components/searchFormForBoard'
 import CopyRight from '../../components/copyRight'
 
 import React, { useEffect } from 'react'
-import { vsSource, fsSource, createShader, createProgram, initBuffer, loadTexture, render } from '/components/drawingTheScene'
+import { vsSource, fsSource, createShader, createProgram, initBuffer, render } from '/components/drawingTheScene'
 import { drawScene } from '../../components/drawingTheScene'
+
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { firebaseConfig } from '../../components/firebase';
+
+import { addDoc, collection } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
@@ -26,29 +33,57 @@ export function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const fullPath = "public/posts/" + params.id + ".md"
     const fileContent = fs.readFileSync(fullPath)
-
     const matterResult = matter(fileContent)
+
+    const dataFromDatabase = await readDatabase();
+
     return {
         props: {
             id: params.id,
             data: matterResult.data,
-            contents: matterResult.content
+            contents: matterResult.content,
+            dataFromDatabase: dataFromDatabase
         },
     }
 }
 
-export default function Post({id, data, contents}){
-    const content = parse(contents)
-    const politicsList = [
-        { "id": "inspectOfStateAdministration", "title": "국정감사정보", "description": "국회운영윈원회, 방송통신위원회 및 위회원 정보 수록", "url": "https://likms.assembly.go.kr/inspections/main.do" },
-        { "id": "nationalAssemblyLawInformation", "title": "국회법률정보", "description":"국회에 제한된 법률 정보 수록", "url": "http://likms.assembly.go.kr/law/lawsNormInqyMain1010.do?mappingId=%2FlawsNormInqyMain1010.do&genActiontypeCd=2ACT1010" },
-        { "id": "nationalAssemblyMinutes", "title": "국회 회의록", "description": "전체 회의 내용 등재(속기사의 힘)", "url": "http://likms.assembly.go.kr/record/index.jsp" },
-        { "id": "personalizedLegislative", "title": "입법 컨텐츠 검색 포탈", "description": "입법 내역 검색 포탈", "url": "http://naph.assembly.go.kr/index.jsp" },
-        { "id": "openCongress", "title": "열려라 국회", "description": "각 개별 의원의 후원금, 제안 법안 의결 현황 수록.", "url": "http://watch.peoplepower21.org/home" },
-        { "id": "budgetSettlementInfo", "description": "회계년도별 예산안/기금운용계획안/추가경정예산안 수록", "title": "예결산정보시스템", "url": "http://likms.assembly.go.kr/bill/nafs/nafsList.do" },
-        { "id": "billInfo", "title": "의안정보", "description":"검토보고서, 심사보고서 수록", "url": "http://likms.assembly.go.kr/bill/main.do" }
-    ]
+async function insertDatabase(){
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
+
+    try {
+        const docRef = await addDoc(collection(db, "gyujanggak"), {
+            "Author": "YongwoonJang",
+            "Content": "Hello World",
+            "Data": "2021-10-08",
+            "Title": "Hello World"
+        });
+
+        console.log("Document written with ID: ", docRef.id);
+
+    } catch (e) {
+        console.error("Error adding document: ", e);
+
+    }
+}
+
+async function readDatabase(){
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
+    let data = [];
+
+    const querySnapshot = await getDocs(collection(db, "gyujanggak"));
+    querySnapshot.forEach((doc) => {
+        //console.log(`${doc.id} => ${doc.data()}`);
+        data.push(doc.data());
+    });
     
+    return data;
+}
+
+export default function Post({id, data, contents, dataFromDatabase}){
+    const content = parse(contents);
+
     if(id == 'profile'){
         let workHistory = "<table><tbody>";
         const countOfRows = 5;
@@ -103,15 +138,18 @@ export default function Post({id, data, contents}){
         let rows = "";
         const countOfRows = 14;
         for(let i = 14; i > 0; i--){
-            rows = rows + "<tr>" + data.rows[i].split("|").map(x => "<td>"+x+"</td>").toString().replace(/,/g,"") + "</tr>";
+            rows = rows 
+                    + "<tr>" 
+                    + data.rows[i].split("|").map(x => "<td>"+x+"</td>").toString().replace(/,/g,"") 
+                    + "</tr>";
         }
         rows = parse(rows);
 
         return (
             <>
                 
-                <div className={pageStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">
-                    <div className={pageStyles.profileDivTableTitle}>
+                <div className={profileDivTableStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">
+                    <div className={profileDivTableStyles.profileDivTableTitle}>
                         History
                     </div>
                     <table>
@@ -139,7 +177,7 @@ export default function Post({id, data, contents}){
                 </div>
                 <div className={pageStyles.politicsTitleBox}>
                     <ul className={pageStyles.politicsTitleList}>
-                        {politicsList.map(({ id, title, url, description }) => (
+                        {data.politicsList.map(({ id, title, url, description }) => (
                             <>
                                 <li key={id}>
                                     <Link href={url}>
@@ -240,6 +278,25 @@ export default function Post({id, data, contents}){
             </>
         )
     }else if(id == 'communication'){
+        
+        let rows = "";
+        console.log(dataFromDatabase);
+        console.log("Good morning");
+        for(let i=0; i<dataFromDatabase.length; i++){
+            rows = rows 
+                   + "<tr>"
+                    + "<td>" 
+                    + dataFromDatabase[i].Date
+                    + "</td>"
+                    + "<td>"
+                    + dataFromDatabase[i].Author
+                    + "</td>"
+                    + "<td>"
+                    + dataFromDatabase[i].Content
+                    + "</td>"
+                   + "</tr>"
+        }
+
         return(
             <>
                 <div className={pageStyles.page}>
@@ -247,7 +304,17 @@ export default function Post({id, data, contents}){
                         {parse(data.title)}
                     </h1>
                     <div className={pageStyles.communicationList}>
-                        {parse(contents)}
+                        {parse(contents)} 
+                    </div>
+                    <div>
+                        <div className={pageStyles.communicationComments}>
+                            Comments
+                        </div>
+                        <table className={pageStyles.communicationCommentsTable}>
+                            <tbody>
+                                {parse(rows)}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </>

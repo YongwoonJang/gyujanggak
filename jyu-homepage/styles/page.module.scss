@@ -1,3 +1,5 @@
+$breakpoint-mobile: 420px;
+
 $height: 1.5%;
 
 $profile-motto-color: rgb(49, 110, 21);
@@ -14,16 +16,17 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 .copyRight{
   width: 95%;
+
   border-top: rgb(205, 205, 205); 
-  border-width: 1px;
-  border-style: solid;
-  border-right-width:0px;
-  border-left-width:0px;
-  border-bottom-width:0px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  
   color: rgb(149, 143, 143);
   font-size: 0.7em;
-  text-align: center;
+  
   margin:auto;
+
+  text-align: center;
 }
 
 .page{
@@ -134,149 +137,6 @@ $communication-a-link-color: rgb(166, 26, 26);
 .profileWorkBox a {
   color:  black;
   
-}
-
-.profileDivTableTitle{
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
-  font-size: 2.5em;
-  text-align: center;
-  font-family: "SBAggro M";
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] {
-  overflow: auto;
-  border: 0.1em solid #d6d6d6;
-  margin-top: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex]:focus {
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-  outline: 0.1em solid rgba(0, 0, 0, 0.1);
-}
-
-.profileDivTable table {
-  margin: 1em 0;
-  border-collapse: collapse;
-  border: 0.1em solid #d6d6d6;
-  font-family: "SBAggro M";
-  color: rgb(149, 143, 143);
-}
-
-.profileDivTable caption {
-  text-align: left;
-  font-style: italic;
-  padding: 0.25em 0.5em 0.5em 0.5em;
-}
-
-.profileDivTable strong {
-  color: red;
-  font-size: 1.15em;
-  background-color: yellow;
-
-
-}
-
-.profileDivTable table th td {
-  padding: 0.25em 0.5em 0.25em 1em;
-  vertical-align: text-top;
-  text-align: center;
-  text-indent: -0.5em;
-}
-
-.profileDivTable th {
-  vertical-align: bottom;
-  background-color: rgb(255, 251, 0);
-  color: rgb(0, 0, 0);
-}
-
-.profileDivTable tr:nth-child(even) th[scope="row"] {
-  background-color: #f2f2f2;
-}
-
-.profileDivTable tr:nth-child(odd) th[scope="row"] {
-  background-color: #fff;
-}
-
-.profileDivTable tr:nth-child(even) {
-  background-color: rgba(238, 253, 22, 0.05);
-}
-
-.profileDivTable tr:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.profileDivTable tr td:nth-child(1) {
-  text-align: center;
-  min-width: 7em;
-  max-width: 70vw;
-}
-
-.profileDivTable tr td:nth-child(2) {
-  text-align: center;
-  min-width: 7em;
-  max-width: 70vw;
-}
-
-.profileDivTable tr td:nth-child(3) {
-  text-align: center;
-  min-width: 7em;
-  max-width: 70vw;
-}
-
-.profileDivTable tr td:nth-child(4) {
-  text-align: left;
-  min-width: 20em;
-}
-
-.profileDivTable tr td:nth-child(5) {
-  text-align: center;
-  min-width: 5em;  
-}
-
-.profileDivTable tr td:nth-child(6) {
-  text-align: left;
-  min-width: 12em;  
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] {
-  overflow: auto;
-  border: 0.1em solid #d6d6d6;
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex]:focus {
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-  outline: 0.1em solid rgba(0, 0, 0, 0.1);
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] table {
-  margin: 0;
-  border: none;
-}
-
-/* Scrolling Visual Cue */
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] {
-  background: linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(to right, rgba(255, 255, 255, 0), #fff 70%) 0 100%,
-    radial-gradient(
-      farthest-side at 0% 50%,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0)
-    ),
-    radial-gradient(
-        farthest-side at 100% 50%,
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0)
-      )
-      0 100%;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-  background-position: 0 0, 100%, 0 0, 100%;
-  background-attachment: local, local, scroll, scroll;
 }
 
 .politicsTitle{
@@ -398,9 +258,30 @@ $communication-a-link-color: rgb(166, 26, 26);
   font-family: "SBAggro L";
 }
 
+.communicationComments{
+  border-color:  rgb(205, 205, 205); 
+  border-top-width: 1px;
+  border-top-style: solid;
+  width: 95%;
+  margin-top: $height*3;
+}
+
+.communicationCommentsTable{
+  border-collapse : collapse;
+  margin-top: $height;
+  width: 95%;
+}
+
+.communicationCommentsTable td{
+  padding: $height;
+  width: auto;
+  font-size: 0.7em;
+  white-space: nowrap;
+  font-family: "SBAggro L";
+}
 
 /* average mobile */
-@media screen and (max-width: 420px) {  
+@media screen and (max-width: $breakpoint-mobile) {  
   .copyRight{
     font-size: 0.4em;
   }
@@ -421,50 +302,6 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
   .hobbyList{
     padding-left: 0;
-  }
-
-  .profileDivTable[role="region"][aria-labelledby][tabIndex] {
-    overflow: auto;
-    border: 0.1em solid #d6d6d6;
-    margin-top: 1em;
-    margin-left: 1.5em;
-    margin-right: 1.5em;
-    font-size: 0.45em;
-  }
-
-  .profileDivTable tr td:nth-child(1) {
-    text-align: left;
-    min-width: 7em;
-    max-width: 70vw;
-    font-size:0.8em;
-  }
-
-  .profileDivTable tr td:nth-child(2) {
-    text-align: left;
-    min-width: 7em;
-    max-width: 70vw;
-    font-size:0.8em;
-  }
-
-  .profileDivTable th:nth-child(3){
-    text-align: left;
-    display: none;
-  }
-
-  .profileDivTable tr td:nth-child(3){
-    display: none;
-  }
-
-  .profileDivTable tr td:nth-child(4) {
-    text-align: left;
-    min-width: 10em;
-    font-size:0.8em;
-  }
-
-  .profileDivTable tr td:nth-child(5) {
-    text-align: center;
-    min-width: 5em;
-    font-size:0.8em;
   }
 
   .profileMotto{
@@ -568,16 +405,35 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 
   .communicationTitle{
-    font-size: 1.0em;
+    font-size: 1.5em;
   }
 
   .communicationList{
     font-size: 0.6em;
     line-height: 5em;
-    margin-top: 25%;
+    margin-top: 17%;
     margin-left: 6%;
 
   }
+
+  .communicationComments{
+    margin-top: $height*8;
+
+  }
+
+  .communicationCommentsTable {
+    margin-top: $height*3;
+
+  }
+
+  .communicationCommentsTable td{
+    font-size: 0.5em;
+    white-space: normal;
+    padding-top:7%;
+  
+  }
+
+  
 
   .copyRight{
     padding-top:0.5%;
