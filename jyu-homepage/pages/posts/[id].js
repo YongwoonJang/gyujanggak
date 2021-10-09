@@ -1,5 +1,7 @@
 import fs from 'fs'
 
+import { useState } from 'react'
+
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
 
@@ -34,29 +36,28 @@ export async function getStaticProps({ params }) {
     const fullPath = "public/posts/" + params.id + ".md"
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
-
-    const dataFromDatabase = await readDatabase();
+    
+    let comments = await readDatabase()
 
     return {
         props: {
             id: params.id,
             data: matterResult.data,
             contents: matterResult.content,
-            dataFromDatabase: dataFromDatabase
+            comments: comments
         },
     }
 }
 
-async function insertDatabase(){
+async function insertDatabase(author, comments, dateTime){
     initializeApp(firebaseConfig);
     const db = getFirestore();
 
     try {
         const docRef = await addDoc(collection(db, "gyujanggak"), {
-            "Author": "YongwoonJang",
-            "Content": "Hello World",
-            "Data": "2021-10-08",
-            "Title": "Hello World"
+            "Author": author,
+            "Content": comments,
+            "Date": dateTime,
         });
 
         console.log("Document written with ID: ", docRef.id);
@@ -77,11 +78,11 @@ async function readDatabase(){
         //console.log(`${doc.id} => ${doc.data()}`);
         data.push(doc.data());
     });
-    
+
     return data;
 }
 
-export default function Post({id, data, contents, dataFromDatabase}){
+export default function Post({id, data, contents, comments}){
     const content = parse(contents);
 
     if(id == 'profile'){
@@ -134,6 +135,7 @@ export default function Post({id, data, contents, dataFromDatabase}){
                 <CopyRight />
             </>
         )
+
     }else if(id == 'profile-mgmt'){
         let rows = "";
         const countOfRows = 14;
@@ -164,6 +166,7 @@ export default function Post({id, data, contents, dataFromDatabase}){
                 <CopyRight />
             </>
         )
+
     }else if(id == 'politics'){
         return (
             <>
@@ -195,6 +198,7 @@ export default function Post({id, data, contents, dataFromDatabase}){
                 <CopyRight />
             </>
         )
+
     }else if(id == 'hobby'){
         let contents = "";
         
@@ -277,25 +281,72 @@ export default function Post({id, data, contents, dataFromDatabase}){
                 <CopyRight />
             </>
         )
+
     }else if(id == 'communication'){
         
+        const [defaultContents, setContents] = useState("Hello world");
+        const [defaultAuthor, setAuthor] = useState("JYU");
+        
         let rows = "";
-        console.log(dataFromDatabase);
-        console.log("Good morning");
-        for(let i=0; i<dataFromDatabase.length; i++){
-            rows = rows 
-                   + "<tr>"
-                    + "<td>" 
-                    + dataFromDatabase[i].Date
-                    + "</td>"
-                    + "<td>"
-                    + dataFromDatabase[i].Author
-                    + "</td>"
-                    + "<td>"
-                    + dataFromDatabase[i].Content
-                    + "</td>"
-                   + "</tr>"
+        for (let i = 0; i < comments.length; i++) {
+            rows = rows
+                + "<tr>"
+                + "<td>"
+                + comments[i].Date
+                + "</td>"
+                + "<td>"
+                + comments[i].Author
+                + "</td>"
+                + "<td>"
+                + comments[i].Content
+                + "</td>"
+                + "</tr>"
         }
+
+        const [lines, setLines] = useState(rows);
+
+        const handleContentsChange = event => {
+            event.preventDefault();
+            setContents(event.target.value);
+            
+        }
+
+        const handleAuthorChange = event => {
+            event.preventDefault();
+            setAuthor(event.target.value);
+
+        }
+
+        const registerComment = event => {
+            event.preventDefault();
+            let today = new Date();
+            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            let time = today.getHours() + "시 " + today.getMinutes() + "분";
+            let dateTime = date + ' ' + time;
+
+            insertDatabase(defaultAuthor, defaultContents, dateTime);
+            comments.push({"Author" : defaultAuthor, "Content" : defaultContents, "Date" : dateTime});
+            rows = "";
+            for (let i = 0; i < comments.length; i++) {
+                rows = rows
+                    + "<tr>"
+                    + "<td>"
+                    + comments[i].Date
+                    + "</td>"
+                    + "<td>"
+                    + comments[i].Author
+                    + "</td>"
+                    + "<td>"
+                    + comments[i].Content
+                    + "</td>"
+                    + "</tr>"
+            }
+            setLines(rows);
+            alert("성공적으로 저장되었습니다.");
+
+        }
+
+        
 
         return(
             <>
@@ -312,13 +363,28 @@ export default function Post({id, data, contents, dataFromDatabase}){
                         </div>
                         <table className={pageStyles.communicationCommentsTable}>
                             <tbody>
-                                {parse(rows)}
+                                {parse(lines)}
                             </tbody>
                         </table>
                     </div>
+                    <div className={pageStyles.communicationRegForm}>
+                        <form onSubmit={registerComment}>
+                            <div className={pageStyles.communicationRegComment}>
+                                <div className={pageStyles.communicationRegCommentBox}>
+                                    <textarea id="comment" placeholder={defaultContents} onChange={handleContentsChange}/>
+                                </div>
+                                <div className={pageStyles.communicationAuthorBox}>
+                                    <input id="author" placeholder={defaultAuthor} onChange={handleAuthorChange} />
+                                </div>
+                                <div className={pageStyles.communicationRegButtonBox}>
+                                    <button type="submit">게시  하기</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <CopyRight />
             </>
         )
     }
-    
 }
