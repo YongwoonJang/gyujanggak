@@ -512,7 +512,11 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   .communicationCommentsTable td:nth-child(1){
     font-size: 0.4em;
-  
+    
+  }
+
+  .communicationCommentsTable td:nth-child(2){
+    text-align: center;
   }
 
   .communicationRegComment{
@@ -579,7 +583,6 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 
   
-
   .copyRight{
     padding-top:0.5%;
     font-size:0.45em;
