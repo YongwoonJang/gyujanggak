@@ -486,27 +486,96 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   .communicationList{
     font-size: 0.6em;
-    line-height: 5em;
-    margin-top: 17%;
+    line-height: 2em;
+    margin-top: 10%;
     margin-left: 6%;
 
   }
 
   .communicationComments{
     margin-top: $height*8;
-
+    
   }
 
   .communicationCommentsTable {
     margin-top: $height*3;
+    width: 95%;
 
   }
 
   .communicationCommentsTable td{
     font-size: 0.5em;
     white-space: normal;
-    padding-top:7%;
+    padding-top:3%;
   
+  }
+
+  .communicationCommentsTable td:nth-child(1){
+    font-size: 0.4em;
+  
+  }
+
+  .communicationRegComment{
+    width: 95%;
+    margin: auto;
+    background-color:rgb(227, 227, 227);
+    line-height: 0.9em;
+    
+  }
+
+  .communicationRegCommentBox {
+    width: 100%;
+    text-align: center;
+    margin: 0 0;
+  }
+
+  .communicationRegCommentBox textarea  {
+    margin-top: $height;
+    margin-bottom: 0;
+    resize: none;
+    // padding: $height*(math.div(1,8));
+    font-family: "SBAggro L";
+    font-size: 0.5em;
+    width: 98%;
+    height: 100px;
+    
+  }
+
+  .communicationAuthorBox {
+    margin: 0 0;
+    padding-top: 0;
+    text-align: center;
+    margin-bottom: $height;
+  }
+
+  .communicationAuthorBox input {
+    width: 98%;
+    padding: 0 0;
+    font-family: "SBAggro L";
+    color: grey;
+    font-size: 0.5em;
+    margin: 0 0;
+    
+  }
+
+  .communicationRegButtonBox {
+    width: 98%;
+    margin: auto;
+
+  }
+
+  .communicationRegButtonBox button {
+    width: 20%;
+    padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
+    text-align: center;
+    font-family: "SBAggro L";
+    font-size: 0.5em;
+    background-color: rgb(131, 131, 128);
+    color: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: $height*(math.div(1,2));
   }
 
   
