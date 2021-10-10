@@ -38,12 +38,13 @@ export async function getStaticProps({ params }) {
     const fullPath = "public/posts/" + params.id + ".md"
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
-
+    let comments = await readDatabase()
     return {
         props: {
             id: params.id,
             data: matterResult.data,
-            contents: matterResult.content
+            contents: matterResult.content,
+            comments: comments
         },
     }
 }
@@ -82,12 +83,11 @@ async function readDatabase(){
     return data;
 }
 
-export default function Post({id, data, contents}){
+export default function Post({id, data, contents, comments}){
     const content = parse(contents);
 
     //this line is used for comments
     let rows = "";
-    let comments = [];
     const [lines, setLines] = useState(rows);
 
     //Component did mount
