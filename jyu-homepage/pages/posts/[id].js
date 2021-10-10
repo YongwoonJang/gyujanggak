@@ -289,22 +289,6 @@ export default function Post({id, data, contents, comments}){
         let rows = "";
         const [defaultContents, setContents] = useState("Hello world");
         const [defaultAuthor, setAuthor] = useState("JYU");
-        
-        //init rows
-        for (let i = 0; i < comments.length; i++) {
-            rows = rows
-                + "<tr>"
-                + "<td>"
-                + comments[i].Date
-                + "</td>"
-                + "<td>"
-                + comments[i].Author
-                + "</td>"
-                + "<td>"
-                + comments[i].Content
-                + "</td>"
-                + "</tr>"
-        }
         const [lines, setLines] = useState(rows);
 
         //Component did mount
