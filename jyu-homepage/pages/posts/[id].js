@@ -38,14 +38,12 @@ export async function getStaticProps({ params }) {
     const fullPath = "public/posts/" + params.id + ".md"
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
-    let comments = await readDatabase()
 
     return {
         props: {
             id: params.id,
             data: matterResult.data,
-            contents: matterResult.content,
-            comments: comments
+            contents: matterResult.content
         },
     }
 }
@@ -84,7 +82,7 @@ async function readDatabase(){
     return data;
 }
 
-export default function Post({id, data, contents, comments}){
+export default function Post({id, data, contents}){
     const content = parse(contents);
 
     //this line is used for comments
