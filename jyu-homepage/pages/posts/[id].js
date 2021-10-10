@@ -87,6 +87,33 @@ async function readDatabase(){
 export default function Post({id, data, contents, comments}){
     const content = parse(contents);
 
+    //this line is used for comments
+    let rows = "";
+    const [lines, setLines] = useState(rows);
+
+    //Component did mount
+    useEffect(async () => {
+        rows = "";
+        comments = await readDatabase()
+        for (let i = 0; i < comments.length; i++) {
+            rows = rows
+                + "<tr>"
+                + "<td>"
+                + comments[i].Date
+                + "</td>"
+                + "<td>"
+                + comments[i].Author
+                + "</td>"
+                + "<td>"
+                + comments[i].Content
+                + "</td>"
+                + "</tr>"
+        }
+
+        setLines(rows);
+
+    }, []);
+
     if(id == 'profile'){
         let workHistory = "<table><tbody>";
         const countOfRows = 5;
@@ -286,33 +313,10 @@ export default function Post({id, data, contents, comments}){
 
     }else if(id == 'communication'){
         
-        let rows = "";
+        
         const [defaultContents, setContents] = useState("Hello world");
         const [defaultAuthor, setAuthor] = useState("JYU");
-        const [lines, setLines] = useState(rows);
-
-        //Component did mount
-        useEffect(async () => {
-            rows = "";
-            comments = await readDatabase()
-            for (let i = 0; i < comments.length; i++) {
-                rows = rows
-                    + "<tr>"
-                    + "<td>"
-                    + comments[i].Date
-                    + "</td>"
-                    + "<td>"
-                    + comments[i].Author
-                    + "</td>"
-                    + "<td>"
-                    + comments[i].Content
-                    + "</td>"
-                    + "</tr>"
-            }
-
-            setLines(rows);
-
-        }, []);
+        
 
         const handleContentsChange = event => {
             event.preventDefault();
