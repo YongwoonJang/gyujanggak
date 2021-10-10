@@ -36,7 +36,6 @@ export async function getStaticProps({ params }) {
     const fullPath = "public/posts/" + params.id + ".md"
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
-    
     let comments = await readDatabase()
 
     return {
@@ -143,7 +142,7 @@ export default function Post({id, data, contents, comments}){
     }else if(id == 'profile-mgmt'){
         let rows = "";
         const countOfRows = 14;
-        for(let i = 14; i > 0; i--){
+        for(let i = countOfRows; i > 0; i--){
             rows = rows 
                     + "<tr>" 
                     + data.rows[i].split("|").map(x => "<td>"+x+"</td>").toString().replace(/,/g,"") 
@@ -291,6 +290,13 @@ export default function Post({id, data, contents, comments}){
         const [defaultContents, setContents] = useState("Hello world");
         const [defaultAuthor, setAuthor] = useState("JYU");
         
+        useEffect(async () => {
+
+            comments = await readDatabase()
+            console.log("useEffect");
+
+        }, []);
+
         let rows = "";
         for (let i = 0; i < comments.length; i++) {
             rows = rows
@@ -349,8 +355,6 @@ export default function Post({id, data, contents, comments}){
             alert("성공적으로 저장되었습니다.");
 
         }
-
-        
 
         return(
             <>
