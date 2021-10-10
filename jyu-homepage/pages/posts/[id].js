@@ -33,6 +33,8 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+    //It only process one time
+
     const fullPath = "public/posts/" + params.id + ".md"
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
@@ -78,9 +80,6 @@ async function readDatabase(){
         //console.log(`${doc.id} => ${doc.data()}`);
         data.push(doc.data());
     });
-
-    console.log("Data from database");
-    console.log(data);
 
     return data;
 }
@@ -229,7 +228,7 @@ export default function Post({id, data, contents, comments}){
                 uniformLocations: {
                     projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
                     modelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
-                    //uSampler: gl.getUniformLocation(program, 'uSampler'),
+                    
                 },
             };
 
@@ -291,6 +290,7 @@ export default function Post({id, data, contents, comments}){
         const [defaultContents, setContents] = useState("Hello world");
         const [defaultAuthor, setAuthor] = useState("JYU");
         
+        //init rows
         for (let i = 0; i < comments.length; i++) {
             rows = rows
                 + "<tr>"
@@ -307,6 +307,7 @@ export default function Post({id, data, contents, comments}){
         }
         const [lines, setLines] = useState(rows);
 
+        //Component did mount
         useEffect(async () => {
             rows = "";
             comments = await readDatabase()
