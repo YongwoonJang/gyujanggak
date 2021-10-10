@@ -87,6 +87,7 @@ export default function Post({id, data, contents}){
 
     //this line is used for comments
     let rows = "";
+    let comments = null;
     const [lines, setLines] = useState(rows);
 
     //Component did mount
