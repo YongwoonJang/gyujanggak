@@ -287,17 +287,10 @@ export default function Post({id, data, contents, comments}){
 
     }else if(id == 'communication'){
         
+        let rows = "";
         const [defaultContents, setContents] = useState("Hello world");
         const [defaultAuthor, setAuthor] = useState("JYU");
         
-        useEffect(async () => {
-
-            comments = await readDatabase()
-            console.log("useEffect");
-
-        }, []);
-
-        let rows = "";
         for (let i = 0; i < comments.length; i++) {
             rows = rows
                 + "<tr>"
@@ -312,8 +305,29 @@ export default function Post({id, data, contents, comments}){
                 + "</td>"
                 + "</tr>"
         }
-
         const [lines, setLines] = useState(rows);
+
+        useEffect(async () => {
+            rows = "";
+            comments = await readDatabase()
+            for (let i = 0; i < comments.length; i++) {
+                rows = rows
+                    + "<tr>"
+                    + "<td>"
+                    + comments[i].Date
+                    + "</td>"
+                    + "<td>"
+                    + comments[i].Author
+                    + "</td>"
+                    + "<td>"
+                    + comments[i].Content
+                    + "</td>"
+                    + "</tr>"
+            }
+
+            setLines(rows);
+
+        }, []);
 
         const handleContentsChange = event => {
             event.preventDefault();
