@@ -73,11 +73,15 @@ async function readDatabase(){
     const db = getFirestore();
     let data = [];
 
+    
     const querySnapshot = await getDocs(collection(db, "gyujanggak"));
     querySnapshot.forEach((doc) => {
         //console.log(`${doc.id} => ${doc.data()}`);
         data.push(doc.data());
     });
+
+    console.log("Data from database");
+    console.log(data);
 
     return data;
 }
