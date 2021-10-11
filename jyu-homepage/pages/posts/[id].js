@@ -110,10 +110,11 @@ export default function Post({id, data, contents, comments}){
             rows = rows
                 + "<tr>"
                 + "<td>"
-                + comments[i].Date
-                + "</td>"
-                + "<td>"
+                + "<span>"
                 + comments[i].Author
+                + "</span>"
+                + "<br/>"
+                + comments[i].Date
                 + "</td>"
                 + "<td>"
                 + comments[i].Content
@@ -356,10 +357,9 @@ export default function Post({id, data, contents, comments}){
                 rows = rows
                     + "<tr>"
                     + "<td>"
-                    + comments[i].Date
-                    + "</td>"
-                    + "<td>"
                     + comments[i].Author
+                    + "<br/>"
+                    + comments[i].Date
                     + "</td>"
                     + "<td>"
                     + comments[i].Content
@@ -378,7 +378,7 @@ export default function Post({id, data, contents, comments}){
                         {parse(data.title)}
                     </h1>
                     <div className={pageStyles.communicationList}>
-                        {parse(contents)} 
+                        {parse(contents.replace(/\n/g,"<br/>"))} 
                     </div>
                     <div>
                         <div className={pageStyles.communicationComments}>

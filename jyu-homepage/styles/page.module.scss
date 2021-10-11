@@ -286,8 +286,13 @@ $communication-a-link-color: rgb(166, 26, 26);
   text-align: center;
 }
 
+.communicationCommentsTable td:nth-child(1) span{
+  font-size: 1.1em;
+  font-family: "SBAggro M";
+}
+
+
 .communicationCommentsTable td:nth-child(2){
-  text-align: center;
   padding: 0px;
 }
 
