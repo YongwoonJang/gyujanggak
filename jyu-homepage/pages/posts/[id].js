@@ -19,8 +19,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from '../../components/firebase';
 
-import { addDoc, collection } from "firebase/firestore";
-import { getDocs } from "firebase/firestore";
+import { setDoc, addDoc, collection } from "firebase/firestore";
+import { doc, getDocs } from "firebase/firestore";
 
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
@@ -49,18 +49,30 @@ export async function getStaticProps({ params }) {
     }
 }
 
-async function insertDatabase(author, comments, dateTime){
+async function insertDatabase(author, comments){
     initializeApp(firebaseConfig);
     const db = getFirestore();
 
+    let today = new Date();
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    let time = today.getHours() + "시 " + today.getMinutes() + "분";
+    let dateTime = date + ' ' + time;
+    let seconds = today.getSeconds();
+    
+    let globalTime = today.getFullYear().toString()
+                        + (today.getMonth()+1).toString()
+                        + today.getDate().toString()
+                        + today.getHours().toString()
+                        + today.getMinutes().toString();
+    let newId = globalTime+seconds+doc(collection(db, "gyujanggak")).id;
+    
     try {
-        const docRef = await addDoc(collection(db, "gyujanggak"), {
+        await setDoc(doc(db, "gyujanggak", newId), {
             "Author": author,
             "Content": comments,
             "Date": dateTime,
         });
-
-        console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with ID: ", newId);
 
     } catch (e) {
         console.error("Error adding document: ", e);
@@ -94,7 +106,7 @@ export default function Post({id, data, contents, comments}){
     useEffect(async () => {
         rows = "";
         comments = await readDatabase()
-        for (let i = 0; i < comments.length; i++) {
+        for (let i = (comments.length-1); i >= 0 ; i--) {
             rows = rows
                 + "<tr>"
                 + "<td>"
@@ -331,15 +343,16 @@ export default function Post({id, data, contents, comments}){
 
         const registerComment = event => {
             event.preventDefault();
+            
             let today = new Date();
             let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             let time = today.getHours() + "시 " + today.getMinutes() + "분";
             let dateTime = date + ' ' + time;
 
-            insertDatabase(defaultAuthor, defaultContents, dateTime);
+            insertDatabase(defaultAuthor, defaultContents);
             comments.push({"Author" : defaultAuthor, "Content" : defaultContents, "Date" : dateTime});
             rows = "";
-            for (let i = 0; i < comments.length; i++) {
+            for (let i = (comments.length-1); i >= 0; i--) {
                 rows = rows
                     + "<tr>"
                     + "<td>"
