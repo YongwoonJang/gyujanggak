@@ -293,6 +293,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 
 .communicationCommentsTable td:nth-child(2){
+  text-align: center;
   padding: 0px;
 }
 
@@ -337,7 +338,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   width: 98%;
   padding: $height*(math.div(1,3));
   font-family: "SBAggro L";
-  color: grey;
+  color: black;
   font-size: 0.6em;
   
 }
@@ -349,6 +350,26 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .communicationRegButtonBox button {
+  width: 10%;
+  padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
+  text-align: center;
+  font-family: "SBAggro L";
+  font-size: 0.7em;
+  background-color: rgb(131, 131, 128);
+  color: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: $height*(math.div(1,2));
+}
+
+.communicationDelButtonBox {
+  width: 98%;
+  margin: auto;
+
+}
+
+.communicationDelButtonBox button {
   width: 10%;
   padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
   text-align: center;

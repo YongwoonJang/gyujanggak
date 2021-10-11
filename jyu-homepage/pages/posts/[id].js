@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
@@ -19,9 +19,10 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from '../../components/firebase';
 
-import { setDoc, addDoc, collection } from "firebase/firestore";
+import { setDoc, deleteDoc, collection } from "firebase/firestore";
 import { doc, getDocs } from "firebase/firestore";
 
+//Static function
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
 
@@ -49,6 +50,8 @@ export async function getStaticProps({ params }) {
     }
 }
 
+
+//Database handling
 async function insertDatabase(author, comments){
     initializeApp(firebaseConfig);
     const db = getFirestore();
@@ -85,28 +88,39 @@ async function readDatabase(){
     const db = getFirestore();
     let data = [];
 
-    
     const querySnapshot = await getDocs(collection(db, "gyujanggak"));
     querySnapshot.forEach((doc) => {
-        //console.log(`${doc.id} => ${doc.data()}`);
-        data.push(doc.data());
+        let tempObject = doc.data();
+        tempObject["docId"] = doc.id;
+        data.push(tempObject);
+        
     });
 
     return data;
 }
 
+async function deleteRow(delDocId){
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
+    if (delDocId != null){
+        console.log(delDocId);
+        await deleteDoc(doc(db, "gyujanggak", delDocId));
+
+    }
+
+}
+
+//Main function
 export default function Post({id, data, contents, comments}){
     const content = parse(contents);
-
     //this line is used for comments
     let rows = "";
     const [lines, setLines] = useState(rows);
 
-    //Component did mount
-    useEffect(async () => {
+    //table handlingfunction
+    const setTable = (comments) => {
         rows = "";
-        comments = await readDatabase()
-        for (let i = (comments.length-1); i >= 0 ; i--) {
+        for (let i = (comments.length - 1); i >= 0; i--) {
             rows = rows
                 + "<tr>"
                 + "<td>"
@@ -123,6 +137,13 @@ export default function Post({id, data, contents, comments}){
         }
 
         setLines(rows);
+    }
+
+    //Component did mount
+    useEffect(async () => {
+        rows = "";
+        comments = await readDatabase();
+        setTable(comments);
 
     }, []);
 
@@ -328,8 +349,58 @@ export default function Post({id, data, contents, comments}){
         
         const [defaultContents, setContents] = useState("Hello world");
         const [defaultAuthor, setAuthor] = useState("JYU");
-        
+        const [delDocId, setDelDocId] = useState(null);
+        const [delCommentIndex, setDelCommentIndex] = useState(null);
+        const commentTableRef = useRef(null);
+        const regButton = useRef(null);
+        const delButton = useRef(null);
+        const editCommentBox = useRef(null);
+        const editorBox = useRef(null);
+    
+        //Make for button 
+        useEffect(()=>{
+            let rowsOfCommentTable = commentTableRef.current.children[0].children;
+            regButton.current.style.display = "block";
+            delButton.current.style.display = "none";
+            
+            for(let i = 0; i < rowsOfCommentTable.length; i ++){
+                rowsOfCommentTable[i].addEventListener("click", function(){
+                    
+                    for(let j = 0; j< this.parentElement.children.length; j++){
+                        if(i != j){
+                            this.parentElement.children[j].style.backgroundColor = "";
+                            this.parentElement.children[j].style.color = "black";
+                        }
+                    }
 
+                    if (delCommentIndex == null || delCommentIndex != (rowsOfCommentTable.length - 1) - i){
+                        this.style.backgroundColor = "rgb(166, 26, 26)";
+                        this.style.color = "white";
+                        regButton.current.style.display = "none";
+                        delButton.current.style.display = "block";
+
+                        editCommentBox.current.children[0].value = comments[(rowsOfCommentTable.length-1)-i].Content;
+                        editorBox.current.children[0].value = comments[(rowsOfCommentTable.length-1) - i].Author;
+
+                        setDelDocId(comments[(rowsOfCommentTable.length-1) - i].docId);
+                        setDelCommentIndex((rowsOfCommentTable.length - 1) - i);
+
+                    } else {
+                        this.style.backgroundColor ="";
+                        this.style.color = "black"
+                        regButton.current.style.display = "block";
+                        delButton.current.style.display = "none";
+
+                        editCommentBox.current.children[0].value = "";
+                        editorBox.current.children[0].value = "";
+                    
+                    }
+                    
+                });
+            }
+
+        })
+    
         const handleContentsChange = event => {
             event.preventDefault();
             setContents(event.target.value);
@@ -342,32 +413,31 @@ export default function Post({id, data, contents, comments}){
 
         }
 
-        const registerComment = event => {
+        const regDelComment = event => {
             event.preventDefault();
             
-            let today = new Date();
-            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            let time = today.getHours() + "시 " + today.getMinutes() + "분";
-            let dateTime = date + ' ' + time;
+            if (regButton.current.style.display != "none"){
+                let today = new Date();
+                let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                let time = today.getHours() + "시 " + today.getMinutes() + "분";
+                let dateTime = date + ' ' + time;
 
-            insertDatabase(defaultAuthor, defaultContents);
-            comments.push({"Author" : defaultAuthor, "Content" : defaultContents, "Date" : dateTime});
-            rows = "";
-            for (let i = (comments.length-1); i >= 0; i--) {
-                rows = rows
-                    + "<tr>"
-                    + "<td>"
-                    + comments[i].Author
-                    + "<br/>"
-                    + comments[i].Date
-                    + "</td>"
-                    + "<td>"
-                    + comments[i].Content
-                    + "</td>"
-                    + "</tr>"
+                insertDatabase(defaultAuthor, defaultContents);
+                comments.push({"Author" : defaultAuthor, "Content" : defaultContents, "Date" : dateTime});
+                setTable(comments);
+                alert("성공적으로 저장되었습니다.");
+
+            }else{
+                
+                if(delCommentIndex != null){
+                    comments.splice(delCommentIndex,1);
+                }
+                deleteRow(delDocId);
+                setTable(comments);
+                alert("성공적으로 삭제되었습니다.");
+                setDelCommentIndex(null);
+                
             }
-            setLines(rows);
-            alert("성공적으로 저장되었습니다.");
 
         }
 
@@ -382,25 +452,38 @@ export default function Post({id, data, contents, comments}){
                     </div>
                     <div>
                         <div className={pageStyles.communicationComments}>
-                            Comments
+                            Books
                         </div>
                         <table className={pageStyles.communicationCommentsTable}>
+                            <tbody>
+                                "To-be Inserted"
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div className={pageStyles.communicationComments}>
+                            Comments
+                        </div>
+                        <table ref={commentTableRef} className={pageStyles.communicationCommentsTable}>
                             <tbody>
                                 {parse(lines)}
                             </tbody>
                         </table>
                     </div>
                     <div className={pageStyles.communicationRegForm}>
-                        <form onSubmit={registerComment}>
+                        <form onSubmit={regDelComment}>
                             <div className={pageStyles.communicationRegComment}>
-                                <div className={pageStyles.communicationRegCommentBox}>
+                                <div ref={editCommentBox} className={pageStyles.communicationRegCommentBox}>
                                     <textarea id="comment" placeholder={defaultContents} onChange={handleContentsChange}/>
                                 </div>
-                                <div className={pageStyles.communicationAuthorBox}>
+                                <div ref={editorBox} className={pageStyles.communicationAuthorBox}>
                                     <input id="author" placeholder={defaultAuthor} onChange={handleAuthorChange} />
                                 </div>
-                                <div className={pageStyles.communicationRegButtonBox}>
+                                <div ref={regButton} className={pageStyles.communicationRegButtonBox}>
                                     <button type="submit">게시  하기</button>
+                                </div>
+                                <div ref={delButton} className={pageStyles.communicationDelButtonBox}>
+                                    <button type="submit">삭제  하기</button>
                                 </div>
                             </div>
                         </form>
