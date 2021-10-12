@@ -366,7 +366,8 @@ $communication-a-link-color: rgb(166, 26, 26);
 .communicationDelButtonBox {
   width: 98%;
   margin: auto;
-
+  //init setting
+  display: none;
 }
 
 .communicationDelButtonBox button {

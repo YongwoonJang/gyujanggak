@@ -103,9 +103,8 @@ async function deleteRow(delDocId){
     initializeApp(firebaseConfig);
     const db = getFirestore();
     if (delDocId != null){
-        console.log(delDocId);
         await deleteDoc(doc(db, "gyujanggak", delDocId));
-
+        
     }
 
 }
@@ -144,6 +143,7 @@ export default function Post({id, data, contents, comments}){
         rows = "";
         comments = await readDatabase();
         setTable(comments);
+        
 
     }, []);
 
@@ -351,6 +351,7 @@ export default function Post({id, data, contents, comments}){
         const [defaultAuthor, setAuthor] = useState("JYU");
         const [delDocId, setDelDocId] = useState(null);
         const [delCommentIndex, setDelCommentIndex] = useState(null);
+        
         const commentTableRef = useRef(null);
         const regButton = useRef(null);
         const delButton = useRef(null);
@@ -360,40 +361,50 @@ export default function Post({id, data, contents, comments}){
         //Make for button 
         useEffect(()=>{
             let rowsOfCommentTable = commentTableRef.current.children[0].children;
-            regButton.current.style.display = "block";
-            delButton.current.style.display = "none";
             
             for(let i = 0; i < rowsOfCommentTable.length; i ++){
                 rowsOfCommentTable[i].addEventListener("click", function(){
-                    
-                    for(let j = 0; j< this.parentElement.children.length; j++){
-                        if(i != j){
-                            this.parentElement.children[j].style.backgroundColor = "";
-                            this.parentElement.children[j].style.color = "black";
-                        }
-                    }
+        
+                    if (delCommentIndex == (rowsOfCommentTable.length - 1) - i) {
+                        rowsOfCommentTable[i].style.backgroundColor = "";
+                        rowsOfCommentTable[i].style.color = "black";
 
-                    if (delCommentIndex == null || delCommentIndex != (rowsOfCommentTable.length - 1) - i){
-                        this.style.backgroundColor = "rgb(166, 26, 26)";
-                        this.style.color = "white";
-                        regButton.current.style.display = "none";
-                        delButton.current.style.display = "block";
-
-                        editCommentBox.current.children[0].value = comments[(rowsOfCommentTable.length-1)-i].Content;
-                        editorBox.current.children[0].value = comments[(rowsOfCommentTable.length-1) - i].Author;
-
-                        setDelDocId(comments[(rowsOfCommentTable.length-1) - i].docId);
-                        setDelCommentIndex((rowsOfCommentTable.length - 1) - i);
-
-                    } else {
-                        this.style.backgroundColor ="";
-                        this.style.color = "black"
                         regButton.current.style.display = "block";
                         delButton.current.style.display = "none";
-
+                        
                         editCommentBox.current.children[0].value = "";
                         editorBox.current.children[0].value = "";
-                    
+
+                        setDelDocId(null);
+                        setDelCommentIndex(null);
+
+                    }else{
+                        for(let j = 0; j< rowsOfCommentTable.length; j++){
+                            if((i != j) && (delCommentIndex != null)){
+                                rowsOfCommentTable[j].style.backgroundColor = "";
+                                rowsOfCommentTable[j].style.color = "black";
+
+                                regButton.current.style.display = "block";
+                                delButton.current.style.display = "none";
+                                
+                                editCommentBox.current.children[0].value = "";
+                                editorBox.current.children[0].value = "";
+                            }
+                        }
+
+                        if (delCommentIndex == null || delCommentIndex != (rowsOfCommentTable.length - 1) - i){
+                            rowsOfCommentTable[i].style.backgroundColor = "rgb(166, 26, 26)";
+                            rowsOfCommentTable[i].style.color = "white";
+                            regButton.current.style.display = "none";
+                            delButton.current.style.display = "block";
+
+                            editCommentBox.current.children[0].value = comments[(rowsOfCommentTable.length-1)-i].Content;
+                            editorBox.current.children[0].value = comments[(rowsOfCommentTable.length-1) - i].Author;
+
+                            setDelDocId(comments[(rowsOfCommentTable.length-1) - i].docId);
+                            setDelCommentIndex((rowsOfCommentTable.length - 1) - i);
+
+                        } 
                     }
                     
                 });
@@ -431,11 +442,14 @@ export default function Post({id, data, contents, comments}){
                 
                 if(delCommentIndex != null){
                     comments.splice(delCommentIndex,1);
+                    setTable(comments);
                 }
+
                 deleteRow(delDocId);
-                setTable(comments);
+                
                 alert("성공적으로 삭제되었습니다.");
                 setDelCommentIndex(null);
+                setDelDocId(null);
                 
             }
 
