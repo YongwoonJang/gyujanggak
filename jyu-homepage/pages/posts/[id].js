@@ -266,6 +266,8 @@ export default function Post({id, data, contents, comments}){
 
             if (delDocIdRef.current.innerHTML != "") {
                 for (let i = 0; comments.length; i++) {
+                    console.log("button for delete");
+                    console.log(comments);
                     if (comments[i].docId == delDocIdRef.current.innerHTML) {
                         comments.splice(i, 1);
                         break;
