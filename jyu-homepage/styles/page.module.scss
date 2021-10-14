@@ -598,6 +598,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   .communicationRegButtonBox button {
     width: 20%;
+    height: 2.5em;
     padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
     text-align: center;
     font-family: "SBAggro L";
@@ -619,6 +620,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
     .communicationDelButtonBox button {
       width: 20%;
+      height: 2.5em;
       padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
       text-align: center;
       font-family: "SBAggro L";
