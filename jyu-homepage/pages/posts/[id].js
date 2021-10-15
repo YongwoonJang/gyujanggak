@@ -194,7 +194,7 @@ export default function Post({id, data, contents, comments}){
                 
             }
         }));
-    }, []);
+    }, [comments]);
 
     if(id == 'profile'){
         let workHistory = "<table><tbody>";
