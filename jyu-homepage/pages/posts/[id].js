@@ -209,12 +209,14 @@ export default function Post({id, data, contents, globalComments}){
 
     //Component did mount
     useEffect(() => {
-        commentTableRef.current.querySelectorAll('tr').forEach(e => e.addEventListener("click", settingButton));
-        return function cleanup() {
-            console.log("cleaned up");
-            commentTableRef.current.querySelectorAll('tr').forEach(e => e.removeEventListener("click", settingButton));
+        if(commentTableRef.current != null){
+            commentTableRef.current.querySelectorAll('tr').forEach(e => e.addEventListener("click", settingButton));
+            return function cleanup() {
+                console.log("cleaned up");
+                commentTableRef.current.querySelectorAll('tr').forEach(e => e.removeEventListener("click", settingButton));
 
-        };
+            };
+        }
     }, [lines]);
 
     if (id == 'communication') {
