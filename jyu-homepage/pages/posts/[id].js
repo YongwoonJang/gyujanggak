@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
@@ -116,7 +116,7 @@ export default function Post({id, data, contents, globalComments}){
     }
 
     //Database handling
-    async function insertDatabase(author, contents) {
+    async function insertRow(author, contents) {
         initializeApp(firebaseConfig);
         const db = getFirestore();
 
@@ -168,57 +168,56 @@ export default function Post({id, data, contents, globalComments}){
         setComments(await readDatabase());
     }
 
+    const settingButton = (e) => {
+        if (delDocIdRef.current.innerHTML == e.currentTarget.children[2].innerHTML) {
+            e.currentTarget.style.backgroundColor = "white";
+            e.currentTarget.style.color = "black";
+            regButton.current.style.display = "block";
+            delButton.current.style.display = "none";
+            delDocIdRef.current.innerHTML = "";
+
+        } else if (delDocIdRef.current.innerHTML != e.currentTarget.children[2].innerHTML) {
+            commentTableRef.current.querySelectorAll('tr').forEach(tr => { tr.style.backgroundColor = "white"; tr.style.color = "black" })
+            e.currentTarget.style.backgroundColor = "rgb(166, 26, 26)";
+            e.currentTarget.style.color = "white";
+            regButton.current.style.display = "none";
+            delButton.current.style.display = "block";
+            delDocIdRef.current.innerHTML = e.currentTarget.children[2].innerHTML;
+
+        }
+
+        if (delDocIdRef.current.innerHTML != "") {
+            editCommentBox.current.children[0].value = e.currentTarget.children[1].innerHTML;
+            editorBox.current.children[0].value = e.currentTarget.children[0].children[0].innerHTML;
+
+        } else {
+            editCommentBox.current.children[0].value = "";
+            editorBox.current.children[0].value = "";
+
+        }
+    };
+
     useEffect(async () => {
-        console.log("init");
         setComments(await readDatabase());
 
     },[]);
 
     useEffect(() => {
-        console.log("setTable");
         setTable(comments);
         
     },[comments]);
 
     //Component did mount
     useEffect(() => {
-        console.log("setButton actions");
-        commentTableRef.current.querySelectorAll('tr').forEach(e => e.addEventListener("click", function settingButton() {
-            console.log("button selected");
-            console.log(delDocIdRef.current.innerHTML);
-            console.log(this.children[2].innerHTML);
+        commentTableRef.current.querySelectorAll('tr').forEach(e => e.addEventListener("click", settingButton));
+        return function cleanup() {
+            console.log("cleaned up");
+            commentTableRef.current.querySelectorAll('tr').forEach(e => e.removeEventListener("click", settingButton));
 
-            if (delDocIdRef.current.innerHTML == this.children[2].innerHTML) {
-                this.style.backgroundColor = "white";
-                this.style.color = "black";
-                regButton.current.style.display = "block";
-                delButton.current.style.display = "none";
-                delDocIdRef.current.innerHTML = "";
-
-            } else if (delDocIdRef.current.innerHTML != this.children[2].innerHTML) {
-                commentTableRef.current.querySelectorAll('tr').forEach(tr => { tr.style.backgroundColor = "white"; tr.style.color = "black" })
-                this.style.backgroundColor = "rgb(166, 26, 26)";
-                this.style.color = "white";
-                regButton.current.style.display = "none";
-                delButton.current.style.display = "block";
-                delDocIdRef.current.innerHTML = this.children[2].innerHTML;
-            }
-
-            if (delDocIdRef.current.innerHTML != ""){
-                editCommentBox.current.children[0].value = this.children[1].innerHTML;
-                editorBox.current.children[0].value = this.children[0].children[0].innerHTML;
-
-            }else{
-                editCommentBox.current.children[0].value = "";
-                editorBox.current.children[0].value = "";
-                
-            }
-        }));
-
+        };
     }, [lines]);
 
     if (id == 'communication') {
-
         const handleContentsChange = event => {
             event.preventDefault();
             setContents(event.target.value);
@@ -239,7 +238,7 @@ export default function Post({id, data, contents, globalComments}){
                 alert("성공적으로 삭제되었습니다.");
 
             } else {
-                insertDatabase(defaultAuthor, defaultContents);
+                insertRow(defaultAuthor, defaultContents);
                 alert("성공적으로 저장되었습니다.");
 
             }
