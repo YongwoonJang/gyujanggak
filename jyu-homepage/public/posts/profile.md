@@ -15,7 +15,7 @@ workExperience:
         "Summary": "영업전산 프로젝트 계약 관리"
         "Description": "프로젝트 계약 관리 (인력, 산출물, 기성처리, RFP, RFI)"
         "Period": "4Y"
-        "URL": "/workExperience/2"
+        "URL": "/workExperience/20160101Rater.md"
     3:
         "Summary": "과금 결제 플랫폼 운영 관리"
         "Description": "과금 결제 플랫폼 운영인력 관리 (스케줄, QA)"

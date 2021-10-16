@@ -211,12 +211,14 @@ export default function Post({id, data, contents, globalComments}){
     useEffect(() => {
         if(commentTableRef.current != null){
             commentTableRef.current.querySelectorAll('tr').forEach(e => e.addEventListener("click", settingButton));
+        }
             return function cleanup() {
-                console.log("cleaned up");
-                commentTableRef.current.querySelectorAll('tr').forEach(e => e.removeEventListener("click", settingButton));
+                if (commentTableRef.current != null) {    
+                    console.log("cleaned up");
+                    commentTableRef.current.querySelectorAll('tr').forEach(e => e.removeEventListener("click", settingButton));
+                }
 
             };
-        }
     }, [lines]);
 
     if (id == 'communication') {
@@ -251,9 +253,11 @@ export default function Post({id, data, contents, globalComments}){
                 tr.style.color = "black";
                 regButton.current.style.display = "block";
                 delButton.current.style.display = "none";
-                delDocIdRef.current.innerHTML = "";
-
             })
+
+            delDocIdRef.current.innerHTML = "";
+            editCommentBox.current.children[0].value = "";
+            editorBox.current.children[0].value = "";
 
 
         }
