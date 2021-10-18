@@ -275,11 +275,19 @@ export default function Post({id, data, contents, globalComments}){
                         <div className={pageStyles.communicationComments}>
                             Books
                         </div>
-                        <table className={pageStyles.communicationCommentsTable}>
-                            <tbody>
-                                "To-be Inserted"
-                            </tbody>
-                        </table>
+                        <div className={pageStyles.bookTitleBox}>
+                            <ul className={pageStyles.bookTitleList}>
+                                {data.books.map(({id, title, url, date, author }) => (
+                                    <>
+                                        <li key={id}>
+                                            <Link href={url}>
+                                                <a>{title}&nbsp;&nbsp;({date},&nbsp;{author})</a>
+                                            </Link>
+                                        </li>
+                                    </>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                     <div>
                         <div className={pageStyles.communicationComments}>

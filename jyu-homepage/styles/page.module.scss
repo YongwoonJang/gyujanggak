@@ -384,6 +384,150 @@ $communication-a-link-color: rgb(166, 26, 26);
   margin-bottom: $height*(math.div(1,2));
 }
 
+
+.bookTitleBox {
+  
+  margin-bottom: $height*3.5;
+
+}
+
+.bookTitleList{
+  list-style: none;
+  padding-left: 0px;
+  display:block;
+  font-size: 0.8em;
+  font-family: "SBAggro L";
+  line-height: 3.0em;
+}
+
+.bookTitleList a{
+  color: black;
+}
+
+.Comments{
+  border-color:  rgb(205, 205, 205); 
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  width: 95%;
+  margin-top: $height*3;
+}
+
+.CommentsTable{
+  border-collapse : collapse;
+  margin: $height $height;
+  width: 90%;
+}
+
+.CommentsTable td{
+  padding: $height;
+  width: auto;
+  font-size: 0.6em;
+  white-space: nowrap;
+  font-family: "SBAggro L";
+}
+
+.CommentsTable td:nth-child(1){
+  text-align: center;
+}
+
+.CommentsTable td:nth-child(1) span{
+  font-size: 1.1em;
+  font-family: "SBAggro M";
+}
+
+
+.CommentsTable td:nth-child(2){
+  text-align: center;
+  padding: 0px;
+}
+
+.RegForm{
+  margin-bottom: $height*2;
+}
+
+.RegComment{
+  width: 90%;
+  margin: auto;
+  background-color:rgb(227, 227, 227);
+  
+
+}
+
+.RegCommentBox {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0;
+  
+}
+
+.RegCommentBox textarea  {
+  margin-top: $height;
+  margin-bottom: 0;
+  resize: none;
+  padding: $height*(math.div(1,3));
+  font-family: "SBAggro L";
+  font-size: 0.6em;
+  width: 98%;
+  height: 200px;
+  
+}
+
+.AuthorBox {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: $height;
+}
+
+.AuthorBox input {
+  width: 98%;
+  padding: $height*(math.div(1,3));
+  font-family: "SBAggro L";
+  color: black;
+  font-size: 0.6em;
+  
+}
+
+.RegButtonBox {
+  width: 98%;
+  margin: auto;
+
+}
+
+.RegButtonBox button {
+  width: 10%;
+  padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
+  text-align: center;
+  font-family: "SBAggro L";
+  font-size: 0.7em;
+  background-color: rgb(131, 131, 128);
+  color: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: $height*(math.div(1,2));
+}
+
+.DelButtonBox {
+  width: 98%;
+  margin: auto;
+  //init setting
+  display: none;
+}
+
+.DelButtonBox button {
+  width: 10%;
+  padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
+  text-align: center;
+  font-family: "SBAggro L";
+  font-size: 0.7em;
+  background-color: rgb(131, 131, 128);
+  color: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: $height*(math.div(1,2));
+}
+
 /* average mobile */
 @media screen and (max-width: $breakpoint-mobile) {  
   .copyRight{
