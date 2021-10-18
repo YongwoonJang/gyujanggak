@@ -6,8 +6,6 @@ import mainPageStyles from '/styles/mainPage.module.css'
 
 export default function Home() {
   
-  const name = 'Yongwoon Jang Homepage'
-
   const allPostsData = [
     { "id": "yongwoonJang", "title": "개인설명", "url": "/posts/profile" },
     { "id": "politics", "title":"정치", "url": "/posts/politics"},
