@@ -9,6 +9,7 @@ import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
 import profileDivTableStyles from '/styles/profileTable.module.scss'
 
+import CommentTable from '../../components/commentTable'
 import CopyRight from '../../components/copyRight'
 
 import React, { useEffect } from 'react'
@@ -68,11 +69,7 @@ export async function getStaticProps({ params }) {
 
 //Main function
 export default function workExperiences({ data, contents }) {
-    const commentTableRef = useRef(null);
-    const editCommentBox = useRef(null);
-    const editorBox = useRef(null);
-    const regButton = useRef(null);
-    const delButton = useRef(null);
+    
 
     return (
         <>
@@ -84,36 +81,8 @@ export default function workExperiences({ data, contents }) {
                     {parse(contents.replace(/\n/g, "<br/>"))}
                 </div>
             </div>
-            {/* 댓글 기능 */}
-            {/* <div>
-                <div className={pageStyles.Comments}>
-                    Comments
-                </div>
-                <table ref={commentTableRef} className={pageStyles.CommentsTable}>
-                    <tbody>
-                        {parse(lines)}
-                    </tbody>
-                </table>
-            </div>
-            <div className={pageStyles.RegForm}>
-                <form onSubmit={regDelComment}>
-                    <div className={pageStyles.RegComment}>
-                        <div ref={editCommentBox} className={pageStyles.RegCommentBox}>
-                            <textarea id="comment" placeholder={defaultContents} onChange={handleContentsChange} />
-                        </div>
-                        <div ref={editorBox} className={pageStyles.AuthorBox}>
-                            <input id="author" placeholder={defaultAuthor} onChange={handleAuthorChange} />
-                        </div>
-                        <div ref={regButton} className={pageStyles.RegButtonBox}>
-                            <button type="submit">게시  하기</button>
-                        </div>
-                        <div ref={delButton} className={pageStyles.DelButtonBox}>
-                            <button type="submit">삭제  하기</button>
-                        </div>
-                    </div>
-                    <div ref={delDocIdRef} style={{ display: "none" }}></div>
-                </form>
-            </div> */}
+            {/* <CommentTable title={data.title} /> */}
+            <CopyRight />
         </>
     )
 }
