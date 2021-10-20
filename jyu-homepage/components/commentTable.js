@@ -1,39 +1,86 @@
 
-import {useRef} from 'react';
+import { getDocs } from '@firebase/firestore';
+import {useEffect, useState} from 'react';
+import parse from 'html-react-parser';
 
-export default function CommentTable(){
+import pageStyles from '/styles/page.module.scss'
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection } from "firebase/firestore";
+import { firebaseConfig } from './firebase';
+
+
+async function readDatabase(name) {
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
+    let data = [];
+
+    const querySnapshot = await getDocs(collection(db, name));
+    querySnapshot.forEach((doc) => {
+        let tempObject = doc.data();
+        tempObject["docId"] = doc.id;
+        data.push(tempObject);
+    })
+
+    return data;
+
+}
+
+export default function CommentTable(props){
+    
+    const [lines, setLines] = useState("");
+    const [history, setHistory] = useState([{"dateLoaned":"Loading","dateReturned":"Loading","nameOfBorrower":"Loading"}]);
+
+    const setTable = (localHistory) => {
+        if (localHistory != null) {
+            let rows = "";
+            for (let i = (localHistory.length - 1); i >= 0; i--) {
+                rows = rows
+                    + "<tr>"
+                    + "<td>"
+                    + localHistory[i].dateLoaned
+                    + "</td>"
+                    + "<td>"
+                    + localHistory[i].dateReturned
+                    + "</td>"
+                    + "<td>"
+                    + localHistory[i].nameOfBorrower
+                    + "</td>"
+                    + "<td style='display:none'>"
+                    + localHistory[i].docId
+                    + "</td>"
+                    + "</tr>"
+            }
+
+            setLines(rows);
+        }
+    }
+
+    useEffect(async () => {
+        setHistory(await readDatabase(props.name));
+    },[]);
+
+    useEffect(() => {
+        setTable(history);
+
+    },[history])
+
     return (
         <>
-         {/* 댓글 기능 */}
-            {/* <div>
-                <div className={pageStyles.Comments}>
-                    Comments
+            <div>
+                <div className={pageStyles.history}>
+                    History
                 </div>
-                <table ref={commentTableRef} className={pageStyles.CommentsTable}>
+                <table className={pageStyles.historyTable}>
+                    <thead>
+                        <th>대출일</th>
+                        <th>반납일</th>
+                        <th>빌린사람</th>
+                    </thead>
                     <tbody>
                         {parse(lines)}
                     </tbody>
                 </table>
             </div>
-            <div className={pageStyles.RegForm}>
-                <form onSubmit={regDelComment}>
-                    <div className={pageStyles.RegComment}>
-                        <div ref={editCommentBox} className={pageStyles.RegCommentBox}>
-                            <textarea id="comment" placeholder={defaultContents} onChange={handleContentsChange} />
-                        </div>
-                        <div ref={editorBox} className={pageStyles.AuthorBox}>
-                            <input id="author" placeholder={defaultAuthor} onChange={handleAuthorChange} />
-                        </div>
-                        <div ref={regButton} className={pageStyles.RegButtonBox}>
-                            <button type="submit">게시  하기</button>
-                        </div>
-                        <div ref={delButton} className={pageStyles.DelButtonBox}>
-                            <button type="submit">삭제  하기</button>
-                        </div>
-                    </div>
-                    <div ref={delDocIdRef} style={{ display: "none" }}></div>
-                </form>
-            </div> */}
         </>
     )
 

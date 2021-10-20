@@ -13,7 +13,16 @@ books:
             "author":"박보나",
             "date":"2019년 3월",
             "url":"/books/WhenAttitudesBecomeArtwork"
+        },
+        {
+            "id":"RembrandtLeClairL'obscur",
+            "title":"렘브란트, 빛과 혼의 화가",
+            "category":"예술",
+            "author":"파스칼 보나푸",
+            "date":"1996년 5월",
+            "url":"/books/RembrandtLeClairL'obscur"
         }
+
     ]
 ---
 

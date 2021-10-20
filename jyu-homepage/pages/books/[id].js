@@ -1,39 +1,14 @@
 import fs from 'fs'
-
-import { useState, useRef, useCallback } from 'react'
-
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
-
-import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
-import profileDivTableStyles from '/styles/profileTable.module.scss'
-
-import CommentTable from '../../components/commentTable'
 import CopyRight from '../../components/copyRight'
-
-import React, { useEffect } from 'react'
-import { vsSource, fsSource, createShader, createProgram, initBuffer, render } from '/components/drawingTheScene'
-import { drawScene } from '../../components/drawingTheScene'
-
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { firebaseConfigForBook } from '../../components/firebase';
-
-import { setDoc, deleteDoc, collection } from "firebase/firestore";
-import { doc, getDocs } from "firebase/firestore";
-
-async function readDatabase() {
-    initializeApp(firebaseConfig);
-    const db = getFirestore();
-
-
-}
+import CommentTable from '../../components/commentTable'
 
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["WhenAttitudesBecomeArtwork"]
+    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur"]
 
     const params = postNames.map((postName) => ({
         params: { id: postName }
@@ -68,20 +43,19 @@ export async function getStaticProps({ params }) {
 
 
 //Main function
-export default function workExperiences({ data, contents }) {
+export default function books({ data, contents }) {
     
-
     return (
         <>
             <div className={pageStyles.page}>
                 <h1 className={pageStyles.communicationTitle}>
                     {parse(data.title)}
                 </h1>
-                <div className={pageStyles.communicationList}>
+                <div className={pageStyles.opinion}>
                     {parse(contents.replace(/\n/g, "<br/>"))}
                 </div>
+                <CommentTable name={data.title}/>
             </div>
-            {/* <CommentTable title={data.title} /> */}
             <CopyRight />
         </>
     )
