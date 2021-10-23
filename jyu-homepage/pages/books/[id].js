@@ -56,7 +56,9 @@ export default function books({ data, contents }) {
                 </div>
                 <CommentTable name={data.title}/>
             </div>
-            <CopyRight />
+            <div>
+                <CopyRight />
+            </div>
         </>
     )
 }

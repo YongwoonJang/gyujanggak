@@ -1,13 +1,12 @@
 import fs from 'fs'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef} from 'react'
 
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
 
 import Link from 'next/link'
 import pageStyles from '/styles/page.module.scss'
-import profileDivTableStyles from '/styles/profileTable.module.scss'
 
 import CopyRight from '../../components/copyRight'
 
@@ -41,12 +40,15 @@ async function readDatabase() {
 //Static function
 export function getStaticPaths() {
     const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
-
     const params = postNames.map((postName) => ({
         params: { id: postName }
-    }))
 
-    return { paths: params, fallback: 'blocking' }
+    }))
+    return { 
+        paths: params, 
+        fallback: 'blocking' 
+    }
+
 }
 
 export async function getStaticProps({ params }) {
@@ -66,13 +68,15 @@ export async function getStaticProps({ params }) {
     }
 }
 
-
 //Main function
 export default function Post({id, data, contents, globalComments}){
+    //Variables for contents area
     const content = parse(contents);
     
-    //this line is used for comments
+    //Variables for comments area
     const [lines, setLines] = useState("");
+
+    //Variables for dialogue area
     const [defaultContents, setContents] = useState("Hello world");
     const [defaultAuthor, setAuthor] = useState("JYU");
     const [comments, setComments] = useState(globalComments);
@@ -80,15 +84,12 @@ export default function Post({id, data, contents, globalComments}){
     const commentTableRef = useRef(null);
     const delDocIdRef = useRef(null);
     
-
-    //Editor area
+    //References for editor area
     const editCommentBox = useRef(null);
     const editorBox = useRef(null);
     const regButton = useRef(null);
     const delButton = useRef(null);
     
-
-    //table handlingfunction
     const setTable = (localComments) => {
         if(localComments != null){
             let rows = "";
@@ -115,7 +116,7 @@ export default function Post({id, data, contents, globalComments}){
         }
     }
 
-    //Database handling
+    //Insert to database and update comments array.
     async function insertRow(author, contents) {
         initializeApp(firebaseConfig);
         const db = getFirestore();
@@ -145,10 +146,11 @@ export default function Post({id, data, contents, globalComments}){
             console.error("Error adding document: ", e);
 
         }
-        //setComments([...comments, { "Author": author, "Content": contents, "Date": dateTime, "docId": newId }])
+        
         setComments(await readDatabase());
     }
 
+    //Delete from database and update comments array
     async function deleteRow(localDelDocId) {
         initializeApp(firebaseConfig);
         const db = getFirestore();
@@ -156,7 +158,6 @@ export default function Post({id, data, contents, globalComments}){
         if (localDelDocId != null) {
             try {
                 await deleteDoc(doc(db, "gyujanggak", localDelDocId));
-                //setComments(comments.filter(items => items.docId != localDelDocId));
                 console.log("Document delete with ID: ", localDelDocId);
 
             } catch (e) {
@@ -211,17 +212,191 @@ export default function Post({id, data, contents, globalComments}){
     useEffect(() => {
         if(commentTableRef.current != null){
             commentTableRef.current.querySelectorAll('tr').forEach(e => e.addEventListener("click", settingButton));
+
         }
             return function cleanup() {
                 if (commentTableRef.current != null) {    
-                    console.log("cleaned up");
                     commentTableRef.current.querySelectorAll('tr').forEach(e => e.removeEventListener("click", settingButton));
-                }
 
+                }
             };
     }, [lines]);
 
-    if (id == 'communication') {
+    if(id == 'profile'){
+        let workHistory = "<table><tbody>";
+        const countOfRows = 5;
+        for(let i = countOfRows; i > 0; i--){
+            workHistory = workHistory 
+                        + "<tr><td>"
+                        + (countOfRows+1-i).toString()+". "+"<a href='" + data.workExperience[i]["URL"] + "'>"
+                        + data.workExperience[i]["Summary"]
+                        + "</a>("
+                        + data.workExperience[i]["Period"]
+                        + ")</td></tr>"
+                        + "<tr style='font-size: 0.9em; color: rgb(149, 143, 143)'><td>"
+                        + "&nbsp&nbsp" + data.workExperience[i]["Description"]
+                        + "</td></tr>"
+        }
+        workHistory = parse(workHistory+"</tbody></table>");
+
+        return (
+            <>
+                <div className={pageStyles.page}>
+                    <h1 className={pageStyles.profileTitle}>
+                        {parse(data.title)}
+                    </h1>
+                    <div className={pageStyles.profileImage}>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className={pageStyles.profileMotto}>
+                                        &nbsp;&nbsp;사소한 생활의 문제를 해결해주는 <br/>
+                                        &nbsp;&nbsp;기획자, Artist, programmer입니다.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img layout="intrinsic"  width="400px" height="300px" src={"/images/profileImage.jpeg"} alt="My profile" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className={pageStyles.profileWorkBox}>
+                        <div>
+                            {content}
+                        </div>
+                        <div>
+                            {workHistory}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <CopyRight />
+                </div>
+            </>
+        )
+
+    } else if(id == 'politics'){
+        return (
+            <>
+                <div className={pageStyles.page}>
+                    <h1 className={pageStyles.politicsTitle}>
+                        {parse(data.title)}
+                    </h1>
+                    <div className={pageStyles.politicsMotto}>
+                        {content}
+                    </div>
+                </div>
+                <div className={pageStyles.politicsTitleBox}>
+                    <ul className={pageStyles.politicsTitleList}>
+                        {data.politicsList.map(({ id, title, url, description }) => (
+                            <>
+                                <li key={id}>
+                                    <Link href={url}>
+                                        <a>{title}</a>
+                                    </Link>
+                                    &nbsp;:&nbsp;
+                                    <span>
+                                        {description}
+                                    </span>
+                                </li>
+                            </>
+                        ))}
+                    </ul>
+                </div>
+                <div>
+                    <CopyRight />
+                </div>
+            </>
+        )
+
+    }else if(id == 'hobby'){
+        let contents = "";
+        
+        //WebGL Part
+        useEffect(() => {
+            // Init variables
+            const canvas = document.querySelector('#glCanvas');
+
+            // Create Shader program
+            const gl = canvas.getContext("webgl");
+            if (gl == null) {
+                alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+            }
+            var vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+            var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+            var program = createProgram(gl, vertexShader, fragmentShader);
+
+            //Setting the program 
+            const programInfo = {
+                program: program,
+                attribLocations: {
+                    vertexPosition: gl.getAttribLocation(program, 'aVertexPosition'),
+                    textureCoord: gl.getAttribLocation(program, 'aTextureCoord'),
+                },
+                uniformLocations: {
+                    projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
+                    modelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
+                    
+                },
+            };
+
+            // Setting the buffer
+            const buffer = initBuffer(gl);
+
+            // draw scene
+            drawScene(gl, programInfo, buffer);
+            requestAnimationFrame(render);
+
+        })
+
+        for(let i = 0; i < Object.keys(data.hobbyList).length; i++){
+            
+            let category = Object.keys(data.hobbyList)[i];
+            contents = contents + "<li key='"+category+"'><span>" + category + "</span><br/>";
+            contents = contents + "Skill : " + data.hobbyList[category]["Skill"] + "<br/>";
+            for(let j = 1; j<Object.keys(data.hobbyList[category]).length; j++){
+                contents = contents 
+                            + "Experience" 
+                            + j.toString()
+                            + " : " 
+                            + "<a href='" + data.hobbyList[category][j]["URL"] + "'>" 
+                            + data.hobbyList[category][j]["Title"] 
+                            + "</a><br/>";
+            }
+            contents = contents + "</li><br/>";
+                        
+        }
+
+        contents = parse(contents);
+        
+
+        return (
+            <>
+                <div className={pageStyles.page}>
+                    <h1 className={pageStyles.hobbyTitle}>
+                        {parse(data.title)}
+                    </h1>
+                    <div className={pageStyles.hobbyPhoto}>
+                        <canvas id="glCanvas" width="200" height="200"></canvas>
+                    </div>
+                    <div className={pageStyles.hobbyMotto}>
+                        {content}
+                    </div>
+                </div>
+                <div className={pageStyles.hobbyList}>
+                    <ul>
+                        {contents}
+                    </ul>
+                </div>
+                <div>
+                    <CopyRight />
+                </div>
+            </>
+        )
+
+    } else if (id == 'communication') {
         const handleContentsChange = event => {
             event.preventDefault();
             setContents(event.target.value);
@@ -234,7 +409,7 @@ export default function Post({id, data, contents, globalComments}){
 
         }
 
-        const regDelComment = event => {
+        const insertOrDelComment = event => {
             event.preventDefault();
 
             if (delDocIdRef.current.innerHTML != "") {
@@ -277,7 +452,7 @@ export default function Post({id, data, contents, globalComments}){
                         </div>
                         <div className={pageStyles.bookTitleBox}>
                             <ul className={pageStyles.bookTitleList}>
-                                {data.books.map(({id, title, url, date, author }) => (
+                                {data.books.map(({ id, title, url, date, author }) => (
                                     <>
                                         <li key={id}>
                                             <Link href={url}>
@@ -300,7 +475,7 @@ export default function Post({id, data, contents, globalComments}){
                         </table>
                     </div>
                     <div className={pageStyles.communicationRegForm}>
-                        <form onSubmit={regDelComment}>
+                        <form onSubmit={insertOrDelComment}>
                             <div className={pageStyles.communicationRegComment}>
                                 <div ref={editCommentBox} className={pageStyles.communicationRegCommentBox}>
                                     <textarea id="comment" placeholder={defaultContents} onChange={handleContentsChange} />
@@ -319,205 +494,10 @@ export default function Post({id, data, contents, globalComments}){
                         </form>
                     </div>
                 </div>
-                <CopyRight />
+                <div>
+                    <CopyRight />
+                </div>
             </>
         )
-    }else if(id == 'profile'){
-        let workHistory = "<table><tbody>";
-        const countOfRows = 5;
-        for(let i = countOfRows; i > 0; i--){
-            workHistory = workHistory 
-                        + "<tr><td>"
-                        + (countOfRows+1-i).toString()+". "+"<a href='" + data.workExperience[i]["URL"] + "'>"
-                        + data.workExperience[i]["Summary"]
-                        + "</a>("
-                        + data.workExperience[i]["Period"]
-                        + ")</td></tr>"
-                        + "<tr style='font-size: 0.9em; color: rgb(149, 143, 143)'><td>"
-                        + "&nbsp&nbsp" + data.workExperience[i]["Description"]
-                        + "</td></tr>"
-        }
-        workHistory = parse(workHistory+"</tbody></table>");
-
-        return (
-            <>
-                <div className={pageStyles.page}>
-                    <h1 className={pageStyles.profileTitle}>
-                        {parse(data.title)}
-                    </h1>
-                    <div className={pageStyles.profileImage}>
-                        <table>
-                            <tr>
-                                <td className={pageStyles.profileMotto}>
-                                    &nbsp;&nbsp;사소한 생활의 문제를 해결해주는 <br/>
-                                    &nbsp;&nbsp;기획자, Artist, programmer입니다.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img layout="intrinsic"  width="400px" height="300px" src={"/images/profileImage.jpeg"} alt="My profile" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div className={pageStyles.profileWorkBox}>
-                        <div>
-                            {content}
-                        </div>
-                        <div>
-                            {workHistory}
-                        </div>
-                    </div>
-                </div>
-                <CopyRight />
-            </>
-        )
-
-    } else if(id == 'profile-mgmt'){
-        let rows = "";
-        const countOfRows = 14;
-        for(let i = countOfRows; i > 0; i--){
-            rows = rows 
-                    + "<tr>" 
-                    + data.rows[i].split("|").map(x => "<td>"+x+"</td>").toString().replace(/,/g,"") 
-                    + "</tr>";
-        }
-        rows = parse(rows);
-
-        return (
-            <>
-                
-                <div className={profileDivTableStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">
-                    <div className={profileDivTableStyles.profileDivTableTitle}>
-                        History
-                    </div>
-                    <table>
-                        <thead>
-                            {parse(data.header.split("|").map(x => "<th>"+x+"</th>").toString().replace(/,/g," "))}
-                        </thead>
-                        <tbody>
-                            {rows}
-                        </tbody>
-                    </table>
-                </div>
-                <CopyRight />
-            </>
-        )
-
-    }else if(id == 'politics'){
-        return (
-            <>
-                <div className={pageStyles.page}>
-                    <h1 className={pageStyles.politicsTitle}>
-                        {parse(data.title)}
-                    </h1>
-                    <div className={pageStyles.politicsMotto}>
-                        {content}
-                    </div>
-                </div>
-                <div className={pageStyles.politicsTitleBox}>
-                    <ul className={pageStyles.politicsTitleList}>
-                        {data.politicsList.map(({ id, title, url, description }) => (
-                            <>
-                                <li key={id}>
-                                    <Link href={url}>
-                                        <a>{title}</a>
-                                    </Link>
-                                    &nbsp;:&nbsp;
-                                    <span>
-                                        {description}
-                                    </span>
-                                </li>
-                            </>
-                        ))}
-                    </ul>
-                </div>
-                <CopyRight />
-            </>
-        )
-
-    }else if(id == 'hobby'){
-        let contents = "";
-        
-        //for canvas
-        useEffect(() => {
-            // Init variables
-            const canvas = document.querySelector('#glCanvas');
-
-            // Create Shader program
-            const gl = canvas.getContext("webgl");
-            if (gl == null) {
-                alert("Unable to initialize WebGL. Your browser or machine may not support it.");
-            }
-            var vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
-            var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
-            var program = createProgram(gl, vertexShader, fragmentShader);
-
-            //Setting the program 
-            const programInfo = {
-                program: program,
-                attribLocations: {
-                    vertexPosition: gl.getAttribLocation(program, 'aVertexPosition'),
-                    textureCoord: gl.getAttribLocation(program, 'aTextureCoord'),
-                },
-                uniformLocations: {
-                    projectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
-                    modelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
-                    
-                },
-            };
-
-            // Setting the buffer
-            const buffer = initBuffer(gl);
-
-            // draw scene
-            drawScene(gl, programInfo, buffer);
-            requestAnimationFrame(render);
-
-        })
-
-        for(let i = 0; i < Object.keys(data.hobbyList).length; i++){
-            
-            let category = Object.keys(data.hobbyList)[i];
-            contents = contents + "<li><span>" + category + "</span><br/>";
-            contents = contents + "Skill : " + data.hobbyList[category]["Skill"] + "<br/>";
-            for(let j = 1; j<Object.keys(data.hobbyList[category]).length; j++){
-                contents = contents 
-                            + "Experience" 
-                            + j.toString()
-                            + " : " 
-                            + "<a href='" + data.hobbyList[category][j]["URL"] + "'>" 
-                            + data.hobbyList[category][j]["Title"] 
-                            + "</a><br/>";
-            }
-            contents = contents + "</li><br/>";
-                        
-        }
-
-        contents = parse(contents);
-        
-
-        return (
-            <>
-                <div className={pageStyles.page}>
-                    <h1 className={pageStyles.hobbyTitle}>
-                        {parse(data.title)}
-                    </h1>
-                    <div className={pageStyles.hobbyPhoto}>
-                        <canvas id="glCanvas" width="200" height="200"></canvas>
-                    </div>
-                    <div className={pageStyles.hobbyMotto}>
-                        {content}
-                    </div>
-                </div>
-                <div className={pageStyles.hobbyList}>
-                    <ul>
-                        {contents}
-                    </ul>
-                </div>
-                <CopyRight />
-            </>
-        )
-
     }
 }
