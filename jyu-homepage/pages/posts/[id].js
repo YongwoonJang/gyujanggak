@@ -39,7 +39,7 @@ async function readDatabase() {
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["profile", "profile-mgmt", "politics", "hobby", "communication"]
+    const postNames = ["profile", "politics", "hobby", "communication"]
     const params = postNames.map((postName) => ({
         params: { id: postName }
 
