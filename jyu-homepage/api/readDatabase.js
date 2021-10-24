@@ -4,6 +4,5 @@ module.exports = (req, res) => {
         query: req.query,
         cookies: req.cookies,
     });
-    console.log(res);
     console.log("Hello nice to meet you");
 };
