@@ -1,9 +1,19 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore } = require("firebase/firestore");
 
+const firebaseConfig = {
+    apiKey: process.env.API_KEY,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.API_ID,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+
+}
+
 module.exports = (req, res) => {
     
-    initializeApp();
+    initializeApp(firebaseConfig);
     const db = getFirestore();
     let data = [];
 
