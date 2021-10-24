@@ -18,7 +18,7 @@ module.exports = (req, res) => {
     let data = [];
 
     console.log(db);
-    // const gyujanggakRef = db.collection('gyujanggak');
+    const gyujanggakRef = db.collection('gyujanggak').get();
     //console.log(gyujanggakRef);
     console.log("this section is executed");
     // const querySnapshot = await gyujanggakRef.get();
