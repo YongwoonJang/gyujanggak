@@ -23,6 +23,7 @@ import { doc, getDocs } from "firebase/firestore";
 
 async function readDatabase() {
     initializeApp(firebaseConfig);
+    console.log(firebaseConfig);
     const db = getFirestore();
     let data = [];
 
