@@ -17,13 +17,15 @@ module.exports = (req, res) => {
     const db = getFirestore();
     let data = [];
 
-    const querySnapshot = await getDocs(collection(db, "gyujanggak"));
+    const gyujanggakRef = db.collection('gyujanggak');
+    const querySnapshot = await gyujanggakRef.get();
     querySnapshot.forEach((doc) => {
-        let tempObject = doc.data();
+        let tempObject = doc.data();   
         tempObject["docId"] = doc.id;
         data.push(tempObject);
 
     });
+
     res.json({
         //body: req.body,
         body: data,
