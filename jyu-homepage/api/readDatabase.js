@@ -5,4 +5,5 @@ module.exports = (req, res) => {
         cookies: req.cookies,
     });
     console.log(res);
+    console.log("Hello nice to meet you");
 };
