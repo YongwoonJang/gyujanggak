@@ -10,13 +10,13 @@ module.exports = (req, res) => {
     const gyujanggakRef = db.collection('gyujanggak');
     console.log(gyujanggakRef);
     console.log("this section is executed");
-    const querySnapshot = await gyujanggakRef.get();
-    querySnapshot.forEach((doc) => {
-        let tempObject = doc.data();   
-        tempObject["docId"] = doc.id;
-        data.push(tempObject);
+    // const querySnapshot = await gyujanggakRef.get();
+    // querySnapshot.forEach((doc) => {
+    //     let tempObject = doc.data();   
+    //     tempObject["docId"] = doc.id;
+    //     data.push(tempObject);
 
-    });
+    // });
 
     res.json({
         //body: req.body,
