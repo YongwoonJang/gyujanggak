@@ -19,7 +19,7 @@ module.exports = (req, res) => {
 
     console.log(db);
     // const gyujanggakRef = db.collection('gyujanggak');
-    console.log(gyujanggakRef);
+    //console.log(gyujanggakRef);
     console.log("this section is executed");
     // const querySnapshot = await gyujanggakRef.get();
     // querySnapshot.forEach((doc) => {
