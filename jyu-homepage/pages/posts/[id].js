@@ -22,21 +22,10 @@ import { setDoc, deleteDoc, collection } from "firebase/firestore";
 import { doc, getDocs } from "firebase/firestore";
 
 async function readDatabase() {
-    // initializeApp(firebaseConfig);
-    // const db = getFirestore();
-    let data = [];
+    const querySnapshot = await fetch('https://gyujanggak.vercel.app/api/readDatabase');
+    const result = await querySnapshot.json();
+    return result['data'];
 
-    // const querySnapshot = await getDocs(collection(db, "gyujanggak"));
-    // const res = await fetch(`https://.../data`)
-    const querySnapshot = await fetch('https://gyujanggak.vercel.io/api/readDatabase');
-    // querySnapshot.forEach((doc) => {
-    //     data.push(tempObject);
-
-    // });
-
-    console.log(querySnapshot);
-
-    return querySnapshot['data'];
 }
 
 //Static function
@@ -60,7 +49,6 @@ export async function getStaticProps({ params }) {
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
     let comments = await readDatabase()
-    comments = null;
     
     return {
         props: {
