@@ -21,6 +21,14 @@ books:
             "author":"파스칼 보나푸",
             "date":"1996년 5월",
             "url":"/books/RembrandtLeClairL'obscur"
+        },
+        {
+            "id":"BookStoreInPharmacy",
+            "title":"약국 안 책방",
+            "category":"예술",
+            "author":"박훌륭",
+            "date":"2021년 9월",
+            "url":"/books/BookStoreInPharmacy"
         }
 
     ]

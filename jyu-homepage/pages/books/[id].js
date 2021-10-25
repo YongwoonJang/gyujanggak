@@ -8,7 +8,7 @@ import CommentTable from '../../components/commentTable'
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur"]
+    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur", "BookStoreInPharmacy"]
 
     const params = postNames.map((postName) => ({
         params: { id: postName }
