@@ -15,6 +15,7 @@ module.exports = (req, res) => {
     
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    console.log(db);
     let data = [];
 
     console.log(db);
