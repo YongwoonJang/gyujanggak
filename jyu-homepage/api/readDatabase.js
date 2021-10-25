@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore } = require("firebase/firestore");
+const { getFirestore, collection, getDocs } = require("firebase/firestore");
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -18,16 +18,17 @@ module.exports = (req, res) => {
     let data = [];
 
     console.log(db);
-    const gyujanggakRef = db.collection('gyujanggak').get();
-    //console.log(gyujanggakRef);
-    console.log("this section is executed");
-    // const querySnapshot = await gyujanggakRef.get();
-    // querySnapshot.forEach((doc) => {
-    //     let tempObject = doc.data();   
-    //     tempObject["docId"] = doc.id;
-    //     data.push(tempObject);
+    const gyujanggakRef = collection(db, 'gyujanggak');
+    const gyujanggakSnapshot = await getDocs(gyujanggakRef);
+    
+    gyujanggakSnapshot.forEach((doc) => {
+        let tempObject = doc.data();   
+        tempObject["docId"] = doc.id;
+        data.push(tempObject);
 
-    // });
+    });
+
+    console.log(data);
 
     res.json({
         //body: req.body,
