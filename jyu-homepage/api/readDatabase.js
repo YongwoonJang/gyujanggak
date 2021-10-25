@@ -13,8 +13,8 @@ const firebaseConfig = {
 
 module.exports = (req, res) => {
     
-    initializeApp(firebaseConfig);
-    const db = getFirestore();
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
     let data = [];
 
     console.log(db);
