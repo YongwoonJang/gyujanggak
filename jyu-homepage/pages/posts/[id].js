@@ -34,6 +34,8 @@ async function readDatabase() {
 
     // });
 
+    console.log(querySnapshot);
+
     return querySnapshot['data'];
 }
 
@@ -58,6 +60,8 @@ export async function getStaticProps({ params }) {
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
     let comments = await readDatabase()
+    comments = null;
+    
     return {
         props: {
             id: params.id,
