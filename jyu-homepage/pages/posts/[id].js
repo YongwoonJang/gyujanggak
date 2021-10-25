@@ -22,19 +22,19 @@ import { setDoc, deleteDoc, collection } from "firebase/firestore";
 import { doc, getDocs } from "firebase/firestore";
 
 async function readDatabase() {
-    initializeApp(firebaseConfig);
-    const db = getFirestore();
+    // initializeApp(firebaseConfig);
+    // const db = getFirestore();
     let data = [];
 
-    const querySnapshot = await getDocs(collection(db, "gyujanggak"));
-    querySnapshot.forEach((doc) => {
-        let tempObject = doc.data();
-        tempObject["docId"] = doc.id;
-        data.push(tempObject);
+    // const querySnapshot = await getDocs(collection(db, "gyujanggak"));
+    // const res = await fetch(`https://.../data`)
+    const querySnapshot = await fetch('https://gyujanggak.vercel.io/api/readDatabase');
+    // querySnapshot.forEach((doc) => {
+    //     data.push(tempObject);
 
-    });
+    // });
 
-    return data;
+    return querySnapshot['data'];
 }
 
 //Static function
