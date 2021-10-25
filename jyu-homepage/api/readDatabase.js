@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
 
     });
 
-    res.write(
+    res.json(
         data
     );
 };
