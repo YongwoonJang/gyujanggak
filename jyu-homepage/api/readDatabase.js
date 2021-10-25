@@ -15,10 +15,8 @@ module.exports = async (req, res) => {
     
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    console.log(db);
     let data = [];
 
-    console.log(db);
     const gyujanggakRef = collection(db, 'gyujanggak');
     const gyujanggakSnapshot = await getDocs(gyujanggakRef);
     
@@ -29,12 +27,7 @@ module.exports = async (req, res) => {
 
     });
 
-    console.log(data);
-
-    res.json({
-        //body: req.body,
-        body: data,
-        query: req.query,
-        cookies: req.cookies,
-    });
+    res.write(
+        data
+    );
 };
