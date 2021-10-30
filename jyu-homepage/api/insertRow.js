@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 }
 
-module.exports = async (req) => {
+module.exports = async (req, req) => {
 
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     author = fullURL.searchParams.get('author');
@@ -45,5 +45,7 @@ module.exports = async (req) => {
         console.error("Error adding document: ", e);
 
     }
+
+    req.end();
 
 };

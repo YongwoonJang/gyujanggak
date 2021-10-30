@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 }
 
-module.exports = async (req) => {
+module.exports = async (req, req) => {
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     localDelDocId = fullURL.searchParams.get('localDelDocId');
     
@@ -28,4 +28,7 @@ module.exports = async (req) => {
 
         }
     }
+
+    req.end();
+
 };
