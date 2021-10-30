@@ -120,7 +120,7 @@ export default function Post({id, data, contents, globalComments}){
         let params = { 'author': author, 'contents': contents } // or:
         url.search = new URLSearchParams(params).toString();
 
-        fetch(url);
+        await fetch(url);
         setComments(await readDatabase('gyujanggak'));
     }
 
@@ -133,7 +133,7 @@ export default function Post({id, data, contents, globalComments}){
         var params = { 'localDelDocId': localDelDocId } // or:
         url.search = new URLSearchParams(params).toString();
 
-        fetch(url);
+        await fetch(url);
         setComments(await readDatabase('gyujanggak'));
     }
 
