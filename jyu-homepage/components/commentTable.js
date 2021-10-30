@@ -3,6 +3,8 @@ import {useEffect, useState} from 'react';
 import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
+const baseURL = "https://gyujanggak.vercel.app/api";
+
 async function readDatabase(name) {
     const destination = baseURL + '/readDatabase';
     let url = new URL(destination)
