@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 }
 
-module.exports = async (req, req) => {
+module.exports = async (req, res) => {
 
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     author = fullURL.searchParams.get('author');
@@ -46,6 +46,6 @@ module.exports = async (req, req) => {
 
     }
 
-    req.end();
+    res.end();
 
 };
