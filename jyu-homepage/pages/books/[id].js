@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import parse from 'html-react-parser'
 import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
-import CommentTable from '../../components/commentTable'
+import HistoryTable from '../../components/historyTable'
 
 
 //Static function
@@ -41,7 +41,6 @@ export async function getStaticProps({ params }) {
     }
 }
 
-
 //Main function
 export default function books({ data, contents }) {
     
@@ -54,7 +53,7 @@ export default function books({ data, contents }) {
                 <div className={pageStyles.opinion}>
                     {parse(contents.replace(/\n/g, "<br/>"))}
                 </div>
-                <CommentTable name={data.title}/>
+                <HistoryTable name={data.title}/>
             </div>
             <div>
                 <CopyRight />

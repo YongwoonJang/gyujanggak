@@ -1,23 +1,24 @@
 import fs from 'fs'
-
-import { useState, useRef} from 'react'
-
+import React, { useState, useRef, useEffect} from 'react'
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
 
+// Next.js
 import Link from 'next/link'
+
+// CSS
 import pageStyles from '/styles/page.module.scss'
 
+// Components
 import CopyRight from '../../components/copyRight'
+import WorkHistory from '../../components/workHistory'
 
-import React, { useEffect } from 'react'
+// WebGL
 import { vsSource, fsSource, createShader, createProgram, initBuffer, render } from '/components/drawingTheScene'
 import { drawScene } from '../../components/drawingTheScene'
 
-
-// const baseURL = "http://localhost:80";
-const baseURL = "https://gyujanggak.vercel.app/api";
-
+// Database Utilities
+import { readDatabase, insertRow, deleteRow } from '../../components/databaseUtils'
 
 //Static function
 export function getStaticPaths() {
@@ -48,20 +49,6 @@ export async function getStaticProps({ params }) {
         },
     }
 }
-
-async function readDatabase(name) {
-    const destination = baseURL + '/readDatabase';
-    let url = new URL(destination)
-
-    let params = { 'name' : name } // or:
-    url.search = new URLSearchParams(params).toString();
-
-    const querySnapshot = await fetch(url);
-    const result = await querySnapshot.json();
-    return result['data'];
-
-}
-
 
 //Main function
 export default function Post({id, data, contents, globalComments}){
@@ -109,32 +96,6 @@ export default function Post({id, data, contents, globalComments}){
 
             setLines(rows);
         }
-    }
-
-    //Insert to database and update comments array.
-    async function insertRow(author, contents) {
-        
-        let destination = baseURL + '/insertRow';
-        let url = new URL(destination)
-
-        let params = { 'author': author, 'contents': contents } // or:
-        url.search = new URLSearchParams(params).toString();
-
-        await fetch(url);
-        setComments(await readDatabase('gyujanggak'));
-    }
-
-    //Delete from database and update comments array
-    async function deleteRow(localDelDocId) {
-    
-        let destination = baseURL + '/deleteRow';
-        var url = new URL(destination)
-
-        var params = { 'localDelDocId': localDelDocId } // or:
-        url.search = new URLSearchParams(params).toString();
-
-        await fetch(url);
-        setComments(await readDatabase('gyujanggak'));
     }
 
     const settingButton = (e) => {
@@ -191,22 +152,6 @@ export default function Post({id, data, contents, globalComments}){
     }, [lines]);
 
     if(id == 'profile'){
-        let workHistory = "<table><tbody>";
-        const countOfRows = 5;
-        for(let i = countOfRows; i > 0; i--){
-            workHistory = workHistory 
-                        + "<tr><td>"
-                        + (countOfRows+1-i).toString()+". "+"<a href='" + data.workExperience[i]["URL"] + "'>"
-                        + data.workExperience[i]["Summary"]
-                        + "</a>("
-                        + data.workExperience[i]["Period"]
-                        + ")</td></tr>"
-                        + "<tr style='font-size: 0.9em; color: rgb(149, 143, 143)'><td>"
-                        + "&nbsp&nbsp" + data.workExperience[i]["Description"]
-                        + "</td></tr>"
-        }
-        workHistory = parse(workHistory+"</tbody></table>");
-
         return (
             <>
                 <div className={pageStyles.page}>
@@ -235,7 +180,7 @@ export default function Post({id, data, contents, globalComments}){
                             {content}
                         </div>
                         <div>
-                            {workHistory}
+                            <WorkHistory data={data}/>
                         </div>
                     </div>
                 </div>
@@ -381,11 +326,11 @@ export default function Post({id, data, contents, globalComments}){
             event.preventDefault();
 
             if (delDocIdRef.current.innerHTML != "") {
-                deleteRow(delDocIdRef.current.innerHTML);
+                deleteRow(delDocIdRef.current.innerHTML, setComments);
                 alert("성공적으로 삭제되었습니다.");
 
             } else {
-                insertRow(defaultAuthor, defaultContents);
+                insertRow(defaultAuthor, defaultContents, setComments);
                 alert("성공적으로 저장되었습니다.");
 
             }
