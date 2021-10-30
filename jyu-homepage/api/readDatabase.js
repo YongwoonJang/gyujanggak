@@ -15,8 +15,8 @@ module.exports = async (req, res) => {
     
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     let name = fullURL.searchParams.get('name');
-    
-
+    console.log("readDatabae : ")
+    console.log(name);
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     let data = [];
