@@ -56,7 +56,7 @@ async function readDatabase(name) {
     let params = { 'name' : name } // or:
     url.search = new URLSearchParams(params).toString();
 
-    const querySnapshot = await fetch(destination);
+    const querySnapshot = await fetch(url);
     const result = await querySnapshot.json();
     return result['data'];
 
