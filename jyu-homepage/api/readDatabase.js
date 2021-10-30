@@ -13,11 +13,15 @@ const firebaseConfig = {
 
 module.exports = async (req, res) => {
     
+    const fullURL = new URL(req.url, `http://${req.headers.host}`);
+    let name = fullURL.searchParams.get('name');
+    
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     let data = [];
 
-    const gyujanggakRef = collection(db, 'gyujanggak');
+    const gyujanggakRef = collection(db, name);
     const gyujanggakSnapshot = await getDocs(gyujanggakRef);
     
     gyujanggakSnapshot.forEach((doc) => {
@@ -30,4 +34,5 @@ module.exports = async (req, res) => {
     res.json({
         data: data
     });
+
 };

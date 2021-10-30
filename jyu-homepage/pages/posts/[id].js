@@ -14,19 +14,10 @@ import React, { useEffect } from 'react'
 import { vsSource, fsSource, createShader, createProgram, initBuffer, render } from '/components/drawingTheScene'
 import { drawScene } from '../../components/drawingTheScene'
 
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { firebaseConfig } from '../../components/firebase';
 
-import { setDoc, deleteDoc, collection } from "firebase/firestore";
-import { doc, getDocs } from "firebase/firestore";
+// const baseURL = "http://localhost:80";
+const baseURL = "https://gyujanggak.vercel.app/api";
 
-async function readDatabase() {
-    const querySnapshot = await fetch('https://gyujanggak.vercel.app/api/readDatabase');
-    const result = await querySnapshot.json();
-    return result['data'];
-
-}
 
 //Static function
 export function getStaticPaths() {
@@ -35,21 +26,19 @@ export function getStaticPaths() {
         params: { id: postName }
 
     }))
-    return { 
-        paths: params, 
-        fallback: 'blocking' 
+    return {
+        paths: params,
+        fallback: 'blocking'
     }
 
 }
 
 export async function getStaticProps({ params }) {
-    //It only process one time
-
     const fullPath = "public/posts/" + params.id + ".md"
     const fileContent = fs.readFileSync(fullPath)
     const matterResult = matter(fileContent)
-    let comments = await readDatabase()
-    
+    let comments = await readDatabase('gyujanggak')
+
     return {
         props: {
             id: params.id,
@@ -59,6 +48,20 @@ export async function getStaticProps({ params }) {
         },
     }
 }
+
+async function readDatabase(name) {
+    const destination = baseURL + '/readDatabase';
+    let url = new URL(destination)
+
+    let params = { 'name' : name } // or:
+    url.search = new URLSearchParams(params).toString();
+
+    const querySnapshot = await fetch(destination);
+    const result = await querySnapshot.json();
+    return result['data'];
+
+}
+
 
 //Main function
 export default function Post({id, data, contents, globalComments}){
@@ -110,55 +113,28 @@ export default function Post({id, data, contents, globalComments}){
 
     //Insert to database and update comments array.
     async function insertRow(author, contents) {
-        initializeApp(firebaseConfig);
-        const db = getFirestore();
-
-        let today = new Date();
-        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        let time = today.getHours() + "시 " + today.getMinutes() + "분";
-        let dateTime = date + ' ' + time;
-
-        let globalTime = today.getFullYear().toString()
-            + (today.getMonth() + 1).toString()
-            + today.getDate().toString()
-            + today.getHours().toString()
-            + today.getMinutes().toString();
-            + today.getSeconds();
-        let newId = globalTime + doc(collection(db, "gyujanggak")).id;
-
-        try {
-            await setDoc(doc(db, "gyujanggak", newId), {
-                "Author": author,
-                "Content": contents,
-                "Date": dateTime,
-            });
-            console.log("Document written with ID: ", newId);
-
-        } catch (e) {
-            console.error("Error adding document: ", e);
-
-        }
         
-        setComments(await readDatabase());
+        let destination = baseURL + '/insertRow';
+        let url = new URL(destination)
+
+        let params = { 'author': author, 'contents': contents } // or:
+        url.search = new URLSearchParams(params).toString();
+
+        fetch(url);
+        setComments(await readDatabase('gyujanggak'));
     }
 
     //Delete from database and update comments array
     async function deleteRow(localDelDocId) {
-        initializeApp(firebaseConfig);
-        const db = getFirestore();
-        
-        if (localDelDocId != null) {
-            try {
-                await deleteDoc(doc(db, "gyujanggak", localDelDocId));
-                console.log("Document delete with ID: ", localDelDocId);
+    
+        let destination = baseURL + '/deleteRow';
+        var url = new URL(destination)
 
-            } catch (e) {
-                console.error("Error removing document: ", e);
+        var params = { 'localDelDocId': localDelDocId } // or:
+        url.search = new URLSearchParams(params).toString();
 
-            }
-        }
-
-        setComments(await readDatabase());
+        fetch(url);
+        setComments(await readDatabase('gyujanggak'));
     }
 
     const settingButton = (e) => {
@@ -191,7 +167,7 @@ export default function Post({id, data, contents, globalComments}){
     };
 
     useEffect(async () => {
-        setComments(await readDatabase());
+        setComments(await readDatabase('gyujanggak'));
 
     },[]);
 

@@ -1,27 +1,18 @@
 
-import { getDocs } from '@firebase/firestore';
 import {useEffect, useState} from 'react';
 import parse from 'html-react-parser';
-
 import pageStyles from '/styles/page.module.scss'
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from "firebase/firestore";
-import { firebaseConfig } from './firebase';
-
 
 async function readDatabase(name) {
-    initializeApp(firebaseConfig);
-    const db = getFirestore();
-    let data = [];
+    const destination = baseURL + '/readDatabase';
+    let url = new URL(destination)
 
-    const querySnapshot = await getDocs(collection(db, name));
-    querySnapshot.forEach((doc) => {
-        let tempObject = doc.data();
-        tempObject["docId"] = doc.id;
-        data.push(tempObject);
-    })
+    let params = { 'name': name } // or:
+    url.search = new URLSearchParams(params).toString();
 
-    return data;
+    const querySnapshot = await fetch(destination);
+    const result = await querySnapshot.json();
+    return result['data'];
 
 }
 
