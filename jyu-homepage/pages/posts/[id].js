@@ -163,8 +163,7 @@ export default function Post({id, data, contents, globalComments}){
                             <tbody>
                                 <tr>
                                     <td className={pageStyles.profileMotto}>
-                                        &nbsp;&nbsp;사소한 생활의 문제를 해결해주는 <br/>
-                                        &nbsp;&nbsp;기획자, Artist, programmer입니다.
+                                        {parse(data.headLine)}
                                     </td>
                                 </tr>
                                 <tr>

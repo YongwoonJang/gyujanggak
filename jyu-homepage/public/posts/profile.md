@@ -2,6 +2,7 @@
 rank: 1
 title: "I<span>ntro" 
 date: '2021-08-04'
+headLine: "분류와 정리를 좋아하는 <br/> PMO, Developer, Artist 입니다"
 author:
     name: Yongwoon Jang
     picture: '../../public/images/profile.jpg'
