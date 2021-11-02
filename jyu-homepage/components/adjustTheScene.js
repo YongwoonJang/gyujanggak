@@ -27,3 +27,4 @@ export function onResize(entries) {
         canvasToDisplaySizeMap.set(entry.target, [displayWidth, displayHeight]);
     }
 }
+

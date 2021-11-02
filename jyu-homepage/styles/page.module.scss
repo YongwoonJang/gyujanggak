@@ -412,6 +412,16 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 }
 
+.loanButton{
+  margin-bottom: $height*4;
+  
+}
+
+.loanButton a{
+  color: $communication-a-link-color;
+  
+}
+
 .history{
   width: 95%;
   background: white;

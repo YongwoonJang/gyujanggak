@@ -5,6 +5,8 @@ import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
 import HistoryTable from '../../components/historyTable'
 
+import {Link} from 'next/link'
+
 
 //Static function
 export function getStaticPaths() {
@@ -51,7 +53,10 @@ export default function books({ data, contents }) {
                     {parse(data.title)}
                 </h1>
                 <div className={pageStyles.opinion}>
-                    {parse(contents.replace(/\n/g, "<br/>"))}
+                    {parse(contents.replace(/\n/g, "<br/>"))}                
+                </div>
+                <div className={pageStyles.loanButton}>
+                    <a href={data.loanButton}>대출 하기 </a>
                 </div>
                 <HistoryTable name={data.title}/>
             </div>
