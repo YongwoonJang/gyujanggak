@@ -2,6 +2,7 @@
 title: "약국 안 책방"
 subtitle: "아직 독립은 못 했습니다만"
 author: "박훌륭"
+loanButton: "https://forms.gle/UFptbdbLM1UNWr9C8"
 ---
 
 격식 적이지 않은 표현이 조금은 어색했지만,
