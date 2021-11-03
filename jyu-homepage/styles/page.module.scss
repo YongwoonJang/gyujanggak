@@ -405,7 +405,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .bookImage {
-  width: 30%;
+  width: 40%;
   margin-right: 5%;
   float: right;
 }
@@ -772,12 +772,13 @@ $communication-a-link-color: rgb(166, 26, 26);
     }
 
     .bookImage {
-      width: 36%;
-      margin-top: 12%;
+      width: 90%;
+      margin-top: $height;
+      margin-bottom: $height;
       margin-right: 4%;
-      float: right;
+      float: none;
+      
     }
-
 
     .bookTitleList{
       font-size: 0.6em;
@@ -786,7 +787,7 @@ $communication-a-link-color: rgb(166, 26, 26);
     }
 
     .opinion{
-      font-size: 0.6em;
+      font-size: 0.55em;
     }
 
     .historyTable{
@@ -803,6 +804,14 @@ $communication-a-link-color: rgb(166, 26, 26);
       font-size: 0.7em;
       
     }
+
+    .loanButton{
+      font-size: 0.7em;
+      margin-right: 7%;
+      margin-top: 1.7%;
+      
+    }
+
     .copyRight{
       padding-top:0.5%;
       font-size:0.45em;
