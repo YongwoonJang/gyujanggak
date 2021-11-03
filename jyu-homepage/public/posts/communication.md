@@ -1,6 +1,6 @@
 ---
 rank: 4
-title: "C<span>ommunication<span>"
+title: "M<span>inor gyujanggak<span>"
 date: "2021-08-27"
 author:
     name: "Communication"
@@ -36,6 +36,6 @@ books:
 
 안녕하세요.
 
-생각을 공유하는 공간입니다.
+책을 빌려 드립니다.
 
 책과, Comment를 통해 생각을 공유합니다.
