@@ -3,6 +3,7 @@ title: "태도가 작품이 될때"
 subTitle: "When Attitudes Become Artwork"
 author: "박보나"
 loanButton: "https://forms.gle/LGSUBAYPqLLtgfcP7"
+images: ["/images/books/WhenAttitudesBecomeArtworkFirst.jpeg"]
 ---
 
 2021년 10월 11일에 모두 읽었습니다.

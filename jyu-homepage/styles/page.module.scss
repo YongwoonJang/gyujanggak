@@ -404,6 +404,12 @@ $communication-a-link-color: rgb(166, 26, 26);
   color: black;
 }
 
+.bookImage {
+  width: 30%;
+  margin-right: 5%;
+  float: right;
+}
+
 .opinion {
   font-family: "SBAggro L";
   font-size: 0.7em;
@@ -414,6 +420,9 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 .loanButton{
   margin-bottom: $height*4;
+  text-align:right;
+  padding-right: 5%;
+  float: right;
   
 }
 
@@ -762,10 +771,22 @@ $communication-a-link-color: rgb(166, 26, 26);
       margin-bottom: $height*(math.div(1,2));
     }
 
+    .bookImage {
+      width: 36%;
+      margin-top: 12%;
+      margin-right: 4%;
+      float: right;
+    }
+
+
     .bookTitleList{
       font-size: 0.6em;
       margin-left: 6%;
       
+    }
+
+    .opinion{
+      font-size: 0.6em;
     }
 
     .historyTable{

@@ -5,7 +5,7 @@ import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
 import HistoryTable from '../../components/historyTable'
 
-import {Link} from 'next/link'
+import Image from 'next/image'
 
 
 //Static function
@@ -46,17 +46,26 @@ export async function getStaticProps({ params }) {
 //Main function
 export default function books({ data, contents }) {
     
+    let imagePart = "";
+    if(data.images != null){
+        imagePart = <div className={pageStyles.bookImage}>
+                        <Image src={data.images[0]} width={50} height={40} layout="responsive" />
+                    </div>;
+    }
+
     return (
         <>
             <div className={pageStyles.page}>
                 <h1 className={pageStyles.communicationTitle}>
                     {parse(data.title)}
                 </h1>
+                {imagePart}
                 <div className={pageStyles.opinion}>
                     {parse(contents.replace(/\n/g, "<br/>"))}                
                 </div>
+                
                 <div className={pageStyles.loanButton}>
-                    <a href={data.loanButton}>대출 하기 </a>
+                    <a href={data.loanButton}>대출 하기</a>
                 </div>
                 <HistoryTable name={data.title}/>
             </div>
