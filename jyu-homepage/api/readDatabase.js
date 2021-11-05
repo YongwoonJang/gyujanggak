@@ -1,5 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore, collection, getDocs } = require("firebase/firestore");
+const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -11,14 +12,20 @@ const firebaseConfig = {
 
 }
 
+const identification = {
+    "user" : process.env.USER_ID,
+    "code" : process.env.CODE
+}
+
 module.exports = async (req, res) => {
     
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     let name = fullURL.searchParams.get('name');
-    console.log("readDatabae : ")
-    console.log(name);
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const auth = getAuth(app);
+    await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
+    
     let data = [];
 
     const gyujanggakRef = collection(db, name);
