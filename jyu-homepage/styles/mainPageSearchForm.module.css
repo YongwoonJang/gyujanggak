@@ -1,19 +1,24 @@
 .searchForm {
     grid-column: 1/span 6;
     text-align: center;
+    font-family: "SBAggro L";
+
 }
 
 .searchFormInput {
-    width: 25%;
+    width: 35%;
     line-height: 2.0rem;
     font-size: 1.0rem;
+    border-radius: 0.5em;
     margin-bottom: 2%;
+    
 }
 
 .searchResult{
     grid-column: 1/span 6;
     margin: auto;
     margin-bottom: 1em;
+    font-family: "SBAggro L";
 }
 
 /* Average mobile */
