@@ -5,6 +5,32 @@ import pageStyles from '/styles/page.module.scss'
 
 import { readDatabase, insertRow, deleteRow } from './databaseUtils'
 
+const setTable = (localComments, setLines) => {
+    if (localComments != null) {
+        let rows = "";
+        for (let i = (localComments.length - 1); i >= 0; i--) {
+            rows = rows
+                + "<tr>"
+                + "<td>"
+                + "<span>"
+                + localComments[i].Author
+                + "</span>"
+                + "<br/>"
+                + localComments[i].Date
+                + "</td>"
+                + "<td>"
+                + localComments[i].Content
+                + "</td>"
+                + "<td style='display:none'>"
+                + localComments[i].docId
+                + "</td>"
+                + "</tr>"
+        }
+
+        setLines(rows);
+    }
+}
+
 export async function getStaticProps(){
     let comments = await readDatabase('gyujanggak')
 
@@ -15,11 +41,12 @@ export async function getStaticProps(){
     }
 }
 
-export default function CommentTable(props){
+export default function CommentTable(){
 
     //Variables for comments area
-    const [comments, setComments] = useState(props.comments);
+    // const [comments, setComments] = useState(props.comments);
     const [lines, setLines] = useState("");
+    const [comments, setComments] = useState([{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]);
 
     //Variables for Dialogue area
     const [defaultContents, setContents] = useState("Hello world");
@@ -41,32 +68,6 @@ export default function CommentTable(props){
         setComments(await readDatabase('gyujanggak'));
 
     }, []);
-
-    const setTable = (localComments) => {
-        if (localComments != null) {
-            let rows = "";
-            for (let i = (localComments.length - 1); i >= 0; i--) {
-                rows = rows
-                    + "<tr>"
-                    + "<td>"
-                    + "<span>"
-                    + localComments[i].Author
-                    + "</span>"
-                    + "<br/>"
-                    + localComments[i].Date
-                    + "</td>"
-                    + "<td>"
-                    + localComments[i].Content
-                    + "</td>"
-                    + "<td style='display:none'>"
-                    + localComments[i].docId
-                    + "</td>"
-                    + "</tr>"
-            }
-
-            setLines(rows);
-        }
-    }
 
     useEffect(() => {
         setTable(comments, setLines);

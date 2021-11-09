@@ -1,7 +1,9 @@
 import fs from 'fs'
-import React, { useEffect} from 'react'
+import React from 'react'
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
+
+import { readDatabase } from '../../components/databaseUtils'
 
 // Next.js
 import Link from 'next/link'
@@ -39,13 +41,13 @@ export async function getStaticProps({ params }) {
         props: {
             id: params.id,
             data: matterResult.data,
-            contents: matterResult.content
+            contents: matterResult.content,
         },
     }
 }
 
 //Main function
-export default function Post({id, data, contents}){
+export default function Post({id, data, contents, comments}){
     //Variables for contents area
     const content = parse(contents);
     
