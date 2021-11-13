@@ -10,7 +10,7 @@ import Image from 'next/image'
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur", "BookStoreInPharmacy"]
+    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur", "BookStoreInPharmacy", "HabitOfProjectManager"]
 
     const params = postNames.map((postName) => ({
         params: { id: postName }

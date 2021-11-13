@@ -29,6 +29,14 @@ books:
             "author":"박훌륭",
             "date":"2021년 9월",
             "url":"/books/BookStoreInPharmacy"
+        },
+        {
+            "id":"HabitOfProjectManager",
+            "title":"기획자의 습관",
+            "category":"직업",
+            "author":"최장순",
+            "date":"2018년 5월",
+            "url":"/books/HabitOfProjectManager"
         }
 
     ]
