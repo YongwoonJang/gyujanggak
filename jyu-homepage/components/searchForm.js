@@ -3,11 +3,11 @@ import mainPageSearchFormStyles from '/styles/mainPageSearchForm.module.css'
 
 export default function RequestFormAndResult() {
     
-    const callBackRef = useCallback(textInput => {
-        if (textInput) {
-            textInput.focus();
-        }
-    },[])
+    // const callBackRef = useCallback(textInput => {
+    //     if (textInput) {
+    //         textInput.focus();
+    //     }
+    // },[])
 
     const searchResults = [
         {"key":"블로그","desc":"이 웹사이트 주인의 블로그는 <a href='https://blog.naver.com/jyy3k'>네이버 블로그</a> 입니다."},
@@ -59,7 +59,7 @@ export default function RequestFormAndResult() {
     return (
         <>
             <form onSubmit={sendRequestData} className={mainPageSearchFormStyles.searchForm}>
-                <input id="data" name="data" type="text" autoComplete="data" className={mainPageSearchFormStyles.searchFormInput} onKeyDown={handleKeydown} ref={callBackRef} autoFocus required/>
+                <input id="data" name="data" type="text" autoComplete="data" className={mainPageSearchFormStyles.searchFormInput} onKeyDown={handleKeydown} autoFocus required/>
                 <button style={{display:'none'}} type="submit">검색</button>
             </form>
             <div className={mainPageSearchFormStyles.searchResult} id="result"/>
