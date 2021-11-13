@@ -2,7 +2,6 @@
 title: "기획자의 습관"
 author: "최장순"
 loanButton: "https://forms.gle/ubAd2nfAsczbzZdw7"
-images: ["/images/books/HabitOfProjectManager.jpeg"]
 ---
 
 "기획은 배에서 나아갈 방향을 정하는 것으로 표현할 수 있겠다. 
