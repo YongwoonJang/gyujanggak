@@ -405,9 +405,9 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .bookImage {
-  width: 35%;
   margin-right: 5%;
-  float: right;
+  float: left;
+
 }
 
 .opinion {
@@ -418,8 +418,13 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 }
 
+.opinionBox{
+  display: inline-block;
+  width: 100%;
+}
+
 .loanButton{
-  margin-bottom: $height*4;
+  margin-top: $height;
   text-align:right;
   padding-right: 5%;
   float: right;
@@ -772,7 +777,7 @@ $communication-a-link-color: rgb(166, 26, 26);
     }
 
     .bookImage {
-      width: 90%;
+      width: 95%;
       margin-top: $height;
       margin-bottom: $height;
       margin-right: 4%;

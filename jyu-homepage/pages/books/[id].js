@@ -48,9 +48,11 @@ export default function books({ data, contents }) {
     
     let imagePart = "";
     if(data.images != null){
-        imagePart = <div className={pageStyles.bookImage}>
-                        <Image src={data.images[0]} width={50} height={40} layout="responsive" />
-                    </div>;
+        // imagePart = <div className={pageStyles.bookImage}>
+        //     <img src={data.images[0]} width={data.imageWidth[0]+'%'} layout="responsive" />
+        // </div>;
+        imagePart = <img src={data.images[0]} className={pageStyles.bookImage} width={data.imageWidth[0]+'%'} layout="responsive" />;
+
     }
 
     return (
@@ -59,11 +61,12 @@ export default function books({ data, contents }) {
                 <h1 className={pageStyles.communicationTitle}>
                     {parse(data.title)}
                 </h1>
-                {imagePart}
-                <div className={pageStyles.opinion}>
-                    {parse(contents.replace(/\n/g, "<br/>"))}                
+                <div className={pageStyles.opinionBox}>
+                    {imagePart}
+                    <div className={pageStyles.opinion}>
+                        {parse(contents.replace(/\n/g, "<br/>"))}                
+                    </div>
                 </div>
-                
                 <div className={pageStyles.loanButton}>
                     <a href={data.loanButton}>대출 하기</a>
                 </div>

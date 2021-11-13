@@ -4,6 +4,7 @@ subTitle: "When Attitudes Become Artwork"
 author: "박보나"
 loanButton: "https://forms.gle/LGSUBAYPqLLtgfcP7"
 images: ["/images/books/WhenAttitudesBecomeArtworkFirst.jpeg"]
+imageWidth: [45]
 ---
 
 2021년 10월 11일에 모두 읽었습니다.
