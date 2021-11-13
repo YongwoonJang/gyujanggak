@@ -59,7 +59,7 @@ export default function RequestFormAndResult() {
     return (
         <>
             <form onSubmit={sendRequestData} className={mainPageSearchFormStyles.searchForm}>
-                <input id="data" name="data" type="text" autoComplete="data" className={mainPageSearchFormStyles.searchFormInput} onKeyDown={handleKeydown} autoFocus required/>
+                <input id="data" name="data" type="text" autoComplete="data" className={mainPageSearchFormStyles.searchFormInput} onKeyDown={handleKeydown} required/>
                 <button style={{display:'none'}} type="submit">검색</button>
             </form>
             <div className={mainPageSearchFormStyles.searchResult} id="result"/>
