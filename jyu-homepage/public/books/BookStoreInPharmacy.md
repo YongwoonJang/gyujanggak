@@ -2,6 +2,8 @@
 title: "약국 안 책방"
 subtitle: "아직 독립은 못 했습니다만"
 author: "박훌륭"
+images: ["/images/books/BookStoreInPharmacy.jpeg"]
+imageWidth: [25]
 loanButton: "https://forms.gle/UFptbdbLM1UNWr9C8"
 ---
 
