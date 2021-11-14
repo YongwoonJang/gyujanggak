@@ -9,7 +9,7 @@ const firebaseConfig = {
     authDomain: process.env.AUTH_DOMAIN,
     projectId: process.env.PROJECT_ID,
     storageBucket: process.env.STORAGE_BUCKET,
-
+    databaseUrl: process.env.DATABASE_URL,
 }
 
 const identification = {
