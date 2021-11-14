@@ -5,9 +5,6 @@ import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
 import HistoryTable from '../../components/historyTable'
 
-import Image from 'next/image'
-
-
 //Static function
 export function getStaticPaths() {
     const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur", "BookStoreInPharmacy", "HabitOfProjectManager"]
@@ -51,7 +48,7 @@ export default function books({ data, contents }) {
         // imagePart = <div className={pageStyles.bookImage}>
         //     <img src={data.images[0]} width={data.imageWidth[0]+'%'} layout="responsive" />
         // </div>;
-        imagePart = <img src={data.images[0]} className={pageStyles.bookImage} width={data.imageWidth[0]+'%'} layout="responsive" />;
+        imagePart = <img src={data.images[0]} className={pageStyles.bookImage} width={data.imageWidth[0]+'%'} height={100+"%"} layout="responsive" />;
 
     }
 
