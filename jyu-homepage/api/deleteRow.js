@@ -11,7 +11,6 @@ const firebaseConfig = {
     storageBucket: process.env.STORAGE_BUCKET,
     databaseUrl: process.env.DATABASE_URL,
 
-
 }
 
 const identification = {

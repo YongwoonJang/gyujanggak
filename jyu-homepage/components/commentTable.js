@@ -64,9 +64,15 @@ export default function CommentTable(){
     // RefForDeleteItem
     const delDocIdRef = useRef(null);
 
-    useEffect(async () => {
-        setComments(await readDatabase('gyujanggak'));
+    // interval
+    let interval = null;
 
+    useEffect(async () => {
+        interval = setInterval(async () => {setComments(await readDatabase('gyujanggak'))}, 3000);
+
+        return function cleanup() {
+            clearInterval(interval);
+        }
     }, []);
 
     useEffect(() => {
