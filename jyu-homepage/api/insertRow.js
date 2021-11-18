@@ -40,7 +40,8 @@ module.exports = async (req, res) => {
         + today.getHours().toString()
         + today.getMinutes().toString();
     + today.getSeconds();
-    let newId = globalTime + doc(collection(db, "gyujanggak")).id;
+    
+    let newId = "2" + today.getTime() + doc(collection(db, "gyujanggak")).id;
 
     try {
         await setDoc(doc(db, "gyujanggak", newId), {
