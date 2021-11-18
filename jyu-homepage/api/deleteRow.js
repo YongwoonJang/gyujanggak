@@ -1,6 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore, deleteDoc, doc } = require("firebase/firestore");
-const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth");
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -38,6 +38,8 @@ module.exports = async (req, res) => {
 
         }
     }
+
+    signOut(auth);
 
     res.end();
 

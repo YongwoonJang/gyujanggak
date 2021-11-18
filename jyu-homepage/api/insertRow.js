@@ -1,6 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore, collection, setDoc, doc } = require("firebase/firestore");
-const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth");
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -54,6 +54,8 @@ module.exports = async (req, res) => {
         console.error("Error adding document: ", e);
 
     }
+
+    signOut(auth);
 
     res.end();
 
