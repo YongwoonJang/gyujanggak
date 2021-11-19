@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
         let tempData = [];
 
         onValue(gyujanggakRef, (snapshot) => {
-            data = snapshot.val();
+            tempData = snapshot.val();
         })
 
         Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
