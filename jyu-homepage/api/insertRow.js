@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, collection, setDoc, doc } = require("firebase/firestore");
+const { getDatabase, ref, update } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth");
 
 const firebaseConfig = {
@@ -23,9 +23,8 @@ module.exports = async (req, res) => {
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     author = fullURL.searchParams.get('author');
     contents = fullURL.searchParams.get('contents');
-
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const db = getDatabase(app);
     const auth = getAuth(app);
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
 
@@ -34,28 +33,27 @@ module.exports = async (req, res) => {
     let time = today.getHours() + "시 " + today.getMinutes() + "분";
     let dateTime = date + ' ' + time;
 
-    let globalTime = today.getFullYear().toString()
-        + (today.getMonth() + 1).toString()
-        + today.getDate().toString()
-        + today.getHours().toString()
-        + today.getMinutes().toString();
-    + today.getSeconds();
-    
-    let newId = "2" + today.getTime() + doc(collection(db, "gyujanggak")).id;
+    let newId = today.getTime();
 
     try {
-        await setDoc(doc(db, "gyujanggak", newId), {
-            "Author": author,
-            "Content": contents,
-            "Date": dateTime,
-        });
+        const commentData = {};
+        commentData.Author = author;
+        commentData.Content = contents;
+        commentData.Date = dateTime;
+        commentData.docId = newId;
+
+        const updates = {};
+        updates["/" + newId] = commentData;
+
+        const gyujanggakRef = ref(db, 'chats/');
+        update(gyujanggakRef, updates);
+
         console.log("Document written with ID: ", newId);
 
     } catch (e) {
         console.error("Error adding document: ", e);
 
     }
-
     signOut(auth);
 
     res.end();

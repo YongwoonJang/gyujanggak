@@ -1,4 +1,5 @@
 const { initializeApp } = require("firebase/app");
+const { getDatabase, ref, onValue } = require("firebase/database");
 const { getFirestore, collection, getDocs } = require("firebase/firestore");
 
 const firebaseConfig = {
@@ -7,29 +8,44 @@ const firebaseConfig = {
     appId: process.env.API_ID,
     authDomain: process.env.AUTH_DOMAIN,
     projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET
+    storageBucket: process.env.STORAGE_BUCKET,
+    databaseURL: process.env.DATABASE_URL
 }
 
 module.exports = async (req, res) => {
-    
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     let name = fullURL.searchParams.get('name');
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
     
     let data = [];
 
-    const gyujanggakRef = collection(db, name);
-    const gyujanggakSnapshot = await getDocs(gyujanggakRef);
-    
-    gyujanggakSnapshot.forEach((doc) => {
-        let tempObject = doc.data();   
-        tempObject["docId"] = doc.id;
-        data.push(tempObject);
+    if (name == "gyujanggak") {
+        const db = getDatabase(app);
+        const gyujanggakRef = ref(db, 'chats/');
 
-    });
+        onValue(gyujanggakRef, (snapshot) => {
+            data = snapshot.val();
+        })
 
-    
+        Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
+
+        if(data.length == 0){
+            data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+        }
+
+    } else {
+        const db = getFirestore(app);
+        const gyujanggakRef = collection(db, name);
+        const gyujanggakSnapshot = await getDocs(gyujanggakRef);
+
+        gyujanggakSnapshot.forEach((doc) => {
+            let tempObject = doc.data();
+            tempObject["docId"] = doc.id;
+            data.push(tempObject);
+
+        });
+
+    }
 
     res.json({
         data: data

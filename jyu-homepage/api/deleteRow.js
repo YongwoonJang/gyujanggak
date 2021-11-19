@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, deleteDoc, doc } = require("firebase/firestore");
+const { getDatabase, ref, remove } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth");
 
 const firebaseConfig = {
@@ -23,13 +23,15 @@ module.exports = async (req, res) => {
     localDelDocId = fullURL.searchParams.get('localDelDocId');
     
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const db = getDatabase(app);
     const auth = getAuth(app);
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
 
     if (localDelDocId != null) {
         try {
-            await deleteDoc(doc(db, "gyujanggak", localDelDocId));
+
+            const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
+            remove(gyujanggakRef);
             console.log("Document delete with ID: ", localDelDocId);
 
         } catch (e) {
