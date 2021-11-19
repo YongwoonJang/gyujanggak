@@ -36,6 +36,7 @@ module.exports = async (req, res) => {
 
         console.log(data);
 
+
     } else {
         const db = getFirestore(app);
         const gyujanggakRef = collection(db, name);
