@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
     if (name == "gyujanggak") {
         const db = getDatabase(app);
         const gyujanggakRef = ref(db, 'chats/');
+        let tempData = [];
 
         onValue(gyujanggakRef, (snapshot) => {
             data = snapshot.val();
