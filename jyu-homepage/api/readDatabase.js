@@ -34,6 +34,8 @@ module.exports = async (req, res) => {
             data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
         }
 
+        console.log(data);
+
     } else {
         const db = getFirestore(app);
         const gyujanggakRef = collection(db, name);
