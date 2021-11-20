@@ -40,7 +40,6 @@ export default function CommentTable(){
 
     //Variables for comments area
     const [lines, setLines] = useState("");
-    const [comments, setComments] = useState([{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]);
 
     //Variables for Dialogue area
     const [defaultContents, setContents] = useState("Hello world");
@@ -62,30 +61,27 @@ export default function CommentTable(){
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const gyujanggakRef = ref(db, 'chats/');
-
-    useEffect (() => {
         
-        let tempData = [];
-        let data = [];
+    let tempData = [];
+    let data = [];
+
+    
+    //register change.
+    useEffect(()=>{
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
+            Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
+
+            if (data.length == 0) {
+                data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+            }
+
+            setTable(data, setLines);
+            
         })
+    })
 
-        Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
-
-        if (data.length == 0) {
-            data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
-        }
-
-        setComments(data);
-        
-    });
-
-    useEffect(() => {
-        setTable(comments, setLines);
-
-    }, [comments]);
-
+    
     useEffect(() => {
         if (commentTableRef.current != null) {
             commentTableRef.current.querySelectorAll('tr').forEach(e => e.addEventListener("click", settingButton));
@@ -145,11 +141,11 @@ export default function CommentTable(){
         event.preventDefault();
 
         if (delDocIdRef.current.innerHTML != "") {
-            deleteRow(delDocIdRef.current.innerHTML, setComments);
+            deleteRow(delDocIdRef.current.innerHTML);
             alert("성공적으로 삭제되었습니다.");
 
         } else {
-            insertRow(defaultAuthor, defaultContents, setComments);
+            insertRow(defaultAuthor, defaultContents);
             alert("성공적으로 저장되었습니다.");
 
         }
