@@ -15,7 +15,7 @@ export async function readDatabase(name) {
 }
 
 //Insert to database and update comments array.
-export async function insertRow(author, contents, setComments) {
+export function insertRow(author, contents, setComments) {
 
     let destination = baseURL + '/insertRow';
     let url = new URL(destination)
@@ -28,7 +28,7 @@ export async function insertRow(author, contents, setComments) {
 }
 
 //Delete from database and update comments array
-export async function deleteRow(localDelDocId, setComments) {
+export function deleteRow(localDelDocId, setComments) {
 
     let destination = baseURL + '/deleteRow';
     var url = new URL(destination)
