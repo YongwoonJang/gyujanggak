@@ -3,7 +3,12 @@ import React, { useState, useRef, useEffect } from 'react'
 import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
-import { readDatabase, insertRow, deleteRow } from './databaseUtils'
+import { insertRow, deleteRow } from './databaseUtils'
+
+//Apply realtime database.
+const { initializeApp } = require("firebase/app");
+const { getDatabase, ref, onValue } = require("firebase/database");
+import {firebaseConfig} from './firebaseConfig';
 
 const setTable = (localComments, setLines) => {
     if (localComments != null) {
@@ -31,20 +36,9 @@ const setTable = (localComments, setLines) => {
     }
 }
 
-export async function getStaticProps(){
-    let comments = await readDatabase('gyujanggak')
-
-    return {
-        props: {
-            comments: comments
-        },
-    }
-}
-
 export default function CommentTable(){
 
     //Variables for comments area
-    // const [comments, setComments] = useState(props.comments);
     const [lines, setLines] = useState("");
     const [comments, setComments] = useState([{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]);
 
@@ -64,16 +58,28 @@ export default function CommentTable(){
     // RefForDeleteItem
     const delDocIdRef = useRef(null);
 
-    // interval
-    let interval = null;
+    // Apply realtime Database 
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const gyujanggakRef = ref(db, 'chats/');
 
-    useEffect(async () => {
-        interval = setInterval(async () => {setComments(await readDatabase('gyujanggak'))}, 3000);
+    useEffect (() => {
+        
+        let tempData = [];
+        let data = [];
+        onValue(gyujanggakRef, (snapshot) => {
+            tempData = snapshot.val();
+        })
 
-        return function cleanup() {
-            clearInterval(interval);
+        Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
+
+        if (data.length == 0) {
+            data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
         }
-    }, []);
+
+        setComments(data);
+        
+    });
 
     useEffect(() => {
         setTable(comments, setLines);
