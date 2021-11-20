@@ -24,7 +24,7 @@ export async function insertRow(author, contents, setComments) {
     url.search = new URLSearchParams(params).toString();
 
     await fetch(url);
-    setComments(await readDatabase('gyujanggak'));
+    //setComments(await readDatabase('gyujanggak'));
 }
 
 //Delete from database and update comments array
@@ -37,5 +37,5 @@ export async function deleteRow(localDelDocId, setComments) {
     url.search = new URLSearchParams(params).toString();
 
     await fetch(url);
-    setComments(await readDatabase('gyujanggak'));
+    //setComments(await readDatabase('gyujanggak'));
 }
