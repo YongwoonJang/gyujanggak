@@ -23,7 +23,7 @@ export async function insertRow(author, contents, setComments) {
     let params = { 'author': author, 'contents': contents } // or:
     url.search = new URLSearchParams(params).toString();
 
-    await fetch(url);
+    fetch(url);
     //setComments(await readDatabase('gyujanggak'));
 }
 
@@ -36,6 +36,6 @@ export async function deleteRow(localDelDocId, setComments) {
     var params = { 'localDelDocId': localDelDocId } // or:
     url.search = new URLSearchParams(params).toString();
 
-    await fetch(url);
+    fetch(url);
     //setComments(await readDatabase('gyujanggak'));
 }
