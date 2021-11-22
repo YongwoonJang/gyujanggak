@@ -23,7 +23,7 @@ export function insertRow(author, contents) {
     let params = { 'author': author, 'contents': contents } // or:
     url.search = new URLSearchParams(params).toString();
 
-    fetch(url);
+    await fetch(url);
 }
 
 //Delete from database and update comments array
@@ -35,5 +35,5 @@ export function deleteRow(localDelDocId) {
     var params = { 'localDelDocId': localDelDocId } // or:
     url.search = new URLSearchParams(params).toString();
 
-    fetch(url);
+    await fetch(url);
 }
