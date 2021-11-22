@@ -25,22 +25,26 @@ module.exports = async (req, res) => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const auth = getAuth(app);
-    await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
+    
+    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+        .then((userCredential) => {
+            ;
 
-    if (localDelDocId != null) {
-        try {
+            if (localDelDocId != null) {
+                const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
+                remove(gyujanggakRef);
+                console.log("Document delete with ID: ", localDelDocId);
 
-            const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
-            remove(gyujanggakRef);
-            console.log("Document delete with ID: ", localDelDocId);
+            }
+            signOut(auth);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Error code is : " + errorCode);
+            console.log("Error message is : " + errorMessage);
 
-        } catch (e) {
-            console.error("Error removing document: ", e);
-
-        }
-    }
-
-    signOut(auth);
+        });
 
     res.end();
 

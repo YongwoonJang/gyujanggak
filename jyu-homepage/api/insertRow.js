@@ -26,35 +26,37 @@ module.exports = async (req, res) => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const auth = getAuth(app);
-    await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
+    
+    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+        .then((userCredential) => {
+            let today = new Date();
+            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            let time = today.getHours() + "시 " + today.getMinutes() + "분";
+            let dateTime = date + ' ' + time;
 
-    let today = new Date();
-    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    let time = today.getHours() + "시 " + today.getMinutes() + "분";
-    let dateTime = date + ' ' + time;
+            let newId = today.getTime();
+            const commentData = {};
+            commentData.Author = author;
+            commentData.Content = contents;
+            commentData.Date = dateTime;
+            commentData.docId = newId;
 
-    let newId = today.getTime();
+            const updates = {};
+            updates["/" + newId] = commentData;
 
-    try {
-        const commentData = {};
-        commentData.Author = author;
-        commentData.Content = contents;
-        commentData.Date = dateTime;
-        commentData.docId = newId;
+            const gyujanggakRef = ref(db, 'chats/');
+            update(gyujanggakRef, updates);
 
-        const updates = {};
-        updates["/" + newId] = commentData;
+            console.log("Document written with ID: ", newId);
+            signOut(auth);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Error code is : " + errorCode);
+            console.log("Error message is : " + errorMessage);
 
-        const gyujanggakRef = ref(db, 'chats/');
-        update(gyujanggakRef, updates);
-
-        console.log("Document written with ID: ", newId);
-
-    } catch (e) {
-        console.error("Error adding document: ", e);
-
-    }
-    signOut(auth);
+        });
 
     res.end();
 
