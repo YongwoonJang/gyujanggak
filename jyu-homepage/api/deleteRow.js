@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then((userCredential) => {
-            ;
+            
 
             if (localDelDocId != null) {
                 const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
@@ -36,7 +36,6 @@ module.exports = async (req, res) => {
                 console.log("Document delete with ID: ", localDelDocId);
 
             }
-            signOut(auth);
         })
         .catch((error) => {
             const errorCode = error.code;

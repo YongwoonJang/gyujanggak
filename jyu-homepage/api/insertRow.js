@@ -48,7 +48,6 @@ module.exports = async (req, res) => {
             update(gyujanggakRef, updates);
 
             console.log("Document written with ID: ", newId);
-            signOut(auth);
         })
         .catch((error) => {
             const errorCode = error.code;
