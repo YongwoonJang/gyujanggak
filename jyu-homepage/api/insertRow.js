@@ -52,8 +52,7 @@ module.exports = async (req, res) => {
 
         const gyujanggakRef = ref(db, 'chats/');
         
-        let updateResult = update(gyujanggakRef, updates);
-        console.log("update result");
+        await update(gyujanggakRef, updates);
         console.log(updateResult);
 
         console.log("Document written with ID: ", newId);
