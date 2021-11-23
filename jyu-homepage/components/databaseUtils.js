@@ -34,6 +34,7 @@ export function deleteRow(localDelDocId) {
 
     var params = { 'localDelDocId': localDelDocId } // or:
     url.search = new URLSearchParams(params).toString();
-
+    console.log("databaseUtil line 37")
     fetch(url);
+    console.log("databaseUtil line 39");
 }

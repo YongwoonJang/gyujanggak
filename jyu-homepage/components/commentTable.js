@@ -141,7 +141,9 @@ export default function CommentTable(){
         event.preventDefault();
 
         if (delDocIdRef.current.innerHTML != "") {
+            console.log("commentTable line 144")
             deleteRow(delDocIdRef.current.innerHTML);
+            console.log("commentTable line 146")
             alert("성공적으로 삭제되었습니다.");
 
         } else {

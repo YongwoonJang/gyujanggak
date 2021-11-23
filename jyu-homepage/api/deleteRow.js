@@ -26,10 +26,12 @@ module.exports = async (req, res) => {
     const db = getDatabase(app);
     const auth = getAuth(app);
     
+    console.log("signInWithEmailAndPassword session");
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then((userCredential) => {
             
-
+            console.log("in the userCredentail");
+            console.log(userCredential.user);
             if (localDelDocId != null) {
                 const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
                 remove(gyujanggakRef);
@@ -44,7 +46,8 @@ module.exports = async (req, res) => {
             console.log("Error message is : " + errorMessage);
 
         });
-
+    
+    console.log("deleteRow line 50");
     res.setHeader('Access-Control-Allow-Origin', '*');    
     res.end();
 
