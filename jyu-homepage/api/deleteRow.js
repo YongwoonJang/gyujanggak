@@ -28,24 +28,24 @@ module.exports = async (req, res) => {
     
     console.log("signInWithEmailAndPassword session");
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
-        .then((userCredential) => {
-            
-            console.log("in the userCredentail");
-            console.log(userCredential.user);
-            if (localDelDocId != null) {
-                const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
-                remove(gyujanggakRef);
-                console.log("Document delete with ID: ", localDelDocId);
+    .then((userCredential) => {
+        
+        console.log("in the userCredentail");
+        console.log(userCredential.user);
+        if (localDelDocId != null) {
+            const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
+            remove(gyujanggakRef);
+            console.log("Document delete with ID: ", localDelDocId);
 
-            }
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log("Error code is : " + errorCode);
-            console.log("Error message is : " + errorMessage);
+        }
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Error code is : " + errorCode);
+        console.log("Error message is : " + errorMessage);
 
-        });
+    });
     
     console.log("deleteRow line 50");
     res.setHeader('Access-Control-Allow-Origin', '*');    
