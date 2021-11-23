@@ -53,12 +53,20 @@ module.exports = async (req, res) => {
         const gyujanggakRef = ref(db, 'chats/');
         update(gyujanggakRef, updates).then(()=>{
             console.log("Document written with ID: ", newId);
+
         })
         .catch((error)=>{
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log("Error code is : " + errorCode);
             console.log("Error message is : " + errorMessage);
+
+        })
+        .finally(()=> {
+            console.log("final is happened");
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.end();
+
         })
 
     })
@@ -68,9 +76,14 @@ module.exports = async (req, res) => {
         console.log("Error code is : " + errorCode);
         console.log("Error message is : " + errorMessage);
 
-    });
+    })
+    .finally(() => {
+        console.log("final is happened");
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.end();
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.end();
+    })
+
+    
 
 };
