@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
     
     console.log("signInWithEmailAndPassword session");
-    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+    await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
         
         console.log("in the userCredentail");
