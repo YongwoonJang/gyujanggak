@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     const db = getDatabase(app);
     const auth = getAuth(app);
     
-    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+    await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then((userCredential) => {
             let today = new Date();
             let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
