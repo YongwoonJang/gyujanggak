@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
         console.log("In the userCredential");
-        
+
         const curr = new Date();
         const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
         const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
@@ -51,7 +51,10 @@ module.exports = async (req, res) => {
         updates["/" + newId] = commentData;
 
         const gyujanggakRef = ref(db, 'chats/');
-        update(gyujanggakRef, updates);
+        
+        let updateResult = update(gyujanggakRef, updates);
+        console.log("update result");
+        console.log(updateResult);
 
         console.log("Document written with ID: ", newId);
     })
