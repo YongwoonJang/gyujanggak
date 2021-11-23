@@ -51,11 +51,16 @@ module.exports = async (req, res) => {
         updates["/" + newId] = commentData;
 
         const gyujanggakRef = ref(db, 'chats/');
-        
-        await update(gyujanggakRef, updates);
-        console.log(updateResult);
+        update(gyujanggakRef, updates).then(()=>{
+            console.log("Document written with ID: ", newId);
+        })
+        .catch((error)=>{
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Error code is : " + errorCode);
+            console.log("Error message is : " + errorMessage);
+        })
 
-        console.log("Document written with ID: ", newId);
     })
     .catch((error) => {
         const errorCode = error.code;
