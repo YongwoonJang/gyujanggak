@@ -28,34 +28,40 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
     
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
-        .then((userCredential) => {
-            let today = new Date();
-            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            let time = today.getHours() + "시 " + today.getMinutes() + "분";
-            let dateTime = date + ' ' + time;
+    .then((userCredential) => {
+        console.log("In the userCredential");
+        
+        const curr = new Date();
+        const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
 
-            let newId = today.getTime();
-            const commentData = {};
-            commentData.Author = author;
-            commentData.Content = contents;
-            commentData.Date = dateTime;
-            commentData.docId = newId;
+        let today = new Date(utc + KR_TIME_DIFF);
+        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        let time = today.getHours() + "시 " + today.getMinutes() + "분";
+        let dateTime = date + ' ' + time;
 
-            const updates = {};
-            updates["/" + newId] = commentData;
+        let newId = utc + KR_TIME_DIFF;
+        const commentData = {};
+        commentData.Author = author;
+        commentData.Content = contents;
+        commentData.Date = dateTime;
+        commentData.docId = newId;
 
-            const gyujanggakRef = ref(db, 'chats/');
-            update(gyujanggakRef, updates);
+        const updates = {};
+        updates["/" + newId] = commentData;
 
-            console.log("Document written with ID: ", newId);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log("Error code is : " + errorCode);
-            console.log("Error message is : " + errorMessage);
+        const gyujanggakRef = ref(db, 'chats/');
+        update(gyujanggakRef, updates);
 
-        });
+        console.log("Document written with ID: ", newId);
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Error code is : " + errorCode);
+        console.log("Error message is : " + errorMessage);
+
+    });
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.end();
