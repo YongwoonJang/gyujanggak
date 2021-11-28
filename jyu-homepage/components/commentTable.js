@@ -65,11 +65,9 @@ export default function CommentTable(){
     let tempData = [];
     let data = [];
 
-    useEffect(() => {
-        console.log("signIn is executed");
-        signIn();
+    console.log("signIn is executed");
+    signIn();
 
-    }, [])
 
     //register change.
     useEffect(()=>{
