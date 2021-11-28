@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
-import { insertRow, deleteRow } from './databaseUtils'
+import { insertRow, deleteRow, signIn } from './databaseUtils'
 
 //Apply realtime database.
 const { initializeApp } = require("firebase/app");
@@ -65,9 +65,15 @@ export default function CommentTable(){
     let tempData = [];
     let data = [];
 
-    
+    useEffect(() => {
+        console.log("signIn is executed");
+        signIn();
+
+    }, [])
+
     //register change.
     useEffect(()=>{
+        console.log("comments table is executed");
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
             Object.keys(tempData).forEach(element => { data.push(tempData[element]) });

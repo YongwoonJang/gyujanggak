@@ -3,8 +3,6 @@ import React from 'react'
 import matter from 'gray-matter'
 import parse from 'html-react-parser'
 
-import { readDatabase } from '../../components/databaseUtils'
-
 // Next.js
 import Link from 'next/link'
 

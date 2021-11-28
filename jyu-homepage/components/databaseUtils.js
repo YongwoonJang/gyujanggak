@@ -37,3 +37,11 @@ export function deleteRow(localDelDocId) {
     fetch(url);
     
 }
+
+export function signIn(){
+    
+    let destination = baseURL + '/signIn';
+    var url = new URL(destination);
+    
+    fetch(url);
+}

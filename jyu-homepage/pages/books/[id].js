@@ -17,8 +17,9 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+    
+    
     //It only process one time
-
     const fullPath = "public/books/" + params.id + ".md"
     let matterResult = { "data": { "title": "Ready" }, "content": "내용 준비 중입니다." };
 
