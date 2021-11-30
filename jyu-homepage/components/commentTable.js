@@ -65,7 +65,7 @@ export default function CommentTable(){
     let tempData = [];
     let data = [];
 
-    console.log("signIn is executed");
+    console.log("out of useEffect : signIn is executed");
     signIn();
 
 

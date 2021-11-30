@@ -25,16 +25,14 @@ module.exports = async (req, res) => {
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
         console.log("login is complete");
+        res.setHeader("Access-Control-Allow-origin", "*");
+        res.end();
 
     })
     .catch((error) => {
         console.log(error.code);
         console.log(error.log);
         console.log("login is failed");
-
-    })
-    .finally(() => {
-        console.log("finally section is executed");
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
 
