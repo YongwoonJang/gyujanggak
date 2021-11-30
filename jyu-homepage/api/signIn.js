@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
         console.log("login is complete");
+        console.log(userCredential);
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
 
