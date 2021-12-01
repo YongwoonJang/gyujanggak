@@ -65,12 +65,13 @@ export default function CommentTable(){
     let tempData = [];
     let data = [];
 
-    console.log("out of useEffect : signIn is executed");
-    signIn();
-
-
+    
     //register change.
-    useEffect(()=>{
+    useEffect(async ()=>{
+        const res = await signIn();
+        const result = await res.json();
+        console.log(result);
+
         console.log("comments table is executed");
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
