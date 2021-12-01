@@ -38,11 +38,11 @@ export function deleteRow(localDelDocId) {
     
 }
 
-export async function signIn(){
+export function signIn(){
     
     let destination = baseURL + '/signIn';
     var url = new URL(destination);
     
-    const data = await fetch(url);
+    fetch(url);
 
 }
