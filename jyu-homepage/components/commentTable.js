@@ -69,8 +69,7 @@ export default function CommentTable(){
     //register change.
     useEffect(async ()=>{
         const res = await signIn();
-        const result = await res.json();
-        console.log(result);
+        console.log(res);
 
         console.log("comments table is executed");
         onValue(gyujanggakRef, (snapshot) => {
