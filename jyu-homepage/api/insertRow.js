@@ -1,5 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, update } = require("firebase/database");
+const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -19,6 +20,10 @@ module.exports = async (req, res) => {
     contents = fullURL.searchParams.get('contents');
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
+    const auth = getAuth(app);
+
+    console.log("hello user :::::::::::::::::::");
+    console.log(auth.currentUser);
 
     const curr = new Date();
     const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);

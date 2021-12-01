@@ -26,6 +26,8 @@ module.exports = async (req, res) => {
     .then((userCredential) => {
         console.log("login is complete");
         console.log(userCredential);
+        console.log("auth ::::::::");
+        console.log(auth.currentUser);
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
 
