@@ -44,5 +44,5 @@ export async function signIn(){
     var url = new URL(destination);
     
     const data = await fetch(url);
-    const result = await data.json();
+
 }
