@@ -28,16 +28,16 @@ module.exports = async (req, res) => {
         //console.log(userCredential);
         console.log("auth ::::::::");
         console.log(auth.currentUser);
-        // res.setHeader("Access-Control-Allow-origin", "*");
-        // res.end();
+        res.setHeader("Access-Control-Allow-origin", "*");
+        res.end();
 
     })
     .catch((error) => {
         console.log(error.code);
         console.log(error.log);
         console.log("login is failed");
-        // res.setHeader("Access-Control-Allow-origin", "*");
-        // res.end();
+        res.setHeader("Access-Control-Allow-origin", "*");
+        res.end();
 
     })
     
