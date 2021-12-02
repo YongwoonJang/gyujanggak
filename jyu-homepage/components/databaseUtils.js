@@ -44,10 +44,7 @@ export function signIn(){
     var url = new URL(destination);
     
     console.log("in the database utils.js");
-    const result = fetch(url);
-    result.then((ttt) => {
-        console.log(ttt);
-    })
-    
+    fetch(url);
+
 
 }
