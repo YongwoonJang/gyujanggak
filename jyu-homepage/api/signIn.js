@@ -16,17 +16,15 @@ const identification = {
     code: process.env.CODE
 }
 
-module.exports = async (req, res) => {
+module.exports = (req, res) => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     console.log("this section is executed");
 
-    await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
-        console.log("login is complete");
-        //console.log(userCredential);
-        console.log("auth ::::::::");
+        console.log("user credential is complete");
         console.log(userCredential.user);
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
