@@ -23,9 +23,9 @@ module.exports = (req, res) => {
     console.log("this section is executed");
 
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
-    .then(async (userCredential) => {
+    .then((userCredential) => {
         console.log("user credentail is executed");
-        const result = await userCredential;
+        const result = userCredential;
         console.log(result.user.reloadUserInfo.email);
         console.log("user credential is complete");
         res.setHeader("Access-Control-Allow-origin", "*");
