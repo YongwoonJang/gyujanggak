@@ -2,16 +2,28 @@ const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, update } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
 
+// const firebaseConfig = {
+//     apiKey: process.env.API_KEY,
+//     messagingSenderId: process.env.MESSAGING_SENDER_ID,
+//     appId: process.env.API_ID,
+//     authDomain: process.env.AUTH_DOMAIN,
+//     projectId: process.env.PROJECT_ID,
+//     storageBucket: process.env.STORAGE_BUCKET,
+//     databaseUrl: process.env.DATABASE_URL,
+
+// }
+
 const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.API_ID,
-    authDomain: process.env.AUTH_DOMAIN,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    databaseUrl: process.env.DATABASE_URL,
+    apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
+    messagingSenderId: "442347175475",
+    appId: "1:442347175475:web:ea5374ac2d0c8458972d46",
+    authDomain: "gyujanggak-99e8a.firebaseapp.com",
+    projectId: "gyujanggak-99e8a",
+    storageBucket: "gyujanggak-99e8a.appspot.com",
+    databaseURL: "https://gyujanggak-99e8a-default-rtdb.firebaseio.com/"
 
 }
+
 
 module.exports = async (req, res) => {
 
