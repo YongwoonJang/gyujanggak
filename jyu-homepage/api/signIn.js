@@ -25,7 +25,7 @@ module.exports = (req, res) => {
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
         console.log("user credentail is executed");
-        console.log(userCredentail.user.reloadUserInfo);
+        console.log(userCredential.user.reloadUserInfo);
         const result = userCredential;
         console.log(result.user.reloadUserInfo);
         console.log("user credential is complete");
