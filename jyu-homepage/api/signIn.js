@@ -26,8 +26,7 @@ module.exports = (req, res) => {
     .then((userCredential) => {
         console.log("user credentail is executed");
         const result = userCredential;
-        console.log(result.user.reloadUserInfo.email);
-        console.log(result.user.UserImpl);
+        console.log(result.user.reloadUserInfo);
         console.log("user credential is complete");
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
