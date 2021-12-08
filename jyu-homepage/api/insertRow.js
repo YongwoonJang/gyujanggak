@@ -19,8 +19,9 @@ module.exports = async (req, res) => {
     author = fullURL.searchParams.get('author');
     contents = fullURL.searchParams.get('contents');
    
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    // const app = initializeApp(firebaseConfig);
+    // const auth = getAuth(app);
+    const app = getApp();
     const db = getDatabase(app);
     
     console.log(app.name);
