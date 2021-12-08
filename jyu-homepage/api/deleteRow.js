@@ -33,7 +33,6 @@ module.exports = async (req, res) => {
             const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
             remove(gyujanggakRef).then(()=>{
                 console.log("Document delete with ID: ", localDelDocId);
-                res.setHeader('Access-Control-Allow-Origin', '*');
                 res.end();
             })
             .catch((error) => {
@@ -41,7 +40,6 @@ module.exports = async (req, res) => {
                 const errorMessage = error.message;
                 console.log("Error code is : " + errorCode);
                 console.log("Error message is : " + errorMessage);
-                res.setHeader('Access-Control-Allow-Origin', '*');
                 res.end();
             })
         }
