@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 }
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
 
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     author = fullURL.searchParams.get('author');
@@ -46,7 +46,7 @@ module.exports = (req, res) => {
     updates["/" + newId] = commentData;
 
     const gyujanggakRef = ref(db, 'chats/');
-    update(gyujanggakRef, updates).then(()=>{
+    await update(gyujanggakRef, updates).then(()=>{
         console.log("Document written with ID: ", newId);
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.end();
