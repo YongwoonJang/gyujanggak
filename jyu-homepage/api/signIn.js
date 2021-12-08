@@ -21,12 +21,12 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
 
     console.log("Sign In module is executed");
+    console.log(auth.currentUser);
 
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
         console.log("signInWithEmailAndPassword function is executed");
         console.log("current user is below");
-        console.log(auth.currentUser);
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
     })
