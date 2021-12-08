@@ -24,7 +24,7 @@ module.exports = (req, res) => {
     const auth = getAuth(app);
 
     console.log("Insert Row is executed and check current user");
-    console.log(auth.currentUser);
+    console.log(auth);
 
     const curr = new Date();
     const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
