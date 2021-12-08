@@ -20,11 +20,10 @@ module.exports = async (req, res) => {
     contents = fullURL.searchParams.get('contents');
    
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
     const auth = getAuth(app);
-
-    console.log("Insert Row is executed and check current user");
-    console.log(auth);
+    const db = getDatabase(app);
+    
+    console.log(db);
 
     const curr = new Date();
     const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
@@ -46,7 +45,7 @@ module.exports = async (req, res) => {
     updates["/" + newId] = commentData;
 
     const gyujanggakRef = ref(db, 'chats/');
-    await update(gyujanggakRef, updates).then(()=>{
+    update(gyujanggakRef, updates).then(()=>{
         console.log("Document written with ID: ", newId);
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.end();
