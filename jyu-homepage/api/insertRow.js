@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
 
     const gyujanggakRef = ref(db, 'chats/');
 
-    signInWithEmailAndPassword(auth, process.env.identification["user"], process.env.identification["code"])
+    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then(()=>{
         update(gyujanggakRef, updates).then(() => {
             console.log("Document written with ID: ", newId);
