@@ -71,6 +71,7 @@ export default function CommentTable(){
         
         console.log("First comment useEffect is executed");
         console.log(getAuth(app));
+        
         signIn();
         
         onValue(gyujanggakRef, (snapshot) => {
