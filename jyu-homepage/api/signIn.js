@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
 
     console.log("Sign In module is executed");
-    console.log(auth.currentUser);
+    console.log(app.name);
 
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
