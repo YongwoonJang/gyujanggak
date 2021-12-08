@@ -19,6 +19,7 @@ module.exports = async (req, res) => {
     localDelDocId = fullURL.searchParams.get('localDelDocId');
     
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     const db = getDatabase(app);
 
     signInWithEmailAndPassword(auth, process.env.identification["user"], process.env.identification["code"])
