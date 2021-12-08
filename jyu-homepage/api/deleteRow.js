@@ -21,21 +21,30 @@ module.exports = async (req, res) => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    if (localDelDocId != null) {
-        const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
-        remove(gyujanggakRef).then(()=>{
-            console.log("Document delete with ID: ", localDelDocId);
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.end();
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log("Error code is : " + errorCode);
-            console.log("Error message is : " + errorMessage);
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.end();
-        })
+    signInWithEmailAndPassword(auth, process.env.identification["user"], process.env.identification["code"])
+    .then(() => {
+        if (localDelDocId != null) {
+            const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
+            remove(gyujanggakRef).then(()=>{
+                console.log("Document delete with ID: ", localDelDocId);
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.end();
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log("Error code is : " + errorCode);
+                console.log("Error message is : " + errorMessage);
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.end();
+            })
+        }
+    })
+    .catch((error) => {
+        console.log("Error is : " + error);
+        console.log("Error code is : " + error.code);
+        console.log("Error message is : " + error.message);
+
     }
 
 };

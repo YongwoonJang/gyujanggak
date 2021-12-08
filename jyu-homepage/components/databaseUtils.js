@@ -5,7 +5,7 @@ export async function readDatabase(name) {
     const destination = baseURL + '/readDatabase';
     let url = new URL(destination)
 
-    let params = { 'name': name } // or:
+    let params = { 'name': name };
     url.search = new URLSearchParams(params).toString();
 
     const querySnapshot = await fetch(url);
@@ -20,7 +20,7 @@ export function insertRow(author, contents) {
     let destination = baseURL + '/insertRow';
     let url = new URL(destination)
 
-    let params = { 'author': author, 'contents': contents } // or:
+    let params = { 'author': author, 'contents': contents };
     url.search = new URLSearchParams(params).toString();
 
     fetch(url);
@@ -32,23 +32,8 @@ export function deleteRow(localDelDocId) {
     let destination = baseURL + '/deleteRow';
     var url = new URL(destination)
 
-    var params = { 'localDelDocId': localDelDocId } // or:
+    var params = { 'localDelDocId': localDelDocId };
     url.search = new URLSearchParams(params).toString();
     fetch(url);
     
-}
-
-export function signIn(){
-    
-    let destination = baseURL + '/signIn';
-    var url = new URL(destination);
-    
-    fetch(url).then((result) =>{
-
-        console.log("signIn is well executed");
-        console.log("go update session");
-
-    });
-
-
 }

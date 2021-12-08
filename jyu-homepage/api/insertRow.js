@@ -13,6 +13,11 @@ const firebaseConfig = {
 
 }
 
+const identification = {
+    user: process.env.USER_ID,
+    code: process.env.CODE
+}
+
 module.exports = async (req, res) => {
 
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
@@ -43,21 +48,27 @@ module.exports = async (req, res) => {
     updates["/" + newId] = commentData;
 
     const gyujanggakRef = ref(db, 'chats/');
-    update(gyujanggakRef, updates).then(()=>{
-        console.log("Document written with ID: ", newId);
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.end();
 
+    signInWithEmailAndPassword(auth, process.env.identification["user"], process.env.identification["code"])
+    .then(()=>{
+        update(gyujanggakRef, updates).then(() => {
+            console.log("Document written with ID: ", newId);
+            res.end();
+
+        })
+        .catch((error) => {
+            console.log("Error is : " + error);
+            console.log("Error code is : " + error.code);
+            console.log("Error message is : " + error.message);
+            res.end();
+
+        })
     })
     .catch((error)=>{
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Error is : " + error);
-        console.log("Error code is : " + errorCode);
-        console.log("Error message is : " + errorMessage);
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.end();
+        console.log("Error is : "+error);
+        console.log("Error code is : "+error.code);
+        console.log("Error message is : "+error.message);
 
-    })
+    }
 
 };

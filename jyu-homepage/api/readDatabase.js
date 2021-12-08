@@ -16,37 +16,18 @@ module.exports = async (req, res) => {
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     let name = fullURL.searchParams.get('name');
     const app = initializeApp(firebaseConfig);
-    
     let data = [];
 
-    if (name == "gyujanggak") {
-        const db = getDatabase(app);
-        const gyujanggakRef = ref(db, 'chats/');
-        let tempData = [];
+    const db = getFirestore(app);
+    const gyujanggakRef = collection(db, name);
+    const gyujanggakSnapshot = await getDocs(gyujanggakRef);
 
-        onValue(gyujanggakRef, (snapshot) => {
-            tempData = snapshot.val();
-        })
+    gyujanggakSnapshot.forEach((doc) => {
+        let tempObject = doc.data();
+        tempObject["docId"] = doc.id;
+        data.push(tempObject);
 
-        Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
-
-        if(data.length == 0){
-            data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
-        }
-
-    } else {
-        const db = getFirestore(app);
-        const gyujanggakRef = collection(db, name);
-        const gyujanggakSnapshot = await getDocs(gyujanggakRef);
-
-        gyujanggakSnapshot.forEach((doc) => {
-            let tempObject = doc.data();
-            tempObject["docId"] = doc.id;
-            data.push(tempObject);
-
-        });
-
-    }
+    });
 
     res.json({
         data: data

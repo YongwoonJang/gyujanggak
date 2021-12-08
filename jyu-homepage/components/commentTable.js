@@ -3,13 +3,12 @@ import React, { useState, useRef, useEffect } from 'react'
 import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
-import { insertRow, deleteRow, signIn } from './databaseUtils'
+import { insertRow, deleteRow} from './databaseUtils'
 
 //Apply realtime database.
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, onValue } = require("firebase/database");
 import {firebaseConfig} from './firebaseConfig';
-import { getAuth } from 'firebase/auth'
 
 const setTable = (localComments, setLines) => {
     if (localComments != null) {
@@ -68,11 +67,6 @@ export default function CommentTable(){
 
     //register change.
     useEffect(()=>{
-        
-        console.log("First comment useEffect is executed");
-        console.log(getAuth(app));
-        
-        signIn();
         
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
