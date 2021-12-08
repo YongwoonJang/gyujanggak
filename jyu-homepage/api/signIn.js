@@ -16,26 +16,25 @@ const identification = {
     code: process.env.CODE
 }
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    console.log("this section is executed");
+    console.log("Sign In module is executed");
 
-    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+    await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential) => {
-        console.log("user credentail is executed");
-        console.log(userCredential.user.reloadUserInfo);
-        const result = userCredential;
-        console.log(result.user.reloadUserInfo);
-        console.log("user credential is complete");
+        console.log("signInWithEmailAndPassword function is executed");
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
     })
     .catch((error) => {
-        console.log(error.code);
-        console.log(error.log);
-        console.log("login is failed");
+        console.log("SignInWithEmailAndPassword function is failed with below error")
+        console.log(error);
+        if(error.code != null){
+            console.log(error.code);
+            console.log(error.log);
+        }
         res.setHeader("Access-Control-Allow-origin", "*");
         res.end();
 

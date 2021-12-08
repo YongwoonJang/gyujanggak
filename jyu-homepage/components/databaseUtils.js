@@ -43,8 +43,12 @@ export function signIn(){
     let destination = baseURL + '/signIn';
     var url = new URL(destination);
     
-    console.log("in the database utils.js");
-    fetch(url);
+    fetch(url).then((result) =>{
+
+        console.log("signIn is well executed");
+        console.log("go update session");
+
+    });
 
 
 }

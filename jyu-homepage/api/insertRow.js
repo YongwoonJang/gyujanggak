@@ -2,39 +2,28 @@ const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, update } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
 
-// const firebaseConfig = {
-//     apiKey: process.env.API_KEY,
-//     messagingSenderId: process.env.MESSAGING_SENDER_ID,
-//     appId: process.env.API_ID,
-//     authDomain: process.env.AUTH_DOMAIN,
-//     projectId: process.env.PROJECT_ID,
-//     storageBucket: process.env.STORAGE_BUCKET,
-//     databaseUrl: process.env.DATABASE_URL,
-
-// }
-
 const firebaseConfig = {
-    apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
-    messagingSenderId: "442347175475",
-    appId: "1:442347175475:web:ea5374ac2d0c8458972d46",
-    authDomain: "gyujanggak-99e8a.firebaseapp.com",
-    projectId: "gyujanggak-99e8a",
-    storageBucket: "gyujanggak-99e8a.appspot.com",
-    databaseURL: "https://gyujanggak-99e8a-default-rtdb.firebaseio.com/"
+    apiKey: process.env.API_KEY,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.API_ID,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    databaseUrl: process.env.DATABASE_URL
 
 }
 
-
-module.exports = async (req, res) => {
+module.exports = (req, res) => {
 
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     author = fullURL.searchParams.get('author');
     contents = fullURL.searchParams.get('contents');
+   
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const auth = getAuth(app);
 
-    console.log("hello user :::::::::::::::::::");
+    console.log("Insert Row is executed and check current user");
     console.log(auth.currentUser);
 
     const curr = new Date();
