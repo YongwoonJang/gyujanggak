@@ -19,13 +19,10 @@ module.exports = async (req, res) => {
     author = fullURL.searchParams.get('author');
     contents = fullURL.searchParams.get('contents');
    
-    // const app = initializeApp(firebaseConfig);
-    // const auth = getAuth(app);
-    const app = getApp();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     const db = getDatabase(app);
     
-    console.log(app.name);
-
     const curr = new Date();
     const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
@@ -55,6 +52,7 @@ module.exports = async (req, res) => {
     .catch((error)=>{
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log("Error is : " + error);
         console.log("Error code is : " + errorCode);
         console.log("Error message is : " + errorMessage);
         res.setHeader('Access-Control-Allow-Origin', '*');
