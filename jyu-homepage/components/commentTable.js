@@ -9,6 +9,7 @@ import { insertRow, deleteRow, signIn } from './databaseUtils'
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, onValue } = require("firebase/database");
 import {firebaseConfig} from './firebaseConfig';
+import { getAuth } from 'firebase/auth'
 
 const setTable = (localComments, setLines) => {
     if (localComments != null) {
@@ -69,7 +70,7 @@ export default function CommentTable(){
     useEffect(()=>{
         
         console.log("First comment useEffect is executed");
-
+        console.log(getAuth(app));
         signIn();
         
         onValue(gyujanggakRef, (snapshot) => {
