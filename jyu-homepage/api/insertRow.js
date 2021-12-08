@@ -69,6 +69,6 @@ module.exports = async (req, res) => {
         console.log("Error code is : "+error.code);
         console.log("Error message is : "+error.message);
 
-    }
+    });
 
 };
