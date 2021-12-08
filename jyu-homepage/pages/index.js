@@ -32,9 +32,6 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      <div className={mainPageStyles.mainReqResPart}>
-        <RequestFormAndResult/>
-      </div>
     </Layout>
   )
 }
