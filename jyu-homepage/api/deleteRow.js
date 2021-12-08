@@ -14,6 +14,11 @@ const firebaseConfig = {
 
 }
 
+const identification = {
+    user: process.env.USER_ID,
+    code: process.env.CODE
+}
+
 module.exports = async (req, res) => {
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     localDelDocId = fullURL.searchParams.get('localDelDocId');
