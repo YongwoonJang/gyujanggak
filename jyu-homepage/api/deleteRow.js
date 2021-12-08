@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
     const db = getDatabase(app);
 
-    signInWithEmailAndPassword(auth, dentification["user"], identification["code"])
+    signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then(() => {
         if (localDelDocId != null) {
             const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
