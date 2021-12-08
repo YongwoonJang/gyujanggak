@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
     const db = getDatabase(app);
     
-    console.log(db);
+    console.log(auth);
 
     const curr = new Date();
     const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
