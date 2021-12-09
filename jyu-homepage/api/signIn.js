@@ -1,5 +1,5 @@
 const { initializeApp } = require('firebase/app');
-const { getAuth, signInWithEmailAndPassword, getIdToken } = require('firebase/auth');
+const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -22,7 +22,7 @@ module.exports = (req, res) => {
     
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((data)=>{
-        const token = getIdToken(data);
+        const token = data.user.getIdToken();
         console.log("new sign in token");
         console.log(token);
         return token;
