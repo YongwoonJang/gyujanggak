@@ -29,6 +29,7 @@ module.exports = (req, res) => {
     })
     .then((token)=>{
         console.log("after token is resolved");
+        console.log(token);
         res.json(token);
     })
     .catch((error)=>{
