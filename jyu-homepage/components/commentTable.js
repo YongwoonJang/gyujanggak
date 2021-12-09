@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
-import { insertRow, deleteRow} from './databaseUtils'
+import { insertRow, deleteRow, signIn } from './databaseUtils'
 
 //Apply realtime database.
 const { initializeApp } = require("firebase/app");
@@ -61,6 +61,7 @@ export default function CommentTable(){
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const gyujanggakRef = ref(db, 'chats/');
+    signIn();
         
     let tempData = [];
     let data = [];
