@@ -12,7 +12,7 @@ const firebaseConfig = {
 }
 
 const identification = {
-    id : process.env.USER_ID,
+    user : process.env.USER_ID,
     code : process.env.CODE
 }
 
