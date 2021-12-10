@@ -1,4 +1,4 @@
-import { admin } from 'firebase-admin';
+import { admin } from 'firebase';
 
 // const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
