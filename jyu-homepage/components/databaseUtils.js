@@ -44,9 +44,14 @@ export function signIn(){
     let destination = baseURL + '/signIn';
     let url = new URL(destination)
 
-    fetch(url).then((data)=>{
+    fetch(url)
+    .then((data)=>{
         console.log("after sign in complete then");
-        console.log(data.json());
+        return data.json();
+    })
+    .then((result)=>{
+        console.log("after promise is resovled");
+        console.log(result);
     });
 
 }
