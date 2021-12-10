@@ -60,9 +60,12 @@ export function signIn(){
         console.log("after promise is resovled");
         console.log(result);
         
-        auth.verifyIdToken(result)
-        .then((decodedToken) => {
+        auth
+        .then((authResult)=>{
+            authResult.verifyIdToken(result)
+            .then((decodedToken) => {
                 console.log(decodedToken);
+            })
         })
 
     });
