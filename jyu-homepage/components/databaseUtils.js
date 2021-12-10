@@ -1,3 +1,5 @@
+import { admin } from 'firebase-admin';
+
 // const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
 
@@ -52,6 +54,13 @@ export function signIn(){
     .then((result)=>{
         console.log("after promise is resovled");
         console.log(result);
+        const auth = admin.auth();
+        
+        auth.verifyIdToken(result)
+        .then((decodedToken) => {
+                console.log(decodedToken);
+        })
+
     });
 
 }
