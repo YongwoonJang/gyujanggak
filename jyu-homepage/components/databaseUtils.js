@@ -2,9 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { firebaseConfig } from './firebaseConfig';
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
 // const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
 
@@ -59,13 +56,12 @@ export function signIn(){
     .then((result)=>{
         console.log("after promise is resovled");
         console.log(result);
-        
-        auth
-        .then((authResult)=>{
-            authResult.verifyIdToken(result)
-            .then((decodedToken) => {
-                console.log(decodedToken);
-            })
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        auth.verifyIdToken(result)
+        .then((decodedToken) => {
+            console.log(decodedToken);
         })
 
     });
