@@ -59,7 +59,6 @@ export function signIn(){
     .then((result)=>{
         console.log("after promise is resovled");
         console.log(result);
-        const auth = admin.auth();
         
         auth.verifyIdToken(result)
         .then((decodedToken) => {
