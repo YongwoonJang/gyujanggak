@@ -17,7 +17,8 @@ export async function readDatabase(name) {
 //Insert to database and update comments array.
 export function insertRow(author, contents) {
 
-    let destination = baseURL + '/insertRow';
+    // let destination = baseURL + '/insertRow';
+    let destination = baseURL + '/insertRowWithoutSignIn';
     let url = new URL(destination)
 
     let params = { 'author': author, 'contents': contents };
