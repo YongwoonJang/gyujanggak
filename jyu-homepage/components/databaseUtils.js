@@ -44,6 +44,8 @@ export function signIn(){
     let destination = baseURL + '/signIn';
     let url = new URL(destination)
 
-    fetch(url);
+    const data = fetch(url);
+    console.log("after sign in complete then");
+    console.log(data);
 
 }
