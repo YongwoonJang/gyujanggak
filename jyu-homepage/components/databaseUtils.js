@@ -1,4 +1,9 @@
-import { admin } from 'firebase';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { firebaseConfig } from './firebaseConfig';
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 // const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
