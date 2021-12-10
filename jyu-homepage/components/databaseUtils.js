@@ -46,7 +46,7 @@ export function signIn(){
 
     fetch(url).then((data)=>{
         console.log("after sign in complete then");
-        console.log(data);
+        console.log(data.json());
     });
 
 }
