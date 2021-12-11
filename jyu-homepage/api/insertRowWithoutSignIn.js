@@ -1,5 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, update } = require("firebase/database");
+const { getAuth } = require("firebase/auth");
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -19,6 +20,7 @@ module.exports = async (req, res) => {
     contents = fullURL.searchParams.get('contents');
 
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     const db = getDatabase(app);
 
     const curr = new Date();
@@ -41,6 +43,7 @@ module.exports = async (req, res) => {
     updates["/" + newId] = commentData;
 
     const gyujanggakRef = ref(db, 'chats/');
+    console.log(auth.currentUser);
 
     update(gyujanggakRef, updates).then(() => {
         console.log("Document written with ID: ", newId);
