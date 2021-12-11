@@ -5,3 +5,8 @@ export const firebaseConfig = {
     databaseURL: "https://gyujanggak-99e8a-default-rtdb.firebaseio.com/",
 
 }
+
+export const identification = {
+    user: "gyujanggak-board@gyujanggak.co.kr",
+    code: "202112121241KOREAghgAgn:&FgAUSTU"
+}

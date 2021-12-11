@@ -12,22 +12,6 @@ const { getAuth } = require("firebase/auth")
 
 import {firebaseConfig} from './firebaseConfig';
 
-export async function getServerSideProps() { 
-    console.log("server side props");
-
-    const user = process.env.USER_ID;
-    const code = process.env.CODE;
-    signIn();
-    return {
-        props : {
-            user : user,
-            code : code
-        }
-    }
-    
-
-}
-
 const setTable = (localComments, setLines) => {
     if (localComments != null) {
         let rows = "";
@@ -54,7 +38,7 @@ const setTable = (localComments, setLines) => {
     }
 }
 
-export default function CommentTable({props}){
+export default function CommentTable(){
 
     //Variables for comments area
     const [lines, setLines] = useState("");
@@ -88,21 +72,26 @@ export default function CommentTable({props}){
 
     //register change.
     useEffect(()=>{
-        console.log("server side properties");
-        console.log(props.user);
-        console.log(props.code);
-        console.log(auth.currentUser);
-        onValue(gyujanggakRef, (snapshot) => {
-            tempData = snapshot.val();
-            Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
+        signIn(app)
+        .then(()=>{
+            onValue(gyujanggakRef, (snapshot) => {
+                tempData = snapshot.val();
+                Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
 
-            if (data.length == 0) {
-                data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
-            }
+                if (data.length == 0) {
+                    data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+                }
 
-            setTable(data, setLines);
+                setTable(data, setLines);
+                
+            })
+        })
+        .catch((error)=>{
+            console.log(error.code);
+            console.log(error.message);
             
         })
+
     })
 
     

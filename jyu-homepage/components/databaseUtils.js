@@ -1,6 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { firebaseConfig } from './firebaseConfig';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { identification } from './firebaseConfig';
 
 // const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
@@ -43,32 +42,19 @@ export function deleteRow(localDelDocId) {
     
 }
 
-export function signIn(){
+export async function signIn(app){
 
     let destination = baseURL + '/signIn';
     let url = new URL(destination)
 
-    fetch(url)
-    .then((data)=>{
-        console.log("after sign in complete then");
-        return data.json();
+    const auth = getAuth(app);
+    await signInWithEmailAndPassword(auth, identification("user"), identification("code"))
+    .then((userCredential)=>{
+        console.log("login success");
     })
-    .then((result)=>{
-        console.log("after promise is resovled");
-        console.log(result);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        console.log(auth.currentUser);
-
-        auth.verifyIdToken(result)
-        .then((decodedToken) => {
-            console.log(decodedToken);
-        })
-        .catch((error) =>{
-            console.log(error);
-        })
-        
-
+    .catch((error)=>{
+        console.log(error);
+        console.log(error.code);
+        console.log(error.message);
     });
-
 }
