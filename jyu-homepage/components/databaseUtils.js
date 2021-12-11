@@ -21,7 +21,7 @@ export async function readDatabase(name) {
 export function insertRow(author, contents) {
 
     // let destination = baseURL + '/insertRow';
-    let destination = baseURL + '/insertRowWithoutSignIn';
+    let destination = baseURL + '/insertRow';
     let url = new URL(destination)
 
     let params = { 'author': author, 'contents': contents };
