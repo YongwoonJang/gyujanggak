@@ -8,6 +8,6 @@ export const firebaseConfig = {
 
 // this identification is using only for autorization.
 export const identification = {
-    user: "gyujanggak-board@gyujanggak.co.kr",
+    user: "royalfamily89@gmail.com",
     code: "202112121241KOREAghgAgn:&FgAUSTU"
 }
