@@ -10,6 +10,12 @@ const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, onValue } = require("firebase/database");
 import {firebaseConfig} from './firebaseConfig';
 
+export async function getServerSideProps() { 
+    console.log("server side props");
+    signIn();
+
+}
+
 const setTable = (localComments, setLines) => {
     if (localComments != null) {
         let rows = "";
@@ -61,7 +67,7 @@ export default function CommentTable(){
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const gyujanggakRef = ref(db, 'chats/');
-    signIn();
+    // signIn();
         
     let tempData = [];
     let data = [];
