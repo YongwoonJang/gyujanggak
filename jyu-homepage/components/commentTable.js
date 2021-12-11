@@ -72,23 +72,17 @@ export default function CommentTable(){
 
     //register change.
     useEffect(()=>{
-        signIn(app)
-        .then(()=>{
-            onValue(gyujanggakRef, (snapshot) => {
-                tempData = snapshot.val();
-                Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
+        signIn(app);
+        
+        onValue(gyujanggakRef, (snapshot) => {
+            tempData = snapshot.val();
+            Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
 
-                if (data.length == 0) {
-                    data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
-                }
+            if (data.length == 0) {
+                data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+            }
 
-                setTable(data, setLines);
-                
-            })
-        })
-        .catch((error)=>{
-            console.log(error.code);
-            console.log(error.message);
+            setTable(data, setLines);
             
         })
 
