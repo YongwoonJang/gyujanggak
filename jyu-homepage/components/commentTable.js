@@ -73,7 +73,8 @@ export default function CommentTable(){
     //register change.
     useEffect(()=>{
         const auth = getAuth(app);
-        if(auth.currentUser != null){
+        if(auth.currentUser == null){
+            console.log("execute signIn function");
             signIn(app)
             .then(()=>{
 
