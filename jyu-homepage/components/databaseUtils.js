@@ -59,15 +59,15 @@ export function signIn(){
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        auth.then((auth) => {
-            auth.verifyIdToken(result)
-            .then((decodedToken) => {
-                console.log(decodedToken);
-            })
-            .catch((error) =>{
-                console.log(error);
-            })
-        })
+        // auth.then((auth) => {
+        //     auth.verifyIdToken(result)
+        //     .then((decodedToken) => {
+        //         console.log(decodedToken);
+        //     })
+        //     .catch((error) =>{
+        //         console.log(error);
+        //     })
+        // })
 
     });
 
