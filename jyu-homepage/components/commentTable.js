@@ -14,7 +14,17 @@ import {firebaseConfig} from './firebaseConfig';
 
 export async function getServerSideProps() { 
     console.log("server side props");
+
+    const user = process.env.USER_ID;
+    const code = process.env.CODE;
     signIn();
+    return {
+        props : {
+            user = user,
+            code = code
+        }
+    }
+    
 
 }
 
@@ -44,7 +54,7 @@ const setTable = (localComments, setLines) => {
     }
 }
 
-export default function CommentTable(){
+export default function CommentTable({props}){
 
     //Variables for comments area
     const [lines, setLines] = useState("");
@@ -78,7 +88,9 @@ export default function CommentTable(){
 
     //register change.
     useEffect(()=>{
-        
+        console.log("server side properties");
+        console.log(props.user);
+        console.log(props.code);
         console.log(auth.currentUser);
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
