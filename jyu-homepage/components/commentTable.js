@@ -8,6 +8,8 @@ import { insertRow, deleteRow, signIn } from './databaseUtils'
 //Apply realtime database.
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, onValue } = require("firebase/database");
+const { getAuth } = require("firebase/auth")
+
 import {firebaseConfig} from './firebaseConfig';
 
 export async function getServerSideProps() { 
@@ -66,7 +68,9 @@ export default function CommentTable(){
     // Apply realtime Database 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
+    const auth = getAuth(app);
     const gyujanggakRef = ref(db, 'chats/');
+    
     // signIn();
         
     let tempData = [];
@@ -75,6 +79,7 @@ export default function CommentTable(){
     //register change.
     useEffect(()=>{
         
+        console.log(auth.currentUser);
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
             Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
