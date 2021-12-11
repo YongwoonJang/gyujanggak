@@ -22,7 +22,7 @@ export async function readDatabase(name) {
 export function insertRow(author, contents) {
 
     // let destination = baseURL + '/insertRow';
-    let destination = baseURL + '/insertRowWithoutSignIn';
+    let destination = baseURL + '/insertRow';
     let url = new URL(destination)
 
     let params = { 'author': author, 'contents': contents };
@@ -59,9 +59,14 @@ export function signIn(){
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        auth.verifyIdToken(result)
-        .then((decodedToken) => {
-            console.log(decodedToken);
+        auth.then((auth) => {
+            auth.verifyIdToken(result)
+            .then((decodedToken) => {
+                console.log(decodedToken);
+            })
+            .catch((error) =>{
+                console.log(error);
+            })
         })
 
     });

@@ -37,6 +37,14 @@ books:
             "author":"최장순",
             "date":"2018년 5월",
             "url":"/books/HabitOfProjectManager"
+        },
+        {
+            "id":"Speed",
+            "title":"Speed",
+            "category":"소설",
+            "author":"가네시로 가즈키",
+            "date":"2006년 2월",
+            "url":"/books/Speed"
         }
 
     ]
