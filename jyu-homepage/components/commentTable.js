@@ -65,36 +65,25 @@ export default function CommentTable(){
     const db = getDatabase(app);
     const gyujanggakRef = ref(db, 'chats/');
     
-    // signIn();
+    signIn();
         
     let tempData = [];
     let data = [];
 
     //register change.
     useEffect(()=>{
-        signIn(app)
-        .then(()=>{
+ 
+        onValue(gyujanggakRef, (snapshot) => {
+            tempData = snapshot.val();
+            Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
 
-            onValue(gyujanggakRef, (snapshot) => {
-                tempData = snapshot.val();
-                Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
+            if (data.length == 0) {
+                data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+            }
 
-                if (data.length == 0) {
-                    data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
-                }
+            setTable(data, setLines);
 
-                setTable(data, setLines);
-
-            })
-
-        })
-        .catch((error)=>{
-            console.log(error);
-            console.log(error.code);
-            console.log(error.message);
-
-        });
-        
+        })    
     })
 
     
