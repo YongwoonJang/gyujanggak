@@ -20,8 +20,8 @@ export async function getServerSideProps() {
     signIn();
     return {
         props : {
-            user = user,
-            code = code
+            user : user,
+            code : code
         }
     }
     
