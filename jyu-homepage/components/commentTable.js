@@ -1,14 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react'
+//For utilities
+import { useState, useRef, useEffect } from 'react'
+import { insertRow, deleteRow, signIn } from './databaseUtils'
 
+//For styling 
 import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
-import { insertRow, deleteRow, signIn } from './databaseUtils'
-
-//Apply realtime database.
+//Apply realtime database
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, onValue } = require("firebase/database");
-const { getAuth } = require("firebase/auth")
+const { getAuth } = require("firebase/auth");
 
 import {firebaseConfig} from './firebaseConfig';
 
@@ -62,7 +63,6 @@ export default function CommentTable(){
     // Apply realtime Database 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const auth = getAuth(app);
     const gyujanggakRef = ref(db, 'chats/');
     
     // signIn();
@@ -72,20 +72,31 @@ export default function CommentTable(){
 
     //register change.
     useEffect(()=>{
-        signIn(app);
-        
-        onValue(gyujanggakRef, (snapshot) => {
-            tempData = snapshot.val();
-            Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
+        const auth = getAuth(app);
+        if(auth.currentUser != null){
+            signIn(app)
+            .then(()=>{
 
-            if (data.length == 0) {
-                data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
-            }
+                onValue(gyujanggakRef, (snapshot) => {
+                    tempData = snapshot.val();
+                    Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
 
-            setTable(data, setLines);
-            
-        })
+                    if (data.length == 0) {
+                        data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+                    }
 
+                    setTable(data, setLines);
+
+                })
+
+            })
+            .catch((error)=>{
+                console.log(error);
+                console.log(error.code);
+                console.log(error.message);
+
+            });
+        }
     })
 
     

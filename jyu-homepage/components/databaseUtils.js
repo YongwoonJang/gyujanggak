@@ -45,7 +45,7 @@ export function deleteRow(localDelDocId) {
 export async function signIn(app){
 
     const auth = getAuth(app);
-    await signInWithEmailAndPassword(auth, identification("user"), identification("code"))
+    await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
     .then((userCredential)=>{
         console.log("login success");
     })
