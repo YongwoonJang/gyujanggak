@@ -65,7 +65,7 @@ export default function CommentTable(){
     const db = getDatabase(app);
     const gyujanggakRef = ref(db, 'chats/');
     
-    signIn();
+    signIn(app);
         
     let tempData = [];
     let data = [];
