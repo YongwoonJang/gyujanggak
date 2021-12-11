@@ -58,6 +58,7 @@ export function signIn(){
         console.log(result);
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        console.log(auth.currentUser);
 
         auth.verifyIdToken(result)
         .then((decodedToken) => {
