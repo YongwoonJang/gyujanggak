@@ -1,7 +1,7 @@
 ---
 title: "Speed"
 author: "가네시로 가즈키"
-image: ["/images/books/Speed.jpeg"]
+images: ["/images/books/Speed.jpeg"]
 imageWidth: [25]
 loanButton: "https://forms.gle/3Fwig7kYAGNq6PQ58"
 ---
