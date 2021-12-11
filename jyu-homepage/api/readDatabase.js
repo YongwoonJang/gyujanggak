@@ -23,6 +23,8 @@ module.exports = async (req, res) => {
     const gyujanggakRef = collection(db, name);
     const gyujanggakSnapshot = await getDocs(gyujanggakRef);
 
+    console.log(gyujanggakSnapshot);
+
     gyujanggakSnapshot.forEach((doc) => {
         let tempObject = doc.data();
         tempObject["docId"] = doc.id;
