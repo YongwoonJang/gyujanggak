@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "date-fns": "^2.21.1",
-    "firebase": "^9.4.1",
+    "firebase": "^9.6.1",
     "firebase-admin": "^10.0.0",
     "fs": "^0.0.1-security",
     "gl-matrix": "^3.3.0",
