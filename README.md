@@ -2,7 +2,7 @@
 
 ## Index
 
-* 장용운에 대한 검색과 설명 자료를 수록하고 있습니다.
+* 개인 프로젝트 입니다. This is personal project for JYU. Self introduction and The minor gyujanggak project.
 
 * 체험을 하시려면 [Home page](https://gyujanggak.vercel.app)로 접속해 주세요.
 
