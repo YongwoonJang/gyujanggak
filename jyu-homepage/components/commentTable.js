@@ -72,6 +72,9 @@ export default function CommentTable(){
 
     //register change.
     useEffect(()=>{
+
+        console.log(process.env.process.env.USER_ID);
+        console.log("hello sumgo, world");
  
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
