@@ -17,12 +17,15 @@ module.exports = async (req, res) => {
     let name = fullURL.searchParams.get('name');
     console.log(name);
     const app = initializeApp(firebaseConfig);
-    
+    console.log("it is good");
     let data = [];
 
     const db = getFirestore(app);
+    console.log("it is good2");
     const gyujanggakRef = collection(db, name);
+    console.log("it is good3");
     const gyujanggakSnapshot = await getDocs(gyujanggakRef);
+    console.log("it is good4");
 
     console.log(gyujanggakSnapshot);
 
