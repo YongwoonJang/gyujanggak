@@ -47,12 +47,12 @@ books:
             "url":"/books/Speed"
         },
         {
-            "id":"ScienseLovesTheChange",
+            "id":"ScienceLovesTheChange",
             "title":"과학은 변화를 좋아해",
             "category":"과학",
             "author":"글_손영운|그림_김형건",
             "date":"2009년 1월",
-            "url":"/books/ScienseLovesTheChange"
+            "url":"/books/ScienceLovesTheChange"
         }
 
     ]
