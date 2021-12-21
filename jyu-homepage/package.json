@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "date-fns": "^2.21.1",
-    "firebase": "^9.3.0",
+    "firebase": "^9.6.1",
     "gl-matrix": "^3.3.0",
     "gray-matter": "^4.0.3",
     "html-react-parser": "^1.2.7",
