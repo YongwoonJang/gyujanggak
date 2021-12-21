@@ -7,7 +7,7 @@ import HistoryTable from '../../components/historyTable'
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur", "BookStoreInPharmacy", "HabitOfProjectManager", "Speed"]
+    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur", "BookStoreInPharmacy", "HabitOfProjectManager", "Speed", "ScienseLovesTheChange"]
 
     const params = postNames.map((postName) => ({
         params: { id: postName }

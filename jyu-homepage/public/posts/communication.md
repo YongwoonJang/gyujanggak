@@ -45,6 +45,14 @@ books:
             "author":"가네시로 가즈키",
             "date":"2006년 2월",
             "url":"/books/Speed"
+        },
+        {
+            "id":"ScienseLovesTheChange",
+            "title":"과학은 변화를 좋아해",
+            "category":"과학",
+            "author":"글_손영운|그림_김형건",
+            "date":"2009년 1월",
+            "url":"/books/ScienseLovesTheChange"
         }
 
     ]
