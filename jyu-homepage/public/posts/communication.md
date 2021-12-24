@@ -53,6 +53,14 @@ books:
             "author":"글_손영운|그림_김형건",
             "date":"2009년 1월",
             "url":"/books/ScienceLovesTheChange"
+        },
+        {
+            "id":"MyGrandmotherSendsHerRegardsAndApologises",
+            "title":"할머니가 미안하다고 전해달랬어요",
+            "category":"소설",
+            "author":"프레드릭 베크만",
+            "date":"2016년 4월",
+            "url":"/books/MyGrandmotherSendsHerRegardsAndApologises"
         }
 
     ]
