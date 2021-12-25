@@ -73,9 +73,12 @@ export default function CommentTable(){
     //register change.
     useEffect(()=>{
 
-        console.log(`process.env.USER_ID`);
-        console.log("hello sumgo, world");
- 
+        //set default before onValue is registered.
+        if (data.length == 0) {
+            data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+        }
+        setTable(data, setLines);
+
         onValue(gyujanggakRef, (snapshot) => {
             tempData = snapshot.val();
             Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
