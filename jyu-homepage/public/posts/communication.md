@@ -61,6 +61,14 @@ books:
             "author":"프레드릭 베크만",
             "date":"2016년 4월",
             "url":"/books/MyGrandmotherSendsHerRegardsAndApologises"
+        },
+        {
+            "id":"WeLoveJiseon",
+            "title":"지선아 사랑해",
+            "category":"수필",
+            "author":"이지선",
+            "date":"2003년 5월",
+            "url":"/books/WeLoveJiseon"
         }
 
     ]
