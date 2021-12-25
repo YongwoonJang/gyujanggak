@@ -80,6 +80,7 @@ export default function CommentTable(){
         setTable(data, setLines);
 
         onValue(gyujanggakRef, (snapshot) => {
+            data = []; //init data array.
             tempData = snapshot.val();
             Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
 
