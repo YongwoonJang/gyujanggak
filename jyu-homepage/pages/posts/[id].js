@@ -45,7 +45,7 @@ export async function getStaticProps({ params }) {
 }
 
 //Main function
-export default function Post({id, data, contents, comments}){
+export default function Post({id, data, contents}){
     //Variables for contents area
     const content = parse(contents);
     
@@ -185,10 +185,10 @@ export default function Post({id, data, contents, comments}){
                         </div>
                         <div className={pageStyles.bookTitleBox}>
                             <ul className={pageStyles.bookTitleList}>
-                                {data.books.map(({ id, title, url, date, author }) => (
+                                {data.books.map(({ id, title, date, author }) => (
                                     <>
                                         <li key={id}>
-                                            <Link href={url}>
+                                            <Link href={"/books/"+id}>
                                                 <a>{title}&nbsp;&nbsp;({date},&nbsp;{author})</a>
                                             </Link>
                                         </li>

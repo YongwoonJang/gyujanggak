@@ -7,8 +7,13 @@ import HistoryTable from '../../components/historyTable'
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["WhenAttitudesBecomeArtwork", "RembrandtLeClairL'obscur", "BookStoreInPharmacy", "HabitOfProjectManager", "Speed", "ScienceLovesTheChange", 'MyGrandmotherSendsHerRegardsAndApologises', 'WeLoveJiseon']
+    const fullPath = "public/posts/communication.md"
+    const fileContent = fs.readFileSync(fullPath)
+    const matterResult = matter(fileContent)
 
+    let postNames = []
+    Object.values(matterResult.data.books).forEach(element => {postNames.push(element.id)});
+    
     const params = postNames.map((postName) => ({
         params: { id: postName }
     }))

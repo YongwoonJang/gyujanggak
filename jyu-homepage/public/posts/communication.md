@@ -11,66 +11,57 @@ books:
             "title":"태도가 작품이 될때",
             "category":"예술",
             "author":"박보나",
-            "date":"2019년 3월",
-            "url":"/books/WhenAttitudesBecomeArtwork"
+            "date":"2019년 3월"
         },
         {
             "id":"RembrandtLeClairL'obscur",
             "title":"렘브란트, 빛과 혼의 화가",
             "category":"예술",
             "author":"파스칼 보나푸",
-            "date":"1996년 5월",
-            "url":"/books/RembrandtLeClairL'obscur"
+            "date":"1996년 5월"
         },
         {
             "id":"BookStoreInPharmacy",
             "title":"약국 안 책방",
             "category":"예술",
             "author":"박훌륭",
-            "date":"2021년 9월",
-            "url":"/books/BookStoreInPharmacy"
+            "date":"2021년 9월"
         },
         {
             "id":"HabitOfProjectManager",
             "title":"기획자의 습관",
             "category":"직업",
             "author":"최장순",
-            "date":"2018년 5월",
-            "url":"/books/HabitOfProjectManager"
+            "date":"2018년 5월"
         },
         {
             "id":"Speed",
             "title":"Speed",
             "category":"소설",
             "author":"가네시로 가즈키",
-            "date":"2006년 2월",
-            "url":"/books/Speed"
+            "date":"2006년 2월"
         },
         {
             "id":"ScienceLovesTheChange",
             "title":"과학은 변화를 좋아해",
             "category":"과학",
             "author":"글_손영운|그림_김형건",
-            "date":"2009년 1월",
-            "url":"/books/ScienceLovesTheChange"
+            "date":"2009년 1월"
         },
         {
             "id":"MyGrandmotherSendsHerRegardsAndApologises",
             "title":"할머니가 미안하다고 전해달랬어요",
             "category":"소설",
             "author":"프레드릭 베크만",
-            "date":"2016년 4월",
-            "url":"/books/MyGrandmotherSendsHerRegardsAndApologises"
+            "date":"2016년 4월"
         },
         {
             "id":"WeLoveJiseon",
             "title":"지선아 사랑해",
             "category":"수필",
             "author":"이지선",
-            "date":"2003년 5월",
-            "url":"/books/WeLoveJiseon"
+            "date":"2003년 5월"
         }
-
     ]
 ---
 
