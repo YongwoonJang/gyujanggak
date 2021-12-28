@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Layout from '/components/layout'
-import RequestFormAndResult from '/components/searchForm'
 import mainPageStyles from '/styles/mainPage.module.css'
 // import dotenv from "dotenv";
 // 숨고(20211216) 
@@ -25,8 +24,8 @@ export default function Home() {
                 <Image
                   priority
                   src={'/images/' + id + '.jpg'}
-                  height={350}
-                  width={350}
+                  height={300}
+                  width={300}
                   alt={title}
                 />
               </a>

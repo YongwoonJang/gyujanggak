@@ -2,5 +2,5 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   align-items: center;
-  margin-top:1%;
+  padding-top: 10%;
 }

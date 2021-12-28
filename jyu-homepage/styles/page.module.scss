@@ -25,8 +25,8 @@ $communication-a-link-color: rgb(166, 26, 26);
   color: rgb(149, 143, 143);
   font-size: 0.7em;
   
-  margin:auto;
-
+  margin: auto;
+  margin-top: 13%;
   text-align: center;
 }
 
@@ -532,6 +532,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 @media screen and (max-width: $breakpoint-mobile) {  
   .copyRight{
     font-size: 0.4em;
+    margin-top: 40%;
   }
 
   .page{
