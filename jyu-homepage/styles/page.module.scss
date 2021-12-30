@@ -254,11 +254,27 @@ $communication-a-link-color: rgb(166, 26, 26);
 .communicationTitle span{
   color: black;
 }
+//경험적으로 보았을때, 서비스 단위로 변화를 살펴보는 것이 유지보수에 더 용이할 것 같다. 
+//기존의 정보가 영향을 미치기 때문일수도 있겠다.
+//코드의 길이가 길어질 지언정...
 
 .communicationList{
   font-family: "SBAggro L";
   font-size: 0.7em;
 }
+    //add for responsive design.
+    @media screen and (max-width: $breakpoint-mobile) {  
+      .communicationList{
+        font-size: 0.6em;
+        line-height: 1.3em;
+        margin-top: 5%;
+        margin-left: 1%;
+
+      }
+      .communicationList span{
+        font-size: 0.8em;
+      }
+    }
 
 .communicationComments{
   border-color:  rgb(205, 205, 205); 
@@ -267,12 +283,25 @@ $communication-a-link-color: rgb(166, 26, 26);
   width: 95%;
   margin-top: $height*3;
 }
+    @media screen and (max-width: $breakpoint-mobile) {
+      .communicationComments{
+          margin-top: $height*5;
+      }
+    }
 
 .communicationCommentsTable{
   border-collapse : collapse;
-  margin: $height $height;
+  // margin: $height $height;
+  margin: 0 0 $height $height;
   width: 90%;
 }
+    @media screen and (max-width: $breakpoint-mobile) {
+      .communicationCommentsTable{
+        margin: $height 0 $height 0;
+        width: 95%;
+
+      }
+    }
 
 .communicationCommentsTable td{
   padding: $height;
@@ -281,6 +310,14 @@ $communication-a-link-color: rgb(166, 26, 26);
   white-space: nowrap;
   font-family: "SBAggro L";
 }
+    @media screen and (max-width: $breakpoint-mobile){
+      .communicationCommentsTable td{
+        font-size: 0.5em;
+        white-space: normal;
+        padding-top:3%;
+  
+      }
+    }
 
 .communicationCommentsTable td:nth-child(1){
   text-align: center;
@@ -297,12 +334,8 @@ $communication-a-link-color: rgb(166, 26, 26);
   padding: 0px;
 }
 
-.communicationRegForm{
-  margin-bottom: $height*2;
-}
-
 .communicationRegComment{
-  width: 90%;
+  width: 100%;
   margin: auto;
   background-color:rgb(227, 227, 227);
   
@@ -399,6 +432,13 @@ $communication-a-link-color: rgb(166, 26, 26);
   font-family: "SBAggro L";
   line-height: 3.0em;
 }
+  @media screen and (max-width: $breakpoint-mobile) {  
+    .bookTitleList{
+      font-size: 0.6em;
+      margin-left: 1%;
+      
+    }
+  }
 
 .bookTitleList a{
   color: black;
@@ -657,32 +697,6 @@ $communication-a-link-color: rgb(166, 26, 26);
     font-size: 1.5em;
   }
 
-  .communicationList{
-    font-size: 0.6em;
-    line-height: 2em;
-    margin-top: 10%;
-    margin-left: 6%;
-
-  }
-
-  .communicationComments{
-    margin-top: $height*8;
-    
-  }
-
-  .communicationCommentsTable {
-    margin-top: $height*3;
-    width: 95%;
-
-  }
-
-  .communicationCommentsTable td{
-    font-size: 0.5em;
-    white-space: normal;
-    padding-top:3%;
-  
-  }
-
   .communicationCommentsTable td:nth-child(1){
     font-size: 0.4em;
     
@@ -784,12 +798,6 @@ $communication-a-link-color: rgb(166, 26, 26);
       margin-bottom: $height;
       margin-right: 4%;
       float: none;
-      
-    }
-
-    .bookTitleList{
-      font-size: 0.6em;
-      margin-left: 6%;
       
     }
 

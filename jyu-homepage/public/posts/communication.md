@@ -76,8 +76,8 @@ books:
 
 아는 분(*)께 무료로 책을 빌려 드립니다.
 
-* 아는 분 : 서로의 이야기를 알고 있는 "낯섬"보다는 멀고 "친근함"에 가까운 이웃.
+소통은 아래 "Comments" 기능와
 
-이야기는 쓰다가 틀려도 깨끗하게 기록없이 지워지는 게시판 "comment"나,
+인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/"> @minor_gyujanggak </a> DM 을 이용해 주세요.
 
-minor_gyujanggak 댓글을 이용해 주세요.
+<span> * 아는 분 : 서로의 이야기를 알고 있는 "낯섬"보다는 멀고 "친근함"에 가까운 이웃.</span>
