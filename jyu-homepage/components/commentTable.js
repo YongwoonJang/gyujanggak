@@ -182,7 +182,7 @@ export default function CommentTable(){
     return(
         <>
             <div>
-                <div className={pageStyles.communicationComments}>
+                <div id="comments" className={pageStyles.communicationComments}>
                     Comments
                 </div>
                 <table ref={commentTableRef} className={pageStyles.communicationCommentsTable}>
