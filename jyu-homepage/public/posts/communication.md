@@ -76,7 +76,7 @@ books:
 
 아는 분(*)께 무료로 책을 빌려 드립니다.
 
-소통은 아래 <a href="comments">"Comments"</a> 기능와
+소통은 아래 <a href="#comments">"Comments"</a> 기능와
 
 인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a> DM 을 이용해 주세요.
 
