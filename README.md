@@ -21,3 +21,5 @@
 * [MDN](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Adding_2D_content_to_a_WebGL_context)
 
 * [WebGL Fundamental](https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html)
+
+* [Commit message convention](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/)
