@@ -68,6 +68,13 @@ books:
             "category":"소설",
             "author":"버지니아 울프",
             "date":"1928년 10월"
+        },
+        {
+            "id":"HomeSweetAnywhere",
+            "title":"즐겁지 않으면 인생이 아니다",
+            "category":"수필",
+            "author":"린 마틴",
+            "date":2014년"
         }
     ]
 ---
