@@ -75,7 +75,15 @@ books:
             "category":"수필",
             "author":"린 마틴",
             "date":2014년"
+        },
+        {
+            "id":"JobsEditor:ThePersonWhoselectsTheGoodFromTheLoved",
+            "title": "Jobs Editor 에디터 : 좋아하는 것으로부터 좋은 것을 골라내는 사람",
+            "category":"인터뷰/에세이",
+            "author":"B",
+            "date":2014년"
         }
+
     ]
 ---
 
