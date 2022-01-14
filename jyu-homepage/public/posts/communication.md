@@ -77,11 +77,11 @@ books:
             "date":"2014년"
         },
         {
-            "id":"JobsEditor:ThePersonWhoselectsTheGoodFromTheLoved",
-            "title": "Jobs Editor 에디터 : 좋아하는 것으로부터 좋은 것을 골라내는 사람",
-            "category":"인터뷰/에세이",
-            "author":"B",
-            "date":"2014년"
+            "id":"OccupationOfOnlyOne",
+            "title": "오직 한 사람의 차지",
+            "category":"소설",
+            "author":"김금희",
+            "date":"2019년 8월 30일"
         }
 
     ]
