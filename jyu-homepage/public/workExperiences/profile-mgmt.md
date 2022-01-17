@@ -20,6 +20,7 @@ rows:
         |인재경영실
         |직원
         |<strong>Job rotation</strong>이라 쓰고, 어느 회사인지 알아간다. 로 읽는다.(이때 알아봤어야 했는데...)
+        <img src="http://gyujanggak.vercel.app/images/workExperiences/1.jpeg" width='30%'/>
     2:
         2013-10-15
         |2013-11-03
@@ -77,6 +78,7 @@ rows:
         |공통플랫폼담당 과금결제플랫폼팀
         |대리
         |이스라엘 A사를 아웃소싱하였고, 결제 <strong>플랫폼 인프라와 AP를 관리</strong> 수행
+         <img src="http://gyujanggak.vercel.app/images/workExperiences/9.jpeg" width='30%'/>
     10:
         2017-01-16
         |2018-11-27
