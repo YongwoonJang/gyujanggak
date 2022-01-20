@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="dPzF4iebmM-cbbbo0TP5" name="Search Engine">
-        <mxGraphModel dx="1434" dy="669" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1286" dy="616" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-0"/>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-1" parent="OzikpktiN2Qh5DX7MhZS-0"/>
@@ -10,7 +10,7 @@
                 <mxCell id="6" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
                     <mxGeometry x="175" y="120" width="135" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="OzikpktiN2Qh5DX7MhZS-2" value="Next.js&lt;br&gt;(Serverless)&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
+                <mxCell id="OzikpktiN2Qh5DX7MhZS-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
                     <mxGeometry x="180" y="130" width="120" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
@@ -28,23 +28,32 @@
                 <mxCell id="19" value="File&lt;br&gt;(README.md)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
                     <mxGeometry x="215" y="200" width="45" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="OzikpktiN2Qh5DX7MhZS-1" source="1" target="6">
+                <mxCell id="21" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="OzikpktiN2Qh5DX7MhZS-1" source="1" target="6" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="190" y="330" as="sourcePoint"/>
                         <mxPoint x="240" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
-                    <mxGeometry x="330" y="180" width="100" height="50" as="geometry"/>
+                <mxCell id="22" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
+                    <mxGeometry x="340" y="100" width="100" height="210" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="FireBase" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
-                    <mxGeometry x="340" y="195" width="80" height="20" as="geometry"/>
+                <mxCell id="23" value="FireBase" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
+                    <mxGeometry x="350" y="120" width="80" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="OzikpktiN2Qh5DX7MhZS-1" source="6" target="22">
+                <mxCell id="24" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="OzikpktiN2Qh5DX7MhZS-1" target="22" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="330" y="270" as="sourcePoint"/>
-                        <mxPoint x="380" y="220" as="targetPoint"/>
+                        <mxPoint x="320" y="205" as="sourcePoint"/>
+                        <mxPoint x="390" y="220" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="&lt;span style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42) ; display: inline ; float: none&quot;&gt;Next.js&lt;/span&gt;&lt;br style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42)&quot;&gt;&lt;span style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42) ; display: inline ; float: none&quot;&gt;(Serverless)&lt;/span&gt;&lt;br style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42)&quot;&gt;&lt;br style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42)&quot;&gt;" style="text;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
+                    <mxGeometry x="195" y="140" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Firestore&lt;br&gt;Database" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
+                    <mxGeometry x="350" y="160" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Realtime&lt;br&gt;Database" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
+                    <mxGeometry x="350" y="230" width="80" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
