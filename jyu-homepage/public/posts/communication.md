@@ -82,6 +82,13 @@ books:
             "category":"소설",
             "author":"김금희",
             "date":"2019년 8월 30일"
+        },
+        {
+            "id":"VeronikaDecidestoDie",
+            "title": "베로니카, 죽기로 결심하다",
+            "category":"소설",
+            "author":"파울로코엘료",
+            "date":"2001년 2월 15일"
         }
 
     ]
