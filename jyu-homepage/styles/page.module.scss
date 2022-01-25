@@ -31,11 +31,18 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .page{
-  padding-left: 2%;
-  padding-right: 5%;
+  padding-left: 0%;
+  padding-right: 0%;
   font-size: 140%;
   font-family: "SBAggro M";
+  scroll-snap-type: y proximity
 }
+  @media screen and (max-width: $breakpoint-mobile) {  
+    .page{
+      padding-left: 0em;
+      font-size: 100%;
+    }
+  }
 
 .profileTitle{
   color: $profile-a-link-color;
@@ -235,10 +242,14 @@ $communication-a-link-color: rgb(166, 26, 26);
   width: 30%;
 }
 
+.communcationMainBackgroundImage{
+  background: url('http://localhost:3000/images/main/gyujanggakMain.jpeg') no-repeat center fixed;
+  background-size: cover;
+  height: 44em;
+}
+
 .communicationTitle{
   color: $communication-a-link-color;
-  width: 95%;
-  background: white;
   border-color:  rgb(205, 205, 205); 
   border-width: 1px;
   border-style: solid;
@@ -246,21 +257,39 @@ $communication-a-link-color: rgb(166, 26, 26);
   border-top-width: 0px;
   border-left-width: 0px;
   text-align: left;
-  margin-top:$height;
-  margin-bottom: $height*3;
+  margin-top:0;
+  margin-left: 1em;
+  padding-top: $height;
   font-family: "SBAggro M";
+}
+
+.communicationTitle p{
+  background-color: white; 
+  width: max-content;
+  margin-top: 0px;
 }
 
 .communicationTitle span{
   color: black;
 }
 //경험적으로 보았을때, 서비스 단위로 변화를 살펴보는 것이 유지보수에 더 용이할 것 같다. 
+//그래서 @media 부분을 서비스 단위로 구분하여 반응형으로 만들었다.
 //기존의 정보가 영향을 미치기 때문일수도 있겠다.
 //코드의 길이가 길어질 지언정...
 
 .communicationList{
   font-family: "SBAggro L";
   font-size: 0.7em;
+  line-height: 2em;
+  float: right;
+  margin-right: 1em;
+}
+
+.communicationList p{
+  background-color: white; 
+  width: max-content;
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
     //add for responsive design.
     @media screen and (max-width: $breakpoint-mobile) {  
@@ -281,7 +310,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   border-bottom-width: 1px;
   border-bottom-style: solid;
   width: 95%;
-  margin-top: $height*3;
+  margin-top: $height*1.5;
 }
     @media screen and (max-width: $breakpoint-mobile) {
       .communicationComments{
@@ -420,7 +449,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 .bookTitleBox {
   
-  margin-bottom: $height*3.5;
+  margin-bottom: $height*2;
 
 }
 
@@ -447,6 +476,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 .opinionBox{
   display: flex;
   width: 100%;
+  padding-left: 0.5em;
 }
 
 .bookImage {
@@ -490,6 +520,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   margin-top:$height;
   margin-bottom: $height;
   font-family: "SBAggro M";
+  padding-left: 0.5em;
 }
 
 .historyTable{
@@ -573,11 +604,6 @@ $communication-a-link-color: rgb(166, 26, 26);
   .copyRight{
     font-size: 0.4em;
     margin-top: 40%;
-  }
-
-  .page{
-    padding-left: 1em;
-    font-size: 100%;
   }
   .profileImage{
     width : 100%;

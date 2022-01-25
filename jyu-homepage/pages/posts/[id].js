@@ -173,11 +173,15 @@ export default function Post({id, data, contents}){
         return (
             <>
                 <div className={pageStyles.page}>
-                    <h1 className={pageStyles.communicationTitle}>
-                        {parse(data.title)}
-                    </h1>
-                    <div className={pageStyles.communicationList}>
-                        {parse(contents.replace(/\n/g, "<br/>"))}
+                    <div className={pageStyles.communcationMainBackgroundImage}>
+                        <h1 className={pageStyles.communicationTitle}>
+                            <p>
+                            {parse(data.title)}
+                            </p>
+                        </h1>
+                        <div className={pageStyles.communicationList}>
+                            {parse(contents.replace(/\n\n/g,"\n").split('\n').join('<p>'))}
+                        </div>
                     </div>
                     <div>
                         <div className={pageStyles.communicationComments}>
@@ -197,7 +201,9 @@ export default function Post({id, data, contents}){
                             </ul>
                         </div>
                     </div>
-                    <CommentTable/>
+                    <div>
+                        <CommentTable/>
+                    </div>
                 </div>
                 <div>
                     <CopyRight />
