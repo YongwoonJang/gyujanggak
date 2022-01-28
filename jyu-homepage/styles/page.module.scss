@@ -243,7 +243,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .communicationMainBackgroundImage{
-  background: url('http://gyujanggak.vercel.app/images/main/gyujanggakMain.jpeg') no-repeat center fixed;
+  background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMain.jpeg') no-repeat center fixed;
   background-size: cover;
   height: 44em;
   animation: myfirst 2s ;
@@ -251,13 +251,13 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   @media screen and (max-width : $breakpoint-mobile){
     .communicationMainBackgroundImage{
-      height: 38em;
+      height: 40em;
     } 
   }
 
 /* Standard syntax */
 @keyframes myfirst {
-  from {opacity: 0.8;}
+  from {opacity: 0.5;}
   to {opacity: 1;}
 }
 
