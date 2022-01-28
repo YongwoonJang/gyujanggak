@@ -173,7 +173,7 @@ export default function Post({id, data, contents}){
         return (
             <>
                 <div className={pageStyles.page}>
-                    <div className={pageStyles.communcationMainBackgroundImage}>
+                    <div className={pageStyles.communicationMainBackgroundImage}>
                         <h1 className={pageStyles.communicationTitle}>
                             <p>
                             {parse(data.title)}
