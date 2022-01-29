@@ -243,7 +243,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .communicationMainBackgroundImage{
-  background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMain.jpeg') no-repeat center fixed;
+  background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg') no-repeat center fixed;
   background-size: cover;
   height: 44em;
   animation: myfirst 2s ;
@@ -262,7 +262,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .communicationTitle{
-  color: $communication-a-link-color;
+  color: rgb(0, 255, 221);;
   border-color:  rgb(205, 205, 205); 
   border-width: 1px;
   border-right-width: 0px;
@@ -283,7 +283,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 
 .communicationTitle p{
-  background-color: black; 
+  background-color: rgba(0, 0, 0, 0.6); 
   width: max-content;
   margin-top: 0px;
 
@@ -307,7 +307,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .communicationList p{
-  background-color: black;
+  background-color: rgba(0,0,0,0.6); 
   color: white;
   padding: 0.5em;
   width: max-content;
@@ -315,6 +315,10 @@ $communication-a-link-color: rgb(166, 26, 26);
   margin-top: 1.7em;
   margin-left : 2em;
   margin-bottom: 0.3em;
+}
+
+.communicationList a{
+  color:rgb(0, 255, 221);
 }
     //add for responsive design.
     @media screen and (max-width: $breakpoint-mobile) {  
