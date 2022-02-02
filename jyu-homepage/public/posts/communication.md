@@ -102,4 +102,4 @@ books:
 
 인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a> DM 을 이용해 주세요.
 
-<span> * 아는 분 : 서로의 이야기를 알고 있는 "낯섬"보다는 멀고 "친근함"에 가까운 이웃.</span>
+<span> * 아는 분 : 서로의 이야기를 알고 있는 "낯섬"보다는 멀고 "친근함"에 가까운 이웃을 의미합니다.</span>
