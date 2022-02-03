@@ -89,6 +89,13 @@ books:
             "category":"소설",
             "author":"파울로코엘료",
             "date":"2001년 2월 15일"
+        },
+        {
+            "id":"BrandBrandingBranded",
+            "title": "브랜드 브랜딩 브랜디드",
+            "category" : "수필"
+            "author" : "임태수",
+            "date" : "2020년 6월 24일"
         }
 
     ]
@@ -96,10 +103,10 @@ books:
 
 안녕하세요.
 
-아는 분(*)께 무료로 책을 빌려 드립니다.
+지인(*)에게 무료로 책을 빌려 드립니다.
 
 소통은 아래 <a href="#comments">"Comments"</a> 기능와
 
 인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a> DM 을 이용해 주세요.
 
-<span> * 아는 분 : 서로의 이야기를 알고 있는 "낯섬"보다는 멀고 "친근함"에 가까운 이웃을 의미합니다.</span>
+<span> * 지인(知人) : 이야기를 나누고 가까워진 이웃 </span>
