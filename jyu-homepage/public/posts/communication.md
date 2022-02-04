@@ -93,7 +93,7 @@ books:
         {
             "id":"BrandBrandingBranded",
             "title": "브랜드 브랜딩 브랜디드",
-            "category" : "수필"
+            "category" : "수필",
             "author" : "임태수",
             "date" : "2020년 6월 24일"
         }
