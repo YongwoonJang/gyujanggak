@@ -107,10 +107,6 @@ books:
 
 책에 자유롭게 연필과 펜으로 기록을 남길 수 있습니다.
 
-친구와 가족, 동료에게 무료 책을 대여하고 있습니다.
-
 <a href="#books">"Books"</a>의 대여를 원하는 책 이름을 클릭해 주세요.
-
-취미로 책을 통해 다양한 사람과 소통을 하길 좋아합니다.
 
 소통은 채널은 <a href="#comments">"Comments"</a>와 인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a> 입니다.
