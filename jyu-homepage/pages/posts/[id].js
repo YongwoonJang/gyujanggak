@@ -180,7 +180,7 @@ export default function Post({id, data, contents}){
                             </p>
                         </h1>
                         <div className={pageStyles.communicationList}>
-                            {parse(contents.replace(/\n\n/g,"\n").split('\n').join('<p>'))}
+                            {parse(contents.replace(/\n\n/g,"\n").split('\n').slice(0,-1).join('<p>'))}
                         </div>
                     </div>
                     <div>
