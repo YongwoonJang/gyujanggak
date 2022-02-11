@@ -103,11 +103,14 @@ books:
 
 안녕하세요.
 
-지인(*)에게 무료로 책을 빌려 드립니다.
+개인 책 대여점 "minor gyujanggak"입니다.
 
-소통은 아래 <a href="#comments">"Comments"</a> 기능와
+책에 자유롭게 연필과 펜으로 기록을 남길 수 있습니다.
 
-인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a> DM 을 이용해 주세요.
+친구와 가족, 동료에게 무료 책을 대여하고 있습니다.
 
-<span> * 지인(知人) : 이야기를 나누고 가까워진 이웃 </span>
+<a href="#books">"Books"</a>의 대여를 원하는 책 이름을 클릭해 주세요.
 
+취미로 책을 통해 다양한 사람과 소통을 하길 좋아합니다.
+
+소통은 채널은 <a href="#comments">"Comments"</a>와 인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a> 입니다.
