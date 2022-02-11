@@ -184,7 +184,7 @@ export default function Post({id, data, contents}){
                         </div>
                     </div>
                     <div>
-                        <div className={pageStyles.communicationComments}>
+                        <div id="books" className={pageStyles.communicationComments}>
                             Books
                         </div>
                         <div className={pageStyles.bookTitleBox}>
