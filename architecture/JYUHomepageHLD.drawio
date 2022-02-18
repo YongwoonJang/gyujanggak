@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="dPzF4iebmM-cbbbo0TP5" name="Search Engine">
-        <mxGraphModel dx="1286" dy="616" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1318" dy="616" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-0"/>
                 <mxCell id="OzikpktiN2Qh5DX7MhZS-1" parent="OzikpktiN2Qh5DX7MhZS-0"/>
@@ -46,13 +46,13 @@
                         <mxPoint x="390" y="220" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="26" value="&lt;span style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42) ; display: inline ; float: none&quot;&gt;Next.js&lt;/span&gt;&lt;br style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42)&quot;&gt;&lt;span style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42) ; display: inline ; float: none&quot;&gt;(Serverless)&lt;/span&gt;&lt;br style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42)&quot;&gt;&lt;br style=&quot;color: rgb(240 , 240 , 240) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42)&quot;&gt;" style="text;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
+                <mxCell id="26" value="&lt;span style=&quot;font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none&quot;&gt;Next.js&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none&quot;&gt;(Serverless)&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px&quot;&gt;" style="text;whiteSpace=wrap;html=1;align=center;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
                     <mxGeometry x="195" y="140" width="90" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="Firestore&lt;br&gt;Database" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
+                <mxCell id="27" value="Firestore&lt;br&gt;Database" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
                     <mxGeometry x="350" y="160" width="80" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" value="Realtime&lt;br&gt;Database" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="OzikpktiN2Qh5DX7MhZS-1">
+                <mxCell id="28" value="Realtime&lt;br&gt;Database" style="rounded=0;whiteSpace=wrap;html=1;" parent="OzikpktiN2Qh5DX7MhZS-1" vertex="1">
                     <mxGeometry x="350" y="230" width="80" height="60" as="geometry"/>
                 </mxCell>
             </root>
