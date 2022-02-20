@@ -1,12 +1,10 @@
 $breakpoint-mobile: 420px;
-
 $height: 1.5%;
 
 $profile-motto-color: rgb(49, 110, 21);
 $profile-a-link-color : rgb(49, 110, 21);
 $profile-image-border-color:  rgb(49, 110, 21);
 $profile-workBox-color:  rgb(69, 159, 28);
-
 $politics-a-link-color: rgb(3, 162, 202);
 
 $hobby-a-link-color: rgb(161, 73, 1);
@@ -246,7 +244,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg') no-repeat center fixed;
   background-size: cover;
   height: 44em;
-  animation: myfirst 2s ;
+  animation: communicationMainBackgroundImageAffect 2s ;
 }
 
   @media screen and (max-width : $breakpoint-mobile){
@@ -256,7 +254,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 
 /* Standard syntax */
-@keyframes myfirst {
+@keyframes communicationMainBackgroundImageAffect {
   from {opacity: 0.5;}
   to {opacity: 1;}
 }
@@ -292,10 +290,47 @@ $communication-a-link-color: rgb(166, 26, 26);
 .communicationTitle span{
   color: white;
 }
-//경험적으로 보았을때, 서비스 단위로 변화를 살펴보는 것이 유지보수에 더 용이할 것 같다. 
-//그래서 @media 부분을 서비스 단위로 구분하여 반응형으로 만들었다.
-//기존의 정보가 영향을 미치기 때문일수도 있겠다.
-//코드의 길이가 길어질 지언정...
+
+.communicationSubTitle{
+  background-color: rgba(0, 0, 0, 0.6); 
+  color: white;
+  width: max-content;
+  margin-top: $height*1;
+  margin-left: 2em;
+  font-size: 1.5em;
+
+}
+    @media screen and (max-width: $breakpoint-mobile) {
+      .communicationSubTitle{
+          margin-top: $height*5;
+      }
+    }
+
+.bookTitleBox {
+  margin-bottom: $height*2;
+
+}
+
+.bookTitleList{
+  list-style: none;
+  padding-left: 0px;
+  display:block;
+  font-size: 0.8em;
+  font-family: "SBAggro L";
+  line-height: 3.0em;
+  margin-left: 10em;
+}
+  @media screen and (max-width: $breakpoint-mobile) {  
+    .bookTitleList{
+      font-size: 0.6em;
+      margin-left: 1%;
+      
+    }
+  }
+
+.bookTitleList a{
+  color: black;
+}
 
 .communicationList{
   font-family: "SBAggro L";
@@ -477,33 +512,6 @@ $communication-a-link-color: rgb(166, 26, 26);
   border-style: solid;
   border-width: 1px;
   margin-bottom: $height*(math.div(1,2));
-}
-
-
-.bookTitleBox {
-  
-  margin-bottom: $height*2;
-
-}
-
-.bookTitleList{
-  list-style: none;
-  padding-left: 0px;
-  display:block;
-  font-size: 0.8em;
-  font-family: "SBAggro L";
-  line-height: 3.0em;
-}
-  @media screen and (max-width: $breakpoint-mobile) {  
-    .bookTitleList{
-      font-size: 0.6em;
-      margin-left: 1%;
-      
-    }
-  }
-
-.bookTitleList a{
-  color: black;
 }
 
 .opinionBox{
