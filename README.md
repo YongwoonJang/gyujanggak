@@ -4,7 +4,7 @@
 
 * 개인 프로젝트 입니다. This is personal project for JYU. Self introduction and The minor gyujanggak project.
 
-* 체험을 하시려면 [Home page](https://gyujanggak.vercel.app)로 접속해 주세요.
+* 프로젝트 산출물은 [Home page](https://gyujanggak.vercel.app)입니다.
 
 ## High level Design
 
