@@ -13,21 +13,6 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 @use "sass:math";
 
-.copyRight{
-  width: 95%;
-
-  border-top: rgb(205, 205, 205); 
-  border-top-width: 1px;
-  border-top-style: solid;
-  
-  color: rgb(149, 143, 143);
-  font-size: 0.7em;
-  
-  margin: auto;
-  margin-top: 13%;
-  text-align: center;
-}
-
 .page{
   padding-left: 0%;
   padding-right: 0%;
@@ -303,6 +288,8 @@ $communication-a-link-color: rgb(166, 26, 26);
     @media screen and (max-width: $breakpoint-mobile) {
       .communicationSubTitle{
           margin-top: $height*5;
+          margin-left: 0.5em;
+          font-size: 1.1em;
       }
     }
 
@@ -318,12 +305,12 @@ $communication-a-link-color: rgb(166, 26, 26);
   font-size: 0.8em;
   font-family: "SBAggro L";
   line-height: 3.0em;
-  margin-left: 10em;
+  margin-left: 4em;
 }
   @media screen and (max-width: $breakpoint-mobile) {  
     .bookTitleList{
       font-size: 0.6em;
-      margin-left: 1%;
+      margin-left: 1em;
       
     }
   }
@@ -373,28 +360,14 @@ $communication-a-link-color: rgb(166, 26, 26);
       }
     }
 
-.communicationComments{
-  border-color:  rgb(205, 205, 205); 
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  width: 95%;
-  margin-top: $height*1.5;
-}
-    @media screen and (max-width: $breakpoint-mobile) {
-      .communicationComments{
-          margin-top: $height*5;
-      }
-    }
-
 .communicationCommentsTable{
   border-collapse : collapse;
-  // margin: $height $height;
-  margin: 0 0 $height $height;
+  margin: 0 0 0 3em;
   width: 90%;
 }
     @media screen and (max-width: $breakpoint-mobile) {
       .communicationCommentsTable{
-        margin: $height 0 $height 0;
+        margin: $height 0 $height 0.5em;
         width: 95%;
 
       }
@@ -406,6 +379,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   font-size: 0.6em;
   white-space: nowrap;
   font-family: "SBAggro L";
+  text-align: left;
 }
     @media screen and (max-width: $breakpoint-mobile){
       .communicationCommentsTable td{
@@ -416,20 +390,18 @@ $communication-a-link-color: rgb(166, 26, 26);
       }
     }
 
-.communicationCommentsTable td:nth-child(1){
-  text-align: center;
-}
-
 .communicationCommentsTable td span{
   font-size: 1.1em;
   font-family: "SBAggro M";
 }
 
+@media screen and (max-width: $breakpoint-mobile){
+  .communicationCommentsTable td:nth-child(1) span:nth-child(3) {
+    font-size: 0.7em;
 
-.communicationCommentsTable td:nth-child(2){
-  text-align: center;
-  padding: 0px;
+  }
 }
+
 
 .communicationRegComment{
   width: 100%;
@@ -514,15 +486,33 @@ $communication-a-link-color: rgb(166, 26, 26);
   margin-bottom: $height*(math.div(1,2));
 }
 
-.opinionBox{
-  display: flex;
-  width: 100%;
-  padding-left: 0.5em;
+
+.bookTitle {
+  width: auto;
+  white-space: normal;
+  margin-top: 0.2em;
+  margin-left: 0.3em;
+  background-color: black;
+  opacity: 0.8;  
+  color: white;
+
 }
+
+  @media screen and (max-width: $breakpoint-mobile){
+    .bookTitle{
+      margin-bottom: 0em;
+    }
+  }
 
 .bookImage {
   margin-right: 5%;
 
+}
+
+.opinionBox{
+  display: flex;
+  width: 100%;
+  padding-left: 0.5em;
 }
 
 .opinion {
@@ -533,6 +523,13 @@ $communication-a-link-color: rgb(166, 26, 26);
   float: right;
 
 }
+  @media screen and (max-width:$breakpoint-mobile){
+    .opinion{
+      float: left;
+
+    }
+
+  }
 
 
 .loanButton{
@@ -638,6 +635,21 @@ $communication-a-link-color: rgb(166, 26, 26);
   border-style: solid;
   border-width: 1px;
   margin-bottom: $height*(math.div(1,2));
+}
+
+.copyRight{
+  width: 95%;
+
+  border-top: rgb(205, 205, 205); 
+  border-top-width: 1px;
+  border-top-style: solid;
+  
+  color: rgb(149, 143, 143);
+  font-size: 0.7em;
+  
+  margin: auto;
+  margin-top: 13%;
+  text-align: center;
 }
 
 /* average mobile */
@@ -764,15 +776,6 @@ $communication-a-link-color: rgb(166, 26, 26);
     font-size: 1.5em;
   }
 
-  .communicationCommentsTable td:nth-child(1){
-    font-size: 0.4em;
-    
-  }
-
-  .communicationCommentsTable td:nth-child(2){
-    text-align: center;
-  }
-
   .communicationRegComment{
     width: 95%;
     margin: auto;
@@ -872,12 +875,6 @@ $communication-a-link-color: rgb(166, 26, 26);
       display: inline-block;
     }
 
-    .opinion{
-      font-size: 0.55em;
-      float: left;
-    
-    }
-
     .historyTable{
       margin-top: $height*4;
       margin-bottom: $height*7.5;
@@ -903,5 +900,6 @@ $communication-a-link-color: rgb(166, 26, 26);
     .copyRight{
       padding-top:0.5%;
       font-size:0.45em;
+      margin-top: 0%;
     }
 }

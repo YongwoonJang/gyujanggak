@@ -61,7 +61,7 @@ export default function books({ data, contents }) {
     return (
         <>
             <div className={pageStyles.page}>
-                <h1 className={pageStyles.communicationTitle}>
+                <h1 className={pageStyles.bookTitle}>
                     {parse(data.title)}
                 </h1>
                 <div className={pageStyles.opinionBox}>

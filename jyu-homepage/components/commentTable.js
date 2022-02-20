@@ -24,7 +24,9 @@ const setTable = (localComments, setLines) => {
                 + localComments[i].Author
                 + "</span>"
                 + "<br/>"
+                + "<span>"
                 + localComments[i].Date
+                + "</span>"
                 + "</td>"
                 + "<td>"
                 + localComments[i].Content
@@ -73,14 +75,13 @@ export default function CommentTable(){
     //register change.
     useEffect(()=>{
 
-        //set default before onValue is registered.
         if (data.length == 0) {
             data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
         }
         setTable(data, setLines);
 
         onValue(gyujanggakRef, (snapshot) => {
-            data = []; //init data array.
+            data = [];
             tempData = snapshot.val();
             Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
 
@@ -182,8 +183,8 @@ export default function CommentTable(){
     return(
         <>
             <div>
-                <div id="comments" className={pageStyles.communicationComments}>
-                    Comments
+                <div id="comments" className={pageStyles.communicationSubTitle}>
+                    History
                 </div>
                 <table ref={commentTableRef} className={pageStyles.communicationCommentsTable}>
                     <tbody>
