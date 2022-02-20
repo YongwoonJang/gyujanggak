@@ -15,6 +15,9 @@ import WorkHistory from '../../components/workHistory'
 import CommentTable from '../../components/commentTable'
 import WebGL from '../../components/webGL'
 
+// Utilities
+import bubbleSortForBookTitleByAlpahbet from '../../components/utils'
+
 
 //Static function
 export function getStaticPaths() {
@@ -170,6 +173,9 @@ export default function Post({id, data, contents}){
         )
 
     } else if (id == 'communication') {
+        //sort books title.
+        console.log(bubbleSortForBookTitleByAlpahbet(data.books));
+
         return (
             <>
                 <div className={pageStyles.page}>
@@ -184,12 +190,12 @@ export default function Post({id, data, contents}){
                         </div>
                     </div>
                     <div>
-                        <div id="books" className={pageStyles.communicationComments}>
+                        <div id="books" className={pageStyles.communicationSubTitle}>
                             Books
                         </div>
                         <div className={pageStyles.bookTitleBox}>
                             <ul className={pageStyles.bookTitleList}>
-                                {data.books.map(({ id, title, date, author }) => (
+                                {bubbleSortForBookTitleByAlpahbet(data.books).map(({ id, title, date, author }) => (
                                     <>
                                         <li key={id}>
                                             <Link href={"/books/"+id}>
