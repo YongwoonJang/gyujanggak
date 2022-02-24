@@ -9,6 +9,12 @@ export default function WebGl() {
         // Init variables
         const canvas = document.querySelector('#glCanvas');
 
+        // Set side to fit to parent.
+        let rect = canvas.parentNode.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+
         // Create Shader program
         const gl = canvas.getContext("webgl");
         if (gl == null) {
@@ -43,7 +49,7 @@ export default function WebGl() {
 
     return (
         <>
-            <canvas id="glCanvas" width="200" height="200"></canvas>
+            <canvas id="glCanvas"></canvas>
         </>
     )
 

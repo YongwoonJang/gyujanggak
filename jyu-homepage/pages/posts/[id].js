@@ -150,25 +150,26 @@ export default function Post({id, data, contents}){
 
         return (
             <>
-                <div className={pageStyles.page}>
+                <div>
+                    <div className={pageStyles.hobbyPhoto}>
+                        <WebGL />
+                    </div>
                     <h1 className={pageStyles.hobbyTitle}>
                         {parse(data.title)}
                     </h1>
-                    <div className={pageStyles.hobbyPhoto}>
-                        <WebGL/>
-                    </div>
                     <div className={pageStyles.hobbyMotto}>
                         {content}
                     </div>
+                    <div className={pageStyles.hobbyList}>
+                        <ul>
+                            {contents}
+                        </ul>
+                    </div>
+                    <div>
+                        <CopyRight />
+                    </div>
                 </div>
-                <div className={pageStyles.hobbyList}>
-                    <ul>
-                        {contents}
-                    </ul>
-                </div>
-                <div>
-                    <CopyRight />
-                </div>
+                
             </>
         )
 

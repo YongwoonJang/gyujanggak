@@ -26,4 +26,4 @@ hobbyList:
             "URL" : "https://yongwoonjang.github.io/SweetHome/"
         
 ---
-Programmer, Artist 입니다.
+Programmer, Artist

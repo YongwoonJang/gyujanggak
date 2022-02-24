@@ -93,7 +93,7 @@ export function drawScene(gl, programInfo, buffers){
     gl.depthFunc(gl.LEQUAL);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFERR_BIT);
     gl.viewport(0,0,gl.canvas.width,gl.canvas.height);
-
+    
     //Define variables
     const fieldOfView = 45 * Math.PI / 180;
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
