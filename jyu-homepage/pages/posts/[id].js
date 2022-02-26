@@ -130,7 +130,7 @@ export default function Post({id, data, contents}){
         for(let i = 0; i < Object.keys(data.hobbyList).length; i++){
             
             let category = Object.keys(data.hobbyList)[i];
-            contents = contents + "<li key='"+category+"'><span>" + category + "</span><br/>";
+            contents = contents + "<li id='"+category+"'><span>" + category + "</span><br/>";
             contents = contents + "Skill : " + data.hobbyList[category]["Skill"] + "<br/>";
             for(let j = 1; j<Object.keys(data.hobbyList[category]).length; j++){
                 contents = contents 

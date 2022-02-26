@@ -179,45 +179,75 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .hobbyTitle{
-  color: rgb(251, 255, 0);
-  width: 95%;
-  border-color: rgb(205, 205, 205); 
-  border-width: 1px;
-  border-style: solid;
-  border-right-width: 0px;
-  border-top-width: 0px;
-  border-left-width: 0px;
-  text-align: left;
-  padding-top:$height;
-  margin: auto;
-  margin-top: 0px;
-  margin-bottom: $height*3;
-  z-index:100;
+    color: rgb(251, 255, 0);
+    width: 95%;
+    text-align: left;
+    font-size: 2em;
+
+    border-color: rgb(205, 205, 205); 
+    border-width: 1px;
+    border-style: solid;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    
+    padding-top:$height;
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: $height*3;
+    z-index:100;
+}
+
+@media screen and (min-width:$breakpoint-mobile){
+  .hobbyTitle{
+    font-size: 3em;
+
+  }
 }
 
 .hobbyTitle span{
   color: white;
 }
 
+
+
 .hobbyMotto{
   color: white;
   text-align:center;
-  font-size: 3.0em;
-  margin-bottom: $height*2.5;
+  font-size: 2.0em;
+  margin-bottom: $height*10;
   z-index: 100;
 }
 
+@media screen and (min-width:$breakpoint-mobile){
+  .hobbyMotto{
+    font-size: 3.0em;
+    margin-bottom: $height*2.5;
+    
+  } 
+}
 
 .hobbyList{
   color: white;
   margin: auto;
   padding-bottom: 10%;
-  width: 30%;
-  font-family: "SBAggro L";
+  width: 100%;
+  
 }
+
+@media screen and (min-width:$breakpoint-mobile){
+  .hobbyList{
+    width: 30%;
+    font-size: 1.5em;
+    padding-bottom: $height*3;
+
+  }  
+}
+
 
 .hobbyList ul{
   justify-self: center;
+  list-style: none;
   margin:auto;
 }
 
@@ -659,7 +689,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   border-top-width: 1px;
   border-top-style: solid;
   
-  color: rgb(149, 143, 143);
+  color: rgb(255, 255, 255);
   font-size: 0.7em;
   
   margin: auto;
