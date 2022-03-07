@@ -2,9 +2,13 @@
 
 ## Index
 
-* 개인 프로젝트 입니다. This is personal project for JYU. Self introduction and The minor gyujanggak project.
+* 개인 프로젝트 입니다. 
+This is personal project for JYU. Self introduction and The minor gyujanggak project.
 
-* 프로젝트 산출물은 [Home page](https://gyujanggak.vercel.app)입니다.
+* 프로젝트는 프로젝트 오너의 생각을 효과적으로 전달하는 웹페이지를 만드는 것을 목적으로 합니다.  
+The purpose of this project is delivering project owner's mind effectively.
+
+※ [Home page](https://gyujanggak.vercel.app)입니다.
 
 ## High level Design
 
