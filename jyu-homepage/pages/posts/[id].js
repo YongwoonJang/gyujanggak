@@ -21,7 +21,7 @@ import bubbleSortForBookTitleByAlpahbet from '../../components/utils'
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["profile", "politics", "hobby", "communication"]
+    const postNames = ["profile", "community", "hobby", "communication"]
     const params = postNames.map((postName) => ({
         params: { id: postName }
 
@@ -90,14 +90,14 @@ export default function Post({id, data, contents}){
             </>
         )
 
-    } else if(id == 'politics'){
+    } else if(id == 'community'){
         return (
             <>
                 <div className={pageStyles.page}>
-                    <h1 className={pageStyles.politicsTitle}>
+                    <h1 className={pageStyles.communityTitle}>
                         {parse(data.title)}
                     </h1>
-                    <div className={pageStyles.politicsMotto}>
+                    <div className={pageStyles.communityMotto}>
                         {content}
                     </div>
                 </div>

@@ -5,7 +5,7 @@ $profile-motto-color: rgb(49, 110, 21);
 $profile-a-link-color : rgb(49, 110, 21);
 $profile-image-border-color:  rgb(49, 110, 21);
 $profile-workBox-color:  rgb(69, 159, 28);
-$politics-a-link-color: rgb(3, 162, 202);
+$community-a-link-color: rgb(3, 162, 202);
 
 $hobby-a-link-color: rgb(161, 73, 1);
 
@@ -130,8 +130,8 @@ $communication-a-link-color: rgb(166, 26, 26);
   
 }
 
-.politicsTitle{
-  color: $politics-a-link-color;
+.communityTitle{
+  color: $community-a-link-color;
   width: 95%;
   background: white;
   border-color:  rgb(205, 205, 205); 
@@ -146,11 +146,11 @@ $communication-a-link-color: rgb(166, 26, 26);
   font-family: "SBAggro M";
 }
 
-.politicsTitle span{
+.communityTitle span{
   color: black;
 }
 
-.politicsMotto {
+.communityMotto {
   text-align:center;
   margin-bottom: $height*3;
   font-family: "SBAggro M";
@@ -171,7 +171,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .politicsTitleList a{
-  color: $politics-a-link-color;
+  color: $community-a-link-color;
 }
 
 .politicsTitleList span{

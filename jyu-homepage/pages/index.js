@@ -9,7 +9,7 @@ export default function Home() {
   
   const allPostsData = [
     { "id": "yongwoonJang", "title": "개인설명", "url": "/posts/profile" },
-    { "id": "politics", "title":"정치", "url": "/posts/politics"},
+    { "id": "community", "title":"공동체", "url": "/posts/community"},
     { "id": "hobby", "title":"취미", "url": "/posts/hobby"},
     { "id": "communication", "title":"소통","url":"/posts/communication"}
   ]
