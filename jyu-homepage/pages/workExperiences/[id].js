@@ -4,6 +4,7 @@ import parse from 'html-react-parser'
 import pageStyles from '/styles/page.module.scss'
 import profileDivTableStyles from '/styles/profileTable.module.scss'
 import CopyRight from '/components/copyRight'
+import { useEffect, useRef } from 'react'
 
 //Static function
 export function getStaticPaths() {
@@ -45,10 +46,27 @@ export async function getStaticProps({ params }) {
 //Main function
 export default function workExperience({id, data, contents}) {
     
+    const leafSchool = useRef(null);
+    const leafBorn = useRef(null);
+    const leafOfficer = useRef(null);
+
+    useEffect(() =>{
+        // Event Listener 
+        window.addEventListener("scroll", function(){
+            var leafElement = leafSchool.current;
+            leafElement.style.marginTop = - document.documentElement.scrollTop/6 + 'px';
+            leafElement = leafBorn.current; 
+            leafElement.style.marginTop = - document.documentElement.scrollTop / 10 + 'px';
+            leafElement = leafOfficer.current;
+            leafElement.style.marginTop = - document.documentElement.scrollTop / 10 + 'px';
+
+        });
+    },[]);
+
     if (id == 'profile-mgmt') {//project management officer resume.
         let rows = "";
         const countOfRows = 14;
-        for (let i = countOfRows; i > 0; i--) {
+        for (let i = 1; i < countOfRows+1; i++) {
             rows = rows
                 + "<tr>"
                 + data.rows[i].split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g, "")
@@ -58,10 +76,74 @@ export default function workExperience({id, data, contents}) {
 
         return (
             <>
-
                 <div className={profileDivTableStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">
                     <div className={profileDivTableStyles.profileDivTableTitle}>
                         History
+                    </div>
+                    <div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>
+                                &nbsp;
+                            </div>
+                            <div className={profileDivTableStyles.profileTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div ref={leafBorn} className={profileDivTableStyles.profileTreeBornLeaf}>
+                                ------  1989년 인천 출생
+                            </div>
+                        </div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>&nbsp;</div>
+                            <div className={profileDivTableStyles.profileTreeStem}>
+                            &nbsp;
+                            </div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div ref={leafSchool} className={profileDivTableStyles.profileTreeEntLeaf}>
+                                2007년 건국대학교 입학 -------
+                            </div>
+                            <div className={profileDivTableStyles.profileTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div className={profileDivTableStyles.profileTreeBornLeaf}>
+                        
+                            </div>
+                        </div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>&nbsp;</div>
+                            <div className={profileDivTableStyles.profileTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>
+                                &nbsp;
+                            </div>
+                            <div className={profileDivTableStyles.profileTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div ref={leafOfficer} className={profileDivTableStyles.profileTreeOfficerLeaf}>
+                                <p>
+                                ----------  2011년 임관(대한민국 통신장교)
+                                </p>
+                            </div>
+                        </div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>&nbsp;</div>
+                            <div className={profileDivTableStyles.profileTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>&nbsp;</div>
+                            <div className={profileDivTableStyles.profileTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div>&nbsp;</div>
+                        </div>
                     </div>
                     <table>
                         <thead>

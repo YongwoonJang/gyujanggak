@@ -194,3 +194,39 @@ $breakpoint-mobile : 420px;
   }
 
 }
+
+.profileTreeBGItem{
+  width: 100%;
+  justify-content: center;
+
+  display: grid;
+  grid-template-columns: 49% 2% 1fr;
+  // grid-auto-rows: minmax(100px, 1fr);
+
+}
+
+.profileTreeStem{
+  background-color: black;
+  justify-self: center;
+  width: 25%;
+  color:white;
+  
+}
+
+.profileTreeBornLeaf .profileTreeOfficerLeaf{
+  background-color: white;
+
+}
+
+@media screen and (max-width : $breakpoint-mobile){
+  .profileTreeOfficerLeaf{
+    background-color: white;
+    font-size:0.9em;
+  }
+}
+
+.profileTreeEntLeaf{
+  justify-self: right;
+}
+
+
