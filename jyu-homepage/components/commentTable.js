@@ -9,7 +9,6 @@ import pageStyles from '/styles/page.module.scss'
 //Apply realtime database
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, onValue } = require("firebase/database");
-const { getAuth } = require("firebase/auth");
 
 import {firebaseConfig} from './firebaseConfig';
 
