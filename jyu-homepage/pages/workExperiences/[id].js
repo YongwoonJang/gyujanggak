@@ -4,6 +4,7 @@ import parse from 'html-react-parser'
 import pageStyles from '/styles/page.module.scss'
 import profileDivTableStyles from '/styles/profileTable.module.scss'
 import CopyRight from '/components/copyRight'
+import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
 //Static function
@@ -66,13 +67,16 @@ export default function workExperience({id, data, contents}) {
     if (id == 'profile-mgmt') {//project management officer resume.
         let rows = "";
         const countOfRows = 14;
-        for (let i = 1; i < countOfRows+1; i++) {
+        for (let i = 10; i < countOfRows+1; i++) {
             rows = rows
                 + "<tr>"
                 + data.rows[i].split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g, "")
                 + "</tr>";
         }
         rows = parse(rows);
+
+        let stem = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.profileTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
+        let stemOfKT = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.jobTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
 
         return (
             <>
@@ -81,6 +85,30 @@ export default function workExperience({id, data, contents}) {
                         History
                     </div>
                     <div>
+                        <div className={profileDivTableStyles.profileMainCharacter}>
+                            <div className={profileDivTableStyles.profileMainCharacterBG}>
+                                <Image src='/images/background/MainProfileBG.png' width={1000} height={450} />
+                            </div>
+                            <div>
+                                <Image src={'/images/YongwoonJangMediaCenter.png'} width={370} height={500}/>
+                            </div>
+                            <p>
+                            Identity : IT project manager / IT service Initiator<br/>
+                            Be good at : JavaScript, HTML, Shell, Projectmanaging, Office<br/>
+                            Language : Korean(Native), English(Intermediate)<br /><br />
+
+                            Kor<br/>
+                            저는 기록하는 것과 그것을 활용하는 것을 좋아합니다.<br/>
+                            저와 사람들이 편리하게 생각을 펼치는 것을 돕는 것을 좋아합니다.<br/>
+                            프로젝트 관리 능력과 기본적인 IT기술을 활용하여 좋은 서비스를 만들고싶습니다.<br/><br/>
+                            
+                            Eng<br/>
+                            I like logging, system to make people comfortable.<br/>
+                            I am used to take new technologies which make me comfort.
+
+                            </p>
+                            
+                        </div>
                         <div className={profileDivTableStyles.profileTreeBGItem}>
                             <div>
                                 &nbsp;
@@ -92,16 +120,13 @@ export default function workExperience({id, data, contents}) {
                                 ------  1989년 인천 출생
                             </div>
                         </div>
-                        <div className={profileDivTableStyles.profileTreeBGItem}>
-                            <div>&nbsp;</div>
-                            <div className={profileDivTableStyles.profileTreeStem}>
-                            &nbsp;
-                            </div>
-                            <div>&nbsp;</div>
-                        </div>
+                        {stem}
                         <div className={profileDivTableStyles.profileTreeBGItem}>
                             <div ref={leafSchool} className={profileDivTableStyles.profileTreeEntLeaf}>
-                                2007년 건국대학교 입학 -------
+                                2007년 인천고등학교 입학 / 건국대학교 입학 -------<br/>
+                                <div>
+                                    <Image src={'/images/GraduationOfHighSchool.jpeg'} width={200} height={200}/>
+                                </div>
                             </div>
                             <div className={profileDivTableStyles.profileTreeStem}>
                                 &nbsp;
@@ -110,13 +135,7 @@ export default function workExperience({id, data, contents}) {
                         
                             </div>
                         </div>
-                        <div className={profileDivTableStyles.profileTreeBGItem}>
-                            <div>&nbsp;</div>
-                            <div className={profileDivTableStyles.profileTreeStem}>
-                                &nbsp;
-                            </div>
-                            <div>&nbsp;</div>
-                        </div>
+                        {stem}
                         <div className={profileDivTableStyles.profileTreeBGItem}>
                             <div>
                                 &nbsp;
@@ -127,32 +146,93 @@ export default function workExperience({id, data, contents}) {
                             <div ref={leafOfficer} className={profileDivTableStyles.profileTreeOfficerLeaf}>
                                 <p>
                                 ----------  2011년 임관(대한민국 통신장교)
+                                <div>
+                                    <Image src={'/images/CommissionedAsAOfficer.jpeg'} width={200} height={200} />
+                                </div>
                                 </p>
                             </div>
                         </div>
+                        {stem}
                         <div className={profileDivTableStyles.profileTreeBGItem}>
-                            <div>&nbsp;</div>
+                            <div>
+                                &nbsp;
+                            </div>
                             <div className={profileDivTableStyles.profileTreeStem}>
                                 &nbsp;
                             </div>
-                            <div>&nbsp;</div>
-                        </div>
-                        <div className={profileDivTableStyles.profileTreeBGItem}>
-                            <div>&nbsp;</div>
-                            <div className={profileDivTableStyles.profileTreeStem}>
-                                &nbsp;
+                            <div ref={leafOfficer} className={profileDivTableStyles.profileTreeJobLeaf}>
+                                <p>
+                                    ----------  2013년 7월 KT 입사
+                                </p>
                             </div>
-                            <div>&nbsp;</div>
                         </div>
                     </div>
-                    <table>
-                        <thead>
-                            {parse(data.header.split("|").map(x => "<th>" + x + "</th>").toString().replace(/,/g, " "))}
-                        </thead>
-                        <tbody>
-                            {rows}
-                        </tbody>
-                    </table>
+                    <div className={profileDivTableStyles.profileDivTableTitle}>
+                        KT
+                    </div>
+                    <div>
+                        <Image src={'/images/background/GreenBand.png'} layout="responsive" width={1200} height={10} />
+                    </div>
+                    <div className={profileDivTableStyles.detailedWorkExperienceBG}>
+                        {stemOfKT}
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>
+                                &nbsp;
+                            </div>
+                            <div className={profileDivTableStyles.jobTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div ref={leafOfficer}>
+                                <p>
+                                    <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
+                                    -- Nov.2013 ~ May.2014 BSS Resource and Software License management (using JIRA, Sharepoint) <br/>
+                                    &nbsp; &nbsp; + Earned kill : Complete PMP courese, JIRA, Sharepoint OP skill
+                                    </div>
+                                    <div>
+                                        <Image src={'/images/JiraSharepointLicense.jpg'} layout={"intrinsic"} width={200} height={200} />
+                                    </div>
+                                </p>
+                            </div>
+                        </div> 
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div ref={leafSchool} className={profileDivTableStyles.profileTreeWorkLeftLeaf}>
+                                <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
+                                    June. 2014 ~ Nov. 2018 BSS Rater(Billing) service OP/Procurement management -------<br/>
+                                    &nbsp; &nbsp; + Earned kill : Contract with other nations(Israel)
+                                </div>
+                                <div>
+                                    <Image src={'/images/procurementManagement.jpeg'} width={400} height={300} />
+                                </div>
+                            </div>
+                            <div className={profileDivTableStyles.jobTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div className={profileDivTableStyles.profileTreeBornLeaf}>
+                            </div>
+                        </div>
+                        <div className={profileDivTableStyles.profileTreeBGItem}>
+                            <div>
+                                &nbsp;
+                            </div>
+                            <div className={profileDivTableStyles.jobTreeStem}>
+                                &nbsp;
+                            </div>
+                            <div ref={leafOfficer}>
+                                <p>
+                                    <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
+                                        --  Nov.2018 ~ Current Cloud  portal BA, Billing manager <br/>
+                                        &nbsp; &nbsp; + Earned kill : REST API documentation, SaaS architecturing
+                                    </div>
+                                    <div>
+                                        <Image src={'/images/CloudPlatformJYU.jpg'} layout={"intrinsic"} width={270} height={350} />
+                                    </div>
+                                </p>
+                            </div>
+                        </div> 
+                    </div>
+                    <div>
+                        <Image src={'/images/background/GreenBand(bottom).png'} layout="responsive" width={1200} height={10} />
+                    </div>
                 </div>
                 <div>
                     <CopyRight />

@@ -1,198 +1,136 @@
 //breakPoint
 $breakpoint-mobile : 420px;
 
-// 개인 이력을 보유한 테이블
 .profileDivTableTitle{
   font-size: 2.5em;
   text-align: center;
   font-family: "SBAggro M";
   margin-top: 0.3em;
-  margin-bottom: 0.3em;
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] {
-  overflow: auto;
-  border: 0.1em solid #d6d6d6;
-  margin-top: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex]:focus {
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-  outline: 0.1em solid rgba(0, 0, 0, 0.1);
-}
-
-.profileDivTable table {
-  margin: 1em 0;
-  border-collapse: collapse;
-  border: 0.1em solid #d6d6d6;
-  font-family: "SBAggro M";
-  color: rgb(149, 143, 143);
-}
-
-.profileDivTable caption {
-  text-align: left;
-  font-style: italic;
-  padding: 0.25em 0.5em 0.5em 0.5em;
-}
-
-.profileDivTable strong {
-  color: green;
-  font-size: 1.15em;
-  background-color: white;
-
 
 }
 
-.profileDivTable table thead {
-  border-color: green;
-  border-style: solid;
+  @media screen and (max-width:$breakpoint-mobile){
+    .profileDivTableTitle{
+      font-size:1.0em;
+    }
+  }
+
+// 개인 이력을 보유한 테이블
+.profileMainCharacter{
+  z-index:0;
+  position : absolute;
+  display: inline-flex;
+  margin-top : 13%;
+  width: 100%;
+
 }
 
-.profileDivTable table th td {
-  padding: 0.25em 0.5em 0.25em 1em;
-  vertical-align: text-top;
-  text-align: center;
-  text-indent: -0.5em;
+  @media screen and (max-width: $breakpoint-mobile){
+    .profileMainCharacter{
+      margin-top: 50%;
+      width: 100%;
+      background-color: white;
+    }
+    .profileMainCharacter div{
+      padding-left:5%;
+      width: 100%;
+      height: 90%;
+    }
+  }
+
+.profileMainCharacter p{
+  z-index:0;
+  padding-top: 5%;
+  padding-left: 1%;
+  font-size: 0.9em;
+  width: 100%;
+  
+}
+  @media screen and (max-width: $breakpoint-mobile){
+    .profileMainCharacter p{
+      font-size: 0.4em;
+    }
+  }
+
+.profileMainCharacterBG{
+  z-index: -1;
+  position: absolute;
+  float: left;
 }
 
-.profileDivTable th {
-  vertical-align: bottom;
-  background-color: none;
-  color: rgb(0, 0, 0);
+  @media screen and (max-width:$breakpoint-mobile){
+    .profileMainCharacterBG{
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
+.profileTreeBornLeaf{
+  font-size: 1.0em;
+
 }
 
-.profileDivTable tr:nth-child(even) th[scope="row"] {
-  background-color: #22d148;
-}
+  @media screen and (max-width: $breakpoint-mobile){
+    .profileTreeBornLeaf{
+      font-size: 0.8em;
 
-.profileDivTable tr:nth-child(odd) th[scope="row"] {
-  background-color: #fff;
-}
+    }
+  }
 
-.profileDivTable tr:nth-child(even) {
-  background-color: rgba(238, 253, 22, 0.05);
-}
+  @media screen and (max-width: $breakpoint-mobile){
+  .profileTreeOfficerLeaf{
+    margin-top:130%;
+    font-size: 0.5em;
+   }
+  }
 
-.profileDivTable tr:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
-}
+  @media screen and (max-width: $breakpoint-mobile){
+  .profileTreeJobLeaf{
+    font-size: 0.7em;
+   }
+  }
 
-.profileDivTable tr td:nth-child(1) {
-  text-align: center;
-  min-width: 7em;
-  max-width: 70vw;
-}
+.profileTreeEntLeaf{
+  justify-self: right;
 
-.profileDivTable tr td:nth-child(2) {
-  text-align: center;
-  min-width: 7em;
-  max-width: 70vw;
 }
-
-.profileDivTable tr td:nth-child(3) {
-  text-align: center;
-  min-width: 7em;
-  max-width: 70vw;
-}
-
-.profileDivTable tr td:nth-child(4) {
-  text-align: left;
-  min-width: 20em;
-}
-
-.profileDivTable tr td:nth-child(5) {
-  text-align: center;
-  min-width: 5em;  
-}
-
-.profileDivTable tr td:nth-child(6) {
-  text-align: left;
-  min-width: 12em;  
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] {
-  overflow: auto;
-  border: 0.1em solid #d6d6d6;
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex]:focus {
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-  outline: 0.1em solid rgba(0, 0, 0, 0.1);
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] table {
-  margin: 0;
-  border: none;
-}
-
-.profileDivTable[role="region"][aria-labelledby][tabIndex] {
-  background: linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(to right, rgba(255, 255, 255, 0), #fff 70%) 0 100%,
-    radial-gradient(
-      farthest-side at 0% 50%,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0)
-    ),
-    radial-gradient(
-        farthest-side at 100% 50%,
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0)
-      )
-      0 100%;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-  background-position: 0 0, 100%, 0 0, 100%;
-  background-attachment: local, local, scroll, scroll;
-}
-
 @media screen and (max-width : $breakpoint-mobile){
-    .profileDivTable[role="region"][aria-labelledby][tabIndex] {
-    overflow: auto;
-    border: 0.1em solid #d6d6d6;
-    margin-top: 1em;
-    margin-left: 1.5em;
-    margin-right: 1.5em;
+  .profileTreeEntLeaf{
     font-size: 0.45em;
+    text-align: right;
   }
-
-  .profileDivTable tr td:nth-child(1) {
-    text-align: left;
-    min-width: 7em;
-    max-width: 70vw;
-    font-size:0.8em;
+  .profileTreeEntLeaf div{
+    width: 80%;
   }
+}
 
-  .profileDivTable tr td:nth-child(2) {
-    text-align: left;
-    min-width: 7em;
-    max-width: 70vw;
-    font-size:0.8em;
+
+.profileDivTableTitle div{
+  height: 10%;
+  width: 100%;
+  // position: relative;
+}
+
+.profileTreeWorkLeftLeaf{
+  text-align: right;
+}
+
+.detailedWorkExperienceBG{
+  background-color: rgb(55,125,34);
+  color: white;
+
+}
+
+.detailedWorkExperienceStatement{
+  display: inline-block;
+
+}
+
+@media screen and (max-width:$breakpoint-mobile){
+  .detailedWorkExperienceStatement{
+    font-size: 0.5em;
   }
-
-  .profileDivTable th:nth-child(3){
-    text-align: left;
-    display: none;
-  }
-
-  .profileDivTable tr td:nth-child(3){
-    display: none;
-  }
-
-  .profileDivTable tr td:nth-child(4) {
-    text-align: left;
-    min-width: 10em;
-    font-size:0.8em;
-  }
-
-  .profileDivTable tr td:nth-child(5) {
-    text-align: center;
-    min-width: 5em;
-    font-size:0.8em;
-  }
-
 }
 
 .profileTreeBGItem{
@@ -213,20 +151,12 @@ $breakpoint-mobile : 420px;
   
 }
 
-.profileTreeBornLeaf .profileTreeOfficerLeaf{
-  background-color: white;
-
-}
-
-@media screen and (max-width : $breakpoint-mobile){
-  .profileTreeOfficerLeaf{
-    background-color: white;
-    font-size:0.9em;
-  }
-}
-
-.profileTreeEntLeaf{
-  justify-self: right;
+.jobTreeStem{
+  background-color: black;
+  justify-self: center;
+  width: 15%;
+  color:white;
+  
 }
 
 
