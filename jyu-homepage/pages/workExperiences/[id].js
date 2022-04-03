@@ -54,9 +54,9 @@ export default function workExperience({id, data, contents}) {
     useEffect(() =>{
         // Event Listener 
         window.addEventListener("scroll", function(){
-            var leafElement = leafSchool.current;
-            leafElement.style.marginTop = - document.documentElement.scrollTop/6 + 'px';
-            leafElement = leafBorn.current; 
+            var leafElement = leafBorn.current;
+            leafElement.style.marginTop = - document.documentElement.scrollTop/20 + 'px';
+            leafElement = leafSchool.current; 
             leafElement.style.marginTop = - document.documentElement.scrollTop / 10 + 'px';
             leafElement = leafOfficer.current;
             leafElement.style.marginTop = - document.documentElement.scrollTop / 10 + 'px';
@@ -82,33 +82,50 @@ export default function workExperience({id, data, contents}) {
             <>
                 <div className={profileDivTableStyles.profileDivTable} role="region" aria-labelledby="Caption01" tabindex="0">
                     <div className={profileDivTableStyles.profileDivTableTitle}>
+                        Yongwoon Jang
+                    </div>
+                    <div className={profileDivTableStyles.profileMainCharacter}>
+                        <div className={profileDivTableStyles.profileMainCharacterBG}>
+                            <div>
+                                <Image src='/images/background/MainProfileBG.png' width={1200} height={500} />
+                            </div>
+                        </div>
+                        <div className={profileDivTableStyles.profileMainCharacterImg}>
+                            <div>
+                                <Image src={'/images/YongwoonJangMediaCenter.png'} width={370} height={500} layout="intrinsic"/>
+                            </div>
+                        </div>
+                        <p>
+                            Identity : IT project manager / IT service Initiator<br />
+                            Be good at : JavaScript, HTML, Shell, Projectmanaging, Office<br />
+                            Language : Korean(Native), English(Intermediate)<br /><br />
+
+                            Kor<br />
+                            저는 기록하는 것과 그것을 활용하는 것을 좋아합니다.<br />
+                            저와 사람들이 편리하게 생각을 펼치는 것을 돕는 것을 좋아합니다.<br />
+                            프로젝트 관리 능력과 기본적인 IT기술을 활용하여 좋은 서비스를 만들고싶습니다.<br /><br />
+
+                            Eng<br />
+                            I like logging, system to make people comfortable.<br />
+                            I am used to take new technologies which make me comfort.<br /><br />
+
+                            You can reach me via <br />
+                            Github : <a href="https://github.com/YongwoonJang">Yongwoon Jang</a><br />
+                            Naver Blog : <a href="https://blog.naver.com/jyy3k">Artist, Programmer:블로그</a><br />
+                            Media : <a href="https://www.youtube.com/channel/UCCBDNHHeeh5FZX3ZnJ1VDcg">Yongwoon Jang:유튜브</a><br />
+                            Email : <a href="mailto:royalfamily89@gmail.com">Yongwoon Jang</a>
+
+
+                        </p>
+
+                    </div>
+                    <div className={profileDivTableStyles.profileDivTableTitle}>
                         History
                     </div>
                     <div>
-                        <div className={profileDivTableStyles.profileMainCharacter}>
-                            <div className={profileDivTableStyles.profileMainCharacterBG}>
-                                <Image src='/images/background/MainProfileBG.png' width={1000} height={450} />
-                            </div>
-                            <div>
-                                <Image src={'/images/YongwoonJangMediaCenter.png'} width={370} height={500}/>
-                            </div>
-                            <p>
-                            Identity : IT project manager / IT service Initiator<br/>
-                            Be good at : JavaScript, HTML, Shell, Projectmanaging, Office<br/>
-                            Language : Korean(Native), English(Intermediate)<br /><br />
-
-                            Kor<br/>
-                            저는 기록하는 것과 그것을 활용하는 것을 좋아합니다.<br/>
-                            저와 사람들이 편리하게 생각을 펼치는 것을 돕는 것을 좋아합니다.<br/>
-                            프로젝트 관리 능력과 기본적인 IT기술을 활용하여 좋은 서비스를 만들고싶습니다.<br/><br/>
-                            
-                            Eng<br/>
-                            I like logging, system to make people comfortable.<br/>
-                            I am used to take new technologies which make me comfort.
-
-                            </p>
-                            
-                        </div>
+                        {stem}
+                        {stem}
+                        {stem}
                         <div className={profileDivTableStyles.profileTreeBGItem}>
                             <div>
                                 &nbsp;
@@ -122,10 +139,10 @@ export default function workExperience({id, data, contents}) {
                         </div>
                         {stem}
                         <div className={profileDivTableStyles.profileTreeBGItem}>
-                            <div ref={leafSchool} className={profileDivTableStyles.profileTreeEntLeaf}>
-                                2007년 인천고등학교 입학 / 건국대학교 입학 -------<br/>
+                            <div ref={leafSchool} className={profileDivTableStyles.profileTreeSchoolLeaf}>
+                                2007년 인천고등학교 입학 <br/> 건국대학교 입학 -------<br/>
                                 <div>
-                                    <Image src={'/images/GraduationOfHighSchool.jpeg'} width={200} height={200}/>
+                                    <Image src={'/images/GraduationOfHighSchool.png'} width={300} height={235}/>
                                 </div>
                             </div>
                             <div className={profileDivTableStyles.profileTreeStem}>
@@ -145,7 +162,7 @@ export default function workExperience({id, data, contents}) {
                             </div>
                             <div ref={leafOfficer} className={profileDivTableStyles.profileTreeOfficerLeaf}>
                                 <p>
-                                ----------  2011년 임관(대한민국 통신장교)
+                                ---------- <br/> 2011년 임관<br/>(대한민국 통신장교)
                                 <div>
                                     <Image src={'/images/CommissionedAsAOfficer.jpeg'} width={200} height={200} />
                                 </div>
@@ -162,7 +179,7 @@ export default function workExperience({id, data, contents}) {
                             </div>
                             <div ref={leafOfficer} className={profileDivTableStyles.profileTreeJobLeaf}>
                                 <p>
-                                    ----------  2013년 7월 KT 입사
+                                    ----------  <br/> 2013년 7월 KT 입사
                                 </p>
                             </div>
                         </div>
@@ -195,7 +212,7 @@ export default function workExperience({id, data, contents}) {
                             </div>
                         </div> 
                         <div className={profileDivTableStyles.profileTreeBGItem}>
-                            <div ref={leafSchool} className={profileDivTableStyles.profileTreeWorkLeftLeaf}>
+                            <div className={profileDivTableStyles.profileTreeWorkLeftLeaf}>
                                 <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
                                     June. 2014 ~ Nov. 2018 BSS Rater(Billing) service OP/Procurement management -------<br/>
                                     &nbsp; &nbsp; + Earned kill : Contract with other nations(Israel)

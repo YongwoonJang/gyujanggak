@@ -1,6 +1,10 @@
 //breakPoint
 $breakpoint-mobile : 420px;
 
+.profileDivTable{
+  font-family: "SBAggro M";
+}
+
 .profileDivTableTitle{
   font-size: 2.5em;
   text-align: center;
@@ -17,39 +21,58 @@ $breakpoint-mobile : 420px;
 
 // 개인 이력을 보유한 테이블
 .profileMainCharacter{
-  z-index:0;
-  position : absolute;
-  display: inline-flex;
-  margin-top : 13%;
-  width: 100%;
+  z-index:1;
+  position : relative;
+  display: flex;
+  margin : auto;
+  margin-top : 5%;
+  margin-bottom : 5%;
+  width: 60%;
 
 }
-
-  @media screen and (max-width: $breakpoint-mobile){
-    .profileMainCharacter{
-      margin-top: 50%;
-      width: 100%;
-      background-color: white;
-    }
-    .profileMainCharacter div{
-      padding-left:5%;
-      width: 100%;
-      height: 90%;
-    }
-  }
 
 .profileMainCharacter p{
   z-index:0;
   padding-top: 5%;
-  padding-left: 1%;
+  padding-left: 0%;
   font-size: 0.9em;
   width: 100%;
   
 }
+
   @media screen and (max-width: $breakpoint-mobile){
-    .profileMainCharacter p{
-      font-size: 0.4em;
+    .profileMainCharacter{
+      text-align: center;
+      margin-top: 10%;
+      width: 100%;
+      height: 20%;
+      background-color: white;
+      font-size: 1em;
+      display: block;
     }
+    
+    .profileMainCharacter div{
+      padding-left:0%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .profileMainCharacter p{
+      z-index:0;
+      padding-top: 0%;
+      padding-left: 0%;
+      font-size: 0.5em;
+      width: 100%;
+      
+    }
+
+    .profileMainCharacterImg div{
+      width: 80%;
+      height: 70%;
+      margin: auto;
+    }
+
+    
   }
 
 .profileMainCharacterBG{
@@ -59,9 +82,14 @@ $breakpoint-mobile : 420px;
 }
 
   @media screen and (max-width:$breakpoint-mobile){
+    .profileMainCharacterBG div{
+      margin-top : 20%;
+      width: 100%;
+      height: 70%;
+    }
     .profileMainCharacterBG{
       width: 100%;
-      height: 100%;
+      height: 50%;
     }
   }
 
@@ -78,10 +106,20 @@ $breakpoint-mobile : 420px;
     }
   }
 
+.profileTreeSchoolLeaf{
+  justify-self: right;
+}
+
+  @media screen and (max-width: $breakpoint-mobile){
+    .profileTreeSchoolLeaf{
+      font-size: 0.7em;
+
+    }
+  }
+
   @media screen and (max-width: $breakpoint-mobile){
   .profileTreeOfficerLeaf{
-    margin-top:130%;
-    font-size: 0.5em;
+    font-size: 0.7em;
    }
   }
 
