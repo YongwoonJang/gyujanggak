@@ -8,6 +8,8 @@ This is the private website for JYU. Self introduction and The minor gyujanggak 
 * 프로젝트는 프로젝트 오너의 생각을 효과적으로 전달하는 웹페이지를 만드는 것을 목적으로 합니다.  
 The purpose of this project is delivering project owner's mind effectively.
 
+thanks
+
 ※ [Home page](https://gyujanggak.vercel.app)입니다.
 
 ## High level Design
