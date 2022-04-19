@@ -90,11 +90,17 @@ export default function workExperience({id, data, contents}) {
                                 <Image src='/images/background/MainProfileBG.png' width={1200} height={500} />
                             </div>
                         </div>
-                        <div className={profileDivTableStyles.profileMainCharacterImg}>
+                        <div className={profileDivTableStyles.profileMainCharacterImgDesktop}>
                             <div>
-                                <Image src={'/images/YongwoonJangMediaCenter.png'} width={370} height={500} layout="intrinsic"/>
+                                <Image src={'/images/YongwoonJangMediaCenter.png'} width={360} height={500} layout="intrinsic"/>
                             </div>
                         </div>
+                        <div className={profileDivTableStyles.profileMainCharacterImgMobile}>
+                            <div>
+                                <Image src={'/images/YongwoonJangMediaCenter.png'} width={170} height={230} layout="fixed" />
+                            </div>
+                        </div>
+
                         <p>
                             Identity : IT project manager / IT service Initiator<br />
                             Be good at : JavaScript, HTML, Shell, Projectmanaging, Office<br />
@@ -149,7 +155,10 @@ export default function workExperience({id, data, contents}) {
                                 &nbsp;
                             </div>
                             <div className={profileDivTableStyles.profileTreeBornLeaf}>
-                        
+                                <div>
+                                    <br/><br/><br/>
+                                    <Image src={'/images/AtTheUniv.png'} width={250} height={200} />
+                                </div>
                             </div>
                         </div>
                         {stem}
@@ -164,7 +173,7 @@ export default function workExperience({id, data, contents}) {
                                 <p>
                                 ---------- <br/> 2011년 임관<br/>(대한민국 통신장교)
                                 <div>
-                                    <Image src={'/images/CommissionedAsAOfficer.jpeg'} width={200} height={200} />
+                                    <Image src={'/images/CommissionedAsAOfficer.png'} width={250} height={200} />
                                 </div>
                                 </p>
                             </div>
@@ -202,11 +211,17 @@ export default function workExperience({id, data, contents}) {
                             <div ref={leafOfficer}>
                                 <p>
                                     <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
-                                    -- Nov.2013 ~ May.2014 BSS Resource and Software License management (using JIRA, Sharepoint) <br/>
-                                    &nbsp; &nbsp; + Earned kill : Complete PMP courese, JIRA, Sharepoint OP skill
+                                    -- 우리말 <br />
+                                    -- 2013년 11월 ~ 2014년 5월 <br />
+                                    -- Business support system의 SW 라이선스 관리 <br />
+                                    -- JIRA, Sharepoint Operating 운영 능력 향상 <br /><br />
+                                    -- English  <br />
+                                    -- Nov.2013 ~ May.2014 <br/>
+                                    -- BSS Resource and Software License management <br/>
+                                    -- Earned skill JIRA, Sharepoint Operating skill <br/>
                                     </div>
                                     <div>
-                                        <Image src={'/images/JiraSharepointLicense.jpg'} layout={"intrinsic"} width={200} height={200} />
+                                        <Image src={'/images/JiraSharepointLicense.png'} layout={"intrinsic"} width={150} height={180} />
                                     </div>
                                 </p>
                             </div>

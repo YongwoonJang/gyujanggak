@@ -40,6 +40,16 @@ $breakpoint-mobile : 420px;
   
 }
 
+.profileMainCharacterImgDesktop {
+  display: block;
+
+}
+
+.profileMainCharacterImgMobile{
+  display: none;
+
+}
+
   @media screen and (max-width: $breakpoint-mobile){
     .profileMainCharacter{
       text-align: center;
@@ -72,6 +82,17 @@ $breakpoint-mobile : 420px;
       margin: auto;
     }
 
+    .profileMainCharacterImgDesktop {
+      
+      display: none;
+
+    }
+
+    .profileMainCharacterImgMobile {
+      width: 20%;
+      display: block;
+
+    }
     
   }
 
@@ -106,8 +127,10 @@ $breakpoint-mobile : 420px;
     }
   }
 
+
 .profileTreeSchoolLeaf{
   justify-self: right;
+  
 }
 
   @media screen and (max-width: $breakpoint-mobile){
