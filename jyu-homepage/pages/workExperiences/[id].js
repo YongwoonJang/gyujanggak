@@ -348,8 +348,8 @@ function ktcloudHistoryCard(){
 
 //Main function
 export default function workExperience({id, data, contents}) {
+    
     if (id == 'profile-mgmt') {//project management officer resume.
-        
         return (
             <>
                 <div className={profileDivTableStyles.profileDivTable}>
@@ -374,13 +374,6 @@ export default function workExperience({id, data, contents}) {
 
     }else{
         let rows = "";
-        const countOfRows = 14;
-        for (let i = 10; i < countOfRows + 1; i++) {
-            rows = rows
-                + "<tr>"
-                + data.rows[i].split("|").map(x => "<td>" + x + "</td>").toString().replace(/,/g, "")
-                + "</tr>";
-        }
         rows = parse(rows);
         return (
             <>
