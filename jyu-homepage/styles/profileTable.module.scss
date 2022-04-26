@@ -152,7 +152,7 @@ $breakpoint-mobile : 420px;
   }
 
   .profileTreeJobLeaf{
-    justify-self: right;
+    text-align: right;
   }
 
   @media screen and (max-width: $breakpoint-mobile){
@@ -187,7 +187,7 @@ $breakpoint-mobile : 420px;
 }
 
 .detailedWorkExperienceBG{
-  background-color: rgb(55,125,34);
+  background-color: rgb(107, 182,156);
   color: white;
 
 }
@@ -230,13 +230,12 @@ $breakpoint-mobile : 420px;
 }
 
 .ktBottom{
-  background-color: rgb(165,229,175);
+  
   margin-bottom: 0;
 }
 
 .ktcloudProfileDivTableTitle {
   
-  background-color: rgb(165, 229, 175);
   font-size: 2.5em;
   text-align: center;
   font-family: "SBAggro M";
@@ -253,7 +252,6 @@ $breakpoint-mobile : 420px;
 }
 
 .ktcloudDetailedWorkExperienceBG {
-  background-color: rgb(165, 229, 175);
   color: white;
 
 
@@ -261,12 +259,7 @@ $breakpoint-mobile : 420px;
 
 .ktcloudDetailedWorkExperienceStatement {
   display: inline-block;
-  color: white;
-  text-shadow: -1px -1px 0 #000,
-  1px -1px 0 #000,
-  -1px 1px 0 #000,
-  1px 1px 0 #000;
-
+  color: black;
 }
 
 @media screen and (max-width:$breakpoint-mobile){
@@ -285,6 +278,5 @@ $breakpoint-mobile : 420px;
 
   display: grid;
   grid-template-columns: 49% 2% 1fr;
-  background-color: rgb(165, 229, 175);
 
 }
