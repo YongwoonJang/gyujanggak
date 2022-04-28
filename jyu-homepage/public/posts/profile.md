@@ -13,7 +13,7 @@ workExperience:
         "Period" : "1Y"
         "URL": "/workExperiences/1"
     2:
-        "Summary": "영업전산 프로젝트 계약 관리"
+        "Summary": "과금 프로젝트 계약 관리"
         "Description": "프로젝트 계약 관리 (인력, 산출물, 기성처리, RFP, RFI)"
         "Period": "4Y"
         "URL": "/workExperiences/20160101Rater"

@@ -130,6 +130,28 @@ $communication-a-link-color: rgb(166, 26, 26);
   
 }
 
+.workExperienceTitle{
+  color : green;
+  padding-left: 1%;
+}
+
+.workExperienceContents{
+  padding-left : 1%;
+  font-size: 0.75em;
+  line-height: 2em;
+  font-family: "SBAggro L";
+
+}
+
+.raterProcurementManagementPicture{
+  float: right;
+  margin-top: 3%;
+  margin-right: 1%;
+  margin-left: 1%;
+  font-family: "SBAggro L";
+
+}
+
 .communityTitle{
   color: $community-a-link-color;
   width: 95%;
