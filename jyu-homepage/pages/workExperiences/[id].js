@@ -383,16 +383,8 @@ export default function workExperience({id, data, contents}) {
                         {parse(data.title)}
                     </h1>
                     <div className={pageStyles.workExperienceContents}>
-                        <div className={pageStyles.raterProcurementManagementPicture}>
-                            <Image src={'/images/workExperiences/procurementManagement.jpeg'} layout={"intrinsic"} width={600} height={400} alt="Loading" />
-                            <div>
-                                계약을 통해 모셔온 외국인들... 어차피 함께 일하는 것 제대로 일해야한다.
-                            </div>
-                        </div>
                         {parse(contents.replace(/\n/g, "<br/>"))}
-                        
                     </div>
-                    
                 </div>
                 <div>
                     <CopyRight />
