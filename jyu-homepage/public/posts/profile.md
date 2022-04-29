@@ -16,12 +16,12 @@ workExperience:
         "Summary": "과금 프로젝트 계약 관리"
         "Description": "프로젝트 계약 관리 (인력, 산출물, 기성처리, RFP, RFI)"
         "Period": "4Y"
-        "URL": "/workExperiences/20160101Rater"
+        "URL": "/workExperiences/raterContract"
     3:
         "Summary": "과금 결제 플랫폼 운영 관리"
         "Description": "과금 결제 플랫폼 운영인력 관리 (스케줄, QA)"
         "Period": "1Y"
-        "URL": "/workExperiences/3"
+        "URL": "/workExperiences/raterOperation"
     4:
         "Summary": "Cloud플랫폼개발(모니터링 서비스, 과금 관리)"
         "Description": "Watch 서비스 UI/UX 개발/운영, Cloud 서비스 빌링"
