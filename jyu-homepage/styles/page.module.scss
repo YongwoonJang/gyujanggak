@@ -297,23 +297,57 @@ $communication-a-link-color: rgb(166, 26, 26);
   top : 20%;
   z-index: -90;
 
-  animation: dancingCharacter 1.5s infinite;
+  animation: dancingCharacter 4s infinite;
 }
 
 @keyframes dancingCharacter{
   from {
     transform: rotate(0deg);
+    transform-origin: 50% 1%;
     
   }
 
+  12.5% {
+    transform: rotate(5deg);
+    transform-origin: 50% 1%;
+
+  }
+
+  25%{
+    transform: rotate(0deg);
+    transform-origin: 50% 1%;
+  }
+
+  37.5%{
+    transform: rotate(5deg);
+    transform-origin: 50% 1%;
+  }
+
   50% {
+    transform: rotate(0deg);
+    transform-origin: 50% 1%;
 
-    transform: rotate(20deg);
+  }
 
+  62.5% {
+    transform: rotate(-5deg);
+    transform-origin: 50% 1%;
+
+  }
+
+  75% {
+    transform: rotate(0deg);
+    transform-origin: 50% 1%;
+  }
+
+  87.5% {
+    transform: rotate(-5deg);
+    transform-origin: 50% 1%;
   }
 
   to {
     transform: rotate(0deg);
+    transform-origin: 50% 1%;
     
   }
 
