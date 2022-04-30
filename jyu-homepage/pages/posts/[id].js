@@ -98,6 +98,10 @@ export default function Post({id, data, contents}){
                     <h1 className={pageStyles.communityTitle}>
                         {parse(data.title)}
                     </h1>
+                    <div className={pageStyles.communityCharacter}>
+                        <Image src="/images/LittlePrincessDdosoon.png" width={80} height={80} />
+                    </div>
+                    
                     <div className={pageStyles.communityMotto}>
                         {content}
                     </div>

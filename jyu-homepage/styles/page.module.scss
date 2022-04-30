@@ -166,10 +166,27 @@ $communication-a-link-color: rgb(166, 26, 26);
   margin-top:$height;
   margin-bottom: $height*3;
   font-family: "SBAggro M";
+
 }
 
 .communityTitle span{
   color: black;
+}
+
+.communityCharacter {
+  position: fixed;
+  top: 2%;
+  left: 18%;
+  animation: dancingCharacter 4s infinite;
+}
+
+@media screen and (max-width:$breakpoint-mobile){
+  .communityCharacter {
+    position: fixed;
+    top: 1%;
+    left: 80%;
+    animation: dancingCharacter 4s infinite;
+  }
 }
 
 .communityMotto {
@@ -230,8 +247,6 @@ $communication-a-link-color: rgb(166, 26, 26);
 .hobbyTitle span{
   color: white;
 }
-
-
 
 .hobbyMotto{
   color: white;
