@@ -178,14 +178,22 @@ $communication-a-link-color: rgb(166, 26, 26);
   top: 2%;
   left: 18%;
   animation: dancingCharacter 4s infinite;
+  display: block;
+}
+.communityCharacterMobile {
+  display: none;
 }
 
 @media screen and (max-width:$breakpoint-mobile){
   .communityCharacter {
+    display: none;
+  }
+  .communityCharacterMobile{
     position: fixed;
     top: 1%;
-    left: 80%;
+    left: 85%;
     animation: dancingCharacter 4s infinite;
+    display: block;
   }
 }
 
