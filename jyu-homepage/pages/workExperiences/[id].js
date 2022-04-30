@@ -76,7 +76,7 @@ function mainCharacterCard(){
                 </div>
                 <p>
                     Identity : IT project manager / IT service Initiator<br />
-                    Be good at : JavaScript, HTML, Shell, Projectmanaging, Office<br />
+                    Be good at : JavaScript, HTML, Shell, Project management<br />
                     Language : Korean(Native), English(Intermediate)<br /><br />
 
                     Kor<br />

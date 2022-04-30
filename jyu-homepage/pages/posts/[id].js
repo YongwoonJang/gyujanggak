@@ -5,6 +5,7 @@ import parse from 'html-react-parser'
 
 // Next.js
 import Link from 'next/link'
+import Image from 'next/image'
 
 // CSS
 import pageStyles from '/styles/page.module.scss'
@@ -164,6 +165,9 @@ export default function Post({id, data, contents}){
                         <ul>
                             {contents}
                         </ul>
+                    </div>
+                    <div className={pageStyles.hobbyCharacter}>
+                        <Image src="/images/20220430stupido.png" width={400} height={300}/>
                     </div>
                     <div>
                         <CopyRight />

@@ -291,6 +291,43 @@ $communication-a-link-color: rgb(166, 26, 26);
   z-index: -100;
 }
 
+.hobbyCharacter{
+  position: fixed;
+  right: 15%;
+  top : 20%;
+  z-index: -90;
+
+  animation: dancingCharacter 1.5s infinite;
+}
+
+@keyframes dancingCharacter{
+  from {
+    transform: rotate(0deg);
+    
+  }
+
+  50% {
+
+    transform: rotate(20deg);
+
+  }
+
+  to {
+    transform: rotate(0deg);
+    
+  }
+
+}
+
+@media screen and (max-width:$breakpoint-mobile){
+  .hobbyCharacter {
+    position: fixed;
+    left: 40%;
+    top: 70%;
+    z-index: -90;
+  }
+}
+
 .communicationMainBackgroundImage{
   background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg') no-repeat center fixed;
   background-size: cover;
