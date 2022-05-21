@@ -280,3 +280,39 @@ $breakpoint-mobile : 420px;
   grid-template-columns: 49% 2% 1fr;
 
 }
+
+.bottomLine {
+  width: 100%;
+  height: auto;
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.bottomLineLeft {
+  text-align: center;
+  justify-content: center;
+}
+
+.bottomLineRight textarea{
+  background-color: #000;
+  color: white;
+  width: 95%;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  font-size: 1em;
+  margin-bottom: 2%;
+}
+
+.bottomLineButton {
+  height: 2em;
+  width: 30%;
+  margin-bottom: 2%;
+}
+
+.bottomLineRight textarea:nth-child(2) {
+  overflow: hidden;
+
+}

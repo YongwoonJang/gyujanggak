@@ -11,6 +11,46 @@ import { useEffect, useRef } from 'react'
 let stem = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.profileTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
 let stemOfKT = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.jobTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
 
+
+function sendToOwner(mailAddr, contents) {
+    let mailRegExp = /^[a-z0-9\.]+@[a-z0-9]+\.[a-z]+$/i
+
+    if(!mailAddr.match(mailRegExp)){
+        
+        let alarmText = document.createElement('div');
+        alarmText.innerText = "아직 정상적으로 데이터가 보내지지 않습니다.";
+        alarmText.style = "color:white;margin-Bottom:1%";
+        document.getElementById("returnEmail").parentElement.append(alarmText);
+        return false;
+
+    }else{
+        //send to database;
+
+    }
+}
+
+function dynamicTextArea(element){
+    setTimeout(()=>{
+        element.style.cssText = 'height:auto;padding:0px;';
+        element.style.cssText = 'height:' + element.scrollHeight + 'px';
+        document.documentElement.scrollTop = document.documentElement.scrollTop + element.scrollHeight;
+    
+    },0)
+
+}
+
+function disableEnter(event){
+    let parentOfEmailInput = document.getElementById('returnEmail').parentElement;
+    
+    if(parentOfEmailInput.childElementCount == 6){
+        parentOfEmailInput.lastElementChild.remove();
+    };
+
+    if(event.code =="Enter"){
+        event.preventDefault();
+    }
+}
+
 //Static function
 export function getStaticPaths() {
     const postNames = ["20160101Rater","profile-mgmt"]
@@ -342,15 +382,46 @@ function ktcloudHistoryCard(){
                 <div className={profileDivTableStyles.profileTreeBornLeaf}>
                 </div>
             </div>
+            {stemOfKT}
         </>
     )
 
 }
 
+function bottomLine(){
+    useEffect(()=>{
+        let returnTextArea = document.getElementById("returnContents");
+        let mailTextArea = document.getElementById("returnEmail")
+        let sendButton = document.getElementById("sendButton");
+        returnTextArea.addEventListener("keydown",()=>{dynamicTextArea(returnTextArea)});
+        mailTextArea.addEventListener("keydown",(event)=>{disableEnter(event)});
+        sendButton.addEventListener("click",  ()=>{sendToOwner(mailTextArea.value, returnTextArea.value)});
+        
+    })
+    return (
+        <>
+            <div className={profileDivTableStyles.bottomLine}>
+                <div className={profileDivTableStyles.bottomLineLeft}>
+                    Home
+                </div>
+                <div className={profileDivTableStyles.bottomLineRight}>
+                    <div>
+                        <div>회신메일</div>
+                        <textarea rows="1" id="returnEmail"></textarea>
+                        <div>내용</div>
+                        <textarea id="returnContents"></textarea>
+                        <button id="sendButton" className={profileDivTableStyles.bottomLineButton}>보내기</button>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
 //Main function
 export default function workExperience({id, data, contents}) {
     
-    if (id == 'profile-mgmt') {//project management officer resume.
+    if (id == 'profileManagement') {//project management officer resume.
         return (
             <>
                 <div className={profileDivTableStyles.profileDivTable}>
@@ -363,10 +434,16 @@ export default function workExperience({id, data, contents}) {
                         KT
                     </div>
                     <div>
-                    {ktHistoryCard()} 
+                        {ktHistoryCard()} 
                     </div>
-                    {ktcloudHistoryCard()}
+                    <div>
+                        {ktcloudHistoryCard()}
+                    </div>
+                    <div>
+                        {bottomLine()}
+                    </div>
                 </div>
+                    
                 <div>
                     <CopyRight />
                 </div>
