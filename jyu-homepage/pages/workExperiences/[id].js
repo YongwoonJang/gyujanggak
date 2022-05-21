@@ -18,13 +18,18 @@ function sendToOwner(mailAddr, contents) {
     if(!mailAddr.match(mailRegExp)){
         
         let alarmText = document.createElement('div');
-        alarmText.innerText = "아직 정상적으로 데이터가 보내지지 않습니다.";
+        alarmText.innerText = "데이터 발송 기능은 준비중입니다.";
         alarmText.style = "color:white;margin-Bottom:1%";
         document.getElementById("returnEmail").parentElement.append(alarmText);
         return false;
 
     }else{
         //send to database;
+        let alarmText = document.createElement('div');
+        alarmText.innerText = "데이터 발송 기능은 준비중입니다.";
+        alarmText.style = "color:white;margin-Bottom:1%";
+        document.getElementById("returnEmail").parentElement.append(alarmText);
+        return false;
 
     }
 }
