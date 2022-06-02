@@ -18,7 +18,7 @@ function sendToOwner(mailAddr, contents) {
     if(!mailAddr.match(mailRegExp)){
         
         let alarmText = document.createElement('div');
-        alarmText.innerText = "데이터 발송 기능은 준비중입니다.";
+        alarmText.innerText = "메일 주소 양식이 맞지 않습니다.";
         alarmText.style = "color:white;margin-Bottom:1%";
         document.getElementById("returnEmail").parentElement.append(alarmText);
         return false;
@@ -44,10 +44,10 @@ function dynamicTextArea(element){
 
 }
 
-function disableEnter(event){
+function resetForm(event){
     let parentOfEmailInput = document.getElementById('returnEmail').parentElement;
     
-    if(parentOfEmailInput.childElementCount == 6){
+    if(parentOfEmailInput.childElementCount >= 5){
         parentOfEmailInput.lastElementChild.remove();
     };
 
@@ -395,28 +395,25 @@ function ktcloudHistoryCard(){
 
 function bottomLine(){
     useEffect(()=>{
-        let returnTextArea = document.getElementById("returnContents");
+        let contentsArea = document.getElementById("returnContents");
         let mailTextArea = document.getElementById("returnEmail")
         let sendButton = document.getElementById("sendButton");
-        returnTextArea.addEventListener("keydown",()=>{dynamicTextArea(returnTextArea)});
-        mailTextArea.addEventListener("keydown",(event)=>{disableEnter(event)});
-        sendButton.addEventListener("click",  ()=>{sendToOwner(mailTextArea.value, returnTextArea.value)});
+        contentsArea.addEventListener("keydown",(event)=>{dynamicTextArea(contentsArea);resetForm(event)});
+        mailTextArea.addEventListener("keydown",(event)=>{resetForm(event)});
+        sendButton.addEventListener("click",  ()=>{sendToOwner(mailTextArea.value, contentsArea.value)});
         
     })
     return (
         <>
             <div className={profileDivTableStyles.bottomLine}>
                 <div className={profileDivTableStyles.bottomLineLeft}>
-                    Home
+                    <a href="https://gyujanggak.vercel.app/posts/profile">go to Home</a>
                 </div>
                 <div className={profileDivTableStyles.bottomLineRight}>
-                    <div>
-                        <div>회신메일</div>
-                        <textarea rows="1" id="returnEmail"></textarea>
-                        <div>내용</div>
-                        <textarea id="returnContents"></textarea>
+                        <div>문의사항과 응답받으실 메일주소를 남겨주세요.</div>
+                        <textarea rows="1" id="returnContents" placeholder="문의사항 ex) 현재 어떤일을 주로 하고 계신가요?"/>
+                        <textarea rows="1" id="returnEmail" placeholder='답변 받으실 메일 주소 ex) question@question.co.kr'/>
                         <button id="sendButton" className={profileDivTableStyles.bottomLineButton}>보내기</button>
-                    </div>
                 </div>
             </div>
         </>

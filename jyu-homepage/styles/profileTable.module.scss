@@ -293,6 +293,21 @@ $breakpoint-mobile : 420px;
 .bottomLineLeft {
   text-align: center;
   justify-content: center;
+  padding-top: 1%;
+}
+
+.bottomLineLeft a {
+  color: rgb(140, 235, 201);
+}
+
+.bottomLineRight {
+  padding-top: 1%;
+
+}
+
+.bottomLineRight div:nth-child(1) {
+  padding-bottom: 3%;
+  color:rgb(140, 235, 201);
 }
 
 .bottomLineRight textarea{
@@ -306,13 +321,14 @@ $breakpoint-mobile : 420px;
   margin-bottom: 2%;
 }
 
-.bottomLineButton {
-  height: 2em;
-  width: 30%;
-  margin-bottom: 2%;
-}
-
 .bottomLineRight textarea:nth-child(2) {
   overflow: hidden;
 
+}
+
+.bottomLineButton {
+
+  height: 3em;
+  width: 30%;
+  margin-bottom: 2%;
 }
