@@ -28,7 +28,6 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
     const db = getDatabase(app);
 
-
     const curr = new Date();
     const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
@@ -48,10 +47,7 @@ module.exports = async (req, res) => {
     const updates = {};
     updates["/" + newId] = commentData;
 
-    const gyujanggakRef = ref(db, 'chats/');
-
-    console.log(identification["user"]);
-    console.log(identification["code"]);
+    const gyujanggakRef = ref(db, 'questions/');
 
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then(() => {
@@ -62,16 +58,12 @@ module.exports = async (req, res) => {
             })
                 .catch((error) => {
                     console.log("Error is : " + error);
-                    console.log("Error code is : " + error.code);
-                    console.log("Error message is : " + error.message);
                     res.end();
 
                 })
         })
         .catch((error) => {
             console.log("Error is : " + error);
-            console.log("Error code is : " + error.code);
-            console.log("Error message is : " + error.message);
 
         });
 

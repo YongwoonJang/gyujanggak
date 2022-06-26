@@ -6,6 +6,8 @@ import profileDivTableStyles from '/styles/profileTable.module.scss'
 import CopyRight from '/components/copyRight'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
+import send from '/api/sendButton'
+import sendOwner from '../../api/sendOwner'
 
 // These variables used for making stems
 let stem = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.profileTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
@@ -24,11 +26,18 @@ function sendToOwner(mailAddr, contents) {
         return false;
 
     }else{
-        //send to database;
+        //This block should implement send to realtime Database(questions)
         let alarmText = document.createElement('div');
         alarmText.innerText = "데이터 발송 기능은 준비중입니다.";
         alarmText.style = "color:white;margin-Bottom:1%";
         document.getElementById("returnEmail").parentElement.append(alarmText);
+
+        //Initial snippets.
+        //sendOwner() 
+        //..todo sendOnwer에서 realtimedatabase setting으로 처리할 수 있도록 할것. 
+        //.. 참고로 현재 firestore 에 대한 insert, delete 기능은 구현되지 않음.
+        
+
         return false;
 
     }

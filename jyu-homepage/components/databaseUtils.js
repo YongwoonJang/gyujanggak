@@ -1,7 +1,7 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { identification } from './firebaseConfig';
 
-// const baseURL = "http://localhost:80";
+//const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
 
 export async function readDatabase(name) {
@@ -19,8 +19,6 @@ export async function readDatabase(name) {
 
 //Insert to database and update comments array.
 export function insertRow(author, contents) {
-
-    // let destination = baseURL + '/insertRow';
     let destination = baseURL + '/insertRow';
     let url = new URL(destination)
 
@@ -32,7 +30,6 @@ export function insertRow(author, contents) {
 
 //Delete from database and update comments array
 export function deleteRow(localDelDocId) {
-
     let destination = baseURL + '/deleteRow';
     var url = new URL(destination)
 

@@ -51,9 +51,6 @@ export default function books({ data, contents }) {
     
     let imagePart = "";
     if(data.images != null){
-        // imagePart = <div className={pageStyles.bookImage}>
-        //     <img src={data.images[0]} width={data.imageWidth[0]+'%'} layout="responsive" />
-        // </div>;
         imagePart = <img src={data.images[0]} className={pageStyles.bookImage} width={data.imageWidth[0]+'%'} height={100+"%"} layout="responsive" />;
 
     }
