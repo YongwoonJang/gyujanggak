@@ -6,7 +6,6 @@ import profileDivTableStyles from '/styles/profileTable.module.scss'
 import CopyRight from '/components/copyRight'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
-import send from '/api/sendButton'
 import sendOwner from '../../api/sendOwner'
 
 // These variables used for making stems
