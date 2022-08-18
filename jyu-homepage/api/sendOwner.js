@@ -49,6 +49,10 @@ module.exports = async (req, res) => {
 
     const gyujanggakRef = ref(db, 'questions/');
 
+    console.log("20220818");
+    console.log(identification["user"]);
+    console.log(identification["code"]);
+
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then(() => {
             update(gyujanggakRef, updates).then(() => {

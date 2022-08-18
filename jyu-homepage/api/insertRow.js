@@ -52,6 +52,7 @@ module.exports = async (req, res) => {
 
     const gyujanggakRef = ref(db, 'chats/');
 
+    console.log("20220818");
     console.log(identification["user"]);
     console.log(identification["code"]);
 
