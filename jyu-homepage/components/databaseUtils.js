@@ -20,7 +20,7 @@ export async function readDatabase(name) {
 //Insert to database and update comments array.
 export function insertRow(author, contents) {
     let destination = baseURL + '/insertRow';
-    let url = new URL(destination)
+    let url = new URL(destination);
 
     let params = { 'author': author, 'contents': contents };
     url.search = new URLSearchParams(params).toString();

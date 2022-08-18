@@ -6,7 +6,9 @@ import profileDivTableStyles from '/styles/profileTable.module.scss'
 import CopyRight from '/components/copyRight'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
-import sendOwner from '../../api/sendOwner'
+
+//const baseURL = "http://localhost:80";
+const baseURL = "https://gyujanggak.vercel.app/api";
 
 // These variables used for making stems
 let stem = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.profileTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
@@ -27,17 +29,20 @@ function sendToOwner(mailAddr, contents) {
     }else{
         //This block should implement send to realtime Database(questions)
         let alarmText = document.createElement('div');
-        alarmText.innerText = "데이터 발송 기능은 준비중입니다.";
+        alarmText.innerText = "정상적으로 접수되었습니다.";
         alarmText.style = "color:white;margin-Bottom:1%";
         document.getElementById("returnEmail").parentElement.append(alarmText);
 
         //Initial snippets.
-        //sendOwner() 
-        //..todo sendOnwer에서 realtimedatabase setting으로 처리할 수 있도록 할것. 
-        //.. 참고로 현재 firestore 에 대한 insert, delete 기능은 구현되지 않음.
-        
+        let destination = baseURL + '/sendOwner';
+        let url = new URL(destination);
 
-        return false;
+        let params = { 'author': mailAddr, 'contents': contents };
+        url.search = new URLSearchParams(params).toString();
+
+        fetch(url);
+        
+        return true;
 
     }
 }
