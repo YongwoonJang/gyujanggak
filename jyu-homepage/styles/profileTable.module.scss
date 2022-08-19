@@ -296,8 +296,15 @@ $breakpoint-mobile : 420px;
   padding-top: 1%;
 }
 
+
 .bottomLineLeft a {
   color: rgb(140, 235, 201);
+}
+
+@media screen and (max-width:$breakpoint-mobile) {
+  .bottomLineLeft a {
+    font-size: 0.8em;
+  }
 }
 
 .bottomLineRight {
@@ -308,6 +315,13 @@ $breakpoint-mobile : 420px;
 .bottomLineRight div:nth-child(1) {
   padding-bottom: 3%;
   color:rgb(140, 235, 201);
+}
+
+@media screen and (max-width:$breakpoint-mobile){
+  .bottomLineRight div:nth-child(1) {
+    font-size: 0.6em;
+  }
+
 }
 
 .bottomLineRight textarea{
@@ -323,6 +337,15 @@ $breakpoint-mobile : 420px;
 
 .bottomLineRight textarea:nth-child(2) {
   overflow: hidden;
+
+}
+
+@media screen and (max-width:$breakpoint-mobile){
+  .bottomLineRight textarea{
+    font-size: 0.5em;
+
+  }
+
 
 }
 
