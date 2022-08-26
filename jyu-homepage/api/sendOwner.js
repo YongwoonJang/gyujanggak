@@ -84,9 +84,9 @@ module.exports = async (req, res) => {
 
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then(() => {
-            update(gyujanggakRef, updates).then(() => {
+            update(gyujanggakRef, updates).then(async () => {
                 console.log("Document written with ID: ", newId);
-                sendMail(author, contents);
+                await sendMail(author, contents);
                 res.end();
 
             })
