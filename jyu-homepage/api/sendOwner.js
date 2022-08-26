@@ -86,7 +86,7 @@ module.exports = async (req, res) => {
         .then(() => {
             update(gyujanggakRef, updates).then(() => {
                 console.log("Document written with ID: ", newId);
-                await sendMail(author, contents);
+                sendMail(author, contents);
                 res.end();
 
             })
