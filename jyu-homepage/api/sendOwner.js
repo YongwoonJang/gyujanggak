@@ -1,6 +1,7 @@
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, update } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
+const nodemailer = require('nodemailer');
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -18,11 +19,42 @@ const identification = {
     code: process.env.CODE
 }
 
+async function sendMail(author, contents){
+    
+    //Test to mail 
+    let testAccount = nodemailer.createTestAccount();
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: process.env.MAIL_SERVER,
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.MAIL_ID, 
+            pass: process.env.MAIL_KEY,
+        },
+    });
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+        from: '"Gyujanggak" <'+process.env.MAIL_ID+'>', // sender address
+        to: process.env.USER_ID, // list of receivers
+        subject: author + "wrote in work experience", // Subject line
+        text: "", // plain text body
+        html: contents, // html body
+    });
+
+    console.log("Message sent: %s", info.messageId);
+
+}
+
 module.exports = async (req, res) => {
 
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
-    author = fullURL.searchParams.get('author');
-    contents = fullURL.searchParams.get('contents');
+    let author = fullURL.searchParams.get('author');
+    let contents = fullURL.searchParams.get('contents');
+
+    await sendMail(author, contents);
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -49,9 +81,8 @@ module.exports = async (req, res) => {
 
     const gyujanggakRef = ref(db, 'questions/');
 
-    console.log("20220818");
+    console.log("20220826 debug");
     console.log(identification["user"]);
-    console.log(identification["code"]);
 
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then(() => {
