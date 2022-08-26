@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
     let author = fullURL.searchParams.get('author');
     let contents = fullURL.searchParams.get('contents');
 
-    await sendMail(author, contents);
+    sendMail(author, contents);
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
