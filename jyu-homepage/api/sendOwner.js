@@ -54,8 +54,6 @@ module.exports = async (req, res) => {
     let author = fullURL.searchParams.get('author');
     let contents = fullURL.searchParams.get('contents');
 
-    sendMail(author, contents);
-
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
@@ -88,6 +86,7 @@ module.exports = async (req, res) => {
         .then(() => {
             update(gyujanggakRef, updates).then(() => {
                 console.log("Document written with ID: ", newId);
+                await sendMail(author, contents);
                 res.end();
 
             })
