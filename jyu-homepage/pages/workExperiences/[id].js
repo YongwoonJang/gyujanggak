@@ -7,6 +7,7 @@ import CopyRight from '/components/copyRight'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
+
 //const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
 
@@ -35,6 +36,7 @@ function sendToOwner(mailAddr, contents) {
 
         //Initial snippets.
         let destination = baseURL + '/sendOwner';
+        
         let url = new URL(destination);
 
         let params = { 'author': mailAddr, 'contents': contents };
