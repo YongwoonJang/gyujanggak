@@ -1,7 +1,7 @@
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, update } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
-const sendMail = require('../components/sendMail');
+const { sendMail } = require('../components/sendMail');
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
