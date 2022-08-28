@@ -1,7 +1,7 @@
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, update } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
-const { sendMail } = require('../components/sendMail');
+const sendMail = require('../components/sendMail');
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -60,7 +60,13 @@ module.exports = async (req, res) => {
         .then(() => {
             update(gyujanggakRef, updates).then(async () => {
                 console.log("Document written with ID: ", newId);
-                await sendMail(process.env.MAIL_SERVER, process.env.MAIL_ID, process.env.USER_ID, process.env.MAIL_KEY, process.env.MAIL_ADDR, author, contents);
+                await sendMail(process.env.MAIL_SERVER, 
+                    process.env.MAIL_ID, 
+                    process.env.USER_ID, 
+                    process.env.MAIL_KEY, 
+                    process.env.MAIL_ADDR, 
+                    author, 
+                    contents);
                 res.end();
 
             })
