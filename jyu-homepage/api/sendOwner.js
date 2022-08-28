@@ -55,7 +55,6 @@ module.exports = async (req, res) => {
     console.log("20220826 debug");
     console.log(identification["user"]);
     console.log("Add test code for send Mail");
-    console.log(sendMail);
 
     signInWithEmailAndPassword(auth, identification["user"], identification["code"])
         .then(() => {
