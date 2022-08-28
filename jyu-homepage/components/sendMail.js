@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-export function sendMail (server, mail_id, user_id, mail_code, mailAddr, author, contents) {
+async function sendMail (server, mail_id, user_id, mail_code, mailAddr, author, contents) {
 
         //Test to mail 
         let testAccount = nodemailer.createTestAccount();
