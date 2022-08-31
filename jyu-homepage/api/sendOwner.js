@@ -65,6 +65,7 @@ module.exports = async (req, res) => {
                     process.env.USER_ID, 
                     process.env.MAIL_KEY, 
                     process.env.MAIL_ADDR, 
+                    "workExperience",
                     author, 
                     contents);
                 res.end();
