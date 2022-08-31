@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 
 module.exports = sendMail;
 
-async function sendMail (server, mail_id, user_id, mail_code, mailAddr, author, contents) {
+async function sendMail (server, mail_id, user_id, mail_code, mailAddr, path, author, contents) {
 
         //Test to mail 
         let testAccount = nodemailer.createTestAccount();
@@ -22,7 +22,7 @@ async function sendMail (server, mail_id, user_id, mail_code, mailAddr, author, 
         let info = await transporter.sendMail({
             from: '"Gyujanggak" <' + mailAddr + '>', // sender address
             to: user_id, // list of receivers
-            subject: author + "wrote in work experience", // Subject line
+            subject: author + " wrote at " + path, // Subject line
             text: "", // plain text body
             html: contents, // html body
         });
