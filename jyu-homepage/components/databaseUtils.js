@@ -29,11 +29,11 @@ export function insertRow(author, contents) {
 }
 
 //Delete from database and update comments array
-export function deleteRow(localDelDocId) {
+export function deleteRow(localDelDocId, author, contents) {
     let destination = baseURL + '/deleteRow';
     var url = new URL(destination)
 
-    var params = { 'localDelDocId': localDelDocId };
+    var params = { 'localDelDocId': localDelDocId, 'author': author, 'contents': contents };
     url.search = new URLSearchParams(params).toString();
     fetch(url);
     

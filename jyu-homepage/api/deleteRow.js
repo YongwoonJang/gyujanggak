@@ -21,6 +21,8 @@ const identification = {
 
 module.exports = async (req, res) => {
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
+    let author = fullURL.searchParams.get('author');
+    let contents = fullURL.searchParams.get('contents');
     localDelDocId = fullURL.searchParams.get('localDelDocId');
     
     const app = initializeApp(firebaseConfig);
