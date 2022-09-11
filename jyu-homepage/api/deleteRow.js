@@ -1,7 +1,7 @@
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, remove } = require("firebase/database");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
-
+const sendMail = require('../components/sendMail');
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -31,8 +31,16 @@ module.exports = async (req, res) => {
     .then(() => {
         if (localDelDocId != null) {
             const gyujanggakRef = ref(db, 'chats/' + localDelDocId);
-            remove(gyujanggakRef).then(()=>{
+            remove(gyujanggakRef).then(async ()=>{
                 console.log("Document delete with ID: ", localDelDocId);
+                await sendMail(process.env.MAIL_SERVER,
+                    process.env.MAIL_ID,
+                    process.env.USER_ID,
+                    process.env.MAIL_KEY,
+                    process.env.MAIL_ADDR,
+                    "GYUJANGGAK main comments page(comment delete)",
+                    author,
+                    contents);
                 res.end();
             })
             .catch((error) => {
