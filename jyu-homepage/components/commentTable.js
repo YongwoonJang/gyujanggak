@@ -126,14 +126,12 @@ export default function CommentTable(){
         }
 
         if (delDocIdRef.current.innerHTML != "") {
-            // editCommentBoxRef.current.children[0].value = e.currentTarget.children[1].innerHTML;
-            // editorBoxRef.current.children[0].value = e.currentTarget.children[0].children[0].innerHTML;
             setContents(e.currentTarget.children[1].innerHTML);
             setAuthor(e.currentTarget.children[0].children[0].innerHTML);
 
         } else {
-            editCommentBoxRef.current.children[0].value = "";
-            editorBoxRef.current.children[0].value = "";
+            setContents("Hello world");
+            setAuthor("JYU");
 
         }
     };
