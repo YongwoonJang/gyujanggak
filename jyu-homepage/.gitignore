@@ -1,7 +1,11 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-
-# dependencies
+*.log
+*.swp
+*.sqlite
+__pycache__
+**/tokenizer/**
+**/words/**
+frontera
+enterprise-search.ini
 /node_modules
 /.pnp
 .pnp.js
