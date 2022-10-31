@@ -27,22 +27,18 @@ export default function Login() {
 
             let id = document.getElementById("id").value;
             let pw = document.getElementById("pw").value;
-            console.log(event);
-            console.log(id);
-            console.log(pw);
 
             signInWithEmailAndPassword(auth, id, pw)
                 .then((userCredential) => {
                     user = userCredential.user;
-                    console.log(user);
                     router.push({
                         pathname: '/editor/profile', 
-                        query: {user:user.email, userToken:user.accessToken}
+                        query: {user:user.email}
                     });
 
                 })
                 .catch((error) => {
-                    console.log("failed authentication");
+                    console.log("authentication failed");
                     console.log(error.code);
                     console.log(error.message);
                 });
