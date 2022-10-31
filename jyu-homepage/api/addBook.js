@@ -1,0 +1,42 @@
+import { initializeApp } from "firebase/app";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createHash, sign } from "crypto";
+
+const firebaseConfig = {
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID
+
+}
+
+module.exports = async (req, res) => {
+
+    const fullURL = new URL(req.url, `http://${req.headers.host}`);
+    let user = fullURL.searchParams.get('url');
+    let title = fullURL.searchParams.get('title');
+    let contents = fullURL.searchParams.get('contents');
+    
+    let userHash = createHash('sha256').update(process.env.USER_UID).digest('hex');
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    if(user == userHash){
+        signInWithEmailAndPassword(auth, USER_ID, CODE).then(()=>{
+            const curr = new Date();
+            const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
+            const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+            const newId = utc + KR_TIME_DIFF;
+
+            if (contents != null) {
+                setDoc(doc(db, title, "contents"), {
+                    contents: contents
+                });
+            }
+
+        })
+    }
+
+}
