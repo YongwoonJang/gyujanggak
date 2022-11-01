@@ -18,7 +18,11 @@ thanks
 
 ![JYU Homepage HLD /architecure/JYUHomepageHLD.svg 참고](https://raw.githubusercontent.com/YongwoonJang/gyujanggak/master/architecture/JYUHomepageHLD.svg)
 
-## Reference 
+## UI Design
+
+* [FIGMA for gyujanggak project](https://www.figma.com/file/evLHskvh2MgMXOzMoCzuDe/Management-site?node-id=0%3A1)
+
+## Reference
 
 * [Flex box Design](https://heropy.blog/2018/11/24/css-flexible-box/)
 
