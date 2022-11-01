@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import mgmtStyle from '/styles/mgmtStyle.module.scss';
 
 
 const firebaseConfig = {
@@ -48,10 +49,17 @@ export default function Login() {
 
     return(
         <>
-            <div>
-                <input id="id" />
-                <input id="pw" />
-                <button id="send">인증하기</button>
+            <div className={mgmtStyle.loginForm}>
+                <div className={mgmtStyle.loginTitle}>
+                    <label> Management </label>
+                </div>
+                <div className={mgmtStyle.loginInput}>
+                    <input id="id" />
+                    <input id="pw" type="password" />
+                </div>
+                <div className={mgmtStyle.loginBtn}>
+                    <button id="send">Connect</button>
+                </div>
             </div>
         </>
     )
