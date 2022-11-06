@@ -22,16 +22,15 @@ module.exports = async (req, res) => {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const auth = getAuth(app);
-    console.log(user);
-    console.log(userHash);
 
     if(user == userHash){
         signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE)
         .then(()=>{
+            console.log("test");
             const curr = new Date();
             const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
             const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-            const newId = utc + KR_TIME_DIFF;
+            //const newId = utc + KR_TIME_DIFF;
 
             if (contents != null) {
                 setDoc(doc(db, title, "contents"), {
