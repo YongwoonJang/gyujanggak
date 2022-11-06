@@ -26,27 +26,28 @@ module.exports = async (req, res) => {
     if(user == userHash){
         signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE)
         .then(()=>{
-            console.log("test");
-            // const curr = new Date();
-            // const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
-            // const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-            //const newId = utc + KR_TIME_DIFF;
-
             if (contents != null) {
+                
                 try{
                     setDoc(doc(db, title, "contents"), {
                         contents: contents
                     });
+
                 }catch(e){
                     console.log(e);
+
                 }
             }
+
+            res.end();
 
         })
         .catch((error)=>{
             console.log("authentication failed");
             console.log(error.code);
             console.log(error.message);
+            res.end();
+
         });
     }
 
