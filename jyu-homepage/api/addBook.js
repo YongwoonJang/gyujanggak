@@ -31,15 +31,17 @@ module.exports = async (req, res) => {
                 try{
                     setDoc(doc(db, title, "contents"), {
                         contents: contents
+                    }).then(()=>{
+                        res.end();
                     });
 
                 }catch(e){
+                    console.log("setDocError");
                     console.log(e);
+                    res.end();
 
                 }
             }
-
-            res.end();
 
         })
         .catch((error)=>{
