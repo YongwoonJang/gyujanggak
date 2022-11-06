@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     console.log(userHash);
 
     if(user == userHash){
-        signInWithEmailAndPassword(auth, process.env.USER_ID, CODE)
+        signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE)
         .then(()=>{
             const curr = new Date();
             const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
