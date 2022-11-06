@@ -20,6 +20,7 @@ export default function Profile(){
     const {
         register,
         handleSubmit,
+        reset,
         formState:{
             errors
         }
@@ -32,6 +33,8 @@ export default function Profile(){
         let params = { 'user': userHash, 'title': data.title, 'contents': data.contents };
         url.search = new URLSearchParams(params).toString();
         fetch(url);
+        console.log("completed");
+        reset();
         
     }
     //useEffect
