@@ -24,7 +24,8 @@ module.exports = async (req, res) => {
     const auth = getAuth(app);
 
     if(user == userHash){
-        signInWithEmailAndPassword(auth, USER_ID, CODE).then(()=>{
+        signInWithEmailAndPassword(auth, process.env.USER_ID, CODE)
+        .then(()=>{
             const curr = new Date();
             const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
             const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
@@ -37,6 +38,11 @@ module.exports = async (req, res) => {
             }
 
         })
+        .catch((error)=>{
+            console.log("authentication failed");
+            console.log(error.code);
+            console.log(error.message);
+        });
     }
 
 }
