@@ -25,15 +25,13 @@ export default function Profile(){
         }
     } = useForm()
     
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
         const destination = baseURL + '/addBook';
         let url = new URL(destination);
         let userHash = createHash('sha256').update(uid).digest('hex');
         let params = { 'user': userHash, 'title': data.title, 'contents': data.contents };
         url.search = new URLSearchParams(params).toString();
-        
-        const querySnapshot = await fetch(url);
-        const result = await querySnapshot.json();
+        fetch(url);
         
     }
     //useEffect
