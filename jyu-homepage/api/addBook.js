@@ -13,7 +13,7 @@ const firebaseConfig = {
 module.exports = async (req, res) => {
 
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
-    let user = fullURL.searchParams.get('url');
+    let user = fullURL.searchParams.get('user');
     let title = fullURL.searchParams.get('title');
     let contents = fullURL.searchParams.get('contents');
     
