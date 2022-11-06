@@ -2,6 +2,7 @@
 import { useRouter } from "next/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 import { createHash } from 'crypto';
 import mgmtStyle from '/styles/mgmtStyle.module.scss';
 
@@ -10,12 +11,31 @@ const baseURL = "https://gyujanggak.vercel.app/api";
 
 export default function Profile(){
     const router = useRouter();
-    const user = router.query.user;
+    let user = router.query.user;
+    let uid = null;
 
     const loginSuccess = useRef(null);
     const defaultPage = useRef(null);
 
+    const {
+        register,
+        handleSubmit,
+        formState:{
+            errors
+        }
+    } = useForm()
     
+    const onSubmit = async (data) => {
+        const destination = baseURL + '/addBook';
+        let url = new URL(destination);
+        let userHash = createHash('sha256').update(uid).digest('hex');
+        let params = { 'user': userHash, 'title': data.title, 'contents': data.contents };
+        url.search = new URLSearchParams(params).toString();
+        
+        const querySnapshot = await fetch(url);
+        const result = await querySnapshot.json();
+        
+    }
     //useEffect
     useEffect(() => {
         loginSuccess.current.style.display = "none";
@@ -28,23 +48,8 @@ export default function Profile(){
                         // User is signed in
                         loginSuccess.current.style.display = "block";
                         defaultPage.current.style.display = "none";
+                        uid = user.uid;
 
-                        const btn = document.getElementById("post");
-                        
-                        btn.addEventListener("click", async (event) => {
-                            const destination = baseURL + '/addBook';
-                            let url = new URL(destination);
-                            let title = document.getElementById("title").value;
-                            let contents = document.getElementById("contents").value;
-                            let userHash = createHash('sha256').update(user.uid).digest('hex');
-
-                            let params = { 'user': userHash,  'title': title, 'contents': contents};
-                            url.search = new URLSearchParams(params).toString();
-
-                            const querySnapshot = await fetch(url);
-                            const result = await querySnapshot.json();
-                            
-                        });
                     } 
                 })
                 
@@ -72,20 +77,28 @@ export default function Profile(){
                 </div >
 
                 <div ref={loginSuccess} className={mgmtStyle.main}>
-                    <div className={mgmtStyle.mainTitle}>
-                        <h1>Hello: Editor Yongun</h1>
-                    </div>
-                    <div>
-                        <label>title</label>
-                        <input id="title"></input>
-                    </div>
-                    <div>
-                        <label>contents</label>
-                        <textarea id="contents"></textarea>
-                    </div>
-                    <div>
-                        <button id="post">Post</button>
-                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className={mgmtStyle.mainTitle}>
+                            <h1>Hello: Editor Yongun</h1>
+                        </div>
+                        <div>
+                            <label>title</label>
+                            <input 
+                                type= "text"
+                                {...register("title")}
+                            />
+                        </div>
+                        <div>
+                            <label>contents</label>
+                            <textarea 
+                                id="contents"
+                                {...register("contents")}
+                            />
+                        </div>
+                        <div>
+                            <button type="submit">Post</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </>

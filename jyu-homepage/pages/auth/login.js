@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useForm } from 'react-hook-form';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import mgmtStyle from '/styles/mgmtStyle.module.scss';
@@ -17,50 +18,55 @@ const firebaseConfig = {
 
 export default function Login() {
     const router = useRouter();
-    
-    useEffect(()=>{
-        const btn = document.getElementById("send"); 
-        let user = null;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const {
+        register,
+        handleSubmit,
+        formState:{
+            error
+        }
+    } = useForm();
+    const onSubmit = (data) =>{
+        let id = data.id;
+        let pw = data.password;
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        btn.addEventListener("click",(event)=>{
-
-            let id = document.getElementById("id").value;
-            let pw = document.getElementById("pw").value;
-
-            signInWithEmailAndPassword(auth, id, pw)
-                .then((userCredential) => {
-                    user = userCredential.user;
-                    router.push({
-                        pathname: '/editor/profile', 
-                        query: {user:user.email}
-                    });
-
-                })
-                .catch((error) => {
-                    console.log("authentication failed");
-                    console.log(error.code);
-                    console.log(error.message);
+        signInWithEmailAndPassword(auth, id, pw)
+            .then((userCredential) => {
+                let user = userCredential.user;
+                router.push({
+                    pathname: '/editor/profile',
+                    query: { user: user.email }
                 });
 
-        });
-    },[]);
+            })
+            .catch((error) => {
+                console.log("authentication failed");
+                console.log(error.code);
+                console.log(error.message);
+            });
+
+    }
 
     return(
         <>
-            <div className={mgmtStyle.loginForm}>
+            <form className={mgmtStyle.loginForm} onSubmit={handleSubmit(onSubmit)}>
                 <div className={mgmtStyle.loginTitle}>
                     <label> Management </label>
                 </div>
                 <div className={mgmtStyle.loginInput}>
-                    <input id="id" />
-                    <input id="pw" type="password" />
+                    <input 
+                        type="text"
+                        {...register("id")}
+                    />
+                    <input 
+                        type="password" 
+                        {...register("password")} />
                 </div>
                 <div className={mgmtStyle.loginBtn}>
-                    <button id="send">Connect</button>
+                    <button type="submit">Connect</button>
                 </div>
-            </div>
+            </form>
         </>
     )
 }
