@@ -22,6 +22,8 @@ module.exports = async (req, res) => {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const auth = getAuth(app);
+    console.log(user);
+    console.log(userHash);
 
     if(user == userHash){
         signInWithEmailAndPassword(auth, process.env.USER_ID, CODE)
