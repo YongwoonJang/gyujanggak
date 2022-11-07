@@ -11,11 +11,10 @@ const baseURL = "https://gyujanggak.vercel.app/api";
 
 export default function Profile(){
     const router = useRouter();
-    let user = router.query.user;
-    let uid = null;
-
     const loginSuccess = useRef(null);
     const defaultPage = useRef(null);
+    
+    let userHash = null;
 
     const {
         register,
@@ -29,45 +28,35 @@ export default function Profile(){
     const onSubmit = (data) => {
         const destination = baseURL + '/addBook';
         let url = new URL(destination);
-        let userHash = createHash('sha256').update(uid).digest('hex');
         let params = { 'user': userHash, 'title': data.title, 'contents': data.contents };
         url.search = new URLSearchParams(params).toString();
         fetch(url);
-        console.log("completed");
         reset();
         
     }
-    //useEffect
-    useEffect(() => {
-        loginSuccess.current.style.display = "none";
-        if (!(!user || user.isLoggedIn == false)) {
-            
-            try{
-                const auth = getAuth();
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        // User is signed in
-                        loginSuccess.current.style.display = "block";
-                        defaultPage.current.style.display = "none";
-                        uid = user.uid;
 
-                    } 
-                })
-                
-            } catch (e) { 
-                console.log("Error is " + e);
-                console.log("Not permitted access");
-                    
-            }
-            return;
+    useEffect(()=>{
+        try {
+            const auth = getAuth();
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in
+                    loginSuccess.current.style.display = "block";
+                    defaultPage.current.style.display = "none";
+                    userHash = createHash('sha256').update(user.uid).digest('hex');
+
+                }
+            })
+
+        } catch (e) {
+            console.log("Error is " + e);
+            console.log("Not permitted access");
+            router.push({
+                pathname: '/auth/login'
+
+            });
         }
-
-        router.push({
-            pathname: '/auth/login'
-
-        });
-
-    },[]);
+    })
 
     //else print user information
     return(
