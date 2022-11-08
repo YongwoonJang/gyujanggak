@@ -24,7 +24,7 @@ export default function Login() {
         register,
         handleSubmit,
         formState:{
-            error
+            errors
         }
     } = useForm();
     const onSubmit = (data) =>{
@@ -57,11 +57,18 @@ export default function Login() {
                 <div className={mgmtStyle.loginInput}>
                     <input 
                         type="text"
-                        {...register("id")}
+                        {...register("id",{
+                            required: "아이디를 입력해주세요."
+                        })}
                     />
+                    {errors.id && <p>{errors.id.message}</p>}
                     <input 
                         type="password" 
-                        {...register("password")} />
+                        {...register("password",{
+                            required: "비밀번호를 입력해 주세요."
+                        })} 
+                    />
+                    {errors.password && <p>{errors.password.message}</p>}
                 </div>
                 <div className={mgmtStyle.loginBtn}>
                     <button type="submit">Connect</button>

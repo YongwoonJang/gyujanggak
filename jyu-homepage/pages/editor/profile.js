@@ -75,15 +75,21 @@ export default function Profile(){
                             <label>title</label>
                             <input 
                                 type= "text"
-                                {...register("title")}
+                                {...register("title",{
+                                    required: "제목을 입력해 주세요."
+                                })}
                             />
+                            {errors.title && <p>errors.title.message</p>}
                         </div>
                         <div>
                             <label>contents</label>
                             <textarea 
                                 id="contents"
-                                {...register("contents")}
+                                {...register("contents",{
+                                    required: "내용을 입력해 주세요."
+                                })}
                             />
+                            {errors.contents && <p>errors.contents.message</p>}
                         </div>
                         <div>
                             <button type="submit">Post</button>
