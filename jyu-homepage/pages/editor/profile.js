@@ -40,7 +40,7 @@ export default function Profile(){
             const auth = getAuth();
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                    // User is signed in
+                    // User signed in
                     loginSuccess.current.style.display = "block";
                     defaultPage.current.style.display = "none";
                     userHash = createHash('sha256').update(user.uid).digest('hex');
@@ -79,7 +79,7 @@ export default function Profile(){
                                     required: "제목을 입력해 주세요."
                                 })}
                             />
-                            {errors.title && <p>errors.title.message</p>}
+                            {errors.title && <p>{errors.title.message}</p>}
                         </div>
                         <div>
                             <label>contents</label>
@@ -89,7 +89,7 @@ export default function Profile(){
                                     required: "내용을 입력해 주세요."
                                 })}
                             />
-                            {errors.contents && <p>errors.contents.message</p>}
+                            {errors.contents && <p>{errors.contents.message}</p>}
                         </div>
                         <div>
                             <button type="submit">Post</button>
