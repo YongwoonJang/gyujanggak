@@ -4,9 +4,11 @@ export default function CopyRight(){
     return (
         <>
             <table className={pageStyles.copyRight}>
-                <tr>
-                    COPYRIGHT © JYU. ALL RIGHTS RESERVED.
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>COPYRIGHT © JYU. ALL RIGHTS RESERVED.</td>
+                    </tr>
+                </tbody>
             </table>
         </>
     )
