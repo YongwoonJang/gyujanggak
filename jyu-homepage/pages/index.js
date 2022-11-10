@@ -20,7 +20,6 @@ export default function Home() {
             <Link href={url}>
               <a>
                 <Image
-                  priority
                   src={'/images/' + id + '.jpg'}
                   height={300}
                   width={300}
