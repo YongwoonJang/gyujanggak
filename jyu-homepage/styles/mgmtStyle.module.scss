@@ -10,6 +10,13 @@
     font-style: italic;
 }
 
+@media screen and (max-width: 800px) {
+    .loginTitle {
+        font-size: 2.5em;
+    }
+
+}
+
 .loginInput {
     text-align: center;
     justify-content: center;
@@ -55,4 +62,5 @@
     margin-top: 10%;
 
 }
+
 
