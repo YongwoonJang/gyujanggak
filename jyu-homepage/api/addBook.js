@@ -15,7 +15,9 @@ module.exports = async (req, res) => {
     const fullURL = new URL(req.url, `http://${req.headers.host}`);
     let user = fullURL.searchParams.get('user');
     let title = fullURL.searchParams.get('title');
+    let contents_title = fullURL.searchParams.get('contents_title');
     let contents = fullURL.searchParams.get('contents');
+    let image = fullURL.searchParams.get('image');
     
     let userHash = createHash('sha256').update(process.env.USER_UID).digest('hex');
 
@@ -29,14 +31,15 @@ module.exports = async (req, res) => {
             if (contents != null) {
                 
                 try{
-                    setDoc(doc(db, title, "contents"), {
-                        contents: contents
+                    setDoc(doc(db, title, process.env.USER_ID), {
+                        label: contents_title,
+                        contents: contents,
+                        image: image
                     }).then(()=>{
                         res.end();
                     });
 
                 }catch(e){
-                    console.log("setDocError");
                     console.log(e);
                     res.end();
 

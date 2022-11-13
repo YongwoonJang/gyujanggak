@@ -1,6 +1,7 @@
 
 import { useRouter } from "next/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { createHash } from 'crypto';
@@ -26,9 +27,31 @@ export default function Profile(){
     } = useForm()
     
     const onSubmit = (data) => {
+        console.log(data);
+        const storage = getStorage();
+        
+        const curr = new Date();
+        const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        let newId = utc + KR_TIME_DIFF;
+
+        const storageRef = ref(storage, userHash+'/'+newId+data.image[0].name);
+
+        uploadBytes(storageRef,data.image[0]).then((snapshot) => {
+            console.log('Upload file success');
+            console.log(snapshot);
+        })
+        console.log("uploadByte is success");
+
         const destination = baseURL + '/addBook';
         let url = new URL(destination);
-        let params = { 'user': userHash, 'title': data.title, 'contents': data.contents };
+        let params = { 
+            'user': userHash, 
+            'title': "gyujanggak", 
+            'contents_title': data.title,
+            'contents': data.contents,
+            'image': newId + data.image[0].name 
+        };
         url.search = new URLSearchParams(params).toString();
         fetch(url);
         reset();
@@ -84,12 +107,21 @@ export default function Profile(){
                         <div>
                             <label>contents</label>
                             <textarea 
-                                id="contents"
+                                type="text"
                                 {...register("contents",{
                                     required: "내용을 입력해 주세요."
                                 })}
                             />
                             {errors.contents && <p>{errors.contents.message}</p>}
+                        </div>
+                        <div>
+                            <label>Image</label>
+                            <input type="file"
+                                {...register("image",{
+                                    required: "이미지를 등록해 주세요."
+                                })}
+                            />
+                            {errors.image && <p>errors.image.message</p>}
                         </div>
                         <div>
                             <button type="submit">Post</button>
