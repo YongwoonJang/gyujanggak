@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
                 
                 try{
                     setDoc(doc(db, title, process.env.USER_ID), {
-                        label: contents_title,
+                        title: contents_title,
                         contents: contents,
                         image: image
                     }).then(()=>{
