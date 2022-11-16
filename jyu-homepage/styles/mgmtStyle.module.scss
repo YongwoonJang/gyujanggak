@@ -1,9 +1,10 @@
-.login {
+.login, .profile{
     box-sizing: border-box;
     margin-top: 15%;
     font-family: "SBAggro M";
     src: url("/fonts/SBAggro/SB 어그로OTF M.otf");
 }
+
 .desc {
     padding-left: 680px;
 }
@@ -15,12 +16,17 @@
     padding: 15px;
 }
 
-.container input[type=text], .container input[type=password]{
+.container input[type=text], .container input[type=password], .container input[type=file], .container textarea {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 15px;
     margin-top: 10px;
+    font-size: 0.8em;
+}
+
+.container textarea{
+    height: 100px;
 }
 
 .container input[type=submit]{
