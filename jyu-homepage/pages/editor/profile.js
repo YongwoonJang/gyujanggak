@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { createHash } from 'crypto';
 import mgmtStyle from '/styles/mgmtStyle.module.scss';
@@ -12,9 +12,6 @@ const baseURL = "https://gyujanggak.vercel.app/api";
 
 export default function Profile(){
     const router = useRouter();
-    const loginSuccess = useRef(null);
-    const defaultPage = useRef(null);
-    
     let userHash = null;
 
     const {
@@ -27,9 +24,7 @@ export default function Profile(){
     } = useForm()
     
     const onSubmit = (data) => {
-        console.log(data);
         const storage = getStorage();
-        
         const curr = new Date();
         const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
         const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
@@ -37,11 +32,10 @@ export default function Profile(){
 
         const storageRef = ref(storage, userHash+'/'+newId+data.image[0].name);
 
-        uploadBytes(storageRef,data.image[0]).then((snapshot) => {
-            console.log('Upload file success');
-            console.log(snapshot);
+        uploadBytes(storageRef,data.image[0]).then(() => {
+            alert('등록이 완료되었습니다.');
+        
         })
-        console.log("uploadByte is success");
 
         const destination = baseURL + '/addBook';
         let url = new URL(destination);
@@ -64,69 +58,95 @@ export default function Profile(){
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     // User signed in
-                    loginSuccess.current.style.display = "block";
-                    defaultPage.current.style.display = "none";
                     userHash = createHash('sha256').update(user.uid).digest('hex');
 
                 }
             })
 
         } catch (e) {
-            console.log("Error is " + e);
-            console.log("Not permitted access");
+            alert("로그인이 필요한 페이지 입니다.");
             router.push({
                 pathname: '/auth/login'
 
             });
         }
+
+        let textarea = document.getElementsByName("contents")[0];
+        textarea.addEventListener("keydown", ()=>{
+            let el = textarea;
+            setTimeout(()=>{
+                el.style.cssText="height:auto;";
+                el.style.cssText="height:"+el.scrollHeight+"px;";
+            },0);
+        });
+
     })
 
     //else print user information
     return(
-        <>
-            <div>
-                <div ref={defaultPage}>
-                    <a href="https://gyujanggak.vercel.app/auth/login">Need to log in</a>
-                </div >
-
-                <div ref={loginSuccess} className={mgmtStyle.main}>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className={mgmtStyle.mainTitle}>
-                            <h1>Hello: Editor Yongun</h1>
-                        </div>
-                        <div>
-                            <label>title</label>
-                            <input 
-                                type= "text"
-                                {...register("title",{
-                                    required: "제목을 입력해 주세요."
-                                })}
-                            />
-                            {errors.title && <p>{errors.title.message}</p>}
-                        </div>
-                        <div>
-                            <label>contents</label>
-                            <textarea 
-                                type="text"
-                                {...register("contents",{
-                                    required: "내용을 입력해 주세요."
-                                })}
-                            />
-                            {errors.contents && <p>{errors.contents.message}</p>}
-                        </div>
-                        <div>
-                            <label>Image</label>
-                            <input type="file"
-                                {...register("image",{
-                                    required: "이미지를 등록해 주세요."
-                                })}
-                            />
-                            {errors.image && <p>errors.image.message</p>}
-                        </div>
-                        <div>
-                            <button type="submit">Post</button>
-                        </div>
-                    </form>
+        <>  
+            <div className={mgmtStyle.profile}>
+                <div className={mgmtStyle.desc}>
+                    <h2>Editor Yongwoon</h2>
+                    <p>We just cannot flourish amid fear.</p>
+                </div>
+                <div>
+                    <div className={mgmtStyle.container}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className={mgmtStyle.row}>
+                                <div className={mgmtStyle.col25}>
+                                    <label>title</label>
+                                </div>
+                                <div className={mgmtStyle.col75}>
+                                    <input 
+                                        type= "text"
+                                        placeholder= "책이름, 출간년월, 저자를 입력해 주세요...삼국지, (2022년5월, 나관중)"
+                                        {...register("title",{
+                                            required: "제목을 입력해 주세요."
+                                        })}
+                                    />
+                                </div>
+                                <div>
+                                    {errors.title && <p className={mgmtStyle.errorMsg}> {errors.title.message}</p>}
+                                </div>
+                            </div>
+                            <div className={mgmtStyle.row}>
+                                <div className={mgmtStyle.col25}>
+                                    <label>contents</label>
+                                </div>
+                                <div className={mgmtStyle.col75}>
+                                    <textarea 
+                                        type="text"
+                                        placeholder="책을 감상한 느낌을 적어주세요...."
+                                        {...register("contents",{
+                                            required: "내용을 입력해 주세요."
+                                        })}
+                                    />
+                                </div>
+                                <div>
+                                    {errors.contents && <p className={mgmtStyle.errorMsg}> {errors.contents.message}</p>}
+                                </div>
+                            </div>
+                            <div className={mgmtStyle.row}>
+                                <div className={mgmtStyle.col25}>
+                                    <label>Image</label>
+                                </div>
+                                <div className={mgmtStyle.col75}>
+                                    <input type="file"
+                                        {...register("image",{
+                                            required: "이미지를 등록해 주세요."
+                                        })}
+                                    />
+                                </div>
+                                <div>
+                                    {errors.image && <p className={mgmtStyle.errorMsg}> {errors.image.message}</p>}
+                                </div>
+                            </div>
+                            <div className={mgmtStyle.row}>
+                                <input type="submit" value="Post" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </>
