@@ -1,8 +1,7 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/router";
 import mgmtStyle from '/styles/mgmtStyle.module.scss';
 
 
@@ -44,36 +43,62 @@ export default function Login() {
                 console.log("authentication failed");
                 console.log(error.code);
                 console.log(error.message);
+                alert("아이디가 존재하지 않거나, 비밀번호가 틀렸습니다.");
             });
 
     }
 
     return(
         <>
-            <form className={mgmtStyle.loginForm} onSubmit={handleSubmit(onSubmit)}>
-                <div className={mgmtStyle.loginTitle}>
-                    <label> Management </label>
-                </div>
-                <div className={mgmtStyle.loginInput}>
-                    <input 
-                        type="text"
-                        {...register("id",{
-                            required: "아이디를 입력해주세요."
-                        })}
-                    />
-                    {errors.id && <p>{errors.id.message}</p>}
-                    <input 
-                        type="password" 
-                        {...register("password",{
-                            required: "비밀번호를 입력해 주세요."
-                        })} 
-                    />
-                    {errors.password && <p>{errors.password.message}</p>}
-                </div>
-                <div className={mgmtStyle.loginBtn}>
-                    <button type="submit">Connect</button>
-                </div>
-            </form>
+        <div className={mgmtStyle.login}>
+            <div className={mgmtStyle.desc}>
+                <h2>
+                    관리자 페이지
+                </h2>
+                <p>
+                    개발자, 서비스 기획자 장용운의 공간입니다.
+                </p>
+            </div>
+            <div className={mgmtStyle.container}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className={mgmtStyle.row}>
+                        <div className={mgmtStyle.col25}>
+                            <label>ID </label>
+                        </div>
+                        <div className={mgmtStyle.col75}>
+                            <input 
+                                type="text"
+                                {...register("id",{
+                                    required: "아이디를 입력해주세요."
+                                })}
+                            />
+                        </div>
+                        <div>
+                            {errors.id && <p className={mgmtStyle.errorMsg}>{errors.id.message}</p>}
+                        </div>
+                    </div>
+                    <div className={mgmtStyle.row}>
+                        <div className={mgmtStyle.col25}>
+                            <label>비밀 번호 </label>
+                        </div>
+                        <div className={mgmtStyle.col75}>
+                            <input
+                                type="password"
+                                {...register("password", {
+                                    required: "비밀번호를 입력해 주세요."
+                                })}
+                            />
+                        </div>
+                        <div>
+                                {errors.password && <p className={mgmtStyle.errorMsg}>{errors.password.message}</p>}
+                        </div>
+                    </div>
+                    <div className={mgmtStyle.row}>
+                        <input type="submit" value="login" />
+                    </div>
+                </form>
+            </div>
+        </div>
         </>
     )
 }

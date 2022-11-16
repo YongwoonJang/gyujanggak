@@ -1,66 +1,63 @@
-.loginForm {
-    display: grid;
-    grid-template-columns: auto;
-    margin-top : 15%;
+.login {
+    box-sizing: border-box;
+    margin-top: 15%;
+    font-family: "SBAggro M";
+    src: url("/fonts/SBAggro/SB 어그로OTF M.otf");
 }
-.loginTitle {
-    text-align: center;
-    color: black;
-    font-size: 6em;
-    font-style: italic;
+.desc {
+    padding-left: 680px;
 }
-
-@media screen and (max-width: 800px) {
-    .loginTitle {
-        font-size: 2.5em;
-    }
-
+.container {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 30%;
+    padding: 15px;
 }
 
-.loginInput {
-    text-align: center;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: auto;
+.container input[type=text], .container input[type=password]{
     width: 100%;
-    margin-top: 5%;
-    margin-bottom: 1.5%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 10px;
 }
 
-.loginInput input{
+.container input[type=submit]{
+    float: right;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 15px 25px;
     font-size: 1em;
-    margin: 4%;
-    border-style: solid;
-    border-color: black;
+    margin-top: 10px;
     
 }
 
-.loginBtn {
-    text-align: center;
-    justify-content: center;
-    margin: 1.5%;
-
+.container label{
+    padding: 15px 15px 15px 0;
+    display: inline-block;
 }
 
-.loginBtn button {
-    font-size: 1em;
-    border-color: black;
-    background-color: white;
-
+.row:after {
+    display: table;
+    content: "";
+    clear: both;
 }
 
-.main {
-    display: grid;
-    grid-template-columns: auto;
+.col25{
+    width: 20%;
+    float: left;
 }
 
-.main div {
-    text-align: center;
+.col75{
+    width: 80%;
+    float: left;
 }
 
-.mainTitle {
-    margin-top: 10%;
-
+.errorMsg{
+    color: red;
 }
+
 
 
