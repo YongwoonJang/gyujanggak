@@ -35,7 +35,7 @@ export default function Login() {
         signInWithEmailAndPassword(auth, id, pw)
             .then((userCredential) => {
                 router.push({
-                    pathname: '/editor/editorMain'
+                    pathname: '/editor/profile'
                 });
 
             })
