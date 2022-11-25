@@ -1,0 +1,64 @@
+.loginContainer {
+    margin: 0 auto;
+    margin-top : 15%;
+    width: 100%;
+}
+
+.titleGroup {
+    text-align: center;
+    font-style: italic;
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+
+}
+
+.inputGroup{
+    display: flex;
+    justify-content: center;
+    margin-top: 68px;
+ 
+}
+
+.idInputGroup input, 
+.passwordInputGroup input{
+    font-size: 18px;
+    border:none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    margin-bottom: 52px;
+
+}
+
+.idInputGroup input::placeholder,
+.passwordInputGroup input::placeholder {
+    font-style: italic;
+
+}
+
+.idInputGroup input:focus,
+.passwordInputGroup input:focus {
+    outline: none;
+
+}
+
+.idInputError, 
+.passwordInputError {
+    color: red;
+    position: fixed;
+
+}
+
+.buttonGroup{
+    display: flex;
+    justify-content: center;
+}
+
+.buttonGroup input{
+    background-color: black;
+    border-radius: 4px;
+    color: white;
+    width: 137px;
+    height: 60px;
+    padding: 15px 25px;
+    font-size: 20px;
+}

@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
-import mgmtStyle from '/styles/mgmtStyle.module.scss';
+import loginStyle from '/styles/loginStyle.module.scss';
 
 
 const firebaseConfig = {
@@ -16,9 +16,10 @@ const firebaseConfig = {
 };
 
 export default function Login() {
-    const router = useRouter();
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const router = useRouter();
+    
     const {
         register,
         handleSubmit,
@@ -26,16 +27,15 @@ export default function Login() {
             errors
         }
     } = useForm();
+
     const onSubmit = (data) =>{
         let id = data.id;
         let pw = data.password;
 
         signInWithEmailAndPassword(auth, id, pw)
             .then((userCredential) => {
-                let user = userCredential.user;
                 router.push({
-                    pathname: '/editor/profile',
-                    query: { user: user.email }
+                    pathname: '/editor/editorMain'
                 });
 
             })
@@ -50,55 +50,36 @@ export default function Login() {
 
     return(
         <>
-        <div className={mgmtStyle.login}>
-            <div className={mgmtStyle.desc}>
-                <h2>
-                    관리자 페이지
-                </h2>
-                <p>
-                    개발자, 서비스 기획자 장용운의 공간입니다.
-                </p>
-            </div>
-            <div className={mgmtStyle.container}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className={mgmtStyle.row}>
-                        <div className={mgmtStyle.col25}>
-                            <label>ID </label>
-                        </div>
-                        <div className={mgmtStyle.col75}>
-                            <input 
+            <div className={loginStyle.loginContainer}>
+                <div className={loginStyle.titleGroup}>Manager</div>
+                <div className={loginStyle.inputGroup}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className={loginStyle.idInputGroup}>
+                            <input
+                                placeholder='아이디'
                                 type="text"
                                 {...register("id",{
                                     required: "아이디를 입력해주세요."
                                 })}
                             />
+                            {errors.id && <span className={loginStyle.idInputError}>{errors.id.message}</span>}
                         </div>
-                        <div>
-                            {errors.id && <p className={mgmtStyle.errorMsg}>{errors.id.message}</p>}
-                        </div>
-                    </div>
-                    <div className={mgmtStyle.row}>
-                        <div className={mgmtStyle.col25}>
-                            <label>비밀 번호 </label>
-                        </div>
-                        <div className={mgmtStyle.col75}>
+                        <div className={loginStyle.passwordInputGroup}>
                             <input
+                                placeholder="비밀번호"
                                 type="password"
                                 {...register("password", {
                                     required: "비밀번호를 입력해 주세요."
                                 })}
                             />
+                            {errors.password && <span className={loginStyle.passwordInputError}>{errors.password.message}</span>}
                         </div>
-                        <div>
-                                {errors.password && <p className={mgmtStyle.errorMsg}>{errors.password.message}</p>}
+                        <div className={loginStyle.buttonGroup}>
+                            <input type="submit" value="login" />
                         </div>
-                    </div>
-                    <div className={mgmtStyle.row}>
-                        <input type="submit" value="login" />
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
         </>
     )
 }
