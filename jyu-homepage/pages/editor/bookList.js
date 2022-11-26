@@ -1,5 +1,4 @@
 import bookListStyle from '/styles/bookListStyle.module.scss';
-import { useState, useEffect } from 'react';
 
 export default function BookList(props){
     
