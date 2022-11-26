@@ -81,7 +81,7 @@ export default function EditorMain(props){
 
             });
         }
-    },props.data);
+    });
 
     return(
         <>
