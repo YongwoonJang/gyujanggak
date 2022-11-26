@@ -35,7 +35,7 @@ export default function Login() {
         signInWithEmailAndPassword(auth, id, pw)
             .then((userCredential) => {
                 router.push({
-                    pathname: '/editor/profile'
+                    pathname: '/editor/editorMain'
                 });
 
             })
@@ -51,7 +51,8 @@ export default function Login() {
     return(
         <>
             <div className={loginStyle.loginContainer}>
-                <div className={loginStyle.titleGroup}>Manager</div>
+                <title>Gyujanggak: Login</title>
+                <div className={loginStyle.titleGroup}>Gyujanggak</div>
                 <div className={loginStyle.inputGroup}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className={loginStyle.idInputGroup}>

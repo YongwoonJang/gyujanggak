@@ -1,0 +1,39 @@
+.bookListContainer {
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.bookListContainer table {
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.row td {
+    padding-bottom: 90px;
+}
+
+.row td:nth-child(1) {
+    font-style: italic;
+
+}
+
+.row td:nth-child(2) {
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+.row td:nth-child(3) {
+    text-align: right;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: rgb(0, 92, 0);
+}
+

@@ -5,14 +5,21 @@
     src: url("/fonts/SBAggro/SB 어그로OTF M.otf");
 }
 
-.desc {
-    padding-left: 680px;
+.profile{
+    margin-top: 3%;
 }
+
+.desc {
+    padding-left: 2.5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 .container {
     border: 1px solid black;
     border-radius: 5px;
     margin: 0 auto;
-    width: 30%;
+    width: 95%;
     padding: 15px;
 }
 
