@@ -9,6 +9,7 @@ export default function BookList(props){
     useEffect(()=>{
         console.log(props.value);
         if (props.data !== undefined) {
+            console.log("Inner useEffect function")
             props.value.forEach((data) => {
                 contentsList.push(
                     <tr className={bookListStyle.row}>
