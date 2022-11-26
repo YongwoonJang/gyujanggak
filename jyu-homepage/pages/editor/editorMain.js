@@ -84,8 +84,10 @@ export default function EditorMain(props){
             });
         }
 
+        console.log(props.data);
         setData(props.data);
-    });
+
+    },props.data);
 
     return(
         <>
