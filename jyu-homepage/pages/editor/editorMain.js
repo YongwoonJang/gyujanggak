@@ -73,8 +73,6 @@ export async function getServerSideProps(context){
 export default function EditorMain(props){
 
     const router = useRouter();
-    const [data, setData] = useState();
-    
     useEffect(()=>{
 
         if(props.data == null){
@@ -83,10 +81,6 @@ export default function EditorMain(props){
 
             });
         }
-
-        console.log(props.data);
-        setData(props.data);
-
     },props.data);
 
     return(
@@ -101,7 +95,7 @@ export default function EditorMain(props){
                             </div>
                             <div className={editorMainStyle.row}>
                                 <div className={editorMainStyle.col}>
-                                    <BookList value={data} />
+                                    <BookList value={props.data} />
                                 </div>
                                 <div className={editorMainStyle.col}>
                                     <BookEditor />
