@@ -7,6 +7,7 @@ export default function BookList(props){
     let contentsList = [];
 
     useEffect(()=>{
+        console.log("useEffect in book list")
         console.log(props.value);
         if (props.data !== undefined) {
             console.log("Inner useEffect function")

@@ -50,8 +50,6 @@ export async function getServerSideProps(context){
             })
         }
 
-        console.log(dataList);
-
     }catch(e){
         console.log(e);
 
