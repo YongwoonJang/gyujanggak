@@ -7,6 +7,7 @@ export default function BookList(props){
     let contentsList = [];
 
     useEffect(()=>{
+        console.log(props.value);
         if (props.data !== undefined) {
             props.value.forEach((data) => {
                 contentsList.push(
