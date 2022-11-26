@@ -72,7 +72,6 @@ export default function EditorMain(props){
 
     const router = useRouter();
     useEffect(()=>{
-
         if(props.data == null){
             router.push({
                 pathname: '/auth/login'
