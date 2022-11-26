@@ -1,12 +1,14 @@
 import bookListStyle from '/styles/bookListStyle.module.scss';
+import { useState } from 'react';
 
 export default function BookList(props){
     
-    let contents = [];
+    const [contents, setContents] = useState();
+    let contentsList = [];
 
     if(props.data !== undefined) {
         props.value.forEach((data)=>{
-            contents.push(
+            contentsList.push(
                 <tr className={bookListStyle.row}>
                     <td>{data.title}</td>
                     <td className={(data.currentStatus !== "독서중"?bookListStyle.green:bookListStyle.red)}>{(data.currentStatus!=="독서중"?"대출가능":"독서 중")}</td>
@@ -14,6 +16,8 @@ export default function BookList(props){
                 </tr>
             )
         })
+
+        setContents(contentsList);
     }
 
     return(
