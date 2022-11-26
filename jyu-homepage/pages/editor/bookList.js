@@ -4,15 +4,17 @@ export default function BookList(props){
     
     let contents = [];
 
-    props.value.forEach((data)=>{
-        contents.push(
-            <tr className={bookListStyle.row}>
-                <td>{data.title}</td>
-                <td className={(data.currentStatus !== "독서중"?bookListStyle.green:bookListStyle.red)}>{(data.currentStatus!=="독서중"?"대출가능":"독서 중")}</td>
-                <td>{'최근 "'+data.loanDate+'"에 대출'}</td>
-            </tr>
-        )
-    })
+    if(props.data !== undefined) {
+        props.value.forEach((data)=>{
+            contents.push(
+                <tr className={bookListStyle.row}>
+                    <td>{data.title}</td>
+                    <td className={(data.currentStatus !== "독서중"?bookListStyle.green:bookListStyle.red)}>{(data.currentStatus!=="독서중"?"대출가능":"독서 중")}</td>
+                    <td>{'최근 "'+data.loanDate+'"에 대출'}</td>
+                </tr>
+            )
+        })
+    }
 
     return(
         <>
