@@ -5,7 +5,6 @@ export default function BookList(props){
     let contents = [];
 
     if (props.value !== undefined) {
-        console.log("Inner useEffect function")
         props.value.forEach((data) => {
             contents.push(
                 <tr className={bookListStyle.row}>
