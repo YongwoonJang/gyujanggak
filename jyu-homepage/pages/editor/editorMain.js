@@ -5,7 +5,7 @@ import EditorMainHeadLine from './editorMainHeadLine.js';
 import {getFirestore, collection, getDocs, doc, getDoc, orderBy, limit, query } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router.js';
 
 
@@ -73,6 +73,7 @@ export async function getServerSideProps(context){
 export default function EditorMain(props){
 
     const router = useRouter();
+    const [data, setData] = useState();
     
     useEffect(()=>{
 
@@ -82,6 +83,8 @@ export default function EditorMain(props){
 
             });
         }
+
+        setData(props.data);
     });
 
     return(
@@ -96,7 +99,7 @@ export default function EditorMain(props){
                             </div>
                             <div className={editorMainStyle.row}>
                                 <div className={editorMainStyle.col}>
-                                    <BookList value={props.data} />
+                                    <BookList value={data} />
                                 </div>
                                 <div className={editorMainStyle.col}>
                                     <BookEditor />
