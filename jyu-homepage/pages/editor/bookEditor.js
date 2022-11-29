@@ -10,7 +10,7 @@ import bookEditorStyle from '/styles/bookEditorStyle.module.scss';
 const baseURL = "https://gyujanggak.vercel.app/api";
 // const baseURL = "http://localhost:80" 
 
-export default function BookEditor(){
+export default function BookEditor(props){
     const router = useRouter();
     let userHash = null;
 
@@ -42,8 +42,8 @@ export default function BookEditor(){
         let params = { 
             'user': userHash, 
             'title': "gyujanggak", 
-            'contents_title': data.title,
-            'contents': data.contents,
+            'contents_title': props.value.title,
+            'contents': props.value.contents,
             'image': newId + data.image[0].name 
         };
         url.search = new URLSearchParams(params).toString();
@@ -72,15 +72,22 @@ export default function BookEditor(){
         }
 
         let textarea = document.getElementsByName("contents")[0];
-        textarea.addEventListener("keydown", ()=>{
-            let el = textarea;
-            setTimeout(()=>{
-                el.style.cssText="height:auto;";
-                el.style.cssText="height:"+el.scrollHeight+"px;";
-            },0);
-        });
+        textarea.style.cssText = "height:" + textarea.scrollHeight + "px;";
 
     })
+
+    const onHandleChange = (e) => {
+        props.onHandleChange(e.target.value);
+
+    }
+
+    const onHandletextareaKeydown = (e) => {
+        let el = e.target;
+        setTimeout(() => {
+            el.style.cssText = "height:auto;";
+            el.style.cssText = "height:" + el.scrollHeight + "px;";
+        }, 0);
+    }
 
     //else print user information
     return(
@@ -98,6 +105,8 @@ export default function BookEditor(){
                                 {...register("title",{
                                     required: "제목을 입력해 주세요."
                                 })}
+                                value= {props.value.title}
+                                onChange= {onHandleChange}
                             />
                         </div>
                         <div>
@@ -115,6 +124,9 @@ export default function BookEditor(){
                                 {...register("contents",{
                                     required: "내용을 입력해 주세요."
                                 })}
+                                value={props.value.content===null?"":props.value.content}
+                                onChange={onHandleChange}
+                                onKeyDown={onHandletextareaKeydown}
                             />
                         </div>
                         <div>
@@ -126,6 +138,9 @@ export default function BookEditor(){
                             <label>Image</label>
                         </div>
                         <div className={bookEditorStyle.col75}>
+                            {props.value.image &&
+                                <img src={props.value.image} />
+                            }
                             <input type="file"
                                 {...register("image",{
                                     required: "이미지를 등록해 주세요."
