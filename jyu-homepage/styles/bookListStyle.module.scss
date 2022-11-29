@@ -1,32 +1,44 @@
 .bookListContainer {
-    margin: 0 auto;
-    padding: 15px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
     border: 1px solid black;
     border-radius: 4px;
-    font-size: 13px;
 }
 
 .bookListContainer table {
-    margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
 }
 
-.row td {
-    padding-bottom: 90px;
+
+.button {
+    display: flex;
+    width: 100%;
+    padding-top: 25px;  
+    padding-bottom: 25px;
+    font-size: 12px;
+    border: none;
+    background-color: red;
+
 }
 
-.row td:nth-child(1) {
+.button div:nth-child(1) {
     font-style: italic;
-
+    text-align: left;
+    width: 42%;
 }
 
-.row td:nth-child(2) {
-    padding-left: 75px;
-    padding-right: 75px;
+.button div:nth-child(2) {
+    width: 29%;
 }
 
-.row td:nth-child(3) {
+.button div:nth-child(3) {
     text-align: right;
+    width: 29%;
+
 }
 
 .red {
@@ -34,6 +46,14 @@
 }
 
 .green {
-    color: rgb(0, 92, 0);
+    color: rgb(22, 205, 22);
 }
 
+.clicked {
+    background-color: black;
+    color: white;
+}
+
+.none {
+    background-color: white;
+}
