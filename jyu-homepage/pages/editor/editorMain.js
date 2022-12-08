@@ -1,120 +1,113 @@
-import BookEditor from './bookEditor.js';
-import BookList from './bookList.js';
-import editorMainStyle from '/styles/editorMainStyle.module.scss'
-import EditorMainHeadLine from './editorMainHeadLine.js';
-import {getFirestore, collection, getDocs, doc, getDoc, orderBy, limit, query } from 'firebase/firestore';
-import {getDownloadURL, getStorage, ref} from 'firebase/storage';
+import { doc, getFirestore, getDoc } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router.js';
 
+import EditorMainHeadLine from './editorMainHeadLine.js';
+import BookEditor from './bookEditor.js';
+import BookList from './bookList.js';
+
+import editorMainStyle from '/styles/editorMainStyle.module.scss'
+
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
+    appId: process.env.APP_ID,
     authDomain: process.env.AUTH_DOMAIN,
     databaseURL: process.env.DATABASE_URL,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET
+    
 };
 
-export async function getServerSideProps(context){
+const baseURL = "https://gyujanggak.vercel.app"
+// const baseURL = "http://localhost:3000"
+
+export async function getServerSideProps(){
     let dataList = [];
-    let queryResult, historyRef, contentRef, imageRef;
     
     try{
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+        initializeApp(firebaseConfig);
+        const auth = getAuth();
         const db = getFirestore();
-        const storage = getStorage();
-        await signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE);
-        const docSnap = await getDoc(doc(db, 'gyujanggak', process.env.USER_ID));
-        const titleList = docSnap.data().collections;
         
-        //get data per title.
-        for (let i = 0; i < titleList.length; i++) {
-            queryResult = query(collection(db, titleList[i]), orderBy("dateReturned", "desc"), limit(1));
-            historyRef = await getDocs(queryResult);
+        await signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE);
 
-            queryResult = doc(db, titleList[i], 'contents');
-            contentRef = await getDoc(queryResult);
+        const titleSnap = await getDoc(doc(db, 'info', 'titleList'));
+        const titleList = titleSnap.data().title;
 
-            imageRef = null;
-            if (contentRef.data().image !== undefined) {
-                imageRef = await getDownloadURL(ref(storage, contentRef.data().image));
-
-            }
-
-            historyRef.forEach((data) => {
-                dataList.push(
-                    {
-                        "title": titleList[i],
-                        "currentStatus": data.data().dateReturned,
-                        "loanDate": data.data().dateLoaned,
-                        "content": contentRef.data().review,
-                        "image": (imageRef?imageRef:"")
-                    }
-                )
-            })
+        let bookInfo, loanHistory;
+        for (let i = 0; i < titleList.length; i++){
+            bookInfo = await getDoc(doc(db, titleList[i], 'contents'));
+            loanHistory = await getDoc(doc(db, titleList[i], 'loanHistory'));
+            dataList.push(Object.assign(bookInfo.data(), {"list":loanHistory.data().list }));
+            
         }
 
+        return {
+            props: {
+                data: dataList
+            },
+        }
+        
     }catch(e){
         console.log(e);
-
+        
     }
-
     return {
         props: {
-            data: dataList
-        },
-    }
-    
+            data: null
+        }
+    };
 }
 
 export default function EditorMain(props){
-
-    const [data, setData] = useState({
-        "title":"",
-        "currentStatus":"",
-        "loanDate":"",
-        "content":"",
-        "image":null
-    });
+    const [book, selectBook] = useState(null);
+    const [userId, setUserId] = useState(null);
+    const [isLogin, setLoginStatus] = useState(false);
     const router = useRouter();
     
     useEffect(()=>{
-        if(props.data == null){
-            router.push({
-                pathname: '/auth/login'
+        try{
+            const auth = getAuth();
+            onAuthStateChanged(auth, (user)=>{
+                setLoginStatus(true);
+                setUserId(user.id);
+                
+            })
+            
+        }catch(e){
+            console.log(e);
+            router.push("/auth/login");
 
-            });
         }
-    });
+    })
+    
+
+    if (isLogin!=false && props.data!=null){
+        return(
+            <>
+                <div className={editorMainStyle.editorContainer}>
+                    <div className={editorMainStyle.row}>
+                        <EditorMainHeadLine/>
+                    </div>
+                    <div className={editorMainStyle.row}>
+                        <div className={editorMainStyle.col}>
+                            <BookList bookList={props.data} selectBook={book} onClick={(bookData)=>{selectBook(bookData)}} />
+                        </div>
+                        <div className={editorMainStyle.col}>
+                            <BookEditor selectBook={book} onHandleChange={(newData)=>{selectBook(newData)}} baseURL={baseURL} userId={userId}/>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
     return(
         <>
-            {
-                (props.data !== null &&
-                    ( 
-                    <>
-                        <div className={editorMainStyle.editorContainer}>
-                            <div className={editorMainStyle.row}>
-                                <EditorMainHeadLine/>
-                            </div>
-                            <div className={editorMainStyle.row}>
-                                <div className={editorMainStyle.col}>
-                                    <BookList value={props.data} selectedValue={data} onClick={(bookData)=>{setData(bookData)}} />
-                                </div>
-                                <div className={editorMainStyle.col}>
-                                    <BookEditor value={data} onHandleChange={(newData)=>{setData(newData)}}/>
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                    )
-                )
-            }
+            <div> 로그인이 필요한 페이지 입니다. </div>
         </>
     )
 }

@@ -2,36 +2,40 @@ import bookListStyle from '/styles/bookListStyle.module.scss';
 
 export default function BookList(props){
     
-    let contents = [];
+    let bookList = [];
 
-    const handleClick = (index) => {
-        props.onClick(props.value[index]);
+    const handleClick = (current) => {
+        if(props.bookList[current] != props.selectBook){
+            props.onClick(props.bookList[current]);
+        
+        }else{
+            props.onClick(null);
+
+        }
     }
 
-    if (props.value !== undefined) {
-        props.value.forEach((data) => {
-            contents.push(
-                <tr className={bookListStyle.row} key={"bookList-button-"+props.value.indexOf(data)}>
-                    <td>
-                        <button 
-                            className={`${bookListStyle.button} ${props.selectedValue==data?bookListStyle.clicked:bookListStyle.none}`}
-                            onClick={(()=>{handleClick(props.value.indexOf(data))})}>
-                            <div>{data.title}</div>
-                            <div className={(data.currentStatus !== "독서중" ? bookListStyle.green : bookListStyle.red)}>{(data.currentStatus !== "독서중" ? "대출가능" : "독서 중")}</div>
-                            <div>{'최근 "' + data.loanDate + '"에 대출'}</div>
-                        </button>
-                    </td>
-                </tr>
-            )
-        })
-    }
+    props.bookList.forEach((book) => {
+        bookList.push(
+            <tr className={bookListStyle.row} key={"bookList-button-"+props.bookList.indexOf(book)}>
+                <td>
+                    <button 
+                        className={`${bookListStyle.button} ${props.selectBook==book?bookListStyle.clicked:bookListStyle.none}`}
+                        onClick={(()=>{handleClick(props.bookList.indexOf(book))})}>
+                        <div>{book.title}</div>
+                        <div className={(book.list.at(-1).returnDate !== "null" ? bookListStyle.green : bookListStyle.red)}>{(book.list.at(-1).returnDate !== "null" ? "대출가능" : "독서 중")}</div>
+                        <div>{'최근 "' + book.list.at(-1).loanDate + '"에 대출'}</div>
+                    </button>
+                </td>
+            </tr>
+        )
+    })
 
     return(
         <>
             <div className={bookListStyle.bookListContainer}>
                 <table>
                     <tbody>
-                        {contents}
+                        {bookList}
                     </tbody>
                 </table>
             </div>
