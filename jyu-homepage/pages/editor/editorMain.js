@@ -24,7 +24,7 @@ const firebaseConfig = {
 const baseURL = "https://gyujanggak.vercel.app"
 // const baseURL = "http://localhost:3000"
 
-export async function getServerSideProps(){
+export async function getServerSideProps(context){
     let dataList = [];
     
     try{
@@ -63,7 +63,17 @@ export async function getServerSideProps(){
 }
 
 export default function EditorMain(props){
-    const [book, selectBook] = useState(null);
+    const [book, selectBook] = useState(
+        {
+            "title":"",
+            "subtitle":"",
+            "author":"",
+            "publishDate":"",
+            "review":"",
+            "image":""
+
+        }
+    );
     const [userId, setUserId] = useState(null);
     const [isLogin, setLoginStatus] = useState(false);
     const router = useRouter();
@@ -82,9 +92,9 @@ export default function EditorMain(props){
             router.push("/auth/login");
 
         }
+
     })
     
-
     if (isLogin!=false && props.data!=null){
         return(
             <>
