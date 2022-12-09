@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "date-fns": "^2.21.1",
-    "firebase": "^9.6.3",
+    "firebase": "^9.15.0",
     "fs": "^0.0.1-security",
     "gl-matrix": "^3.3.0",
     "gray-matter": "^4.0.3",
@@ -26,6 +26,7 @@
     "request": "^2.88.2",
     "sass": "^1.38.0",
     "tls": "^0.0.1",
+    "utf8": "^3.0.0",
     "window": "^1.0.0"
   }
 }
