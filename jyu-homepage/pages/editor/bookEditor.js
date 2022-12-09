@@ -1,17 +1,34 @@
 import { useForm } from "react-hook-form";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { getFirestore, doc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
 import bookEditorStyle from '/styles/bookEditorStyle.module.scss';
 import { useEffect } from "react";
+import utf8 from "utf8";
 
 function InputGroup(props) {
     
     useEffect(()=>{
         if(props.value != null && props.value != undefined){
-            props.setValue(props.label, props.value);
+            if(props.label === "review"){
+                try{
+                    props.setValue(props.label, utf8.decode(props.value));
+                }catch(e){
+                    console.log(e);
+                    props.setValue(props.label, props.value);
+                }
+            
+            }else{
+                props.setValue(props.label, props.value);
+            }
             
         }
     })
+
+    const onHandletextareaKeyUp = (e) => {
+        if(e.ctrlKey && e.key === "s"){
+            props.submit();
+        }
+    }
 
     const onHandletextareaKeydown = (e) => {
         let el = e.target;
@@ -38,6 +55,7 @@ function InputGroup(props) {
             <div className={bookEditorStyle.col75}>
                 {props.isTextarea?
                     (<textarea
+                        onKeyUp={onHandletextareaKeyUp}
                         id={props.label}
                         type="text"
                         placeholder={props.placeholder}
@@ -82,10 +100,15 @@ export default function BookEditor(props){
         let reviseBook = Object.assign({},props.selectBook);
         Object.keys(data).forEach((key)=>{
             if(props.selectBook[key] != null && data[key] != props.selectBook[key]){
-                reviseBook[key] = data[key];
+                if(key == "review"){
+                    reviseBook[key] = utf8.encode(data[key]);
+                }else{
+                    reviseBook[key] = data[key];
+                }
             }
         });
 
+        
         if(reviseBook != props.selectBook){
             const contentsRef = doc(getFirestore(), reviseBook["title"], "contents");
             await updateDoc(contentsRef, reviseBook);
@@ -149,6 +172,7 @@ export default function BookEditor(props){
                             placeholder="리뷰를 입력해 주세요."
                             value={props.selectBook.review}
                             setValue={setValue} 
+                            submit={handleSubmit(onSubmit)}
                         />
                         <InputGroup
                             errors={errors.image}

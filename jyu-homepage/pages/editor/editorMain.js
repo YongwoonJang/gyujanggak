@@ -94,6 +94,16 @@ export default function EditorMain(props){
         }
 
     })
+
+    const updateBookList = (newData) => {
+        props.data.forEach((book)=>{
+            if(book.title == newData.title){
+                Object.keys(newData).forEach((key)=>{
+                    book[key] = newData[key];
+                })
+            }
+        })
+    }
     
     if (isLogin!=false && props.data!=null){
         return(
@@ -107,7 +117,7 @@ export default function EditorMain(props){
                             <BookList bookList={props.data} selectBook={book} onClick={(bookData)=>{selectBook(bookData)}} />
                         </div>
                         <div className={editorMainStyle.col}>
-                            <BookEditor selectBook={book} onHandleChange={(newData)=>{selectBook(newData)}} baseURL={baseURL} userId={userId}/>
+                            <BookEditor selectBook={book} onHandleChange={(newData)=>{selectBook(newData);updateBookList(newData);}} baseURL={baseURL} userId={userId}/>
                         </div>
                     </div>
                 </div>
