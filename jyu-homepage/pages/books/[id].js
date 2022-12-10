@@ -1,80 +1,70 @@
-import fs from 'fs'
-import matter from 'gray-matter'
-import parse from 'html-react-parser'
 import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
 import HistoryTable from '../../components/historyTable'
 
-//Static function
-export function getStaticPaths() {
-    const fullPath = "public/posts/communication.md"
-    const fileContent = fs.readFileSync(fullPath)
-    const matterResult = matter(fileContent)
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { getFirestore, getDoc, doc } from 'firebase/firestore';
 
-    let postNames = []
-    Object.values(matterResult.data.books).forEach(element => {postNames.push(element.id)});
-    
-    const params = postNames.map((postName) => ({
-        params: { id: postName }
-    }))
-
-    return { paths: params, fallback: 'blocking' }
-}
-
-export async function getStaticProps({ params }) {
-    
-    
-    //It only process one time
-    const fullPath = "public/books/" + params.id + ".md"
-    let matterResult = { "data": { "title": "Ready" }, "content": "내용 준비 중입니다." };
-
-    try {
-        const fileContent = fs.readFileSync(fullPath)
-        matterResult = matter(fileContent)
-
-    } catch (error) {
-        console.log(error);
-        console.log("내용 준비 중입니다.");
-
-    }
-
-    return {
-        props: {
-            data: matterResult.data,
-            contents: matterResult.content
-        },
-    }
-}
+import utf8 from "utf8";
 
 //Main function
-export default function books({ data, contents }) {
+export default function books() {
+
+    const [book, setBook] = useState(null);
+    const [loanHistory, setLoanHistory] = useState(null);
+    const router = useRouter();
+
+    useEffect(async ()=>{
+        const { id } = router.query;
+        try{
+            const db = getFirestore();
+            const bookRef = await getDoc(doc(db, id, "contents"));
+            const historyRef = await getDoc(doc(db, id, "loanHistory"));
+            setBook(bookRef.data());
+            setLoanHistory(historyRef.data().list);
+
+        }catch(e){
+            console.log(e);
+            router.push("/");
+        
+        }
+
+    }, [])
+
+
     
     let imagePart = "";
-    if(data.images != null){
-        imagePart = <img src={data.images[0]} className={pageStyles.bookImage} width={data.imageWidth[0]+'%'} height={100+"%"} layout="responsive" />;
+    if(book != null){
+        imagePart = <img src={book.image} className={pageStyles.bookImage} width={25+'%'} height={100+"%"} layout="responsive" />;
 
     }
 
     return (
         <>
-            <div className={pageStyles.page}>
-                <h1 className={pageStyles.bookTitle}>
-                    {parse(data.title)}
-                </h1>
-                <div className={pageStyles.opinionBox}>
-                    {imagePart}
-                    <div className={pageStyles.opinion}>
-                        {parse(contents.replace(/\n/g, "<br/>"))}                
+            { book && 
+                <>
+                    <div className={pageStyles.page}>
+                        <h1 className={pageStyles.bookTitle}>
+                            {book.title}
+                        </h1>
+                        <div className={pageStyles.opinionBox}>
+                            {imagePart}
+                            <div className={pageStyles.opinion}>
+                            {utf8.decode(book.review)}
+                            </div>
+                        </div>
+                        <div className={pageStyles.loanButton}>
+                            <a href={book.loanButton}>대출 하기</a>
+                        </div>
+                        <HistoryTable loanHistory={loanHistory}/>
                     </div>
-                </div>
-                <div className={pageStyles.loanButton}>
-                    <a href={data.loanButton}>대출 하기</a>
-                </div>
-                <HistoryTable name={data.title}/>
-            </div>
-            <div>
-                <CopyRight />
-            </div>
+                    <div>
+                        <CopyRight />
+                    </div>
+                </>
+                
+            }
         </>
     )
 }
