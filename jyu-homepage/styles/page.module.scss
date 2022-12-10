@@ -380,54 +380,53 @@ $communication-a-link-color: rgb(166, 26, 26);
   to {opacity: 1;}
 }
 
-.communicationTitle{
-  color: rgb(0, 255, 221);;
-  border-color:  rgb(205, 205, 205); 
-  border-width: 1px;
-  border-right-width: 0px;
-  border-top-width: 0px;
-  border-left-width: 0px;
-  text-align: left;
-  margin-top:0;
-  margin-left: 1em;
-  padding-top: $height*9;
-  font-family: "SBAggro M";
+.communicationTitleGroup{
+  padding-top: 300px;
+  padding-left: 40px;
 }
+
+.communicationTitle{
+  color: rgb(0, 255, 221);
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  font-family: "SBAggro M";
+  font-size: 50px;
+  width: max-content;
+  margin-bottom: 80px;
+}
+
   @media screen and (max-width : $breakpoint-mobile){
     .communicationTitle{
       margin-left: 0.5em;
       padding-top: 35%;
+      
 
     }
   }
 
-.communicationTitle p{
-  background-color: rgba(0, 0, 0, 0.6); 
-  width: max-content;
-  margin-top: 0px;
-
-}
-
-.communicationTitle span{
+.communicationTitle span {
   color: white;
 }
 
-.communicationSubTitle{
+.communicationMotto span{
   background-color: rgba(0, 0, 0, 0.6); 
   color: white;
   width: max-content;
-  margin-top: $height*1;
-  margin-left: 2em;
-  font-size: 1.5em;
+  line-height: 6px;
 
 }
     @media screen and (max-width: $breakpoint-mobile) {
-      .communicationSubTitle{
+      .communicationMotto{
           margin-top: $height*5;
           margin-left: 0.5em;
           font-size: 1.1em;
       }
     }
+
+.bookGroupSection {
+  margin-top: 40px;
+  margin-left: 40px;
+}
 
 .bookTitleBox {
   margin-bottom: $height*2;
@@ -455,52 +454,15 @@ $communication-a-link-color: rgb(166, 26, 26);
   color: black;
 }
 
-.communicationList{
-  font-family: "SBAggro L";
-  font-size: 0.7em;
-  line-height: 1em;
-  float: left;
-  margin-top: 0em;
-  margin-right: 1em;
+.commentGroup {
+  margin-left: 60px;
+  margin-right: 60px;
 }
-
-.communicationList p{
-  background-color: rgba(0,0,0,0.6); 
-  color: white;
-  padding: 0.5em;
-  width: max-content;
-  white-space:nowrap;
-  font-size: 1.5em;
-  margin-top: 1.7em;
-  margin-left : 2em;
-  margin-bottom: 0.3em;
-}
-
-.communicationList a{
-  color:rgb(0, 255, 221);
-}
-    //add for responsive design.
-    @media screen and (max-width: $breakpoint-mobile) {  
-      .communicationList{
-        font-size: 0.45em;
-        padding-left: 0.0em;
-        line-height: 1.3em;
-        margin-top: 10%;
-        margin-left: 0.0%;
-
-      }
-      .communicationList p{
-        margin-left: 1em;
-      }
-      .communicationList span{
-        font-size: 0.8em;
-      }
-    }
 
 .communicationCommentsTable{
   border-collapse : collapse;
-  margin: 0 0 0 3em;
-  width: 90%;
+  width: 100%;
+
 }
     @media screen and (max-width: $breakpoint-mobile) {
       .communicationCommentsTable{
@@ -511,9 +473,9 @@ $communication-a-link-color: rgb(166, 26, 26);
     }
 
 .communicationCommentsTable td{
-  padding: $height;
+  padding: $height/2;
   width: auto;
-  font-size: 0.6em;
+  font-size: 0.7em;
   white-space: nowrap;
   font-family: "SBAggro L";
   text-align: left;
@@ -538,7 +500,6 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   }
 }
-
 
 .communicationRegComment{
   width: 100%;
@@ -650,6 +611,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   display: flex;
   width: 100%;
   padding-left: 0.5em;
+  padding-right: 100px;
 }
 
 .opinion {
@@ -658,6 +620,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   margin-bottom: $height*4;
   line-height: 2.0em;
   float: right;
+  white-space: pre-wrap;
 
 }
   @media screen and (max-width:$breakpoint-mobile){
