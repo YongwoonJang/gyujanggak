@@ -7,10 +7,7 @@ import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
 //Apply realtime database
-const { initializeApp } = require("firebase/app");
-const { getDatabase, ref, onValue } = require("firebase/database");
-
-import {firebaseConfig} from './firebaseConfig';
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const setTable = (localComments, setLines) => {
     if (localComments != null) {
@@ -40,7 +37,7 @@ const setTable = (localComments, setLines) => {
     }
 }
 
-export default function CommentTable(){
+export default function CommentTable(props){
 
     //Variables for comments area
     const [lines, setLines] = useState("");
@@ -62,11 +59,8 @@ export default function CommentTable(){
     const delDocIdRef = useRef(null);
 
     // Apply realtime Database 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const gyujanggakRef = ref(db, 'chats/');
-    
-    signIn(app);
+    const db = getDatabase(props.app);
+    const gyujanggakRef = ref(db, props.section+"/");
         
     let tempData = [];
     let data = [];
@@ -179,34 +173,36 @@ export default function CommentTable(){
 
     return(
         <>
-            <div>
-                <div id="comments" className={pageStyles.communicationSubTitle}>
+            <div className={pageStyles.bookGroupSection}>
+                <div id="comments">
                     History
                 </div>
-                <table ref={commentTableRef} className={pageStyles.communicationCommentsTable}>
-                    <tbody>
-                        {parse(lines)}
-                    </tbody>
-                </table>
-            </div>
-            <div className={pageStyles.communicationRegForm}>
-                <form onSubmit={insertOrDelComment}>
-                    <div className={pageStyles.communicationRegComment}>
-                        <div ref={editCommentBoxRef} className={pageStyles.communicationRegCommentBox}>
-                            <textarea id="comment" placeholder={defaultContents} onChange={handleContentsChange} />
-                        </div>
-                        <div ref={editorBoxRef} className={pageStyles.communicationAuthorBox}>
-                            <input id="author" placeholder={defaultAuthor} onChange={handleAuthorChange} />
-                        </div>
-                        <div ref={regButtonRef} className={pageStyles.communicationRegButtonBox}>
-                            <button type="submit">게시  하기</button>
-                        </div>
-                        <div ref={delButtonRef} className={pageStyles.communicationDelButtonBox}>
-                            <button type="submit">삭제  하기</button>
-                        </div>
+                <div className={pageStyles.commentGroup}>
+                    <table ref={commentTableRef} className={pageStyles.communicationCommentsTable}>
+                        <tbody>
+                            {parse(lines)}
+                        </tbody>
+                    </table>
+                    <div className={pageStyles.communicationRegForm}>
+                        <form onSubmit={insertOrDelComment}>
+                            <div className={pageStyles.communicationRegComment}>
+                                <div ref={editCommentBoxRef} className={pageStyles.communicationRegCommentBox}>
+                                    <textarea id="comment" placeholder={defaultContents} onChange={handleContentsChange} />
+                                </div>
+                                <div ref={editorBoxRef} className={pageStyles.communicationAuthorBox}>
+                                    <input id="author" placeholder={defaultAuthor} onChange={handleAuthorChange} />
+                                </div>
+                                <div ref={regButtonRef} className={pageStyles.communicationRegButtonBox}>
+                                    <button type="submit">게시  하기</button>
+                                </div>
+                                <div ref={delButtonRef} className={pageStyles.communicationDelButtonBox}>
+                                    <button type="submit">삭제  하기</button>
+                                </div>
+                            </div>
+                            <div ref={delDocIdRef} style={{ display: "none" }}></div>
+                        </form>
                     </div>
-                    <div ref={delDocIdRef} style={{ display: "none" }}></div>
-                </form>
+                </div>
             </div>
         </>
     )
