@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { identification } from './firebaseConfig';
 
@@ -40,15 +41,13 @@ export function deleteRow(localDelDocId, author, contents) {
 }
 
 export async function signIn(app){
-
     const auth = getAuth(app);
     await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
-    .then((userCredential)=>{
+    .then(()=>{
         console.log("login success");
     })
     .catch((error)=>{
         console.log(error);
-        console.log(error.code);
-        console.log(error.message);
+        
     });
 }
