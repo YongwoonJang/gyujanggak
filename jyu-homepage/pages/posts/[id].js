@@ -15,10 +15,11 @@ import CopyRight from '../../components/copyRight'
 import WorkHistory from '../../components/workHistory'
 import CommentTable from '../../components/commentTable'
 import WebGL from '../../components/webGL'
+import Communication from '../post/communication'
 
-// Utilities
-import bubbleSortForBookTitleByAlpahbet from '../../components/utils'
-
+// firebase
+import { initializeApp } from 'firebase/app'
+import { signIn } from '../../components/databaseUtils'
 
 //Static function
 export function getStaticPaths() {
@@ -43,15 +44,22 @@ export async function getStaticProps({ params }) {
         props: {
             id: params.id,
             data: matterResult.data,
-            contents: matterResult.content,
-        },
+            contents: matterResult.content
+        }
     }
 }
 
 //Main function
 export default function Post({id, data, contents}){
     //Variables for contents area
+    const firebaseConfig = {
+        apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
+        authDomain: "gyujanggak-99e8a.firebaseapp.com",
+        projectId: "gyujanggak-99e8a"
+    }
     const content = parse(contents);
+    const app = initializeApp(firebaseConfig);
+    signIn(app);
     
     if(id == 'profile'){
         return (
@@ -178,43 +186,11 @@ export default function Post({id, data, contents}){
         )
 
     } else if (id == 'communication') {
-        //sort books title.
-        console.log(bubbleSortForBookTitleByAlpahbet(data.books));
-
         return (
             <>
                 <div className={pageStyles.page}>
-                    <div className={pageStyles.communicationMainBackgroundImage}>
-                        <h1 className={pageStyles.communicationTitle}>
-                            <p>
-                            {parse(data.title)}
-                            </p>
-                        </h1>
-                        <div className={pageStyles.communicationList}>
-                            {parse(contents.replace(/\n\n/g,"\n").split('\n').slice(0,-1).join('<p>'))}
-                        </div>
-                    </div>
-                    <div>
-                        <div id="books" className={pageStyles.communicationSubTitle}>
-                            Books
-                        </div>
-                        <div className={pageStyles.bookTitleBox}>
-                            <ul className={pageStyles.bookTitleList}>
-                                {bubbleSortForBookTitleByAlpahbet(data.books).map(({ id, title, date, author }) => (
-                                    <>
-                                        <li key={id}>
-                                            <Link href={"/books/"+id}>
-                                                <a>{title}&nbsp;&nbsp;({date},&nbsp;{author})</a>
-                                            </Link>
-                                        </li>
-                                    </>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <CommentTable/>
-                    </div>
+                    <Communication app={app}/>
+                    <CommentTable app={app} section="chats"/>
                 </div>
                 <div>
                     <CopyRight />
