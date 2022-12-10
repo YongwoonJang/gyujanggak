@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import loginStyle from '/styles/loginStyle.module.scss';
+import { useEffect, useState } from 'react';
 
 
 const firebaseConfig = {
@@ -16,9 +17,9 @@ const firebaseConfig = {
 };
 
 export default function Login() {
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    
     const router = useRouter();
+    const [auth, setAuth] = useState(null);
     
     const {
         register,
@@ -28,12 +29,23 @@ export default function Login() {
         }
     } = useForm();
 
+
+    useEffect(()=>{
+        try{
+            const app = initializeApp(firebaseConfig);
+            setAuth(getAuth(app));
+        }catch(e){
+            setAuth(getAuth());
+
+        }
+    })
+
     const onSubmit = (data) =>{
         let id = data.id;
         let pw = data.password;
 
         signInWithEmailAndPassword(auth, id, pw)
-            .then((userCredential) => {
+            .then(() => {
                 router.push({
                     pathname: '/editor/editorMain'
                 });
