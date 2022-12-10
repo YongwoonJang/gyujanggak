@@ -1,49 +1,35 @@
 
 import {useEffect, useState} from 'react';
-import parse from 'html-react-parser';
 import pageStyles from '/styles/page.module.scss'
 
-import {readDatabase} from './databaseUtils'
-
-const setTable = (localHistory, setLines) => {
+const setTable = (localHistory) => {
     if (localHistory != null) {
-        let rows = "";
-        for (let i = (localHistory.length - 1); i >= 0; i--) {
-            rows = rows
-                + "<tr>"
-                + "<td>"
-                + localHistory[i].dateLoaned
-                + "</td>"
-                + "<td>"
-                + localHistory[i].dateReturned
-                + "</td>"
-                + "<td>"
-                + localHistory[i].nameOfBorrower
-                + "</td>"
-                + "<td style='display:none'>"
-                + localHistory[i].docId
-                + "</td>"
-                + "</tr>"
-        }
+        let rows = [];
+        localHistory.forEach((element)=>{
+            rows.push(
+                <tr>
+                    <td>{element.loanDate}</td>
+                    <td>{element.returnDate}</td>
+                    <td>{element.borrower}</td>
+                </tr>
+            )
+        })
+        return rows;
 
-        setLines(rows);
+    }else{
+        return null;
+
     }
 }
 
 export default function HistoryTable(props){
     
-    const [lines, setLines] = useState("");
-    const [history, setHistory] = useState([{"dateLoaned":"Loading","dateReturned":"Loading","nameOfBorrower":"Loading"}]);
-
-    useEffect(async () => {
-        setHistory(await readDatabase(props.name));
-
-    },[]);
+    const [loanHistory, setLoanHistory] = useState(null);
 
     useEffect(() => {
-        setTable(history, setLines);
+        setLoanHistory(setTable(props.loanHistory));
 
-    },[history])
+    })
 
     return (
         <>
@@ -58,7 +44,7 @@ export default function HistoryTable(props){
                         <th>빌린사람</th>
                     </thead>
                     <tbody>
-                        {parse(lines)}
+                        {loanHistory}
                     </tbody>
                 </table>
             </div>
