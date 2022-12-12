@@ -36,7 +36,7 @@
     height: 400px;
 }
 
-.container input[type=submit]{
+.container input[type=submit] {
     float: right;
     background-color: black;
     color: white;
@@ -52,6 +52,23 @@
     display: inline-block;
 }
 
+.historyInputGroupContainer{
+    padding-top: 20px;
+    
+}
+
+.historyInputGroupContainer input[type=submit]{
+    float:right;
+    margin-top: 43px;
+    padding: 10px 25px;
+}
+
+.select {
+    background-color: blue;
+    color: white;
+}
+
+
 .row:after {
     display: table;
     content: "";
@@ -66,6 +83,13 @@
 .col75{
     width: 80%;
     float: left;
+}
+
+.col33{
+    width: 33.3%;
+    float: left;
+    padding: 10px 25px;
+    text-align: center;
 }
 
 .errorMsg{
