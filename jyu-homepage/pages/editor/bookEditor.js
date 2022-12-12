@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
+import { getFirestore, doc, updateDoc } from "firebase/firestore";
 import bookEditorStyle from '/styles/bookEditorStyle.module.scss';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import utf8 from "utf8";
 
 function InputGroup(props) {
@@ -78,6 +78,138 @@ function InputGroup(props) {
     )
 }
 
+function HistoryInputGroup(props){
+
+    const [loanHistory, setLoanHistory ] = useState(null);
+    const [newLoanHistory, setNewLoanHistory] = useState(null);
+    const [isDelete, setIsDelete] = useState(false);
+    const [deleteItemIndex, setDeleteItemIndex] = useState(-1);
+
+    const setDeleteItem = (index) => {
+        setDeleteItemIndex(index);
+        setIsDelete(!isDelete);
+
+    }
+
+    const setTable = (elements) => {
+        let tempTable = [];
+        if(elements != undefined){
+            elements.forEach((history) => {
+                tempTable.push(
+                    <>
+                        <div className={(isDelete && (deleteItemIndex == elements.indexOf(history))) ? `${bookEditorStyle.row}  ${bookEditorStyle.select}` : `${bookEditorStyle.row}`} onClick={()=>{setDeleteItem(elements.indexOf(history));}}>
+                            <div className={bookEditorStyle.col33}>{history.loanDate}</div>
+                            <div className={bookEditorStyle.col33}>{history.returnDate==="null"?"대출 중":history.returnDate}</div>
+                            <div className={bookEditorStyle.col33}>{history.borrower}</div>
+                        </div>
+                    </>
+                );
+            })
+        }
+
+        return tempTable
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        
+        let newHistoryList = [];
+        if(!isDelete){
+            newHistoryList = newLoanHistory.slice();
+            newHistoryList.push(
+                {
+                    "loanDate": document.getElementsByName("loanDate")[0].value,
+                    "returnDate": document.getElementsByName("returnDate")[0].value,
+                    "borrower": document.getElementsByName("borrower")[0].value
+                }
+            );
+            
+            setNewLoanHistory(newHistoryList);
+            props.setValue("list", newHistoryList);
+            
+            //reset
+            document.getElementsByName("loanDate")[0].value = "";
+            document.getElementsByName("returnDate")[0].value = "";
+            document.getElementsByName("borrower")[0].value = "";
+        }else{
+            newHistoryList = newLoanHistory.slice();
+            newHistoryList.splice(deleteItemIndex, 1);
+            setNewLoanHistory(newHistoryList);
+            props.setValue("list", newHistoryList);
+            setIsDelete(!isDelete);
+
+        }
+
+
+    }
+
+    useEffect(()=>{
+        if(loanHistory === null){
+            
+            setLoanHistory(props.value);
+            setNewLoanHistory(props.value);
+            props.setValue("list", props.value);
+            
+        }else{
+            if(loanHistory != props.value){//if page is turned.
+                setIsDelete(false);
+                setDeleteItemIndex(null);
+                setLoanHistory(props.value);
+                setNewLoanHistory(props.value);
+                props.setValue("list", props.value);
+            
+            }else{
+                props.setValue("list", newLoanHistory);
+            
+            }
+        }
+    })
+
+    return(
+        <div className={`${bookEditorStyle.row}`} >
+            
+                <div className={bookEditorStyle.row}>
+                    <div>
+                        <label htmlFor={props.label}>{props.label}</label>
+                    </div>
+                </div>
+                <div className={`${bookEditorStyle.row} ${bookEditorStyle.historyInputGroupContainer}`}>
+                        <div className={bookEditorStyle.col25}>
+                            <input 
+                                type="submit"
+                                value={!isDelete?"추가":"삭제"} 
+                                onClick={onSubmit}    
+                                />
+                        </div>
+                        <div className={bookEditorStyle.col75}>
+                            <div className={bookEditorStyle.row}>
+                                <div className={bookEditorStyle.col33}>대출일</div>
+                                <div className={bookEditorStyle.col33}>반납일</div>
+                                <div className={bookEditorStyle.col33}>빌린사람</div>
+                            </div>
+                            <div className={bookEditorStyle.row}>
+                                <input 
+                                    className={bookEditorStyle.col33}
+                                    name="loanDate"
+                                />
+                                <input
+                                    className={bookEditorStyle.col33}
+                                    name="returnDate"
+                                />
+                                <input
+                                    className={bookEditorStyle.col33}
+                                    name="borrower"
+                                    
+                                />
+                            </div>
+                            {setTable(newLoanHistory)}
+                        </div>
+                </div>
+            
+        </div>
+    )
+}
+
 export default function BookEditor(props){
     const {
         formState: {
@@ -89,7 +221,7 @@ export default function BookEditor(props){
     } = useForm()
     
     const onSubmit = async (data) => {
-
+        
         if(data.image.name != undefined){
             const storageRef = ref(getStorage(), "gyujanggak/"+data.image.name);
             await uploadBytes(storageRef,data.image);
@@ -99,8 +231,8 @@ export default function BookEditor(props){
 
         let reviseBook = Object.assign({},props.selectBook);
         Object.keys(data).forEach((key)=>{
-            if(props.selectBook[key] != null && data[key] != props.selectBook[key]){
-                if(key == "review"){
+            if(key!= "list" && props.selectBook[key] != null && data[key] != props.selectBook[key]){
+                if(key === "review"){
                     reviseBook[key] = utf8.encode(data[key]);
                 }else{
                     reviseBook[key] = data[key];
@@ -108,11 +240,16 @@ export default function BookEditor(props){
             }
         });
 
-        
-        if(reviseBook != props.selectBook){
+
+        if(reviseBook != props.selectBook || props.selectBook.list != data["list"]){
             const contentsRef = doc(getFirestore(), reviseBook["title"], "contents");
             await updateDoc(contentsRef, reviseBook);
-            props.onHandleChange(reviseBook);
+            
+            const addHistoryData = Object.assign(reviseBook,{"list":data["list"]});
+            const loanHistoryRef = doc(getFirestore(), reviseBook["title"], "loanHistory");
+            await updateDoc(loanHistoryRef, Object.assign({},{"list":addHistoryData["list"]}));
+
+            props.onHandleChange(addHistoryData);
 
         }
 
@@ -126,7 +263,10 @@ export default function BookEditor(props){
                 <div className={bookEditorStyle.container}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className={bookEditorStyle.row}>
-                            <input type="submit" value={props.selectBook.title === "" ? "New" : "Edit"} />
+                            <input 
+                                type="submit" 
+                                value={props.selectBook.title === "" ? "New" : "Edit"} 
+                                />
                         </div>
                         <InputGroup
                             errors={errors.title}
@@ -180,6 +320,14 @@ export default function BookEditor(props){
                             label="image"
                             register={register("image")}
                             value={props.selectBook.image}
+                            setValue={setValue}
+                        />
+                        <HistoryInputGroup
+                            label="loanHistory"
+                            register={register("list")}
+                            value={props.selectBook.list}
+                            selectBook={props.selectBook}
+                            onHandleChange={props.onSelectBookChange}
                             setValue={setValue}
                         />
                     </form>
