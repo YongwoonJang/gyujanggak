@@ -6,4 +6,9 @@ __pycache__
 **/words/**
 frontera
 enterprise-search.ini
-/node_modules
+**/node_modules
+
+jyu-homepage/.next
+jyu-homepage/node_modules
+jyu-homepage/out
+
