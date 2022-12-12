@@ -32,6 +32,7 @@ export async function getServerSideProps(context){
         const auth = getAuth();
         const db = getFirestore();
         
+        
         await signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE);
 
         const titleSnap = await getDoc(doc(db, 'info', 'titleList'));
@@ -117,7 +118,8 @@ export default function EditorMain(props){
                             <BookList bookList={props.data} selectBook={book} onClick={(bookData)=>{selectBook(bookData)}} />
                         </div>
                         <div className={editorMainStyle.col}>
-                            <BookEditor selectBook={book} onHandleChange={(newData)=>{selectBook(newData);updateBookList(newData);}} baseURL={baseURL} userId={userId}/>
+                            <BookEditor selectBook={book} onSelectBookChange={(newData)=>selectBook(newData)} onHandleChange={(newData)=>{updateBookList(newData);}} baseURL={baseURL} userId={userId}/>
+        
                         </div>
                     </div>
                 </div>
