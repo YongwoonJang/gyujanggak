@@ -13,13 +13,8 @@ import pageStyles from '/styles/page.module.scss'
 // Components
 import CopyRight from '../../components/copyRight'
 import WorkHistory from '../../components/workHistory'
-import CommentTable from '../../components/commentTable'
 import WebGL from '../../components/webGL'
-import Communication from '../post/communication'
-
-// firebase
-import { initializeApp } from 'firebase/app'
-import { signIn } from '../../components/databaseUtils'
+import Communication from './communication'
 
 //Static function
 export function getStaticPaths() {
@@ -51,15 +46,7 @@ export async function getStaticProps({ params }) {
 
 //Main function
 export default function Post({id, data, contents}){
-    //Variables for contents area
-    const firebaseConfig = {
-        apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
-        authDomain: "gyujanggak-99e8a.firebaseapp.com",
-        projectId: "gyujanggak-99e8a"
-    }
     const content = parse(contents);
-    const app = initializeApp(firebaseConfig);
-    signIn(app);
     
     if(id == 'profile'){
         return (
@@ -189,8 +176,7 @@ export default function Post({id, data, contents}){
         return (
             <>
                 <div className={pageStyles.page}>
-                    <Communication app={app}/>
-                    <CommentTable app={app} section="chats"/>
+                    <Communication />
                 </div>
                 <div>
                     <CopyRight />
