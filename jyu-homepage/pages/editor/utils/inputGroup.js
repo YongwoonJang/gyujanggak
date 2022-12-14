@@ -22,12 +22,6 @@ export default function InputGroup(props) {
         }
     })
 
-    const onHandletextareaKeyUp = (e) => {
-        if (e.ctrlKey && e.key === "s") {
-            props.submit();
-        }
-    }
-
     const onHandletextareaKeydown = (e) => {
         let el = e.target;
         setTimeout(() => {
@@ -37,10 +31,12 @@ export default function InputGroup(props) {
     }
 
     const onHandlePreviewChange = (e) => {
-        if (e.target.name == "image") {
+        if (e.target.name === "image") {
             const el = document.getElementById("preview");
-            el.src = URL.createObjectURL(e.target.files[0]);
-            props.setValue("image", e.target.files[0]);
+            const file = document.getElementById("image").files[0];
+            console.log(el.src);
+            el.src = URL.createObjectURL(file);
+            props.setValue("image", file);
 
         }
     }
@@ -53,7 +49,6 @@ export default function InputGroup(props) {
             <div className={bookEditorStyle.col75}>
                 {props.isTextarea ?
                     (<textarea
-                        onKeyUp={onHandletextareaKeyUp}
                         id={props.label}
                         type="text"
                         placeholder={props.placeholder}
@@ -67,7 +62,7 @@ export default function InputGroup(props) {
                         {...props.register}
                         onChange={onHandlePreviewChange}
                     />)}
-                {!props.isTextarea && props.label == "image" && props.value != "" && <img id="preview" src={props.value} />}
+                {!props.isTextarea && props.label == "image" && <img id="preview" src={props.value} />}
             </div>
             <div>
                 {props.errors && <p className={bookEditorStyle.errorMsg}> {props.errors.message}</p>}
