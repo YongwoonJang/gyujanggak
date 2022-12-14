@@ -48,7 +48,7 @@ export default function HistoryInputGroup(props) {
             );
 
             setNewLoanHistory(newHistoryList);
-            props.setValue("list", newHistoryList);
+            props.setValue("loanHistory", newHistoryList);
 
             //reset
             document.getElementsByName("loanDate")[0].value = "";
@@ -58,7 +58,7 @@ export default function HistoryInputGroup(props) {
             newHistoryList = newLoanHistory.slice();
             newHistoryList.splice(deleteItemIndex, 1);
             setNewLoanHistory(newHistoryList);
-            props.setValue("list", newHistoryList);
+            props.setValue("loanHistory", newHistoryList);
             setIsDelete(!isDelete);
 
         }
@@ -71,7 +71,7 @@ export default function HistoryInputGroup(props) {
 
             setLoanHistory(props.value);
             setNewLoanHistory(props.value);
-            props.setValue("list", props.value);
+            props.setValue("loanHistory", props.value);
 
         } else {
             if (loanHistory != props.value) {//if page is turned.
@@ -79,10 +79,10 @@ export default function HistoryInputGroup(props) {
                 setDeleteItemIndex(null);
                 setLoanHistory(props.value);
                 setNewLoanHistory(props.value);
-                props.setValue("list", props.value);
+                props.setValue("loanHistory", props.value);
 
             } else {
-                props.setValue("list", newLoanHistory);
+                props.setValue("loanHistory", newLoanHistory);
 
             }
         }

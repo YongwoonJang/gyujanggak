@@ -41,7 +41,8 @@ export default function BookEditor(props){
 
 
             if(reviseBook != props.selectBook || props.selectBook.loanHistory != data["loanHistory"]){
-                const contentsRef = doc(getFirestore(), "bookList", reviseBook["isbn"]);
+                const contentsRef = doc(getFirestore(), "bookList", props.selectBook.isbn);
+                delete reviseBook["isbn"];
                 await updateDoc(contentsRef, reviseBook);
                 props.onHandleChange(reviseBook);
 
