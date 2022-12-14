@@ -32,7 +32,7 @@ export default function Communication(){
         books.forEach((book)=>{
             elements.push(
                 <li key={book.data().title}>
-                    <Link href={"/books/" + book.data().title}>
+                    <Link href={"/books/" + book.id}>
                         {book.data().title + " (" + book.data().publishDate + ", " + book.data().author + ")"}
                     </Link>
                 </li>);
