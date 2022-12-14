@@ -1,4 +1,4 @@
-import { doc, getFirestore, getDoc } from 'firebase/firestore';
+import { collection, getFirestore, getDocs } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { useEffect, useState } from 'react';
@@ -22,7 +22,6 @@ const firebaseConfig = {
 };
 
 const baseURL = "https://gyujanggak.vercel.app"
-// const baseURL = "http://localhost:3000"
 
 export async function getServerSideProps(){
     let dataList = [];
@@ -32,19 +31,13 @@ export async function getServerSideProps(){
         const auth = getAuth();
         const db = getFirestore();
         
-        
         await signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE);
 
-        const titleSnap = await getDoc(doc(db, 'info', 'titleList'));
-        const titleList = titleSnap.data().title;
-
-        let bookInfo, loanHistory;
-        for (let i = 0; i < titleList.length; i++){
-            bookInfo = await getDoc(doc(db, titleList[i], 'contents'));
-            loanHistory = await getDoc(doc(db, titleList[i], 'loanHistory'));
-            dataList.push(Object.assign(bookInfo.data(), {"list":loanHistory.data().list }));
-            
-        }
+        const books = await getDocs(collection(db, 'bookList'));
+        
+        books.forEach((book)=>{
+            dataList.push(Object.assign(book.data(),{"isbn":book.id}));
+        })
 
         return {
             props: {
@@ -70,6 +63,7 @@ export default function EditorMain(props){
             "subtitle":"",
             "author":"",
             "publishDate":"",
+            "isbn":"",
             "review":"",
             "image":""
 
