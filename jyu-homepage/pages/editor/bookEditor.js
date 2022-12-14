@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { getFirestore, doc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, updateDoc, setDoc } from "firebase/firestore";
 import bookEditorStyle from '/styles/bookEditorStyle.module.scss';
 import InputGroup from "./utils/inputGroup.js"
 import HistoryInputGroup from './utils/historyInputGroup.js'
@@ -18,38 +18,50 @@ export default function BookEditor(props){
     
     const onSubmit = async (data) => {
         
-        if(data.image.name != undefined){
-            const storageRef = ref(getStorage(), "gyujanggak/"+data.image.name);
-            await uploadBytes(storageRef,data.image);
-            data.image = await getDownloadURL(storageRef);
+        if(props.selectBook.title != ""){
+            //Modify
+            if(data.image.name != undefined){
+                const storageRef = ref(getStorage(), "gyujanggak/"+data.image.name);
+                await uploadBytes(storageRef,data.image);
+                data.image = await getDownloadURL(storageRef);
 
-        }
-
-        let reviseBook = Object.assign({},props.selectBook);
-        Object.keys(data).forEach((key)=>{
-            if(key!= "list" && props.selectBook[key] != null && data[key] != props.selectBook[key]){
-                if(key === "review"){
-                    reviseBook[key] = utf8.encode(data[key]);
-                }else{
-                    reviseBook[key] = data[key];
-                }
             }
-        });
+
+            let reviseBook = Object.assign({},props.selectBook);
+            Object.keys(data).forEach((key)=>{
+                if(props.selectBook[key] != null && data[key] != props.selectBook[key]){
+                    if(key === "review"){
+                        reviseBook[key] = utf8.encode(data[key]);
+                    }else{
+                        reviseBook[key] = data[key];
+                    }
+                }
+            });
 
 
-        if(reviseBook != props.selectBook || props.selectBook.list != data["list"]){
-            const contentsRef = doc(getFirestore(), reviseBook["title"], "contents");
-            await updateDoc(contentsRef, reviseBook);
-            
-            const addHistoryData = Object.assign(reviseBook,{"list":data["list"]});
-            const loanHistoryRef = doc(getFirestore(), reviseBook["title"], "loanHistory");
-            await updateDoc(loanHistoryRef, Object.assign({},{"list":addHistoryData["list"]}));
+            if(reviseBook != props.selectBook || props.selectBook.loanHistory != data["loanHistory"]){
+                const contentsRef = doc(getFirestore(), "bookList", reviseBook["isbn"]);
+                await updateDoc(contentsRef, reviseBook);
+                props.onHandleChange(reviseBook);
 
-            props.onHandleChange(addHistoryData);
+            }
+            alert("변경이 완료 되었습니다.");
+        }else{
+            //Create
+            if (data.image.name != undefined) {
+                const storageRef = ref(getStorage(), "gyujanggak/" + data.image.name);
+                await uploadBytes(storageRef, data.image);
+                data.image = await getDownloadURL(storageRef);
+
+            }
+
+            const newDocRef = doc(getFirestore(), "bookList", data.isbn);
+            data.loanHistory = [];
+            await setDoc(newDocRef, data);
+
+            alert("추가가 완료 되었습니다.");
 
         }
-
-        alert("변경이 완료 되었습니다.");
         
     }
 
@@ -73,6 +85,17 @@ export default function BookEditor(props){
                             value={props.selectBook.title}
                             setValue={setValue}
                         />
+                        {props.selectBook.title === "" &&
+                            <InputGroup
+                                errors={errors.isbn}
+                                isTextarea={false}
+                                label={"isbn"}
+                                placeholder={"ISBN을 입력해 주세요."}
+                                register={register("isbn", {required:"ISBN 정보를 입력해 주세요."})}
+                                value={props.selectBook.isbn}
+                                setValue={setValue}
+                            />
+                        }
                         <InputGroup
                             errors={errors.subtitle}
                             isTextarea={false}
@@ -104,7 +127,7 @@ export default function BookEditor(props){
                             errors={errors.review} 
                             isTextarea={true}
                             label="review" 
-                            register={register("review", { required: "리뷰를 입력해 주세요." })}
+                            register={register("review")}
                             placeholder="리뷰를 입력해 주세요."
                             value={props.selectBook.review}
                             setValue={setValue} 
@@ -120,8 +143,8 @@ export default function BookEditor(props){
                         />
                         <HistoryInputGroup
                             label="loanHistory"
-                            register={register("list")}
-                            value={props.selectBook.list}
+                            register={register("loanHistory")}
+                            value={props.selectBook.loanHistory}
                             selectBook={props.selectBook}
                             onHandleChange={props.onSelectBookChange}
                             setValue={setValue}
