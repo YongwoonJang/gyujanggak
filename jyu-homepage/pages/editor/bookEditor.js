@@ -4,6 +4,7 @@ import { getFirestore, doc, updateDoc, setDoc } from "firebase/firestore";
 import bookEditorStyle from '/styles/bookEditorStyle.module.scss';
 import InputGroup from "./utils/inputGroup.js"
 import HistoryInputGroup from './utils/historyInputGroup.js'
+import utf8 from "utf8";
 
 
 export default function BookEditor(props){
