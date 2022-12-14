@@ -24,7 +24,7 @@ const firebaseConfig = {
 const baseURL = "https://gyujanggak.vercel.app"
 // const baseURL = "http://localhost:3000"
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(){
     let dataList = [];
     
     try{

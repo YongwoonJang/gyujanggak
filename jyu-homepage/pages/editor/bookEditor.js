@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 import bookEditorStyle from '/styles/bookEditorStyle.module.scss';
-import { InputGroup, HistoryInputGroup } from "./utils/inputGroup.js"
-
+import InputGroup from "./utils/inputGroup.js"
+import HistoryInputGroup from './utils/historyInputGroup.js'
 
 
 export default function BookEditor(props){
