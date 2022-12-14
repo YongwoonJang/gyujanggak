@@ -29,7 +29,7 @@ export default function HistoryTable(props){
     useEffect(() => {
         setLoanHistory(setTable(props.loanHistory));
 
-    })
+    },[])
 
     return (
         <>
