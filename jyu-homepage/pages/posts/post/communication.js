@@ -7,10 +7,10 @@ import pageStyles from '/styles/page.module.scss'
 
 // firebase
 import { initializeApp } from 'firebase/app'
-import { signIn } from '../../components/databaseUtils'
+import { signIn } from '../../../components/databaseUtils'
 
 // Component
-import CommentTable from '../../components/commentTable'
+import CommentTable from '../../../components/commentTable'
 
 
 export default function Communication(){

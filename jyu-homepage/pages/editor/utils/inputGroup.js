@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import bookEditorStyle from '/styles/bookEditorStyle.module.scss';
 import utf8 from "utf8";
 
-export function InputGroup(props) {
+export default function InputGroup(props) {
 
     useEffect(() => {
         if (props.value != null && props.value != undefined) {

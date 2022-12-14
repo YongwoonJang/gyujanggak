@@ -14,7 +14,7 @@ import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
 import WorkHistory from '../../components/workHistory'
 import WebGL from '../../components/webGL'
-import Communication from './communication'
+import Communication from './post/communication'
 
 //Static function
 export function getStaticPaths() {
