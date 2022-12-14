@@ -19,17 +19,16 @@ export default function books() {
         const { id } = router.query;
         try{
             const db = getFirestore();
-            const bookRef = await getDoc(doc(db, id, "contents"));
-            const historyRef = await getDoc(doc(db, id, "loanHistory"));
-            setBook(bookRef.data());
-            setLoanHistory(historyRef.data().list);
+            const bookSnap = await getDoc(doc(db, "bookList", id));
+            setLoanHistory(bookSnap.data().loanHistory);
+            setBook(bookSnap.data());
+            
 
         }catch(e){
             console.log(e);
             router.push("/");
         
-        }
-
+        } 
     }, [])
 
 
