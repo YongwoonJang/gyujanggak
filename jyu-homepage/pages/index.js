@@ -24,6 +24,7 @@ export default function Home() {
                   height={300}
                   width={300}
                   alt={title}
+                  priority
                 />
               </a>
             </Link>
