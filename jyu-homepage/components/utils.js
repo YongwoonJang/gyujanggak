@@ -1,17 +1,26 @@
-export default function bubbleSortForBookTitleByAlpahbet(bookList){
+export default function sortBookListByTitle(bookList){
 
-    for (let i = 0;i < bookList.length; i++){
-        for(let j = 0;j <bookList.length; j++){
-            if(bookList[i].title < bookList[j].title){
-                let temp = bookList[j];
-                temp = bookList[j];
-                bookList[j] = bookList[i];
-                bookList[i] = temp;
-                
-            }
+    let localDocs = [];
+    bookList.forEach((doc) =>{
+        if(localDocs.length === 0 ){
+            localDocs.push(doc);
         }
+        for(let i = 0; i < localDocs.length; i++){       
+            if (doc.data().title < localDocs[i].data().title){
+                localDocs.splice(i,0,doc);
+                break;
 
-    } 
+            }else{
+                if(i === localDocs.length -1 ){
+                    if(doc.data().title !== localDocs[i].data().title){
+                        localDocs.push(doc);
+                    }
+                }
 
-    return bookList;
+            }
+            
+        }
+    })
+
+    return localDocs;
 }
