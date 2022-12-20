@@ -7,11 +7,13 @@ import pageStyles from '/styles/page.module.scss'
 
 // firebase
 import { initializeApp } from 'firebase/app'
-import { signIn } from '../../../components/databaseUtils'
+import { signOut, signInWithEmailAndPassword, getAuth, onAuthStateChanged, setPersistence, inMemoryPersistence } from 'firebase/auth'
+
 
 // Component
 import CommentTable from '../../../components/commentTable'
-
+import sortBookListByTitle from '../../../components/utils';
+import { identification } from '../../../components/firebaseConfig';
 
 export default function Communication(){
 
@@ -23,13 +25,33 @@ export default function Communication(){
         projectId: "gyujanggak-99e8a"
     }
     const app = initializeApp(firebaseConfig);
-    signIn(app);
+    
 
     useEffect(async()=>{
         const db = getFirestore();
+        const auth = getAuth();
+        await setPersistence(auth, inMemoryPersistence); 
+        
+        let credential = null;
+
+        onAuthStateChanged(auth, (credit) => {credential = credit; console.log("the onAuthStateChange executed : " + JSON.stringify(credential.email))});
+
+        if(credential === null){
+            await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+                .then(() => {
+                    console.log("login success");
+                })
+                .catch((error) => {
+                    console.log(error);
+
+                });
+        }
+        
         const books = await getDocs(collection(db, "bookList"));
+        const sortBooks = sortBookListByTitle(books);
+
         let elements = [];
-        books.forEach((book)=>{
+        sortBooks.forEach((book)=>{
             elements.push(
                 <li key={book.data().title}>
                     <Link href={"/books/" + book.id}>
@@ -39,6 +61,14 @@ export default function Communication(){
         });
 
         setBookList(elements);
+        
+        return async () => {
+            await signOut(auth)
+            .then(()=>{console.log("logout success")})
+            .catch((error)=>{
+                console.log(error);
+            });
+        }
         
     },[])
 
@@ -60,7 +90,7 @@ export default function Communication(){
                 </div>
             </div>
             <div className={pageStyles.bookGroupSection}>
-                <div className={pageStyles.sectionTitle}>
+                <div id="books" className={pageStyles.sectionTitle}>
                     Books
                 </div>
                 <div className={pageStyles.bookTitleBox}>
