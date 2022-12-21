@@ -18,6 +18,8 @@ import { identification } from '../../../components/firebaseConfig';
 export default function Communication(){
 
     const [bookList, setBookList] = useState(null);
+    const [bookPreviewList, setBookPreviewList ] = useState(null);
+    const [isText, setIsText] = useState(false);
 
     const firebaseConfig = {
         apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
@@ -34,7 +36,7 @@ export default function Communication(){
         
         let credential = null;
 
-        onAuthStateChanged(auth, (credit) => {credential = credit; console.log("the onAuthStateChange executed : " + JSON.stringify(credential.email))});
+        onAuthStateChanged(auth, (credit) => {credential = credit;});
 
         if(credential === null){
             await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
@@ -60,7 +62,22 @@ export default function Communication(){
                 </li>);
         });
 
+        let previewList = [];
+        sortBooks.forEach((book)=>{
+            previewList.push(
+                <Link href={"/books/" + book.id}>
+                    <img
+                        src={book.data().image}
+                        alt={book.data().title}
+                        width={250}
+                        height={300}
+                    />
+                </Link>
+            )
+        })
+
         setBookList(elements);
+        setBookPreviewList(previewList);
         
         return async () => {
             await signOut(auth)
@@ -78,25 +95,30 @@ export default function Communication(){
             <div className={pageStyles.communicationMainBackgroundImage}>
                 <div className={pageStyles.communicationTitleGroup}>
                     <div className={pageStyles.communicationTitle}>
-                        M<span>inor gyujanggak</span>
+                        R<span>oyalfamily's garage</span>
                     </div>
                     <div className={pageStyles.communicationMotto}>
                         <span>안녕하세요.</span><br/><br/>
-                        <span>개인 책 대여점 "minor gyujanggak"입니다.</span><br /><br />
-                        <span>책에 자유롭게 연필과 펜으로 기록을 남길 수 있습니다.</span><br /><br />
-                        <span>대여를 원하는 책 이름을 <a href="#books">"Books"</a>에서 찾아 클릭해 주세요.</span><br /><br />
-                        <span>소통 채널은 <a href="#comments">"Comments"</a>와 인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a> 입니다.</span><br />
+                        <span>제가 좋아하는 것들을 모아두었습니다.</span><br /><br />
+                        <span>인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a></span><br />
                     </div>
                 </div>
             </div>
             <div className={pageStyles.bookGroupSection}>
-                <div id="books" className={pageStyles.sectionTitle}>
-                    Books
+                <div className={pageStyles.bookBox}>
+                    {isText?
+                        <div>
+                            <ul className={pageStyles.bookTitleList}>
+                                {bookList == null?<div>Loading</div>:<div>{bookList}</div>}
+                            </ul>
+                        </div>:
+                        <div className={pageStyles.bookPreviewList}>
+                            {bookList == null ? <div>Loading</div> : <>{bookPreviewList}</>}
+                        </div>
+                    }
                 </div>
-                <div className={pageStyles.bookTitleBox}>
-                    <ul className={pageStyles.bookTitleList}>
-                        {bookList == null?<div>Loading</div>:<div>{bookList}</div>}
-                    </ul>
+                <div className={pageStyles.bookBoxButton}>
+                    <button onClick={() => { setIsText(!isText) }}>{isText ? "Image mode" : "Text mode"}</button>
                 </div>
             </div>
             <div>

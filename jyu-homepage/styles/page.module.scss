@@ -364,29 +364,34 @@ $communication-a-link-color: rgb(166, 26, 26);
 .communicationMainBackgroundImage{
   background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg') no-repeat center fixed;
   background-size: cover;
-  height: 44em;
-  animation: communicationMainBackgroundImageAffect 2s ;
+  height: 600px;
+  animation: communicationMainBackgroundImageAffect 3s ;
 }
 
   @media screen and (max-width : $breakpoint-mobile){
     .communicationMainBackgroundImage{
-      height: 22em;
+      height: 16em;
     } 
   }
 /* Standard syntax */
 @keyframes communicationMainBackgroundImageAffect {
   from {opacity: 0.5;}
-  to {opacity: 1;}
+  to {opacity: 0.8;}
 }
 
 .communicationTitleGroup{
-  padding-top: 300px;
+  padding-top: 200px;
   padding-left: 40px;
+  padding-right: 70px;
+  text-align: right;
+
 }
   @media screen and  (max-width : $breakpoint-mobile) {
     .communicationTitleGroup {
         padding-top: 50px;
         padding-left: 10px;
+        padding-right: 0px;
+        
       }
   }
 
@@ -402,7 +407,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   @media screen and (max-width : $breakpoint-mobile){
     .communicationTitle{
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 40px;
     }
   }
@@ -437,15 +442,42 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   @media screen and (max-width: $breakpoint-mobile) {
     .bookGroupSection{
-      margin-left: 10px;
+      margin-top: 5px;
+      margin-left: 1px;
     }
     
   }
 
-.bookTitleBox {
+.bookBox {
   margin-bottom: $height*2;
 
 }
+
+.bookBoxButton {
+  text-align: right;
+  display:none;
+}
+
+.bookPreviewList{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bookPreviewList img{
+  display: block;
+  margin: 1px;
+  
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+  .bookPreviewList img{
+    width: 24%;
+    height: 24%;
+    
+  }
+  
+}
+
 
 .bookTitleList{
   list-style: none;
@@ -468,15 +500,10 @@ $communication-a-link-color: rgb(166, 26, 26);
   color: black;
 }
 
-.commentGroup {
-  margin-left: 60px;
-  margin-right: 60px;
-}
-
   @media screen and (max-width: $breakpoint-mobile) {
     .commentGroup {
         margin-left: 0px;
-        margin-right: 30px;
+        margin-right: 0px;
       }
   }
 
@@ -504,7 +531,8 @@ $communication-a-link-color: rgb(166, 26, 26);
       .communicationCommentsTable td{
         font-size: 8px;
         white-space: normal;
-        padding-top:3%;
+        padding-top:1%;
+        vertical-align: top;;
   
       }
     }
@@ -877,18 +905,6 @@ $communication-a-link-color: rgb(166, 26, 26);
     font-family: "SBAggro M";
     line-height: 3.5em;
     padding-left: 7%;
-  }
-
-  .communicationTitle{
-    font-size: 1.5em;
-  }
-
-  .communicationRegComment{
-    width: 95%;
-    margin: auto;
-    background-color:rgb(227, 227, 227);
-    line-height: 0.9em;
-    
   }
 
   .communicationRegCommentBox {
