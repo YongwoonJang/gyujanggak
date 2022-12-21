@@ -15,21 +15,21 @@ const setTable = (localComments, setLines) => {
         for (let i = (localComments.length - 1); i >= 0; i--) {
             rows = rows
                 + "<tr>"
-                + "<td>"
-                + "<span>"
-                + localComments[i].Author
-                + "</span>"
-                + "<br/>"
-                + "<span>"
-                + localComments[i].Date
-                + "</span>"
-                + "</td>"
-                + "<td>"
-                + localComments[i].Content
-                + "</td>"
-                + "<td style='display:none'>"
-                + localComments[i].docId
-                + "</td>"
+                    + "<td>"
+                        + "<span>"
+                        + localComments[i].Author
+                        + "</span>"
+                        + "<br/>"
+                        + "<span style='color:grey;font-size:4px;'>"
+                        + localComments[i].Date
+                        + "</span>"
+                    + "</td>"
+                    + "<td>"
+                        + localComments[i].Content
+                    + "</td>"
+                    + "<td style='display:none'>"
+                        + localComments[i].docId
+                    + "</td>"
                 + "</tr>"
         }
 
@@ -175,7 +175,7 @@ export default function CommentTable(props){
         <>
             <div className={pageStyles.bookGroupSection}>
                 <div id="comments">
-                    History
+                    Comment
                 </div>
                 <div className={pageStyles.commentGroup}>
                     <table ref={commentTableRef} className={pageStyles.communicationCommentsTable}>
