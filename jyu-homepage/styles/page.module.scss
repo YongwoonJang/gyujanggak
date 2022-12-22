@@ -364,8 +364,9 @@ $communication-a-link-color: rgb(166, 26, 26);
 .communicationMainBackgroundImage{
   background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg') no-repeat center fixed;
   background-size: cover;
-  height: 600px;
+  height: 500px;
   animation: communicationMainBackgroundImageAffect 3s ;
+  opacity: 0.9;
 }
 
   @media screen and (max-width : $breakpoint-mobile){
@@ -380,9 +381,9 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .communicationTitleGroup{
-  padding-top: 200px;
+  padding-top: 100px;
   padding-left: 40px;
-  padding-right: 70px;
+  padding-right: 100px;
   text-align: right;
 
 }
@@ -436,21 +437,22 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
  
 .bookGroupSection {
-  margin-top: 40px;
-  margin-left: 40px;
+  margin: 0 auto;
+  margin-top: 3px;
 }
 
   @media screen and (max-width: $breakpoint-mobile) {
     .bookGroupSection{
-      margin-top: 5px;
-      margin-left: 1px;
+      margin-top: 1px;
+      margin-left: 0px;
     }
     
   }
 
-.bookBox {
-  margin-bottom: $height*2;
-
+.bookBox{
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .bookBoxButton {
@@ -458,21 +460,21 @@ $communication-a-link-color: rgb(166, 26, 26);
   display:none;
 }
 
-.bookPreviewList{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.bookPreviewList img{
-  display: block;
-  margin: 1px;
+.bookImgFrame{
+  width: (100%/6);
+  height: 380px;
+  margin: 0;
   
 }
 
+.bookImgFrame img{
+  margin: 0px auto;
+}
+
 @media screen and (max-width: $breakpoint-mobile) {
-  .bookPreviewList img{
-    width: 24%;
-    height: 24%;
+  .bookImgFrame{
+    width: (100%/5);
+    height: 81px;
     
   }
   
@@ -520,19 +522,20 @@ $communication-a-link-color: rgb(166, 26, 26);
     }
 
 .communicationCommentsTable td{
-  padding: $height/2;
+  padding: $height/4;
   width: auto;
   font-size: 0.7em;
   white-space: nowrap;
   font-family: "SBAggro L";
   text-align: left;
+  vertical-align: top;
 }
     @media screen and (max-width: $breakpoint-mobile){
       .communicationCommentsTable td{
-        font-size: 8px;
+        font-size: 7px;
         white-space: normal;
         padding-top:1%;
-        vertical-align: top;;
+        
   
       }
     }
@@ -544,7 +547,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 @media screen and (max-width: $breakpoint-mobile){
   .communicationCommentsTable td:nth-child(1) span:nth-child(3) {
-    font-size: 0.7em;
+    font-size: 8px;
 
   }
 }

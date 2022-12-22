@@ -65,14 +65,14 @@ export default function Communication(){
         let previewList = [];
         sortBooks.forEach((book)=>{
             previewList.push(
-                <Link href={"/books/" + book.id}>
-                    <img
-                        src={book.data().image}
-                        alt={book.data().title}
-                        width={250}
-                        height={300}
-                    />
-                </Link>
+                <div className={pageStyles.bookImgFrame}>
+                    <Link href={"/books/" + book.id}>
+                        <img
+                            src={book.data().image}
+                            alt={book.data().title}
+                        />
+                    </Link>
+                </div>
             )
         })
 
@@ -107,14 +107,14 @@ export default function Communication(){
             <div className={pageStyles.bookGroupSection}>
                 <div className={pageStyles.bookBox}>
                     {isText?
-                        <div>
+                        <>
                             <ul className={pageStyles.bookTitleList}>
                                 {bookList == null?<div>Loading</div>:<div>{bookList}</div>}
                             </ul>
-                        </div>:
-                        <div className={pageStyles.bookPreviewList}>
+                        </>:
+                        <>
                             {bookList == null ? <div>Loading</div> : <>{bookPreviewList}</>}
-                        </div>
+                        </>
                     }
                 </div>
                 <div className={pageStyles.bookBoxButton}>
