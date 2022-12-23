@@ -469,6 +469,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 .bookImgFrame{
   width: (100%/6);
   margin: 0;
+  margin-bottom: 1px;
   
 }
 
@@ -479,6 +480,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 @media screen and (max-width: $breakpoint-mobile) {
   .bookImgFrame{
     width: (100%/5);
+    margin-bottom: 1px;
     
   }
   
