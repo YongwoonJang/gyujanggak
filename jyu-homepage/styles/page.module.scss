@@ -435,7 +435,21 @@ $communication-a-link-color: rgb(166, 26, 26);
   line-height: 6px;
 
 }
- 
+
+.bookGroupSectionLoading {
+  margin : 10% auto;
+  text-align: center;
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+  .bookGroupSectionLoading {
+    font-size: 10px;
+  }
+}
+
+
+
+
 .bookGroupSection {
   margin: 0 auto;
   margin-top: 3px;
@@ -454,12 +468,6 @@ $communication-a-link-color: rgb(166, 26, 26);
   flex-wrap: wrap;
   box-sizing: border-box;
 }
-
-  @media screen and (max-width: $breakpoint-mobile) {
-    .bookBox{
-      font-size: 10px;
-    }
-  }
 
 .bookBoxButton {
   text-align: right;

@@ -128,26 +128,31 @@ export default function Communication(){
                     </div>
                 </div>
             </div>
-            <div className={pageStyles.bookGroupSection}>
-                <div className={pageStyles.bookBox}>
-                    {isText?
-                        <>
-                            <ul className={pageStyles.bookTitleList}>
-                                {bookList == null ? <div id="loading">보물들을 불러오고 있습니다.</div>:<div>{bookList}</div>}
-                            </ul>
-                        </>:
-                        <>
-                            {bookList == null ? <div id="loading">보물들을 불러오고 있습니다.</div> : <>{bookPreviewList}</>}
-                        </>
-                    }
-                </div>
-                <div className={pageStyles.bookBoxButton}>
-                    <button onClick={() => { setIsText(!isText) }}>{isText ? "Image mode" : "Text mode"}</button>
-                </div>
-            </div>
-            <div>
-                <CommentTable app={app} section="chats" />
-            </div>
+            {bookList === null ? 
+                <div id="loading" className={pageStyles.bookGroupSectionLoading}>보물들을 불러오고 있습니다.</div> :
+                <>
+                    <div className={pageStyles.bookGroupSection}>
+                        <div className={pageStyles.bookBox}>
+                            {isText?
+                                <>
+                                    <ul className={pageStyles.bookTitleList}>
+                                        <div>{bookList}</div>
+                                    </ul>
+                                </>:
+                                <>
+                                    {bookPreviewList}
+                                </>
+                            }
+                        </div>
+                        <div className={pageStyles.bookBoxButton}>
+                            <button onClick={() => { setIsText(!isText) }}>{isText ? "Image mode" : "Text mode"}</button>
+                        </div>
+                    </div>
+                    <div>
+                        <CommentTable app={app} section="chats" />
+                    </div>
+                </>
+            }
         </>
     )
 };
