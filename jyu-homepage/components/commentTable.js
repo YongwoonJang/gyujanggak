@@ -1,6 +1,6 @@
 //For utilities
 import { useState, useRef, useEffect } from 'react'
-import { insertRow, deleteRow, signIn } from './databaseUtils'
+import { insertRow, deleteRow } from './databaseUtils'
 
 //For styling 
 import parse from 'html-react-parser';
@@ -69,7 +69,7 @@ export default function CommentTable(props){
     useEffect(()=>{
 
         if (data.length == 0) {
-            data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+            data = [{ "Author": "잠시만요^^", "Date": "", "Content": "<span>잠시만요^^</span>", "docId": "잠시만요^^" }]
         }
         setTable(data, setLines);
 
@@ -79,7 +79,7 @@ export default function CommentTable(props){
             Object.keys(tempData).forEach(element => { data.push(tempData[element]) });
 
             if (data.length == 0) {
-                data = [{ "Author": "Loading", "Date": "", "Content": "<span>Loading</span>", "docId": "Loading" }]
+                data = [{ "Author": "잠시만요^^", "Date": "", "Content": "<span>잠시만요^^</span>", "docId": "잠시만요^^" }]
             }
 
             setTable(data, setLines);
@@ -174,9 +174,6 @@ export default function CommentTable(props){
     return(
         <>
             <div className={pageStyles.bookGroupSection}>
-                <div id="comments">
-                    Comment
-                </div>
                 <div className={pageStyles.commentGroup}>
                     <table ref={commentTableRef} className={pageStyles.communicationCommentsTable}>
                         <tbody>

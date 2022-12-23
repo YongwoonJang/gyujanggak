@@ -455,6 +455,12 @@ $communication-a-link-color: rgb(166, 26, 26);
   box-sizing: border-box;
 }
 
+  @media screen and (max-width: $breakpoint-mobile) {
+    .bookBox{
+      font-size: 10px;
+    }
+  }
+
 .bookBoxButton {
   text-align: right;
   display:none;
