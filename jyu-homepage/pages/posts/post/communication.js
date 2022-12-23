@@ -89,6 +89,30 @@ export default function Communication(){
         
     },[])
 
+
+    let loadingDot = 1;
+    let dots = ".";
+    useEffect(()=>{
+        const doc = document.getElementById("loading");
+        if(doc != null){
+            const interval = setInterval(()=>{
+                dots = ".".concat(".");
+                doc.innerHTML += dots;
+                loadingDot ++;
+
+                if(loadingDot > 10){
+                    doc.innerHTML = "다시 접속해 주세요.^^";
+                    loadingDot = 1;
+                }
+
+
+            },1000)
+
+            return () => clearInterval(interval);
+        }
+
+    },[])
+
     return(
         <>
             {/* main title and description */ }
@@ -109,11 +133,11 @@ export default function Communication(){
                     {isText?
                         <>
                             <ul className={pageStyles.bookTitleList}>
-                                {bookList == null?<div>Loading</div>:<div>{bookList}</div>}
+                                {bookList == null ? <div id="loading">보물들을 불러오고 있습니다.</div>:<div>{bookList}</div>}
                             </ul>
                         </>:
                         <>
-                            {bookList == null ? <div>Loading</div> : <>{bookPreviewList}</>}
+                            {bookList == null ? <div id="loading">보물들을 불러오고 있습니다.</div> : <>{bookPreviewList}</>}
                         </>
                     }
                 </div>
