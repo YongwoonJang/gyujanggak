@@ -106,6 +106,11 @@ export default function books(props) {
                             property="twitter:card"
                             content="summary"
                         />
+                        <meta name="description" content={book.content}/>
+                        <meta name="keywords" content={"책,"+book.title+","+book.author}/>
+                        <meta property="og:image:type" content="image/jpeg" />
+                        <meta property="og:image:width" content="400" />
+                        <meta property="og:image:height" content="300" />
                     </Head>
                     <div className={pageStyles.page}>
                         <h1 className={pageStyles.bookTitle}>
