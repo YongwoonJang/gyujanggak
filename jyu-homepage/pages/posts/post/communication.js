@@ -129,7 +129,7 @@ export default function Communication(){
                 </div>
             </div>
             {bookList === null ? 
-                <div id="loading" className={pageStyles.bookGroupSectionLoading}>보물들을 불러오고 있습니다.</div> :
+                <div id="loading" className={pageStyles.bookGroupSectionLoading}>좋아하는 것을 불러오고 있습니다.</div> :
                 <>
                     <div className={pageStyles.bookGroupSection}>
                         <div className={pageStyles.bookBox}>
