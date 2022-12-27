@@ -1,0 +1,25 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dataConverter.js",
+  "scripts": {
+    "build": "npx babel -d lib",
+    "start": "node lib/dataConverter.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/plugin-proposal-export-default-from": "^7.18.10",
+    "@babel/plugin-transform-react-jsx": "^7.19.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-plugin-es6-promise": "^1.1.1"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "corejs": "^1.0.0",
+    "firebase": "^9.15.0"
+  }
+}

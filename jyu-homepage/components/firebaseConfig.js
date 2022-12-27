@@ -3,6 +3,7 @@ export const firebaseConfig = {
     authDomain: "gyujanggak-99e8a.firebaseapp.com",
     storageBucket: "gyujanggak-99e8a.appspot.com",
     databaseURL: "https://gyujanggak-99e8a-default-rtdb.firebaseio.com/",
+    projectId: "gyujanggak-99e8a"
 
 }
 
