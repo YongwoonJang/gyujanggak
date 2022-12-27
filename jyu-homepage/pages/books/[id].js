@@ -33,8 +33,6 @@ export async function getStaticPaths(){
 }
 
 export async function getStaticProps({params}){
-    console.log(params);
-    
     let db, auth, docs;
 
     try{
@@ -81,8 +79,24 @@ export default function books(props) {
                     <Head>
                         <title>{book.title}</title>
                         <meta 
+                            property="og:url"
+                            content="https://gyujanggak.vercel.app"
+                        />
+                        <meta
+                            property="og:type"
+                            content="website"
+                        />
+                        <meta
+                            property="og:title"
+                            content={"Royal's garage: "+ book.title}
+                        />
+                        <meta 
                             property="og:image"
                             content={book.image}
+                        />
+                        <meta
+                            property="og:description"
+                            content={book.content}
                         />
                     </Head>
                     <div className={pageStyles.page}>
