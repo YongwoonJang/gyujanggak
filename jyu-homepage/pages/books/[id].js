@@ -2,37 +2,72 @@ import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
 import HistoryTable from '../../components/historyTable'
 
-import { useRouter } from 'next/router';
+import Head from 'next/head';
+
 import { useEffect, useState } from 'react';
-import { getFirestore, getDoc, doc } from 'firebase/firestore';
+import { getFirestore, getDocs, getDoc, doc, collection } from 'firebase/firestore';
 
 import utf8 from "utf8";
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { firebaseConfig, identification } from "../../components/firebaseConfig"
+
+export async function getStaticPaths(){
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
+    const docList = await getDocs(collection(db, "bookList"));
+    let paths = [];
+    docList.forEach((doc)=>{
+        paths.push({params : {id:doc.id}});
+    });
+
+    return {
+        paths: paths,
+        fallback: "blocking",
+    }
+
+
+
+}
+
+export async function getStaticProps({params}){
+    console.log(params);
+    
+    let db, auth, docs;
+
+    try{
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);    
+        auth = getAuth(app);
+        await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
+        docs = await getDoc(doc(db, "bookList", params.id));
+
+    }catch(e){
+        db = getFirestore();
+        docs = await getDoc(doc(db, "bookList", params.id));
+
+    }
+
+    return {
+        props: {book: docs.data()}
+        
+    }
+}
 
 //Main function
-export default function books() {
+export default function books(props) {
 
     const [book, setBook] = useState(null);
     const [loanHistory, setLoanHistory] = useState(null);
-    const router = useRouter();
 
-    useEffect(async ()=>{
-        const { id } = router.query;
-        try{
-            const db = getFirestore();
-            const bookSnap = await getDoc(doc(db, "bookList", id));
-            setLoanHistory(bookSnap.data().loanHistory);
-            setBook(bookSnap.data());
-            
-
-        }catch(e){
-            console.log(e);
-            router.push("/");
-        
-        } 
+    useEffect(()=>{
+        setLoanHistory(props.book.loanHistory);
+        setBook(props.book); 
+               
     }, [])
 
-
-    
     let imagePart = "";
     if(book != null){
         imagePart = <img src={book.image} className={pageStyles.bookImage} width={25+'%'} height={100+"%"} layout="responsive" />;
@@ -40,9 +75,16 @@ export default function books() {
     }
 
     return (
-        <>
+        <>  
             { book && 
                 <>
+                    <Head>
+                        <title>{book.title}</title>
+                        <meta 
+                            property="og:image"
+                            content={book.image}
+                        />
+                    </Head>
                     <div className={pageStyles.page}>
                         <h1 className={pageStyles.bookTitle}>
                             {book.title}
