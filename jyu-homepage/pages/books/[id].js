@@ -49,7 +49,7 @@ export async function getStaticProps({params}){
     }
 
     return {
-        props: {book: docs.data()}
+        props: {book: docs.data(), id: params.id}
         
     }
 }
@@ -78,35 +78,14 @@ export default function books(props) {
                 <>
                     <Head>
                         <title>{book.title}</title>
-                        <meta 
-                            property="og:url"
-                            content={"https://gyujanggak.vercel.app/book/"+book.isbn}
-                        />
-                        <meta
-                            property="og:type"
-                            content="website"
-                        />
-                        <meta
-                            property="og:title"
-                            content={"Royal's garage: "+ book.title}
-                        />
-                        <meta 
-                            property="og:image"
-                            content={book.image}
-                        />
-                        <meta
-                            property="og:image:secure_url"
-                            content={book.image}
-                        />
-                        <meta
-                            property="og:description"
-                            content={book.content}
-                        />
-                        <meta
-                            property="twitter:card"
-                            content="summary"
-                        />
-                        <meta name="description" content={book.content}/>
+                        <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+props.id}/>
+                        <meta property="og:type" content="website"/>
+                        <meta property="og:title" content={"Royal's garage: "+ book.title}/>
+                        <meta property="og:image" content={book.image}/>
+                        <meta property="og:image:secure_url" content={book.image}/>
+                        <meta property="og:description" content={utf8.decode(book.review)}/>
+                        <meta property="twitter:card" content="summary"/>
+                        <meta name="description" content={utf8.decode(book.review)}/>
                         <meta name="keywords" content={"책,"+book.title+","+book.author}/>
                         <meta property="og:image:type" content="image/jpeg" />
                         <meta property="og:image:width" content="400" />
