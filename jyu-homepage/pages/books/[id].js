@@ -80,7 +80,7 @@ export default function books(props) {
                         <title>{book.title}</title>
                         <meta 
                             property="og:url"
-                            content="https://gyujanggak.vercel.app"
+                            content={"https://gyujanggak.vercel.app/book/"+book.isbn}
                         />
                         <meta
                             property="og:type"
@@ -95,8 +95,16 @@ export default function books(props) {
                             content={book.image}
                         />
                         <meta
+                            property="og:image:secure_url"
+                            content={book.image}
+                        />
+                        <meta
                             property="og:description"
                             content={book.content}
+                        />
+                        <meta
+                            property="twitter:card"
+                            content="summary"
                         />
                     </Head>
                     <div className={pageStyles.page}>
