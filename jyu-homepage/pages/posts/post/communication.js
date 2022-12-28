@@ -26,7 +26,13 @@ export default function Communication(){
         authDomain: "gyujanggak-99e8a.firebaseapp.com",
         projectId: "gyujanggak-99e8a"
     }
-    const app = initializeApp(firebaseConfig);
+
+    try{
+        const app = initializeApp(firebaseConfig);
+    }catch(e){
+        console.log("Error in communication component!!");
+        console.log(e);
+    }
     
 
     useEffect(async()=>{
