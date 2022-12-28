@@ -74,18 +74,20 @@ export default function books(props) {
 
     return (
         <>  
+            { book &&
+                <Head>
+                    <title>{"Yongwoon's book: " + book.title}</title>
+                    <meta property="og:url" content={"https://gyujanggak.vercel.app/books/" + props.id} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:title" content={"Royal's garage: " + book.title} />
+                    <meta property="og:description" content={utf8.decode(book.review)} />
+                    <meta property="og:image" content={book.image} />
+                    <meta property="og:image:secure_url" content={book.image} />
+                    <meta name="keywords" content={"책," + book.title + "," + book.author} />
+                </Head>
+            }
             { book && 
-                <>
-                    <Head>
-                        <title>{"Yongwoon's book: " + book.title}</title>
-                        <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+props.id}/>
-                        <meta property="og:type" content="website"/>
-                        <meta property="og:title" content={"Royal's garage: "+ book.title}/>
-                        <meta property="og:description" content={utf8.decode(book.review)} />
-                        <meta property="og:image" content={book.image}/>
-                        <meta property="og:image:secure_url" content={book.image}/>
-                        <meta name="keywords" content={"책,"+book.title+","+book.author}/>
-                    </Head>
+                <>  
                     <div className={pageStyles.page}>
                         <h1 className={pageStyles.bookTitle}>
                             {book.title}
@@ -105,7 +107,6 @@ export default function books(props) {
                         <CopyRight />
                     </div>
                 </>
-                
             }
         </>
     )
