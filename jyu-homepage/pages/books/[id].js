@@ -77,19 +77,14 @@ export default function books(props) {
             { book && 
                 <>
                     <Head>
-                        <title>{book.title}</title>
-                        {/* <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+props.id}/> */}
+                        <title>{"Yongwoon's book: " + book.title}</title>
+                        <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+props.id}/>
                         <meta property="og:type" content="website"/>
                         <meta property="og:title" content={"Royal's garage: "+ book.title}/>
+                        <meta property="og:description" content={utf8.decode(book.review)} />
                         <meta property="og:image" content={book.image}/>
                         <meta property="og:image:secure_url" content={book.image}/>
-                        <meta property="og:description" content={utf8.decode(book.review)}/>
-                        <meta property="twitter:card" content="summary"/>
-                        <meta name="description" content={utf8.decode(book.review)}/>
                         <meta name="keywords" content={"책,"+book.title+","+book.author}/>
-                        <meta property="og:image:type" content="image/jpeg" />
-                        <meta property="og:image:width" content="400" />
-                        <meta property="og:image:height" content="300" />
                     </Head>
                     <div className={pageStyles.page}>
                         <h1 className={pageStyles.bookTitle}>
@@ -102,7 +97,7 @@ export default function books(props) {
                             </div>
                         </div>
                         <div className={pageStyles.loanButton}>
-                            <a href={book.loanButton}>대출 하기</a>
+                            <a href={book.loanButton}>빌리기</a>
                         </div>
                         <HistoryTable loanHistory={loanHistory}/>
                     </div>
