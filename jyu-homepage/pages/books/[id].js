@@ -54,6 +54,33 @@ export async function getStaticProps({params}){
     }
 }
 
+export async function getInitialProps(ctx){
+    let db, auth, docs;
+
+    try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        await signInWithEmailAndPassword(auth, identification["user"], identification["code"]);
+        docs = await getDoc(doc(db, "bookList", ctx.pathname));
+
+    } catch (e) {
+        db = getFirestore();
+        docs = await getDoc(doc(db, "bookList", ctx.pathname));
+
+    }
+
+    console.log("getInitialProps :");
+    console.log("ctx.pathName :"+ctx.pathname);
+
+    return {
+        props: { book: docs.data(), id: ctx.pathname }
+
+    }
+
+
+}
+
 //Main function
 export default function books(props) {
 
@@ -74,7 +101,6 @@ export default function books(props) {
 
     return (
         <>  
-            
             <Head>
                 <title>{"Yongwoon's book: " + props.book.title}</title>
                 <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+props.book.isbn} />
@@ -85,7 +111,6 @@ export default function books(props) {
                 <meta property="og:image:secure_url" content={props.book.image} /> 
                 <meta name="keywords" content={"책," + props.book.title + "," + props.book.author}/>
             </Head>
-            
             { book && 
                 <>  
                     <div className={pageStyles.page}>
