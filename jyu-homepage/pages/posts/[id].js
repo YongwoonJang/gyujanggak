@@ -65,7 +65,7 @@ export default function Post({id, data, contents}){
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img layout="intrinsic"  width="400px" height="300px" src={"/images/profileImage.jpeg"} alt="My profile" />
+                                        <img layout="intrinsic"  width="400px" height="300px" src={"/profile.png"} alt="My profile" />
                                     </td>
                                 </tr>
                             </tbody>
