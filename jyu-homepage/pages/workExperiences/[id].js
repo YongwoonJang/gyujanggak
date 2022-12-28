@@ -73,7 +73,7 @@ function resetForm(event){
 
 //Static function
 export function getStaticPaths() {
-    const postNames = ["20160101Rater","profile-mgmt"]
+    const postNames = ["raterContract","profileManagement"]
 
     const params = postNames.map((postName) => ({
         params: { id: postName }
