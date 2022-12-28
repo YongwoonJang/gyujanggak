@@ -76,8 +76,8 @@ export default function books(props) {
         <>  
             
             <Head>
-                <title>{"Yongwoon's book: " + book.title}</title>
-                {/* <meta property="og:url" content={"https://gyujanggak.vercel.app/books/" + props.id} /> */}
+                {/* <title>{"Yongwoon's book: " + book.title}</title> */}
+                <meta property="og:url" content={"https://gyujanggak.vercel.app"} />
                 <meta property="og:type" content="website" />
                 {/* <meta property="og:title" content={"Royal's garage: " + book.title} />
                 <meta property="og:description" content={utf8.decode(book.review)} />
