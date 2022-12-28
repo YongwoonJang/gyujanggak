@@ -74,22 +74,16 @@ export default function books(props) {
 
     return (
         <>  
-            
             <Head>
-                {/* <title>{"Yongwoon's book: " + book.title}</title> */}
-                <meta property="og:url" content={"https://gyujanggak.vercel.app"} />
+                <title>{"Yongwoon's book: " + book?.title}</title> */}
+                <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+book?.isbn} />
                 <meta property="og:type" content="website" />
-                {/* <meta property="og:title" content={"Royal's garage: " + book.title} />
-                <meta property="og:description" content={utf8.decode(book.review)} />
-                <meta property="og:image" content={book.image} />
-                <meta property="og:image:secure_url" content={book.image} /> */}
-                {/* <meta name="keywords" content={"책," + book.title + "," + book.author} /> */}
-                <meta property="og:title" content="YongwoonJang's Creative Home" />
-                <meta property="og:description" content="피아노, 프로그래밍, 플라모델, 수영, 영어를 사랑하는 서울사는 장용운의 이야기입니다." />
-                <meta property="og:image" content="https://gyujanggak.vercel.app/profile.png" />
-                <meta property="og:image:secure_url" content="https://gyujanggak.vercel.app/profile.png" />
+                <meta property="og:title" content={"Royal's garage: " + book?.title} />
+                <meta property="og:description" content={utf8.decode(book?.review)} />
+                <meta property="og:image" content={book?.image} />
+                <meta property="og:image:secure_url" content={book?.image} /> */}
+                <meta name="keywords" content={"책," + book?.title + "," + book?.author}/>
             </Head>
-            
             { book && 
                 <>  
                     <div className={pageStyles.page}>
