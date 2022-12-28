@@ -74,7 +74,7 @@ export async function getInitialProps(ctx){
     console.log("ctx.pathName :"+ctx.pathname);
 
     return {
-        props: { book: docs.data(), id: ctx.pathname }
+        props: { book: docs.data(), default: ctx.pathname }
 
     }
 
@@ -102,8 +102,9 @@ export default function books(props) {
     return (
         <>  
             <Head>
+                <meta property="test" content={props.default}/>
                 <title>{"Yongwoon's book: " + props.book.title}</title>
-                <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+props.book.isbn} />
+                <meta property="og:url" content={"https://gyujanggak.vercel.app/books/"+props.id} />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content={"Royal's garage: " + props.book.title} />
                 <meta property="og:description" content={utf8.decode(props.book.review)} />
