@@ -119,7 +119,7 @@ export default function Communication(){
             <div className={pageStyles.communicationMainBackgroundImage}>
                 <div className={pageStyles.communicationTitleGroup}>
                     <div className={pageStyles.communicationTitle}>
-                        R<span>oyalfamily's garage</span>
+                        Y<span>ongwoon's creative garage</span>
                     </div>
                     <div className={pageStyles.communicationMotto}>
                         <span>안녕하세요.</span><br/><br/>
