@@ -27,14 +27,15 @@ export default function Communication(){
         projectId: "gyujanggak-99e8a"
     }
 
+    let app = null;
+
     try{
-        const app = initializeApp(firebaseConfig);
+        app = initializeApp(firebaseConfig);
     }catch(e){
         console.log("Error in communication component!!");
         console.log(e);
     }
     
-
     useEffect(async()=>{
         const db = getFirestore();
         const auth = getAuth();
