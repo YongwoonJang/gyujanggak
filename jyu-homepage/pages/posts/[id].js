@@ -6,6 +6,7 @@ import parse from 'html-react-parser'
 // Next.js
 import Link from 'next/link'
 import Image from 'next/image'
+import Head from 'next/head'
 
 // CSS
 import pageStyles from '/styles/page.module.scss'
@@ -48,9 +49,25 @@ export async function getStaticProps({ params }) {
 export default function Post({id, data, contents}){
     const content = parse(contents);
     
+    let head = 
+        <Head>
+            <title>{"Yongwoon's " + id}</title>
+            <meta property="og:url" content={"https://gyujanggak.vercel.app/posts/"+id}/>
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content={"Yongwoon's " + id} />
+            <meta property="og:description" content={"Beautiful daily life"}/>
+            {
+                id === "communication"?
+                <meta property="og:image" content={"https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg"}/>
+                :<></>
+                    
+            }
+        </Head>
+    
     if(id == 'profile'){
         return (
             <>
+                {head}
                 <div className={pageStyles.page}>
                     <h1 className={pageStyles.profileTitle}>
                         {parse(data.title)}
@@ -89,6 +106,7 @@ export default function Post({id, data, contents}){
     } else if(id == 'community'){
         return (
             <>
+                {head}
                 <div className={pageStyles.page}>
                     <h1 className={pageStyles.communityTitle}>
                         {parse(data.title)}
@@ -146,6 +164,7 @@ export default function Post({id, data, contents}){
 
         return (
             <>
+                {head}
                 <div>
                     <div className={pageStyles.hobbyPhoto}>
                         <WebGL />
@@ -175,6 +194,7 @@ export default function Post({id, data, contents}){
     } else if (id == 'communication') {
         return (
             <>
+                {head}
                 <div className={pageStyles.page}>
                     <Communication />
                 </div>
