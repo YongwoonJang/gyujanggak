@@ -54,12 +54,15 @@ export default function Post({id, data, contents}){
             <title>{"Yongwoon's " + id}</title>
             <meta property="og:url" content={"https://gyujanggak.vercel.app/posts/"+id}/>
             <meta property="og:type" content="website"/>
-            <meta property="og:title" content={"Yongwoon's " + id} />
+            
             <meta property="og:description" content={"Beautiful daily life"}/>
             {
                 id === "communication"?
-                <meta property="og:image" content={"https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg"}/>
-                :<></>
+                <>
+                    <meta property="og:image" content={"https://gyujanggak.vercel.app/images/main/gyujanggakMain.bak.jpg"}/>
+                    <meta property="og:title" content={"Yongwoon's creative garage"} />
+                </>
+                : <meta property="og:title" content={"Yongwoon's " + id} />
                     
             }
         </Head>
