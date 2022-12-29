@@ -74,10 +74,12 @@ export default function Communication(){
             previewList.push(
                 <div className={pageStyles.bookImgFrame}>
                     <Link href={"/books/" + book.id}>
-                        <img
-                            src={book.data().image}
-                            alt={book.data().title}
-                        />
+                        <a>
+                            <img
+                                src={book.data().image}
+                                alt={book.data().title}
+                            />
+                        </a>
                     </Link>
                 </div>
             )
