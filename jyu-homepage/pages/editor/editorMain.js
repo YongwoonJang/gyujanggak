@@ -25,33 +25,31 @@ const baseURL = "https://gyujanggak.vercel.app"
 
 export async function getServerSideProps(){
     let dataList = [];
+    let db, auth;
     
     try{
-        initializeApp(firebaseConfig);
-        const auth = getAuth();
-        const db = getFirestore();
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
         
-        await signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE);
-
-        const books = await getDocs(collection(db, 'bookList'));
-        
-        books.forEach((book)=>{
-            dataList.push(Object.assign(book.data(),{"isbn":book.id}));
-        })
-
-        return {
-            props: {
-                data: dataList
-            },
-        }
         
     }catch(e){
+        console.log("error occur from getServerSideProps: ");
+        db = getFirestore();
+        auth = getAuth();
         console.log(e);
         
     }
+
+    await signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE);
+    const books = await getDocs(collection(db, 'bookList'));
+    books.forEach((book) => {
+        dataList.push(Object.assign(book.data(), { "isbn": book.id }));
+    })
+
     return {
         props: {
-            data: null
+            data: dataList
         }
     };
 }
@@ -74,6 +72,9 @@ export default function EditorMain(props){
     const router = useRouter();
     
     useEffect(()=>{
+        console.log("is login value is : "+isLogin);
+        console.log("props.data is :"+props.data);
+
         try{
             const auth = getAuth();
             onAuthStateChanged(auth, (user)=>{
@@ -100,9 +101,10 @@ export default function EditorMain(props){
         })
     }
     
-    if (isLogin!=false && props.data!=null){
-        return(
-            <>
+    
+    return(
+        <>
+            {(isLogin != false && props.data != null)?
                 <div className={editorMainStyle.editorContainer}>
                     <div className={editorMainStyle.row}>
                         <EditorMainHeadLine/>
@@ -117,13 +119,11 @@ export default function EditorMain(props){
                         </div>
                     </div>
                 </div>
-            </>
-        )
-    }
-
-    return(
-        <>
-            <div> 로그인이 필요한 페이지 입니다. </div>
+            :
+                <div> 로그인이 필요한 페이지 입니다. </div>
+            }
         </>
     )
+    
+
 }
