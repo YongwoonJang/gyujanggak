@@ -131,7 +131,10 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
 
 .workExperienceTitle{
-  color : green;
+  color : white;
+  font-size: 1em;
+  background-color: black;
+  margin-right: 40%;
   padding-left: 1%;
 }
 
@@ -537,9 +540,9 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 .communicationCommentsTable td{
   padding: $height/4;
-  width: auto;
+  // width: auto;
   font-size: 0.7em;
-  white-space: nowrap;
+  white-space: normal;
   font-family: "SBAggro L";
   text-align: left;
   vertical-align: top;

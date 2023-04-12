@@ -119,14 +119,15 @@ function mainCharacterCard(){
                 Yongwoon Jang
             </div>
             <div className={profileDivTableStyles.profileMainCharacter}>
-                <div className={profileDivTableStyles.profileMainCharacterBG}>
+                {/* <div className={profileDivTableStyles.profileMainCharacterBG}>
                     <div>
                         <Image src='/images/background/MainProfileBG.png' width={1200} height={500} />
                     </div>
-                </div>
+                </div> */}
                 <div className={profileDivTableStyles.profileMainCharacterImgDesktop}>
                     <div>
-                        <Image src={'/images/YongwoonJangMediaCenter.png'} width={360} height={500} layout="intrinsic" />
+                        {/* <Image src={'/images/YongwoonJangMediaCenter.png'} width={360} height={500} layout="intrinsic" /> */}
+                        <Image src={'/images/jangNewProfile.png'} width={500} height={650} layout="intrinsic" />
                     </div>
                 </div>
                 <div className={profileDivTableStyles.profileMainCharacterImgMobile}>
@@ -438,7 +439,7 @@ function bottomLine(){
 //Main function
 export default function workExperience({id, data, contents}) {
     
-    if (id == 'profileManagement') {//project management officer resume.
+    if (id === 'profileManagement') {//project management officer resume.
         return (
             <>
                 <div className={profileDivTableStyles.profileDivTable}>
@@ -474,11 +475,59 @@ export default function workExperience({id, data, contents}) {
             <>
                 <div className={pageStyles.page}>
                     <h1 className={pageStyles.workExperienceTitle}>
-                        {parse(data.title)}
+                        {data.title!=null?data.title:""}
                     </h1>
-                    <div className={pageStyles.workExperienceContents}>
-                        {parse(contents.replace(/\n/g, "<br/>"))}
-                    </div>
+                    <h5>
+                        {data.duration != null ? data.duration : ""}
+                    </h5>
+                    <h5>
+                        {data.purpose != null ? data.purpose : ""}
+                    </h5>
+                    <h5>
+                        {data.team}
+                    </h5>
+                    {data.roleAndResponsibility?<h2>Role&Responsibility</h2> :""}
+                    {data.roleAndResponsibility?
+                        <div className={pageStyles.workExperienceContents}>
+                            {parse(data.roleAndResponsibility.reduce((acc, cur) => acc + '<div>'+ cur + "</div>" , ""))}
+                        </div>
+                        :""
+                    }
+                    {data.lessonsLearned ? <h2>LessonsLearned</h2> : ""}
+                    {data.lessonsLearned?
+                        <div className={pageStyles.workExperienceContents}>
+                            {parse(data.lessonsLearned.reduce((acc, cur) => acc + '<div>' + cur + "</div>", ""))}
+                        </div>
+                        : ""
+                    }
+                    {data.tools ? <h2>Tools</h2> : ""}
+                    {data.tools?
+                        <div className={pageStyles.workExperienceContents}>
+                            {parse(data.tools.reduce((acc, cur) => acc + '<div>' + cur + "</div>", ""))}
+                        </div>
+                        :""
+                    }
+                    {data.training ? <h2>Training</h2> : ""}
+                    {data.training?
+                        <div className={pageStyles.workExperienceContents}>
+                            {parse(data.training.reduce((acc, cur) => acc + '<div>' + cur + "</div>", ""))}
+                        </div>
+                        :""
+                    }
+                    {data.certificate ? <h2>certificate</h2> : ""}
+                    {data.certificate?
+                        <div className={pageStyles.workExperienceContents}>
+                            {parse(data.certificate.reduce((acc, cur) => acc + '<div>' + cur + "</div>", ""))}
+                        </div>
+                        :""
+                    }
+                    {contents ? <h2>Special Notes</h2> : ""}
+                    {contents ?
+                        <div className={pageStyles.workExperienceContents}>
+                            {parse(contents.replace(/\n/g, "<br/>"))}
+                        </div>
+                        :""
+                    }
                 </div>
                 <div>
                     <CopyRight />

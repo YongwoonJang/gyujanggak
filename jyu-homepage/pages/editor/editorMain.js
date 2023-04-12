@@ -37,7 +37,11 @@ export async function getServerSideProps(){
         console.log("error occur from getServerSideProps: ");
         db = getFirestore();
         auth = getAuth();
-        console.log(e);
+        console.log("Error code: "+e.code);
+        console.log("Error message: "+e.message);
+        console.log("Entire error description: "+e);
+
+        
         
     }
 
