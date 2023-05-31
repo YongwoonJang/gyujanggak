@@ -374,7 +374,9 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   @media screen and (max-width : $breakpoint-mobile){
     .communicationMainBackgroundImage{
+      background: url('https://gyujanggak.vercel.app/images/main/gyujanggakMainMobile.jpg') no-repeat center fixed;
       height: 16em;
+      
     } 
   }
 /* Standard syntax */
