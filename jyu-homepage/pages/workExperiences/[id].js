@@ -127,12 +127,12 @@ function mainCharacterCard(){
                 <div className={profileDivTableStyles.profileMainCharacterImgDesktop}>
                     <div>
                         {/* <Image src={'/images/YongwoonJangMediaCenter.png'} width={360} height={500} layout="intrinsic" /> */}
-                        <Image src={'/images/jangNewProfile.png'} width={500} height={650} layout="intrinsic" />
+                        <Image src={'/images/jangNewProfile.png'} width={700} height={650} layout="intrinsic" />
                     </div>
                 </div>
                 <div className={profileDivTableStyles.profileMainCharacterImgMobile}>
                     <div>
-                        <Image src={'/images/YongwoonJangMediaCenter.png'} width={170} height={230} layout="fixed" />
+                        <Image src={'/images/jangNewProfile.png'} width={170} height={160} layout="fixed" />
                     </div>
                 </div>
                 <p>
