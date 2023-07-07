@@ -1,7 +1,7 @@
-import { getApps } from 'firebase/app';
+import { getApps, initializeApp } from 'firebase/app';
 import { collection, getFirestore, getDocs } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router.js';
 
 import EditorMainHeadLine from './editorMainHeadLine.js';
@@ -12,24 +12,34 @@ import editorMainStyle from '/styles/editorMainStyle.module.scss'
 
 const baseURL = "https://gyujanggak.vercel.app"
 
-    export async function getServerSideProps(){
-        let dataList = [];
-        await getDocs(collection(getFirestore(), 'bookList')).then((books)=>{
-            books.forEach((book) => {
-                dataList.push(Object.assign(book.data(), { "isbn": book.id }));
-            })
-            
-        })
-        return {
-            props: {
-                data: dataList
-            }
-        };
-    }
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
+//     authDomain: "gyujanggak-99e8a.firebaseapp.com",
+//     databaseURL: "https://gyujanggak-99e8a-default-rtdb.firebaseio.com",
+//     projectId: "gyujanggak-99e8a",
+//     storageBucket: "gyujanggak-99e8a.appspot.com",
+//     messagingSenderId: "442347175475",
+//     appId: "1:442347175475:web:ea5374ac2d0c8458972d46"
+// };
 
-export default function EditorMain(props){
+// export async function getServerSideProps(){
+//     let bookList = [];
+//     const app = initializeApp(firebaseConfig);
+//     await getDocs(collection(getFirestore(app), 'bookList')).then((books) => {
+//         books.forEach((book) => {
+//             bookList.push(Object.assign(book.data(), { "isbn": book.id }));
+//         })
+        
+//     })
+//     return {
+//         props: {data: bookList}
+//     }
+// }
+
+export default function EditorMain(){
     const router = useRouter();
     const [isLogin, setLogin] = useState(false);
+    const [bookList, setBookList] = useState(null);
     const [book, selectBook] = useState(
         {
             "title":"",
@@ -42,24 +52,32 @@ export default function EditorMain(props){
 
         }
     );
-    
-    if(getApps().length != 0){
-        onAuthStateChanged(getAuth(), (user) => {
-            if(user){
-                setLogin(true);
 
-            }else{
-                router.push("/auth/login");
+    useEffect(()=>{
+        if (getApps().length != 0) {
+            onAuthStateChanged(getAuth(), async (user) => {
+                if (user) {                    
+                    setLogin(true);
+                    const list = []
+                    await getDocs(collection(getFirestore(), 'bookList')).then((books) => {
+                            books.forEach((book) => {
+                                list.push(Object.assign(book.data(), { "isbn": book.id }));
+                            })
+                        }
+                    )
+                    console.log(bookList);
+                    setBookList(list);
+                }
+            })
+            
+        }else{
+            router.push('/auth/login');
 
-            }
-        })
-    }else{
-        router.push("/auth/login");
-
-    }
+        }
+    },[])
 
     const updateBookList = (newData) => {
-        props.data.forEach((book)=>{
+        bookList.forEach((book)=>{
             if(book.title == newData.title){
                 Object.keys(newData).forEach((key)=>{
                     book[key] = newData[key];
@@ -71,14 +89,14 @@ export default function EditorMain(props){
     
     return(
         <>
-            {(isLogin != false && props.data != null)?
+            {(isLogin != false && bookList != null)?
                 <div className={editorMainStyle.editorContainer}>
                     <div className={editorMainStyle.row}>
                         <EditorMainHeadLine/>
                     </div>
                     <div className={editorMainStyle.row}>
                         <div className={editorMainStyle.col}>
-                            <BookList bookList={props.data} selectBook={book} onClick={(bookData)=>{selectBook(bookData)}} />
+                            <BookList bookList={bookList} selectBook={book} onClick={(bookData)=>{selectBook(bookData)}} />
                         </div>
                         <div className={editorMainStyle.col}>
                             <BookEditor selectBook={book} onSelectBookChange={(newData)=>selectBook(newData)} onHandleChange={(newData)=>{updateBookList(newData);}} baseURL={baseURL} />
@@ -87,7 +105,7 @@ export default function EditorMain(props){
                     </div>
                 </div>
             :
-                <div> 로그인이 필요한 페이지 입니다. </div>
+                <div> 페이지를 로딩 중입니다. </div>
             }
         </>
     )
