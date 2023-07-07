@@ -1,7 +1,7 @@
+import { getApps } from 'firebase/app';
 import { collection, getFirestore, getDocs } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useState } from 'react';
 import { useRouter } from 'next/router.js';
 
 import EditorMainHeadLine from './editorMainHeadLine.js';
@@ -10,55 +10,26 @@ import BookList from './bookList.js';
 
 import editorMainStyle from '/styles/editorMainStyle.module.scss'
 
-const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    appId: process.env.APP_ID,
-    authDomain: process.env.AUTH_DOMAIN,
-    databaseURL: process.env.DATABASE_URL,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET
-    
-};
-
 const baseURL = "https://gyujanggak.vercel.app"
 
-export async function getServerSideProps(){
-    let dataList = [];
-    let db, auth;
-    
-    try{
-        const app = initializeApp(firebaseConfig);
-        db = getFirestore(app);
-        auth = getAuth(app);
-        
-        
-    }catch(e){
-        console.log("error occur from getServerSideProps: ");
-        db = getFirestore();
-        auth = getAuth();
-        console.log("Error code: "+e.code);
-        console.log("Error message: "+e.message);
-        console.log("Entire error description: "+e);
-
-        
-        
+    export async function getServerSideProps(){
+        let dataList = [];
+        await getDocs(collection(getFirestore(), 'bookList')).then((books)=>{
+            books.forEach((book) => {
+                dataList.push(Object.assign(book.data(), { "isbn": book.id }));
+            })
+            
+        })
+        return {
+            props: {
+                data: dataList
+            }
+        };
     }
 
-    await signInWithEmailAndPassword(auth, process.env.USER_ID, process.env.CODE);
-    const books = await getDocs(collection(db, 'bookList'));
-    books.forEach((book) => {
-        dataList.push(Object.assign(book.data(), { "isbn": book.id }));
-    })
-
-    return {
-        props: {
-            data: dataList
-        }
-    };
-}
-
 export default function EditorMain(props){
+    const router = useRouter();
+    const [isLogin, setLogin] = useState(false);
     const [book, selectBook] = useState(
         {
             "title":"",
@@ -71,29 +42,21 @@ export default function EditorMain(props){
 
         }
     );
-    const [userId, setUserId] = useState(null);
-    const [isLogin, setLoginStatus] = useState(false);
-    const router = useRouter();
     
-    useEffect(()=>{
-        console.log("is login value is : "+isLogin);
-        console.log("props.data is :"+props.data);
+    if(getApps().length != 0){
+        onAuthStateChanged(getAuth(), (user) => {
+            if(user){
+                setLogin(true);
 
-        try{
-            const auth = getAuth();
-            onAuthStateChanged(auth, (user)=>{
-                setLoginStatus(true);
-                setUserId(user.id);
-                
-            })
-            
-        }catch(e){
-            console.log(e);
-            router.push("/auth/login");
+            }else{
+                router.push("/auth/login");
 
-        }
+            }
+        })
+    }else{
+        router.push("/auth/login");
 
-    })
+    }
 
     const updateBookList = (newData) => {
         props.data.forEach((book)=>{
@@ -118,7 +81,7 @@ export default function EditorMain(props){
                             <BookList bookList={props.data} selectBook={book} onClick={(bookData)=>{selectBook(bookData)}} />
                         </div>
                         <div className={editorMainStyle.col}>
-                            <BookEditor selectBook={book} onSelectBookChange={(newData)=>selectBook(newData)} onHandleChange={(newData)=>{updateBookList(newData);}} baseURL={baseURL} userId={userId}/>
+                            <BookEditor selectBook={book} onSelectBookChange={(newData)=>selectBook(newData)} onHandleChange={(newData)=>{updateBookList(newData);}} baseURL={baseURL} />
         
                         </div>
                     </div>

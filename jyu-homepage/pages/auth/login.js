@@ -1,10 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import loginStyle from '/styles/loginStyle.module.scss';
-import { useEffect, useState } from 'react';
-
 
 const firebaseConfig = {
     apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
@@ -19,7 +17,6 @@ const firebaseConfig = {
 export default function Login() {
     
     const router = useRouter();
-    const [auth, setAuth] = useState(null);
     
     const {
         register,
@@ -29,30 +26,21 @@ export default function Login() {
         }
     } = useForm();
 
-
-    useEffect(()=>{
-        try{
-            const app = initializeApp(firebaseConfig);
-            setAuth(getAuth(app));
-        }catch(e){
-            setAuth(getAuth());
-
-        }
-    })
+    if (getApps().length == 0) {
+        initializeApp(firebaseConfig);
+    }
 
     const onSubmit = (data) =>{
         let id = data.id;
         let pw = data.password;
 
-        signInWithEmailAndPassword(auth, id, pw)
-            .then(() => {
+        signInWithEmailAndPassword(getAuth(), id, pw)
+            .then((userCredential) => {
                 router.push({
                     pathname: '/editor/editorMain'
                 });
-
             })
             .catch((error) => {
-                console.log("authentication failed");
                 console.log(error.code);
                 console.log(error.message);
                 alert("아이디가 존재하지 않거나, 비밀번호가 틀렸습니다.");
@@ -65,6 +53,7 @@ export default function Login() {
             <div className={loginStyle.loginContainer}>
                 <title>Gyujanggak: Login</title>
                 <div className={loginStyle.titleGroup}>Gyujanggak</div>
+                <div id="signInContainer"/>
                 <div className={loginStyle.inputGroup}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className={loginStyle.idInputGroup}>
