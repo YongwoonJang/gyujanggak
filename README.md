@@ -14,10 +14,6 @@
 
 * Database framework: Firebase
 
-## High level Design
-
-![JYU Homepage HLD /architecure/JYUHomepageHLD.svg 참고](https://raw.githubusercontent.com/YongwoonJang/gyujanggak/master/architecture/JYUHomepageHLD.svg)
-
 ## UI Design
 
 * [FIGMA for gyujanggak project](https://www.figma.com/file/evLHskvh2MgMXOzMoCzuDe/Management-site?node-id=0%3A1)
