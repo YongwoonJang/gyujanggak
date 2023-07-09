@@ -1,8 +1,8 @@
-import { getApps, initializeApp } from 'firebase/app';
+import { getApps } from 'firebase/app';
 import { collection, getFirestore, getDocs } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router.js';
+import { useRouter } from 'next/router';
 
 import EditorMainHeadLine from './editorMainHeadLine.js';
 import BookEditor from './bookEditor.js';
@@ -11,30 +11,6 @@ import BookList from './bookList.js';
 import editorMainStyle from '/styles/editorMainStyle.module.scss'
 
 const baseURL = "https://gyujanggak.vercel.app"
-
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
-//     authDomain: "gyujanggak-99e8a.firebaseapp.com",
-//     databaseURL: "https://gyujanggak-99e8a-default-rtdb.firebaseio.com",
-//     projectId: "gyujanggak-99e8a",
-//     storageBucket: "gyujanggak-99e8a.appspot.com",
-//     messagingSenderId: "442347175475",
-//     appId: "1:442347175475:web:ea5374ac2d0c8458972d46"
-// };
-
-// export async function getServerSideProps(){
-//     let bookList = [];
-//     const app = initializeApp(firebaseConfig);
-//     await getDocs(collection(getFirestore(app), 'bookList')).then((books) => {
-//         books.forEach((book) => {
-//             bookList.push(Object.assign(book.data(), { "isbn": book.id }));
-//         })
-        
-//     })
-//     return {
-//         props: {data: bookList}
-//     }
-// }
 
 export default function EditorMain(){
     const router = useRouter();
