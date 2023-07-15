@@ -2,66 +2,63 @@
 import { getDocs, getFirestore, collection } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import pageStyles from '/styles/page.module.scss'
 
 // firebase
 import { initializeApp } from 'firebase/app'
-import { signOut, signInWithEmailAndPassword, getAuth, onAuthStateChanged, setPersistence, inMemoryPersistence } from 'firebase/auth'
-
+import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
 
 // Component
 import CommentTable from '../../../components/commentTable'
 import sortBookListByTitle from '../../../components/utils';
 import { identification } from '../../../components/firebaseConfig';
+import WorkExperience from '../../workExperiences/workExperience';
+
+import utf8 from "utf8";
 
 export default function Communication(){
 
     const [bookList, setBookList] = useState(null);
     const [bookPreviewList, setBookPreviewList ] = useState(null);
     const [isText, setIsText] = useState(false);
-
+    const [filter, setFilter] = useState("");
+    
+    let app = null, db = null, auth = null;
     const firebaseConfig = {
         apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
         authDomain: "gyujanggak-99e8a.firebaseapp.com",
         projectId: "gyujanggak-99e8a"
     }
 
-    let app = null;
-
     try{
         app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth();
     }catch(e){
         console.log("Error in communication component!!");
         console.log(e);
     }
     
+    //Load List
     useEffect(async()=>{
-        const db = getFirestore();
-        const auth = getAuth();
-        await setPersistence(auth, inMemoryPersistence); 
-        
-        let credential = null;
+        await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
+        .then(() => {
+            console.log("login success");
+        })
+        .catch((error) => {
+            console.log(error);
 
-        onAuthStateChanged(auth, (credit) => {credential = credit;});
+        });
 
-        if(credential === null){
-            await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
-                .then(() => {
-                    console.log("login success");
-                })
-                .catch((error) => {
-                    console.log(error);
-
-                });
-        }
-        
         const books = await getDocs(collection(db, "bookList"));
         const sortBooks = sortBookListByTitle(books);
 
-        let elements = [];
+        let descList = [], imgList = [];
+
         sortBooks.forEach((book)=>{
-            elements.push(
+            descList.push(
                 <li key={book.data().title}>
                     <Link href={"/books/" + book.id}>
                         {book.data().title + " (" + book.data().publishDate + ", " + book.data().author + ")"}
@@ -69,9 +66,8 @@ export default function Communication(){
                 </li>);
         });
 
-        let previewList = [];
         sortBooks.forEach((book)=>{
-            previewList.push(
+            imgList.push(
                 <div className={pageStyles.bookImgFrame}>
                     <Link href={"/books/" + book.id}>
                         <a>
@@ -79,29 +75,23 @@ export default function Communication(){
                                 src={book.data().image}
                                 alt={book.data().title}
                             />
+                            <div>
+                                {utf8.decode(book.data().review).slice(0,40)+"..."}
+                            </div>
                         </a>
                     </Link>
                 </div>
             )
         })
 
-        setBookList(elements);
-        setBookPreviewList(previewList);
-        
-        return async () => {
-            await signOut(auth)
-            .then(()=>{console.log("logout success")})
-            .catch((error)=>{
-                console.log(error);
-            });
-        }
+        setBookList(descList);
+        setBookPreviewList(imgList);
         
     },[])
 
-
-    let loadingDot = 1;
-    let dots = ".";
     useEffect(()=>{
+        let loadingDot = 1;
+        let dots = "."
         const doc = document.getElementById("loading");
         if(doc != null){
             const interval = setInterval(()=>{
@@ -113,27 +103,66 @@ export default function Communication(){
                     doc.innerHTML = "다시 접속해 주세요.^^";
                     loadingDot = 1;
                 }
-
-
             },1000)
-
             return () => clearInterval(interval);
         }
-
     },[])
+
+    const promptActionHandler = (event) => {
+        setFilter(event.target.value);
+    }
 
     return(
         <>
             {/* main title and description */ }
-            <div className={pageStyles.communicationMainBackgroundImage}>
-                <div className={pageStyles.communicationTitleGroup}>
-                    <div className={pageStyles.communicationTitle}>
-                        Y<span>ongwoon's creative garage</span>
+            <div className={pageStyles.comBannerGroup}>
+                <div>
+                    <Link href="https://www.instagram.com/j_major_scale/">
+                        <a>
+                            <Image 
+                                src="/images/icon/instagramIcon.png" 
+                                width={40}
+                                height={40}
+                            />
+                        </a>
+                    </Link>
+                    <Link href="https://blog.naver.com/jyy3k">
+                        <a>
+                            <Image
+                                src="/images/icon/naverIcon.png"
+                                width={40}
+                                height={40}
+                            />
+                        </a>
+                    </Link>
+                    <Link href="https://www.facebook.com/YongwoonJang88">
+                        <a>
+                            <Image
+                                src="/images/icon/facebookIcon.png"
+                                width={40}
+                                height={40}
+                            />
+                        </a>
+                    </Link>
+                    <Link href="https://www.youtube.com/channel/UCCBDNHHeeh5FZX3ZnJ1VDcg">
+                        <a>
+                            <Image
+                                src="/images/icon/youtubeIcon.png"
+                                width={40}
+                                height={40}
+                            />
+                        </a>
+                    </Link>
+                </div>
+                <div>
+                    <div>
+                        <label className={pageStyles.comBannerGroupLabel}>
+                            <a href="/workExperiences/workExperience">장용운</a>'s Archive: 
+                        </label>
                     </div>
-                    <div className={pageStyles.communicationMotto}>
-                        <span>안녕하세요.</span><br/><br/>
-                        <span>제가 좋아하는 것들을 모아두었습니다.</span><br /><br />
-                        <span>인스타그램 <a href="https://www.instagram.com/minor_gyujanggak/" target="__blank"> @minor_gyujanggak </a></span><br />
+                    <div>
+                        <input onChange={promptActionHandler} className={pageStyles.comBannerGroupInput} placeholder="책 이름을 검색하세요"/>
+                        <span className={pageStyles.comBannerGroupInputBar} />
                     </div>
                 </div>
             </div>
@@ -149,7 +178,18 @@ export default function Communication(){
                                     </ul>
                                 </>:
                                 <>
-                                    {bookPreviewList}
+                                    
+                                    {
+                                        bookPreviewList
+                                        &&
+                                        (
+                                            bookPreviewList
+                                            .filter(e =>  
+                                                e.props.children.props.children.props.children[0].props.alt.toLowerCase().includes(filter.toLowerCase())).length === 0 ?
+                                                ((filter.toLowerCase() == "chating" | filter.toLowerCase() == "chat" | filter.toLowerCase() == "채팅" | filter.toLowerCase() === "장용운")?"":<div className={pageStyles.bookImgWaitingText}>"원하는 책이 없네욤"</div>)
+                                                : bookPreviewList.filter(e => e.props.children.props.children.props.children[0].props.alt.toLowerCase().includes(filter.toLowerCase()))
+                                        )
+                                    }
                                 </>
                             }
                         </div>
@@ -158,8 +198,15 @@ export default function Communication(){
                         </div>
                     </div>
                     <div>
-                        <CommentTable app={app} section="chats" />
+                        {
+                            (filter.toLowerCase() == "chating" | filter.toLowerCase() == "chat" | filter.toLowerCase() == "채팅")?
+                            <CommentTable app={app} section="chats" />:""
+                        }
                     </div>
+                    <div>
+                        {(filter === "장용운"?<WorkExperience/>:"")}
+                    </div>
+                    
                 </>
             }
         </>

@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Head from 'next/head'
 import Layout from '/components/layout'
 import mainPageStyles from '/styles/mainPage.module.css'
+
+import Head from 'next/head'
+import Communication from './posts/post/communication'
+
 
 export default function Home() {
   
@@ -16,16 +19,17 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>"YongwoonJang's Creative Home"</title>
+        <title>"THE Archive"</title>
         <meta property="og:url" content="https://gyujanggak.vercel.app"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:title" content="YongwoonJang's Creative Home" />
-        <meta property="og:description" content="피아노, 프로그래밍, 플라모델, 수영, 영어를 사랑하는 서울사는 장용운의 이야기입니다."/>
+        <meta property="og:title" content="장용운의 Archive" />
+        <meta property="og:description" content="Artist & IT service manager"/>
         <meta property="og:image" content="https://gyujanggak.vercel.app/profile.png" />
         <meta property="og:image:secure_url" content="https://gyujanggak.vercel.app/profile.png" />
-        <meta name="keywords" content={"책, 프로그래밍, 플라모델, 수영, 영어"} />
+        <meta name="keywords" content={"책, 프로그래밍, 피아노, 음악"} />
       </Head>
-      <Layout>
+      <Communication/>
+      {/* <Layout>
         <ul className={mainPageStyles.mainMenuList}>
           {allPostsData.map(({ id, title, url }) => (
             <li key={id} className={mainPageStyles.mainMenuListItems}>
@@ -43,7 +47,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </Layout>
+      </Layout> */}
     </>
   )
 }
