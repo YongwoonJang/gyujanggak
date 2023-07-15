@@ -395,10 +395,23 @@ $communication-a-link-color: rgb(166, 26, 26);
   padding-bottom: 0%;
 }
 
+    @media screen and (max-width : $breakpoint-mobile) {
+      .comBannerGroupLabel {
+        font-size: 13px;
+      }
+
+    }
+
 .comBannerGroupLabel a {
   color:black;
   font-size: 40px;
 }
+
+  @media screen and (max-width : $breakpoint-mobile) {
+    .comBannerGroupLabel a{
+      font-size: 13px;
+    }
+  }
 
 .comBannerGroupLabel a:hover {
   color:#757575;
@@ -418,6 +431,14 @@ $communication-a-link-color: rgb(166, 26, 26);
   border-bottom: 1px solid #757575;
 
 }
+
+    @media screen and (max-width : $breakpoint-mobile) {
+      .comBannerGroupInput {
+        font-size: 11px;
+        margin-bottom: 0px;
+        padding: 5px 5px 1px 1px;
+      }
+    }
 
 .comBannerGroupInput:focus {
   outline: none;
@@ -486,9 +507,6 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 }
 
-
-
-
 .bookGroupSection {
   margin: 0 auto;
   margin-top: 3px;
@@ -512,6 +530,14 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 }
 
+  @media screen and (max-width: $breakpoint-mobile) {
+    .bookBox {
+        padding-left: 0%;
+        padding-right: 0%;
+    
+      }
+  }
+
 .bookBoxButton {
   text-align: right;
   display:none;
@@ -525,14 +551,24 @@ $communication-a-link-color: rgb(166, 26, 26);
   
 }
 
+  @media screen and (max-width: $breakpoint-mobile) {
+    .bookImgFrame {
+      width: 100%;
+      margin-left: 3.5%;
+      margin-right: 3.5%;
+      margin-bottom: 2%;
+    }
+  }
+
 .bookImgFrame img{
   margin: 0px auto;
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
   .bookImgFrame{
-    width: (100%/5);
-    margin-bottom: 1px;
+    width: (100%/4);
+    margin-bottom: 6%;
+    font-size: 0.5em;
     
   }
   
