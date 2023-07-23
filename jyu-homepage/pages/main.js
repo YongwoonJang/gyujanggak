@@ -162,7 +162,7 @@ export default function Main(){
                     <div>
                         <input 
                             onFocus={()=>{setFocus(true)}} 
-                            onFocusin={()=>{setFocus(true)}}
+                            onInput={() => { setFocus(true)}}
                             onBlur={()=>{setFocus(false)}} 
                             onChange={promptActionHandler} 
                             className={pageStyles.comBannerGroupInput} 
