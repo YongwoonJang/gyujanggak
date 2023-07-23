@@ -369,14 +369,14 @@ $communication-a-link-color: rgb(166, 26, 26);
   text-align: left;
   font-family: "SBAggro M";
   font-size: 35px;
-  margin-top: 1%;
+  margin-top: 0%;
   background-color: white;
 
 }
 
 .comBannerGroupFocus {
   position: fixed;
-  top: -6%;
+  top: 0%;
   width: 100%;
 
 }
@@ -389,6 +389,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 
 .comBannerGroupLink {
+  margin-top: 1%;
   margin-left: 3%;
 }
 
@@ -571,7 +572,7 @@ $communication-a-link-color: rgb(166, 26, 26);
     }
 
     .bookGroupSectionFocus {
-      padding-top: 14%;
+      padding-top: 30%;
 
     }
     
