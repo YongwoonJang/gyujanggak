@@ -81,11 +81,6 @@ function mainCharacterCard(){
                 Yongwoon Jang
             </div>
             <div className={profileDivTableStyles.profileMainCharacter}>
-                {/* <div className={profileDivTableStyles.profileMainCharacterBG}>
-                    <div>
-                        <Image src='/images/background/MainProfileBG.png' width={1200} height={500} />
-                    </div>
-                </div> */}
                 <div className={profileDivTableStyles.profileMainCharacterImgDesktop}>
                     <div>
                         {/* <Image src={'/images/YongwoonJangMediaCenter.png'} width={360} height={500} layout="intrinsic" /> */}
@@ -176,7 +171,7 @@ function commonHistoryCard(){
                         March. 2007. Entrance to Konkuk University --<br/>
                         </p>
                         <div>
-                            <Image src={'/images/GraduationOfHighSchool.png'} width={300} height={235} />
+                            <Image style={{ zIndex: -1 }} src={'/images/GraduationOfHighSchool.png'} width={300} height={235} />
                         </div>
                     </div>
                     <div className={profileDivTableStyles.profileTreeStem}>
@@ -185,7 +180,7 @@ function commonHistoryCard(){
                     <div ref={leafSchool} className={profileDivTableStyles.profileTreeSchoolRightLeaf}>
                         <div>
                             <br /><br /><br />
-                            <Image src={'/images/AtTheUniv.png'} width={250} height={200} />
+                            <Image style={{ zIndex: -1 }} src={'/images/AtTheUniv.png'} width={250} height={200} />
                         </div>
                     </div>
                 </div>
@@ -202,7 +197,7 @@ function commonHistoryCard(){
                             -- 2011년 임관 (대한민국 통신장교) <br/>
                             -- March 2011. Commissione to Officer <br/>
                             <div>
-                                <Image src={'/images/CommissionedAsAOfficer.png'} width={250} height={200} />
+                                <Image style={{ zIndex: -1 }} src={'/images/CommissionedAsAOfficer.png'} width={250} height={200} />
                             </div>
                         </p>
                     </div>
@@ -256,7 +251,7 @@ function ktHistoryCard(){
     return(
         <>
             <div>
-                <Image src={'/images/background/GreenBand.png'} layout="responsive" width={1200} height={10} />
+                <Image style={{ zIndex: -1 }} src={'/images/background/GreenBand.png'} layout="responsive" width={1200} height={10} />
             </div>
             <div className={profileDivTableStyles.detailedWorkExperienceBG}>
                 {stemOfKT}
@@ -278,7 +273,7 @@ function ktHistoryCard(){
                             -- Earned skill JIRA, Sharepoint Operating skill <br/>
                             </div>
                             <div>
-                                <Image src={'/images/JiraSharepointLicense.png'} layout={"intrinsic"} width={150} height={180} />
+                                <Image style={{ zIndex:-1 }} src={'/images/JiraSharepointLicense.png'} layout={"intrinsic"} width={150} height={180} />
                             </div>
                         </p>
                     </div>
@@ -294,7 +289,7 @@ function ktHistoryCard(){
                             Earned skill : Contract with offshore (Israel) --<br/>
                         </div>
                         <div>
-                            <Image src={'/images/procurementManagement.jpeg'} width={400} height={300} />
+                            <Image style={{ zIndex: -1 }} src={'/images/procurementManagement.jpeg'} width={400} height={300} />
                         </div>
                     </div>
                     <div className={profileDivTableStyles.jobTreeStem}>
@@ -322,14 +317,14 @@ function ktHistoryCard(){
 
                             </div>
                             <div>
-                                <Image src={'/images/CloudPlatformJYU.jpg'} layout={"intrinsic"} width={280} height={350} />
+                                <Image style={{ zIndex: -1 }} src={'/images/CloudPlatformJYU.jpg'} layout={"intrinsic"} width={280} height={350} />
                             </div>
                         </p>
                     </div>
                 </div> 
             </div>
             <div className={profileDivTableStyles.ktBottom}>
-                <Image src={'/images/background/GreenBand(bottom).png'} layout="responsive" width={1200} height={10} />
+                <Image style={{ zIndex: -1 }} src={'/images/background/GreenBand(bottom).png'} layout="responsive" width={1200} height={10} />
             </div>
         </>
     )
@@ -360,7 +355,7 @@ function ktcloudHistoryCard(){
                         Earned skill : REST API documentation, SaaS architecturing --<br/>
                     </div>
                     <div>
-                        <Image src={'/images/ktToKtcloudNew.jpg'} layout={"intrinsic"} width={600} height={350} alt="Loading" />
+                        <Image style={{ zIndex: -1 }} src={'/images/ktToKtcloudNew.jpg'} layout={"intrinsic"} width={600} height={350} alt="Loading" />
                     </div>
                 </div>
                 <div className={profileDivTableStyles.jobTreeStem}>

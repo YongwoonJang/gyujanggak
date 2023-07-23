@@ -21,7 +21,7 @@ $breakpoint-mobile : 420px;
 
 // 개인 이력을 보유한 테이블
 .profileMainCharacter{
-  z-index:1;
+  z-index: -1;
   position : relative;
   display: flex;
   margin : auto;
@@ -32,7 +32,7 @@ $breakpoint-mobile : 420px;
 }
 
 .profileMainCharacter p{
-  z-index:0;
+  z-index: -1;
   padding-top: 5%;
   padding-left: 0%;
   font-size: 0.9em;

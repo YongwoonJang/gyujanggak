@@ -370,34 +370,75 @@ $communication-a-link-color: rgb(166, 26, 26);
   font-family: "SBAggro M";
   font-size: 35px;
   margin-top: 1%;
-  margin-left:3%;
+  background-color: white;
+
+}
+
+.comBannerGroupFocus {
+  position: fixed;
+  top: -6%;
+  width: 100%;
+
 }
 
   @media screen and (max-width : $breakpoint-mobile){
     .comBannerGroup{
       font-size: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 40px;      
     }
   }
 
-.comBannerGroup div:nth-child(2){
+.comBannerGroupLink {
+  margin-left: 3%;
+}
+
+.comBannerGroupLinkNone{
+  display:none;
+}
+
+
+.comBannerGroupInputGroup{
   margin-top: 3%;
-  margin-bottom: 5%;
+  margin-bottom: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.comBannerGroupInputGroupFocus {
+  margin-bottom: 2%;
+  margin-top: 4%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+  @media screen and (max-width : $breakpoint-mobile) {
+    .comBannerGroupInputGroupFocus {
+        margin-bottom: 2%;
+        margin-top: 11%;
+    }
+  }
+
 .comBannerGroup div:nth-child(2) div:nth-child(2){
   display:block;
   justify-content: center;
-  padding: 1%;
-  padding-bottom: 0%;
+  padding-top: 0.5%;
+  padding-left: 1.5%;
+  padding-bottom: 1%;
+}
+
+.comBannerGroupLabelFocus {
+  display: none;
 }
 
     @media screen and (max-width : $breakpoint-mobile) {
       .comBannerGroupLabel {
         font-size: 13px;
+      }
+      .comBannerGroupLabelFocus {
+        display:none;
       }
 
     }
@@ -438,6 +479,12 @@ $communication-a-link-color: rgb(166, 26, 26);
         margin-bottom: 0px;
         padding: 5px 5px 1px 1px;
       }
+
+      .comBannerGroupInput:focus {
+        font-size: 15px;
+      
+      }
+
     }
 
 .comBannerGroupInput:focus {
@@ -512,10 +559,20 @@ $communication-a-link-color: rgb(166, 26, 26);
   margin-top: 3px;
 }
 
+.bookGroupSectionFocus {
+  padding-top: 10%;
+
+}
+
   @media screen and (max-width: $breakpoint-mobile) {
     .bookGroupSection{
       margin-top: 1px;
       margin-left: 0px;
+    }
+
+    .bookGroupSectionFocus {
+      padding-top: 14%;
+
     }
     
   }
@@ -782,6 +839,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
   @media screen and (max-width: $breakpoint-mobile){
     .bookTitle{
+      font-size: 1em;
       margin-bottom: 0em;
     }
   }
@@ -791,12 +849,26 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 }
 
+  @media screen and (max-width: $breakpoint-mobile){
+    .bookImage {
+      margin-right: 0%;
+    }
+  }
+
 .opinionBox{
   display: flex;
   width: 100%;
   padding-left: 0.5em;
   padding-right: 100px;
 }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    .opinionBox{
+      padding-left: 2%;
+      padding-right: 2%;
+
+    }
+  }
 
 .opinion {
   font-family: "SBAggro L";
@@ -809,7 +881,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 }
   @media screen and (max-width:$breakpoint-mobile){
     .opinion{
-      float: left;
+      line-height: 1.6em;
 
     }
 

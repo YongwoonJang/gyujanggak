@@ -1,4 +1,3 @@
-
 import { getDocs, getFirestore, collection } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -11,19 +10,20 @@ import { initializeApp } from 'firebase/app'
 import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
 
 // Component
-import CommentTable from '../../../components/commentTable'
-import sortBookListByTitle from '../../../components/utils';
-import { identification } from '../../../components/firebaseConfig';
-import WorkExperience from '../../workExperiences/workExperience';
+import CommentTable from '../components/commentTable'
+import sortBookListByTitle from '../components/utils';
+import { identification } from '../components/firebaseConfig';
+import WorkExperience from './workExperiences/workExperience';
 
 import utf8 from "utf8";
 
-export default function Communication(){
+export default function Main(){
 
     const [bookList, setBookList] = useState(null);
     const [bookPreviewList, setBookPreviewList ] = useState(null);
     const [isText, setIsText] = useState(false);
     const [filter, setFilter] = useState("");
+    const [isFocus, setFocus] = useState(false);
     
     let app = null, db = null, auth = null;
     const firebaseConfig = {
@@ -60,7 +60,7 @@ export default function Communication(){
         sortBooks.forEach((book)=>{
             descList.push(
                 <li key={book.data().title}>
-                    <Link href={"/books/" + book.id}>
+                    <Link href={"/book/" + book.id}>
                         {book.data().title + " (" + book.data().publishDate + ", " + book.data().author + ")"}
                     </Link>
                 </li>);
@@ -69,7 +69,7 @@ export default function Communication(){
         sortBooks.forEach((book)=>{
             imgList.push(
                 <div className={pageStyles.bookImgFrame}>
-                    <Link href={"/books/" + book.id}>
+                    <Link href={"/book/" + book.id}>
                         <a>
                             <img
                                 src={book.data().image}
@@ -114,9 +114,8 @@ export default function Communication(){
 
     return(
         <>
-            {/* main title and description */ }
-            <div className={pageStyles.comBannerGroup}>
-                <div>
+            <div className={isFocus?`${pageStyles.comBannerGroup} ${pageStyles.comBannerGroupFocus}`:`${pageStyles.comBannerGroup}`}>
+                <div className={isFocus ? `${pageStyles.comBannerGroupLinkNone}` : `${pageStyles.comBannerGroupLink}`}>
                     <Link href="https://www.instagram.com/j_major_scale/">
                         <a>
                             <Image 
@@ -154,14 +153,20 @@ export default function Communication(){
                         </a>
                     </Link>
                 </div>
-                <div>
+                <div className={isFocus ? `${pageStyles.comBannerGroupInputGroupFocus}`:`${pageStyles.comBannerGroupInputGroup}`}>
                     <div>
-                        <label className={pageStyles.comBannerGroupLabel}>
+                        <label className={isFocus ? `${pageStyles.comBannerGroupLabel} ${pageStyles.comBannerGroupLabelFocus}` : `${pageStyles.comBannerGroupLabel}`}>
                             <a href="/workExperiences/workExperience">장용운</a>'s Archive: 
                         </label>
                     </div>
                     <div>
-                        <input onChange={promptActionHandler} className={pageStyles.comBannerGroupInput} placeholder="책 이름을 검색하세요"/>
+                        <input 
+                            onFocus={()=>{setFocus(true)}} 
+                            onBlur={()=>{setFocus(false)}} 
+                            onChange={promptActionHandler} 
+                            className={pageStyles.comBannerGroupInput} 
+                            placeholder="책 이름, 장용운, 채팅 중 하나를 써보세요"
+                        />
                         <span className={pageStyles.comBannerGroupInputBar} />
                     </div>
                 </div>
@@ -169,7 +174,7 @@ export default function Communication(){
             {bookList === null ? 
                 <div id="loading" className={pageStyles.bookGroupSectionLoading}>좋아하는 것을 불러오고 있습니다.</div> :
                 <>
-                    <div className={pageStyles.bookGroupSection}>
+                    <div className={isFocus?`${pageStyles.bookGroupSection} ${pageStyles.bookGroupSectionFocus}`:`${pageStyles.bookGroupSection}`}>
                         <div className={pageStyles.bookBox}>
                             {isText?
                                 <>
@@ -206,7 +211,6 @@ export default function Communication(){
                     <div>
                         {(filter === "장용운"?<WorkExperience/>:"")}
                     </div>
-                    
                 </>
             }
         </>

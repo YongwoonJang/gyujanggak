@@ -1,10 +1,5 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import Layout from '/components/layout'
-import mainPageStyles from '/styles/mainPage.module.css'
-
 import Head from 'next/head'
-import Communication from './posts/post/communication'
+import Main from './main'
 
 
 export default function Home() {
@@ -28,26 +23,7 @@ export default function Home() {
         <meta property="og:image:secure_url" content="https://gyujanggak.vercel.app/profile.png" />
         <meta name="keywords" content={"책, 프로그래밍, 피아노, 음악"} />
       </Head>
-      <Communication/>
-      {/* <Layout>
-        <ul className={mainPageStyles.mainMenuList}>
-          {allPostsData.map(({ id, title, url }) => (
-            <li key={id} className={mainPageStyles.mainMenuListItems}>
-              <Link href={url}>
-                <a>
-                  <Image
-                    src={'/images/' + id + '.jpg'}
-                    height={300}
-                    width={300}
-                    alt={title}
-                    priority
-                  />
-                </a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Layout> */}
+      <Main/>
     </>
   )
 }
