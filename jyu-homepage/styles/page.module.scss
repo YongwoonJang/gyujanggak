@@ -552,7 +552,10 @@ $communication-a-link-color: rgb(166, 26, 26);
 @media screen and (max-width: $breakpoint-mobile) {
   .bookGroupSectionLoading {
     font-size: 15px;
+    margin : 40% auto;
   }
+
+    
 }
 
 .bookGroupSection {
@@ -572,7 +575,7 @@ $communication-a-link-color: rgb(166, 26, 26);
     }
 
     .bookGroupSectionFocus {
-      padding-top: 30%;
+      padding-top: 40%;
 
     }
     
