@@ -163,6 +163,7 @@ export default function Main(){
                         <input 
                             onFocus={()=>{setFocus(true)}} 
                             onInput={() => { setFocus(true)}}
+                            onKeyDown={() => {setFocus(true)}}
                             onBlur={()=>{setFocus(false)}} 
                             onChange={promptActionHandler} 
                             className={pageStyles.comBannerGroupInput} 
