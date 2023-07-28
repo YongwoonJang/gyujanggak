@@ -26,6 +26,7 @@ export default function Main(){
     const [isFocus, setFocus] = useState(false);
     
     let app = null, db = null, auth = null;
+
     const firebaseConfig = {
         apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
         authDomain: "gyujanggak-99e8a.firebaseapp.com",
@@ -40,6 +41,19 @@ export default function Main(){
         console.log("Error in communication component!!");
         console.log(e);
     }
+
+    useEffect(()=>{
+        window.addEventListener('scroll', (event)=>{
+            if(document.documentElement.scrollTop > 50){
+                setFocus(true);
+                
+            }else{
+                setFocus(false);
+
+            }
+        });
+
+    });
     
     //Load List
     useEffect(async()=>{
@@ -161,10 +175,6 @@ export default function Main(){
                     </div>
                     <div>
                         <input 
-                            onFocus={()=>{setFocus(true)}} 
-                            onInput={() => { setFocus(true)}}
-                            onKeyDown={() => {setFocus(true)}}
-                            onBlur={()=>{setFocus(false)}} 
                             onChange={promptActionHandler} 
                             className={pageStyles.comBannerGroupInput} 
                             placeholder="책 이름, 장용운, 채팅 중 하나를 써보세요"
