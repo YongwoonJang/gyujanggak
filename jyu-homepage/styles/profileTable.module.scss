@@ -8,8 +8,6 @@ $breakpoint-mobile : 420px;
 .profileDivTableTitle{
   font-size: 2.5em;
   text-align: center;
-  font-family: "SBAggro M";
-  margin-top: 0.3em;
 
 }
 
@@ -116,67 +114,32 @@ $breakpoint-mobile : 420px;
     }
   }
 
-
-.profileTreeBornLeaf{
-  font-size: 1.0em;
-
-}
-
-  @media screen and (max-width: $breakpoint-mobile){
-    .profileTreeBornLeaf{
-      font-size: 0.5em;
-
-    }
-  }
-
-
-.profileTreeSchoolLeaf{
+.profileTreeLeftLeaf {
   justify-self: right;
+  text-align: right;
   
 }
 
-.profileTreeSchoolLeaf p{
-  text-align: right;
-
-}
-
   @media screen and (max-width: $breakpoint-mobile){
-    .profileTreeSchoolLeaf{
+    .profileTreeLeftLeaf{
       font-size: 0.5em;
 
     }
   }
 
-  @media screen and (max-width: $breakpoint-mobile){
-  .profileTreeOfficerLeaf{
-    font-size: 0.7em;
-   }
-  }
 
-  .profileTreeJobLeaf{
-    text-align: right;
-  }
-
-  @media screen and (max-width: $breakpoint-mobile){
-  .profileTreeJobLeaf{
-    font-size: 0.7em;
-   }
-  }
-
-.profileTreeEntLeaf{
-  justify-self: right;
+.profileTreeRightLeaf {
+  font-size: 1.0em;
+  justify-self: left;
 
 }
-@media screen and (max-width : $breakpoint-mobile){
-  .profileTreeEntLeaf{
-    font-size: 0.45em;
-    text-align: right;
-  }
-  .profileTreeEntLeaf div{
-    width: 80%;
+
+@media screen and (max-width: $breakpoint-mobile) {
+  .profileTreeRightLeaf {
+    font-size: 0.5em;
+
   }
 }
-
 
 .profileDivTableTitle div{
   height: 10%;
@@ -184,56 +147,40 @@ $breakpoint-mobile : 420px;
   // position: relative;
 }
 
-.profileTreeWorkLeftLeaf{
-  text-align: right;
-}
-
-.detailedWorkExperienceBG{
+.detailWorkExperienceBG{
+  position: relative;
+  z-index: -2;
   background-color: rgb(107, 182,156);
   color: white;
 
 }
 
-.detailedWorkExperienceStatement{
-  display: inline-block;
-
-}
-
 @media screen and (max-width:$breakpoint-mobile){
-  .detailedWorkExperienceStatement{
+  .detailWorkExperienceStatement{
     font-size: 0.5em;
   }
 }
 
-.profileTreeBGItem{
+.branch{
   width: 100%;
-  justify-content: center;
-
   display: grid;
   grid-template-columns: 49% 2% 1fr;
-  // grid-auto-rows: minmax(100px, 1fr);
+  justify-items: center;
 
 }
 
-.profileTreeStem{
+.stem{
   background-color: black;
-  justify-self: center;
-  width: 25%;
+  width: 20%;
   color:white;
   
 }
 
-.jobTreeStem{
+.boldStem{
   background-color: black;
-  justify-self: center;
   width: 15%;
   color:white;
   
-}
-
-.ktBottom{
-  
-  margin-bottom: 0;
 }
 
 .ktcloudProfileDivTableTitle {
@@ -256,7 +203,6 @@ $breakpoint-mobile : 420px;
 .ktcloudDetailedWorkExperienceBG {
   color: white;
 
-
 }
 
 .ktcloudDetailedWorkExperienceStatement {
@@ -268,10 +214,6 @@ $breakpoint-mobile : 420px;
   .ktcloudDetailedWorkExperienceStatement{
     font-size: 0.5em;
   }
-}
-
-.ktcloudProfileTreeWorkLeftLeaf {
-  text-align: right;
 }
 
 .ktcloudProfileTreeBGItem {

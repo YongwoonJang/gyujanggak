@@ -2,15 +2,25 @@ import profileDivTableStyles from '/styles/profileTable.module.scss'
 import CopyRight from '/components/copyRight'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
-
+import Leaf from './leaf'
 
 //const baseURL = "http://localhost:80";
 const baseURL = "https://gyujanggak.vercel.app/api";
 
 // These variables used for making stems
-let stem = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.profileTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
-let stemOfKT = <div className={profileDivTableStyles.profileTreeBGItem}><div>&nbsp;</div><div className={profileDivTableStyles.jobTreeStem}>&nbsp;</div><div>&nbsp;</div></div>;
+let stem = 
+    <div className={profileDivTableStyles.branch}>
+        <div>&nbsp;</div>
+        <div className={profileDivTableStyles.stem}>&nbsp;</div>
+        <div>&nbsp;</div>
+    </div>
 
+let boldStem = 
+    <div className={profileDivTableStyles.branch}>
+        <div>&nbsp;</div>
+        <div className={profileDivTableStyles.boldStem}>&nbsp;</div>
+        <div>&nbsp;</div>
+    </div>;
 
 function sendToOwner(mailAddr, contents) {
     let mailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -83,7 +93,6 @@ function mainCharacterCard(){
             <div className={profileDivTableStyles.profileMainCharacter}>
                 <div className={profileDivTableStyles.profileMainCharacterImgDesktop}>
                     <div>
-                        {/* <Image src={'/images/YongwoonJangMediaCenter.png'} width={360} height={500} layout="intrinsic" /> */}
                         <Image src={'/images/jangNewProfile.png'} width={700} height={650} layout="intrinsic" />
                     </div>
                 </div>
@@ -124,103 +133,74 @@ function mainCharacterCard(){
 //....commissioned |
 //.....
 function commonHistoryCard(){
-    
-    const leafSchool = useRef(null);
-    const leafBorn = useRef(null);
-    const leafOfficer = useRef(null);
-    const leafEntry = useRef(null);
-
-    useEffect(() => {
-        window.addEventListener("scroll", function () {
-            var leafElement = leafBorn.current;
-            if(leafElement != null){
-                leafElement.style.marginTop = - document.documentElement.scrollTop / 20 + 'px';
-                leafElement = leafSchool.current;
-                leafElement.style.marginTop = - document.documentElement.scrollTop / 20 + 'px';
-                leafElement = leafOfficer.current;
-                leafElement.style.marginTop = - document.documentElement.scrollTop / 10 + 'px';
-                leafElement = leafEntry.current;
-                leafElement.style.marginTop = - document.documentElement.scrollTop / 25 + 'px';
-            }
-        });
-    });
 
     return(
-        <>
-            <div>
-                {stem}{stem}{stem}
-                <div className={profileDivTableStyles.profileTreeBGItem}>
-                    <div>
-                        &nbsp;
-                    </div>
-                    <div className={profileDivTableStyles.profileTreeStem}>
-                        &nbsp;
-                    </div>
-                    <div ref={leafBorn} className={profileDivTableStyles.profileTreeBornLeaf}>
-                        -- 1989년 1월 인천 출생<br />
-                        -- Born at Jan. 1989<br />
-                    </div>
-                </div>
-                {stem}
-                <div className={profileDivTableStyles.profileTreeBGItem}>
-                    <div ref={leafSchool} className={profileDivTableStyles.profileTreeSchoolLeaf}>
-                        <p>
+        <div>
+            {stem}{stem}{stem}
+            <Leaf 
+                position="right" 
+                description=
+                    {
+                        <>
+                            -- 1989년 1월 인천 출생 <br/> 
+                            -- Born at Jan. 1989
+                        </>
+                    }
+                speed={20}
+                phase={1}
+            />
+            {stem}
+            <Leaf
+                position="left"
+                description=
+                {
+                    <>
                         2004년 3월, 인천고등학교 입학 --<br />
                         2007년 3월, 건국대학교 입학 --<br /><br />
-                        March. 2004. Entrance to Inchon High school --<br/>
-                        March. 2007. Entrance to Konkuk University --<br/>
-                        </p>
-                        <div>
-                            <Image style={{ zIndex: -1 }} src={'/images/GraduationOfHighSchool.png'} width={300} height={235} />
-                        </div>
-                    </div>
-                    <div className={profileDivTableStyles.profileTreeStem}>
-                        &nbsp;
-                    </div>
-                    <div ref={leafSchool} className={profileDivTableStyles.profileTreeSchoolRightLeaf}>
-                        <div>
-                            <br /><br /><br />
-                            <Image style={{ zIndex: -1 }} src={'/images/AtTheUniv.png'} width={250} height={200} />
-                        </div>
-                    </div>
-                </div>
-                {stem}
-                <div className={profileDivTableStyles.profileTreeBGItem}>
-                    <div>
-                        &nbsp;
-                    </div>
-                    <div className={profileDivTableStyles.profileTreeStem}>
-                        &nbsp;
-                    </div>
-                    <div ref={leafOfficer} className={profileDivTableStyles.profileTreeOfficerLeaf}>
-                        <p>
-                            -- 2011년 임관 (대한민국 통신장교) <br/>
-                            -- March 2011. Commissione to Officer <br/>
-                            <div>
-                                <Image style={{ zIndex: -1 }} src={'/images/CommissionedAsAOfficer.png'} width={250} height={200} />
-                            </div>
-                        </p>
-                    </div>
-                </div>
-                {stem}
-                <div className={profileDivTableStyles.profileTreeBGItem}>
-                    <div ref={leafEntry} className={profileDivTableStyles.profileTreeJobLeaf}>
-                        <p>
-                            2013년 7월 KT 입사 --<br />
-                            July. 2013. Entrance to KT --<br/>
-                        </p>
-                    </div>
-                    <div className={profileDivTableStyles.profileTreeStem}>
-                        &nbsp;
-                    </div>
-                    <div>
-                        &nbsp;
-                    </div>
-                </div>
-            </div>
-        </>
+                        March. 2004. Entrance to Inchon High school --<br />
+                        March. 2007. Entrance to Konkuk University --<br />
+                    </>
+                }
+                speed={20}
+                img={
+                    <>
+                        <Image style={{ zIndex: -1 }} src={'/images/GraduationOfHighSchool.png'} width={300} height={235} />
+                        <Image style={{ zIndex: -1 }} src={'/images/AtTheUniv.png'} width={250} height={200} />
+                    </>
+                }
+                phase={1}
+            />
+            {stem}
+            <Leaf 
+                position="right"
+                description=
+                {
+                    <p>
+                        -- 2011년 임관 (대한민국 통신장교) <br />
+                        -- March 2011. Commissione to Officer <br />
+                    </p>
+                }
+                speed={25}
+                img={
+                    <Image style={{ zIndex: -1 }} src={'/images/CommissionedAsAOfficer.png'} width={250} height={200} />
+                }
+                phase={1}
+            />
+            {stem}
+            <Leaf 
+                position="left"
+                description=
+                {
+                    <p>
+                        2013년 7월 KT 입사 --<br />
+                        July. 2013. Entrance to KT --<br />
+                    </p>
+                }
+                speed={20}
+                phase={1}
+            />
+        </div>
     )
-    
 }
 
 // History of KT.
@@ -231,101 +211,70 @@ function commonHistoryCard(){
 //                | -- 통신사 Business Support System의 SW 라이선스 관리
 //
 function ktHistoryCard(){
-    const leafBSS = useRef(null);
-    const leafRater = useRef(null);
-    // const leafOfficer = useRef(null);
-    // const leafEntry = useRef(null);
-
-    useEffect(() => {
-        window.addEventListener("scroll", function () {
-            if(leafBSS.current != null && leafRater.current != null){
-                if (document.documentElement.scrollTop > 900){
-                    leafBSS.current.style.marginTop =+ document.documentElement.scrollTop / 25 + 'px';
-                    leafRater.current.style.marginTop =- document.documentElement.scrollTop / 15 + 'px';
-
-                }
-            }
-        });
-    });
 
     return(
         <>
-            <div>
-                <Image style={{ zIndex: -1 }} src={'/images/background/GreenBand.png'} layout="responsive" width={1200} height={10} />
-            </div>
-            <div className={profileDivTableStyles.detailedWorkExperienceBG}>
-                {stemOfKT}
-                <div className={profileDivTableStyles.profileTreeBGItem}>
-                    <div>
-                        &nbsp;
-                    </div>
-                    <div className={profileDivTableStyles.jobTreeStem}>
-                        &nbsp;
-                    </div>
-                    <div ref={leafBSS}>
+            <Image style={{ zIndex: -3 }} src={'/images/background/GreenBand.png'} layout="responsive" width={1200} height={10} />
+            <div className={profileDivTableStyles.detailWorkExperienceBG}>
+                {boldStem}
+                <Leaf 
+                    position="right"
+                    description={
                         <p>
-                            <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
                             -- 2013년 11월 ~ 2014년 5월 <br />
                             -- 통신사 Business support system의 SW 라이선스 관리 <br />
                             -- JIRA, Sharepoint Operating 운영 능력 향상 <br /><br />
-                            -- Nov. 2013 ~ May. 2014 <br/>
-                            -- Telco. BSS Resource and Software License management <br/>
-                            -- Earned skill JIRA, Sharepoint Operating skill <br/>
-                            </div>
-                            <div>
-                                <Image style={{ zIndex:-1 }} src={'/images/JiraSharepointLicense.png'} layout={"intrinsic"} width={150} height={180} />
-                            </div>
+                            -- Nov. 2013 ~ May. 2014 <br />
+                            -- Telco. BSS Resource and Software License management <br />
+                            -- Earned skill JIRA, Sharepoint Operating skill <br />
                         </p>
-                    </div>
-                </div> 
-                <div className={profileDivTableStyles.profileTreeBGItem}>
-                    <div ref={leafRater} className={profileDivTableStyles.profileTreeWorkLeftLeaf}>
-                        <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
+                    }
+                    speed={30}
+                    img={
+                        <Image style={{ zIndex: -1 }} src={'/images/JiraSharepointLicense.png'} width={150} height={180} />
+                    }
+                    phase={2}
+                />
+                <Leaf
+                    position="left"
+                    description={
+                        <>
                             2014년 6월 ~ 2018년 11월 --<br />
                             통신사 유/무선 Rater system의 계약 관리 --<br />
-                            이스라엘 업체와의 계약 및 협상 능력 향상 --<br/> <br/>
-                            June 2014 ~ Nov 2018 --<br/>
-                            통신사 BSS Rater(Billing) 서비스 운영 및 계약 관리 --<br/>
-                            Earned skill : Contract with offshore (Israel) --<br/>
-                        </div>
-                        <div>
-                            <Image style={{ zIndex: -1 }} src={'/images/procurementManagement.jpeg'} width={400} height={300} />
-                        </div>
-                    </div>
-                    <div className={profileDivTableStyles.jobTreeStem}>
-                        &nbsp;
-                    </div>
-                    <div className={profileDivTableStyles.profileTreeBornLeaf}>
-                    </div>
-                </div>
-                <div className={profileDivTableStyles.profileTreeBGItem}>
-                    <div>
-                        &nbsp;
-                    </div>
-                    <div className={profileDivTableStyles.jobTreeStem}>
-                        &nbsp;
-                    </div>
-                    <div>
+                            이스라엘 업체와의 계약 및 협상 능력 향상 --<br /> <br />
+                            June 2014 ~ Nov 2018 --<br />
+                            통신사 BSS Rater(Billing) 서비스 운영 및 계약 관리 --<br />
+                            Earned skill : Contract with offshore (Israel) --<br />
+                        </>
+                    }
+                    speed={20}
+                    img={
+                        <Image style={{ zIndex: -1 }} src={'/images/procurementManagement.jpeg'} width={400} height={300} />
+                    }
+                    phase={2}
+                />
+                <Leaf
+                    position="right"
+                    description={
                         <p>
-                            <div className={profileDivTableStyles.detailedWorkExperienceStatement}>
-                                -- 2018년 11월 ~ 2022년 3월 31일 <br />
-                                -- KT Cloud 포탈 BA 및 Cloud billing system BA <br />
-                                -- REST API documentation, SaaS architecturing 능력 향상 <br /><br />
-                                -- Nov. 2018 ~ March. 2022
-                                -- KT Cloud portal BA / Cloud billing system BA <br />
-                                -- Earned skill : REST API documentation, SaaS architecturing<br/>
 
-                            </div>
-                            <div>
-                                <Image style={{ zIndex: -1 }} src={'/images/CloudPlatformJYU.jpg'} layout={"intrinsic"} width={280} height={350} />
-                            </div>
+                            -- 2018년 11월 ~ 2022년 3월 31일 <br />
+                            -- KT Cloud 포탈 BA 및 Cloud billing system BA <br />
+                            -- REST API documentation, SaaS architecturing 능력 향상 <br /><br />
+                            -- Nov. 2018 ~ March. 2022
+                            -- KT Cloud portal BA / Cloud billing system BA <br />
+                            -- Earned skill : REST API documentation, SaaS architecturing<br />
+
                         </p>
-                    </div>
-                </div> 
+                    }
+                    speed={40}
+                    img={
+                        <Image style={{ zIndex: -1 }} src={'/images/CloudPlatformJYU.jpg'} width={280} height={350} />
+                    }
+                    phase={2}
+                />
             </div>
-            <div className={profileDivTableStyles.ktBottom}>
-                <Image style={{ zIndex: -1 }} src={'/images/background/GreenBand(bottom).png'} layout="responsive" width={1200} height={10} />
-            </div>
+            <Image style={{ zIndex: 0 }} src={'/images/background/GreenBand(bottom).png'} layout="responsive" width={1200} height={10} />
         </>
     )
 
@@ -344,27 +293,26 @@ function ktcloudHistoryCard(){
             <div className={profileDivTableStyles.ktcloudProfileDivTableTitle}>
                 kt cloud
             </div>
-            <div className={profileDivTableStyles.ktcloudProfileTreeBGItem}>
-                <div className={profileDivTableStyles.ktcloudProfileTreeWorkLeftLeaf}>
-                    <div className={profileDivTableStyles.ktcloudDetailedWorkExperienceStatement}>
+            <Leaf
+                position="left"
+                description={
+                    <p>
                         2022년 4월 1일 ~ 현재 -- <br />
                         SaaS 서비스 Product Owner(KT Cloud BizMeet, BizOffice, bizplay) --<br />
                         SaaS Marketing, Architecturing, CSAP 인증 능력 향상 --<br /><br />
-                        Nov. 2018 ~ March. 2022 --<br/>
+                        Nov. 2018 ~ March. 2022 --<br />
                         KT Cloud portal BA / Cloud billing system BA --<br />
-                        Earned skill : REST API documentation, SaaS architecturing --<br/>
-                    </div>
-                    <div>
-                        <Image style={{ zIndex: -1 }} src={'/images/ktToKtcloudNew.jpg'} layout={"intrinsic"} width={600} height={350} alt="Loading" />
-                    </div>
-                </div>
-                <div className={profileDivTableStyles.jobTreeStem}>
-                    &nbsp;
-                </div>
-                <div className={profileDivTableStyles.profileTreeBornLeaf}>
-                </div>
-            </div>
-            {stemOfKT}
+                        Earned skill : REST API documentation, SaaS architecturing --<br />
+                    </p>
+                }
+                speed={11}
+                img={
+                    <Image style={{ zIndex: -1 }} src={'/images/ktToKtcloudNew.jpg'} layout="responsive" width={600} height={350} alt="Loading" />
+                }
+                phase={3}
+
+            />
+            {boldStem}
         </>
     )
 
@@ -406,7 +354,7 @@ export default function WorkExperience() {
                 <div className={profileDivTableStyles.profileDivTableTitle}>
                     History
                 </div>
-                {commonHistoryCard()}
+                    {commonHistoryCard()}
                 <div className={profileDivTableStyles.profileDivTableTitle}>
                     KT
                 </div>
