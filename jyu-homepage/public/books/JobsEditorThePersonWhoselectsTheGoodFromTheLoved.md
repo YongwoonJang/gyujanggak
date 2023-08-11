@@ -2,7 +2,7 @@
 title: "Jobs Editor 에디터 : 좋아하는 것으로부터 좋은 것을 골라내는 사람"
 author: "B"
 loanButton: "https://oucp9ptbg56.typeform.com/to/VUJ43OWS"
-images: ["/images/books/JobsEditor:ThePersonWhoselectsTheGoodFromTheLoved.jpeg"]
+images: ["/images/books/JobsEditorThePersonWhoselectsTheGoodFromTheLoved.jpeg"]
 imageWidth: [25]
 
 ---
