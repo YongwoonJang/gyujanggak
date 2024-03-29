@@ -1,6 +1,7 @@
 import pageStyles from '/styles/page.module.scss'
 import CopyRight from '../../components/copyRight'
 import HistoryTable from '../../components/historyTable'
+import CommentTableForBook from '../../components/commentTableForBook';
 
 import Head from 'next/head';
 
@@ -11,6 +12,7 @@ import utf8 from "utf8";
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseConfig, identification } from "../../components/firebaseConfig"
+
 
 export async function getStaticPaths(){
     const app = initializeApp(firebaseConfig);
@@ -49,7 +51,7 @@ export async function getStaticProps({params}){
     }
 
     return {
-        props: {book: docs.data(), id: params.id}
+        props: {book: docs.data(), id: params.id },
         
     }
 }
@@ -96,10 +98,11 @@ export default function books(props) {
                             {utf8.decode(book.review)}
                             </div>
                         </div>
+                        <CommentTableForBook id={props.id}/>
+                        <HistoryTable loanHistory={loanHistory}/>
                         <div className={pageStyles.loanButton}>
                             <a href={book.loanButton}>빌리기</a>
                         </div>
-                        <HistoryTable loanHistory={loanHistory}/>
                     </div>
                     <div>
                         <CopyRight />

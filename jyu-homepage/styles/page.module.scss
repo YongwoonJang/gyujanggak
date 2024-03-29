@@ -693,6 +693,13 @@ $communication-a-link-color: rgb(166, 26, 26);
   color: black;
 }
 
+.commentGroup{
+  border-top: rgb(205, 205, 205)  solid 1px;
+  padding-top: 1%;
+  padding-left: 1%;
+  width: 95%
+}
+
   @media screen and (max-width: $breakpoint-mobile) {
     .commentGroup {
         margin-left: 0px;
@@ -702,7 +709,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 .communicationCommentsTable{
   border-collapse : collapse;
-  width: 100%;
+  width: 79%;
 
 }
     @media screen and (max-width: $breakpoint-mobile) {
@@ -714,7 +721,6 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 .communicationCommentsTable td{
   padding: $height/4;
-  // width: auto;
   font-size: 0.7em;
   white-space: normal;
   font-family: "SBAggro L";
@@ -743,102 +749,41 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 }
 
-.communicationRegComment{
-  width: 100%;
-  margin: auto;
-  background-color:rgb(227, 227, 227);
-  
-
-}
-
-  @media screen and (max-width: $breakpoint-mobile) {
-    .communicationRegComment {
-        margin: 0px;
-    
-      }
-  }
-
 .communicationRegCommentBox {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 0;
-  
-}
-
-.communicationRegCommentBox textarea  {
-  margin-top: $height;
-  margin-bottom: 0;
+  display: block;
+  width: 80%;
   resize: none;
-  padding: $height*(math.div(1,3));
   font-family: "SBAggro L";
   font-size: 0.6em;
-  width: 98%;
-  height: 200px;
-  
-}
-
-@media screen and (max-width: $breakpoint-mobile) {
-  .communicationRegButtonBox textarea {
-    width: 100%;
-    padding: 0;
-  }
-
-}
-
-.communicationAuthorBox {
-  margin-top: 0;
-  text-align: center;
-  margin-bottom: $height;
-}
-
-.communicationAuthorBox input {
-  width: 98%;
-  padding: $height*(math.div(1,3));
-  font-family: "SBAggro L";
-  color: black;
-  font-size: 0.6em;
+  border: none;
+  padding: 1%;
+  background-color: reg(205, 205, 205);
   
 }
 
 .communicationRegButtonBox {
-  width: 98%;
-  margin: auto;
-
-}
-
-.communicationRegButtonBox button {
+  display: block;
   width: 10%;
-  padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
-  text-align: center;
+
   font-family: "SBAggro L";
-  font-size: 0.7em;
-  background-color: rgb(131, 131, 128);
+  font-size: 0.6em;
+  background-color: rgb(166, 26, 26);
   color: white;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 1px;
-  margin-bottom: $height*(math.div(1,2));
+  border: none;
+  
+
 }
 
 .communicationDelButtonBox {
-  width: 98%;
-  margin: auto;
-  //init setting
-  display: none;
-}
-
-.communicationDelButtonBox button {
+  display: block;
   width: 10%;
-  padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
-  text-align: center;
+
   font-family: "SBAggro L";
-  font-size: 0.7em;
-  background-color: rgb(131, 131, 128);
+  font-size: 0.6em;
+  background-color: rgb(166, 26, 26);
   color: white;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 1px;
-  margin-bottom: $height*(math.div(1,2));
+  border: none;
+
 }
 
 
@@ -905,17 +850,23 @@ $communication-a-link-color: rgb(166, 26, 26);
 
 
 .loanButton{
-  margin-top: $height;
-  text-align:right;
-  padding-right: 5%;
-  float: right;
+  //margin-top: $height;
+  width: 100%;
+  background-color: rgb(166, 26, 26);
+  color: white;
+  text-align:center;
+  padding-right: 10vw;
+  position: fixed;
+  bottom: 0;
   
 }
 
 .loanButton a{
-  color: $communication-a-link-color;
+  color: white;
   
 }
+
+
 
 .history{
   width: 95%;
@@ -936,7 +887,7 @@ $communication-a-link-color: rgb(166, 26, 26);
 .historyTable{
   border-collapse : collapse;
   margin-top: $height*2;
-  margin-bottom: $height*4;
+  margin-bottom: $height*2;
   width: 90%;
 }
 
@@ -1021,6 +972,7 @@ $communication-a-link-color: rgb(166, 26, 26);
   
   margin: auto;
   text-align: center;
+
 }
 
 /* average mobile */
@@ -1134,23 +1086,6 @@ $communication-a-link-color: rgb(166, 26, 26);
     
   }
 
-  .communicationAuthorBox {
-    margin: 0 0;
-    padding-top: 0;
-    text-align: center;
-    margin-bottom: $height;
-  }
-
-  .communicationAuthorBox input {
-    width: 98%;
-    padding: 0 0;
-    font-family: "SBAggro L";
-    color: grey;
-    font-size: 0.5em;
-    margin: 0 0;
-    
-  }
-
   .communicationRegButtonBox {
     width: 98%;
     margin: auto;
@@ -1158,28 +1093,6 @@ $communication-a-link-color: rgb(166, 26, 26);
   }
 
   .communicationRegButtonBox button {
-    width: 20%;
-    height: 2.5em;
-    padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
-    text-align: center;
-    font-family: "SBAggro L";
-    font-size: 0.5em;
-    background-color: rgb(131, 131, 128);
-    color: white;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-    margin-bottom: $height*(math.div(1,2));
-  }
-
-  .communicationDelButtonBox {
-      width: 98%;
-      margin: auto;
-      //init setting
-      display: none;
-    }
-
-  .communicationDelButtonBox button {
     width: 20%;
     height: 2.5em;
     padding: $height*(math.div(1,1.5)) $height*(math.div(1,1.5));
