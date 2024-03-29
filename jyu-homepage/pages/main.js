@@ -7,12 +7,10 @@ import pageStyles from '/styles/page.module.scss'
 
 // firebase
 import { initializeApp } from 'firebase/app'
-import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
 
 // Component
 import CommentTable from '../components/commentTable'
 import sortBookListByTitle from '../components/utils';
-import { identification } from '../components/firebaseConfig';
 import WorkExperience from './workExperiences/workExperience';
 
 import utf8 from "utf8";
@@ -36,10 +34,11 @@ export default function Main(){
     try{
         app = initializeApp(firebaseConfig);
         db = getFirestore(app);
-        auth = getAuth();
+        
     }catch(e){
         console.log("Error in communication component!!");
         console.log(e);
+
     }
 
     useEffect(()=>{
@@ -56,15 +55,7 @@ export default function Main(){
     });
     
     //Load List
-    useEffect(async()=>{
-        await signInWithEmailAndPassword(auth, identification["user"], identification["code"])
-        .then(() => {
-            console.log("login success");
-        })
-        .catch((error) => {
-            console.log(error);
-
-        });
+    useEffect(async ()=>{
 
         const books = await getDocs(collection(db, "bookList"));
         const sortBooks = sortBookListByTitle(books);
