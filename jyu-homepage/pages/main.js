@@ -1,4 +1,3 @@
-import { getDocs, getFirestore, collection } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,6 +6,7 @@ import pageStyles from '/styles/page.module.scss'
 
 // firebase
 import { initializeApp } from 'firebase/app'
+import { getDocs, getFirestore, collection } from 'firebase/firestore';
 
 // Component
 import CommentTable from '../components/commentTable'
@@ -23,7 +23,7 @@ export default function Main(){
     const [filter, setFilter] = useState("");
     const [isFocus, setFocus] = useState(false);
     
-    let app = null, db = null, auth = null;
+    let app = null, db = null;
 
     const firebaseConfig = {
         apiKey: "AIzaSyCrHlHoW4YEe-oU-76H7AEI9RMkBoAX1P0",
@@ -57,7 +57,18 @@ export default function Main(){
     //Load List
     useEffect(async ()=>{
 
-        const books = await getDocs(collection(db, "bookList"));
+        let books = null;
+
+        try{        
+            books = await getDocs(collection(db, "bookList"));
+            console.log("books: ", books.docs.length);
+            console.log("app: " + app);
+            console.log("db: " + db);
+
+        }catch(e){
+            console.log(e);
+
+        }
         const sortBooks = sortBookListByTitle(books);
 
         let descList = [], imgList = [];
