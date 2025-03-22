@@ -131,44 +131,6 @@ export default function Main(){
     return(
         <>
             <div className={isFocus?`${pageStyles.comBannerGroup} ${pageStyles.comBannerGroupFocus}`:`${pageStyles.comBannerGroup}`}>
-                <div className={isFocus ? `${pageStyles.comBannerGroupLinkNone}` : `${pageStyles.comBannerGroupLink}`}>
-                    <Link href="https://www.instagram.com/j_major_scale/">
-                        <a>
-                            <Image 
-                                src="/images/icon/instagramIcon.png" 
-                                width={40}
-                                height={40}
-                            />
-                        </a>
-                    </Link>
-                    <Link href="https://blog.naver.com/jyy3k">
-                        <a>
-                            <Image
-                                src="/images/icon/naverIcon.png"
-                                width={40}
-                                height={40}
-                            />
-                        </a>
-                    </Link>
-                    <Link href="https://www.facebook.com/YongwoonJang88">
-                        <a>
-                            <Image
-                                src="/images/icon/facebookIcon.png"
-                                width={40}
-                                height={40}
-                            />
-                        </a>
-                    </Link>
-                    <Link href="https://www.youtube.com/channel/UCCBDNHHeeh5FZX3ZnJ1VDcg">
-                        <a>
-                            <Image
-                                src="/images/icon/youtubeIcon.png"
-                                width={40}
-                                height={40}
-                            />
-                        </a>
-                    </Link>
-                </div>
                 <div className={isFocus ? `${pageStyles.comBannerGroupInputGroupFocus}`:`${pageStyles.comBannerGroupInputGroup}`}>
                     <div>
                         <label className={isFocus ? `${pageStyles.comBannerGroupLabel} ${pageStyles.comBannerGroupLabelFocus}` : `${pageStyles.comBannerGroupLabel}`}>
